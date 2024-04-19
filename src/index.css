@@ -1,0 +1,12 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Bion';
+  src: url('../src/fonts/Bion-Bold.woff2') format('woff2'),
+  /* Añade otras opciones de formato aquí si es necesario */
+}
+

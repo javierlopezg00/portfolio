@@ -1,0 +1,101 @@
+.about-container{
+    background-image: url("./../../assets/background-about.png");
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+}
+.line3{
+    position: absolute;
+    bottom: 0;
+}
+.first-line{
+    position: absolute;
+    top: 0;
+    transform: rotate(180deg);
+}
+.hello-stranger{
+    transform: rotate(-10deg);
+    margin-top: 10%;
+    width: 100%;
+}
+.about-div{
+    position: relative;
+    width: 80%;
+    height: 20vh;
+}
+.myself-img, .myself-img2{
+    transform: rotate(10deg);
+    position: absolute;
+    width: 100%;
+}
+
+.myself-img{
+    top: 10%;
+    left: 5%;
+    transition: transform 0.3s ease;;
+}
+.myself-img:hover{
+    transform: translate(8px, 6px);
+}
+
+.about-images-container{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-me{
+    margin-left: -15%;
+    width: 50%;
+    letter-spacing: .02em;
+    font-family: Archivo, sans-serif;
+    line-height: 1.6em;
+    display: block;
+    color: #1a1b1f;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+.diferent-p{
+    width: 70%;
+    background-image: linear-gradient(225deg, #0831d1, #f83aa2);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: #0831d1;
+    letter-spacing: normal;
+    font-family: Roboto Mono, sans-serif;
+    font-size: 0.9em;
+    font-style: italic;
+    line-height: 1.5em;
+}
+
+.divider-line {
+    width: 20%;
+    height: 3px;
+    background-image: linear-gradient(270deg, #4869eb, #ee74b7);
+    margin-top: 2.5em;
+    margin-bottom: 2.5em;
+}
+
+@media screen and (max-width: 768px) {
+    .about-div{
+        display: none;
+    }
+    .about-me{
+        margin: 0 auto;
+        width: 80%;
+    }
+    .about-me p{
+        text-align: center;
+    }
+    .divider-line{
+        width: 100%;
+    }
+    .diferent-p{
+        margin: auto;
+    }
+}

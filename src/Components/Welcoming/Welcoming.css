@@ -1,0 +1,52 @@
+.welcoming-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+.black{
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    transition: transform 0.3s ease;
+}
+.black:hover{
+    transform: translate(8px, 8px);
+    transform: rotate(1deg);
+}
+.responsive-view{
+    display: none;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .welcoming-container{
+        display: none;
+    }
+    .responsive-view{
+        width: 100%;
+        display: block;
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    .responsive-title{
+        width: 100%;
+    }
+    .responsive-whale, .responsive-whale2{
+        width: 100%;
+        position: absolute;
+    }
+    .responsive-whale{
+        transform: rotate(-10deg);
+        top: 65%;
+        left: 50%;
+    }
+    .responsive-whale2{
+        transform: scaleX(-1);
+        bottom: 70%;
+        right: 60%;
+    }
+}

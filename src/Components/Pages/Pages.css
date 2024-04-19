@@ -1,0 +1,22 @@
+.pages{
+    position: relative;
+    height: auto;
+    background-color: rgb(29, 26, 26);
+}
+.screens{
+    display: flex;
+    justify-content: space-between;
+    padding: 4% 4% 25% 4%;
+}
+.projects-title{
+    padding-top: 5%;
+    text-align: center;
+    font-size: 3em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+
+    background-image: linear-gradient(270deg, #4df8ce, #84a1fd 33%, #e3a5ee 66%, #ede6bc);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
