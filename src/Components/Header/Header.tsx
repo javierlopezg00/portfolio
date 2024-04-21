@@ -1,70 +1,45 @@
-import './Header.css'
+import './Header.scss'
 import github from '../../assets/icons/github.svg'
 import linkedin from '../../assets/icons/linkedin.svg'
 import email from '../../assets/icons/email.png'
-import triangle from '../../assets/icons/triangle.png'
-import line from './../../Components/Line/Line.svg'
-import { useState } from 'react'
+
 
 export default function Header(){
 
-    const [isOpen, setIsOpen] = useState(true);
 
     return(
-        <div className='header'>
-            <nav className='nav'>
-            <a className='nav-words' 
-                    href="">blog</a>
-                <a className='nav-words' 
-                    href="#about">about</a>
-                <a className='nav-words'
-                    href="https://drive.google.com/file/d/1eLatE1tjDrbmHSA2Sf8ZKa4aWpFPAOSv/view?usp=sharing"
-                    target='_blank' >resume</a>
+        <nav className="navbar navbar-expand-md custom-navbar" style={{padding: "3%"}}> 
+            <div className="container-fluid">
+                <a className="navbar-brand" href="#">Navbar</a>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav" style={{display: "flex", alignItems: "center"}}>
+                    <li className="nav-item">
+                    <a className="nav-link active" aria-current="page" href="/blog">Blog</a>
+                    </li>
+                    <li className="nav-item">
+                    <a className="nav-link" target='_blank' href="https://drive.google.com/file/d/1eLatE1tjDrbmHSA2Sf8ZKa4aWpFPAOSv/view?usp=sharing">Resume</a>
+                    </li>
+                    <li className="nav-item">
+                    <a className="nav-link" href="/">About</a>
+                    </li>
                     
-                
-                <a title='LinkedIn' target='_blank' href="https://www.linkedin.com/in/javier-lópez-guzmán-211831236/">
-                    <img className='icon' src={linkedin} alt="LinkedIn" />
+                </ul>
+            </div>
+            <div className="collapse navbar-collapse" id="navbarNav" style={{marginLeft: "30px"}}>
+                <a className="navbar-brand img-a" target='_blank' title='Github' href="https://github.com/javierlopezg00">
+                    <img style={{ width: "50px", height: "50px" }} src={github} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
                 </a>
-                <a title='Github' target='_blank' href="https://github.com/javierlopezg00">
-                    <img className='icon' src={github} alt="Github" />
+                <a className="navbar-brand" target='_blank' title='Linkedin' href="https://www.linkedin.com/in/javier-lópez-guzmán-211831236/">
+                    <img style={{ width: "50px", height: "50px" }} src={linkedin} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
                 </a>
-                <a title='Email' target='_blank' href="mailto:javierlopezguzman00@gmail.com">
-                    <img className='icon' src={email} alt="Email" />
+                <a className="navbar-brand" target='_blank' title='Email' href="mailto:javierlopezguzman00@gmail.com">
+                    <img style={{ width: "50px", height: "50px" }} src={email} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
                 </a>
-            </nav>
-
-            { isOpen ? 
-                <div className='responsive-menu'>
-                    <a className='nav-words'href="">
-                        Blog
-                    </a>
-                    <a className='nav-words' href="#about">
-                        About
-                    </a>
-                    <a className='nav-words'
-                        href="https://drive.google.com/file/d/1eLatE1tjDrbmHSA2Sf8ZKa4aWpFPAOSv/view?usp=sharing"
-                        target='_blank' >Resume
-                    </a>
-
-                    <a className='nav-words' target='_blank' href="https://www.linkedin.com/in/javier-lópez-guzmán-211831236/">
-                        Linkedin
-                    </a>
-                    <a className='nav-words' target='_blank' href="https://github.com/javierlopezg00">
-                        Github
-                    </a>
-                    <a className='nav-words' target='_blank' href="mailto:javierlopezguzman00@gmail.com">
-                        Email
-                    </a>
-                    <img className='invrese-triangle' src={triangle} onClick={()=> setIsOpen(state => !state)}/>
-                    <img className='responsive-header-line' src={line} />
-                </div>
-            :   <div className='responsive-menu1'>
-                    <img src={triangle} onClick={()=> setIsOpen(state => !state)}/>
-                </div>
-            } 
-            
-
-            
-        </div>
+            </div>
+        </nav>
     )
 }

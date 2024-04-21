@@ -1,0 +1,12 @@
+.custom-navbar {
+    background-image: url('./../../assets/background-header.png');
+}
+
+.custom-navbar li{
+    font-family: 'Bion';
+    font-size: 1.4rem;
+    background-image: linear-gradient(270deg, #b94df8, #84a1fd 33%, #e3a5ee 66%, #ede6bc);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+}
