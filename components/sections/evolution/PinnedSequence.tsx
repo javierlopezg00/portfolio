@@ -186,7 +186,15 @@ export function PinnedSequence() {
                 }}
                 className="absolute inset-0"
               >
-                <MessageOverlayLayer text={stage.description} />
+                {/* The message layer only ever fades in during the final
+                    stage (see VISIBILITY.message), so its text is pinned to
+                    that stage rather than the shared `activeStage` bucket —
+                    that bucket flips on a different boundary than the fade's
+                    own GSAP timing, which briefly showed the prior stage's
+                    text ghosting in mid-fade. */}
+                <MessageOverlayLayer
+                  text={evolutionStages[evolutionStages.length - 1].description}
+                />
               </div>
             </div>
           </div>
