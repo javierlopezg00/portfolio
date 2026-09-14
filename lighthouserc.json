@@ -4,7 +4,7 @@
       "startServerCommand": "pnpm exec next start -p 4173",
       "startServerReadyPattern": "Ready in",
       "startServerReadyTimeout": 30000,
-      "url": ["http://localhost:4173/"],
+      "url": ["http://localhost:4173/en", "http://localhost:4173/es"],
       "numberOfRuns": 3,
       "settings": {
         "chromeFlags": "--headless=new --no-sandbox --disable-gpu"
