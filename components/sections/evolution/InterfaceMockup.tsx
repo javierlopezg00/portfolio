@@ -25,6 +25,17 @@ export function InterfaceMockup({ stage, className }: InterfaceMockupProps) {
   const show = (key: LayerKey) => VISIBILITY[key][stage];
   const connectionsInset =
     "pointer-events-none absolute -inset-x-6 -inset-y-8 sm:-inset-x-16 sm:-inset-y-10";
+  // Layers are absolutely positioned to build a believable mockup layout
+  // (nav above hero above cards, etc.), so the container can't size itself
+  // from their content the way normal flow would — it has to be told how
+  // tall to be. A single fixed height for every stage (regardless of how
+  // little a given stage actually shows) left the hero-only opening stage
+  // with ~150px of dead space below its content on mobile.
+  const minHeight = show("cards")
+    ? "min-h-[300px]" // nav + hero + cards: cards sits at top-48
+    : show("dashboard")
+      ? "min-h-[230px]" // sidebar + dashboard (stages 2-4)
+      : "min-h-[160px]"; // hero only (stage 0)
 
   return (
     <div className={cn("relative", className)}>
@@ -44,7 +55,7 @@ export function InterfaceMockup({ stage, className }: InterfaceMockupProps) {
           ))}
         </div>
 
-        <div className="relative flex min-h-[300px]">
+        <div className={cn("relative flex", minHeight)}>
           <div
             className={cn(
               "border-border w-16 shrink-0 border-r pt-6",

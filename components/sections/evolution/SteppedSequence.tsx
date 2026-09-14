@@ -9,7 +9,7 @@ export function SteppedSequence() {
   const dict = getDictionary(useLocale());
 
   return (
-    <div className="flex flex-col gap-32">
+    <div className="flex flex-col gap-16">
       {dict.evolution.stages.map((stage, index) => (
         <motion.div
           key={stage.id}
