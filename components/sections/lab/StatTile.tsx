@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import { useMotionValue, useMotionValueEvent, useSpring } from "motion/react";
 import { cn } from "@/lib/cn";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 
 interface StatTileProps {
   label: string;
@@ -12,9 +14,8 @@ interface StatTileProps {
   delta?: number;
 }
 
-const defaultFormat = (value: number) => Math.round(value).toLocaleString();
-
 export function StatTile({ label, value, formatValue, delta }: StatTileProps) {
+  const dict = getDictionary(useLocale());
   const spanRef = useRef<HTMLSpanElement>(null);
   const reducedMotion = useReducedMotion();
   const motionValue = useMotionValue(value);
@@ -23,7 +24,9 @@ export function StatTile({ label, value, formatValue, delta }: StatTileProps) {
     damping: reducedMotion ? 100 : 22,
     mass: 0.5,
   });
-  const format = formatValue ?? defaultFormat;
+  const format =
+    formatValue ??
+    ((v: number) => Math.round(v).toLocaleString(dict.intlLocale));
 
   useEffect(() => {
     motionValue.set(value);

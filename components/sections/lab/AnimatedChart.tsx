@@ -2,6 +2,8 @@
 
 import { useId, useMemo, useState } from "react";
 import { cn } from "@/lib/cn";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 import type { ChartPoint } from "./dashboard-data";
 
 interface AnimatedChartProps {
@@ -14,6 +16,7 @@ const PADDING_X = 12;
 const PADDING_Y = 20;
 
 export function AnimatedChart({ data }: AnimatedChartProps) {
+  const dict = getDictionary(useLocale());
   const gradientId = useId();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -53,7 +56,12 @@ export function AnimatedChart({ data }: AnimatedChartProps) {
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         className="w-full"
         role="img"
-        aria-label={`Chart from ${data[0]?.label} to ${data[data.length - 1]?.label}, values from ${Math.min(...data.map((d) => d.value)).toLocaleString()} to ${Math.max(...data.map((d) => d.value)).toLocaleString()}`}
+        aria-label={dict.lab.dashboard.chartAriaLabel(
+          data[0]?.label ?? "",
+          data[data.length - 1]?.label ?? "",
+          Math.min(...data.map((d) => d.value)).toLocaleString(dict.intlLocale),
+          Math.max(...data.map((d) => d.value)).toLocaleString(dict.intlLocale),
+        )}
       >
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
@@ -127,7 +135,10 @@ export function AnimatedChart({ data }: AnimatedChartProps) {
             onPointerLeave={() => setActiveIndex(null)}
             onFocus={() => setActiveIndex(i)}
             onBlur={() => setActiveIndex(null)}
-            aria-label={`${p.label}: ${p.value.toLocaleString()}`}
+            aria-label={dict.lab.dashboard.chartPointAriaLabel(
+              p.label,
+              p.value.toLocaleString(dict.intlLocale),
+            )}
           />
         ))}
       </div>
@@ -142,7 +153,7 @@ export function AnimatedChart({ data }: AnimatedChartProps) {
           style={{ left: `${(active.x / WIDTH) * 100}%` }}
         >
           <p className="text-text font-semibold">
-            {active.value.toLocaleString()}
+            {active.value.toLocaleString(dict.intlLocale)}
           </p>
           <p className="text-text-secondary">{active.label}</p>
         </div>

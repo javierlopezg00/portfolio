@@ -144,6 +144,9 @@ export const en = {
         Nov: "Nov",
         Dec: "Dec",
       },
+      chartAriaLabel: (from, to, min, max) =>
+        `Chart from ${from} to ${to}, values from ${min} to ${max}`,
+      chartPointAriaLabel: (label, value) => `${label}: ${value}`,
     },
     booking: {
       selectDay: "Select a day",

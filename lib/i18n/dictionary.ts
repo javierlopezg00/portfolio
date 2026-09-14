@@ -61,6 +61,13 @@ export interface Dictionary {
       // map to their localized display text here, so the numeric dataset
       // never needs a second, locale-specific copy.
       chartLabels: Record<string, string>;
+      chartAriaLabel: (
+        from: string,
+        to: string,
+        min: string,
+        max: string,
+      ) => string;
+      chartPointAriaLabel: (label: string, value: string) => string;
     };
     booking: {
       selectDay: string;
