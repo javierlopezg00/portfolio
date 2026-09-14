@@ -1,7 +1,18 @@
+import dynamic from "next/dynamic";
 import { Container, Heading, Section, Tabs, Text } from "@/components/ui";
 import { BookingDemo } from "./lab/BookingDemo";
-import { DashboardDemo } from "./lab/DashboardDemo";
-import { IntegrationFlowDemo } from "./lab/IntegrationFlowDemo";
+
+// Booking is the default-active tab, so it stays a static import — it's
+// needed immediately. Dashboard and Integration are already lazy-mounted
+// by Tabs (their React tree doesn't render until selected); dynamic()
+// takes that a step further so their JS isn't even fetched until then —
+// most visitors never open every tab.
+const DashboardDemo = dynamic(() =>
+  import("./lab/DashboardDemo").then((m) => m.DashboardDemo),
+);
+const IntegrationFlowDemo = dynamic(() =>
+  import("./lab/IntegrationFlowDemo").then((m) => m.IntegrationFlowDemo),
+);
 
 export function InteractiveLab() {
   return (

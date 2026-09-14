@@ -11,10 +11,18 @@ import { ProjectConfigurator } from "@/components/sections/ProjectConfigurator";
 import { SelectedWork } from "@/components/sections/SelectedWork";
 import { Services } from "@/components/sections/Services";
 import { SoftwareEvolution } from "@/components/sections/SoftwareEvolution";
+import { getHomepageStructuredData } from "@/lib/seo/structuredData";
 
 export default function Home() {
   return (
     <>
+      {/* Static, fully-known content — safe to inline directly. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getHomepageStructuredData()),
+        }}
+      />
       <SkipLink />
       <Navigation />
       {/* tabIndex={-1}: <main> isn't natively focusable, so without it the

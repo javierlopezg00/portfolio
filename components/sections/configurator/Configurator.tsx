@@ -2,6 +2,7 @@
 
 import { useEffect, useReducer, useState } from "react";
 import { Button, Text } from "@/components/ui";
+import { track } from "@/lib/analytics/track";
 import {
   budgetOptions,
   projectTypeOptions,
@@ -177,6 +178,11 @@ export function Configurator() {
       });
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
+      track("configurator_submit", {
+        projectType: state.projectType,
+        budget: state.budget,
+        timeline: state.timeline,
+      });
       sessionStorage.removeItem(STORAGE_KEY);
     } catch {
       setStatus("error");

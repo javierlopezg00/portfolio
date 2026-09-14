@@ -1,10 +1,20 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useIsClient } from "@/lib/hooks/useIsClient";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
-import { PinnedSequence } from "./PinnedSequence";
 import { SteppedSequence } from "./SteppedSequence";
+
+// GSAP only ships to users who actually get the pinned experience —
+// mobile and prefers-reduced-motion visitors (the majority on real
+// traffic) never download it. SteppedSequence stays a static import: it's
+// the SSR-safe default and what most users see, so it needs to be ready
+// immediately rather than waiting on a chunk fetch.
+const PinnedSequence = dynamic(
+  () => import("./PinnedSequence").then((m) => m.PinnedSequence),
+  { ssr: false },
+);
 
 export function EvolutionSequence() {
   const isClient = useIsClient();
