@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/layout/Navigation";
 import { Hero } from "@/components/sections/Hero";
+import { SoftwareEvolution } from "@/components/sections/SoftwareEvolution";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
+        <SoftwareEvolution />
       </main>
     </>
   );
