@@ -1,16 +1,13 @@
 "use client";
 
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useMemo, useReducer, useState } from "react";
 import { Button, Text } from "@/components/ui";
 import { track } from "@/lib/analytics/track";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 import {
-  budgetOptions,
-  projectTypeOptions,
-  timelineOptions,
-} from "@/lib/content/configurator-options";
-import {
-  leadSchema,
-  stepSchemas,
+  createLeadSchema,
+  createStepSchemas,
   type StepKey,
 } from "@/lib/validation/lead.schema";
 import { StepContact } from "./StepContact";
@@ -19,14 +16,6 @@ import { StepNeeds } from "./StepNeeds";
 import { StepSingleSelect } from "./StepSingleSelect";
 
 const STORAGE_KEY = "configurator-draft";
-
-const STEPS: { key: StepKey; label: string }[] = [
-  { key: "projectType", label: "What do you want to build?" },
-  { key: "needs", label: "What does your business need?" },
-  { key: "budget", label: "Approximate budget" },
-  { key: "timeline", label: "Timeline" },
-  { key: "contact", label: "Your details" },
-];
 
 interface FormState {
   step: number;
@@ -91,6 +80,27 @@ function dataForStep(key: StepKey, state: FormState) {
 }
 
 export function Configurator() {
+  const locale = useLocale();
+  const dict = getDictionary(locale);
+  // The dictionary's step keys are plain strings (dictionary.ts doesn't
+  // depend on the validation schema's literal-union type) — cast once
+  // here rather than scattering it at every StepKey usage below. The
+  // runtime values always match createStepSchemas' keys by construction
+  // (both are authored from the same five-step flow).
+  const steps = dict.configurator.steps as { key: StepKey; label: string }[];
+  // Depend on `locale` (a primitive) rather than `dict` — dict is a fresh
+  // getDictionary() call each render, and React Compiler can't statically
+  // prove that returns a stable reference, so it declines to memoize the
+  // component at all if the object itself is the dependency.
+  const stepSchemas = useMemo(
+    () => createStepSchemas(getDictionary(locale).validation),
+    [locale],
+  );
+  const leadSchema = useMemo(
+    () => createLeadSchema(getDictionary(locale).validation),
+    [locale],
+  );
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<
@@ -132,7 +142,7 @@ export function Configurator() {
     }
   }, [state, isHydrating]);
 
-  const currentStep = STEPS[state.step];
+  const currentStep = steps[state.step];
 
   function setField(field: keyof FormState, value: string) {
     dispatch({ type: "SET_FIELD", field, value });
@@ -151,7 +161,7 @@ export function Configurator() {
       return;
     }
     setErrors({});
-    if (state.step === STEPS.length - 1) {
+    if (state.step === steps.length - 1) {
       void submit();
     } else {
       dispatch({ type: "SET_STEP", step: state.step + 1 });
@@ -196,9 +206,11 @@ export function Configurator() {
           <CheckIcon />
         </div>
         <div>
-          <Text className="font-semibold">Thanks — that&apos;s in.</Text>
+          <Text className="font-semibold">
+            {dict.configurator.successTitle}
+          </Text>
           <Text tone="secondary" size="sm" className="mt-1">
-            We&apos;ll follow up at {state.email} within one business day.
+            {dict.configurator.successBody(state.email)}
           </Text>
         </div>
       </div>
@@ -209,15 +221,19 @@ export function Configurator() {
     <div>
       <StepIndicator
         current={state.step}
-        total={STEPS.length}
-        label={currentStep.label}
+        total={steps.length}
+        text={dict.configurator.stepIndicator(
+          state.step + 1,
+          steps.length,
+          currentStep.label,
+        )}
       />
 
       {currentStep.key === "projectType" && (
         <StepSingleSelect
-          heading="What do you want to build?"
+          heading={currentStep.label}
           name="projectType"
-          options={projectTypeOptions}
+          options={dict.configurator.options.projectType}
           value={state.projectType}
           onChange={(v) => setField("projectType", v)}
           error={errors.projectType}
@@ -232,9 +248,9 @@ export function Configurator() {
       )}
       {currentStep.key === "budget" && (
         <StepSingleSelect
-          heading="Approximate budget"
+          heading={currentStep.label}
           name="budget"
-          options={budgetOptions}
+          options={dict.configurator.options.budget}
           value={state.budget}
           onChange={(v) => setField("budget", v)}
           error={errors.budget}
@@ -242,9 +258,9 @@ export function Configurator() {
       )}
       {currentStep.key === "timeline" && (
         <StepSingleSelect
-          heading="Timeline"
+          heading={currentStep.label}
           name="timeline"
-          options={timelineOptions}
+          options={dict.configurator.options.timeline}
           value={state.timeline}
           onChange={(v) => setField("timeline", v)}
           error={errors.timeline}
@@ -261,23 +277,23 @@ export function Configurator() {
             onClick={goBack}
             disabled={status === "submitting"}
           >
-            Back
+            {dict.configurator.back}
           </Button>
         ) : (
           <span />
         )}
         <Button onClick={goNext} disabled={status === "submitting"}>
-          {state.step === STEPS.length - 1
+          {state.step === steps.length - 1
             ? status === "submitting"
-              ? "Sending…"
-              : "Request Proposal"
-            : "Next"}
+              ? dict.configurator.sending
+              : dict.configurator.requestProposal
+            : dict.configurator.next}
         </Button>
       </div>
 
       {status === "error" && (
         <p role="alert" className="text-body-sm text-error mt-4">
-          Something went wrong sending your request. Please try again.
+          {dict.configurator.genericError}
         </p>
       )}
     </div>

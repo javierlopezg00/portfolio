@@ -4,6 +4,8 @@ import { useState, type ReactNode } from "react";
 import { Badge, Card, Heading, Text } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import type { WorkProject } from "@/lib/content/work";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 import { DeviceFrame, type DeviceMode } from "./DeviceFrame";
 
 const MODES: DeviceMode[] = ["desktop", "mobile"];
@@ -14,13 +16,14 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, preview }: ProjectCardProps) {
+  const dict = getDictionary(useLocale());
   const [mode, setMode] = useState<DeviceMode>("desktop");
 
   return (
     <Card className="flex flex-col gap-8 lg:flex-row lg:items-start">
       <div className="flex flex-1 flex-col gap-4">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge tone="accent">Conceptual Project</Badge>
+          <Badge tone="accent">{dict.work.conceptualProjectBadge}</Badge>
           <Badge>{project.vertical}</Badge>
         </div>
 
@@ -41,7 +44,7 @@ export function ProjectCard({ project, preview }: ProjectCardProps) {
 
         <div
           role="group"
-          aria-label="Preview device"
+          aria-label={dict.work.previewDeviceAriaLabel}
           className="border-border bg-background/40 flex w-fit gap-1 rounded-full border p-1"
         >
           {MODES.map((m) => (
@@ -51,13 +54,13 @@ export function ProjectCard({ project, preview }: ProjectCardProps) {
               onClick={() => setMode(m)}
               aria-pressed={mode === m}
               className={cn(
-                "text-body-sm duration-fast focus-visible:ring-focus-ring rounded-full px-3 py-1.5 capitalize transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
+                "text-body-sm duration-fast focus-visible:ring-focus-ring rounded-full px-3 py-1.5 transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
                 mode === m
                   ? "bg-accent-strong text-white"
                   : "text-text-secondary hover:text-text",
               )}
             >
-              {m}
+              {dict.work.deviceModes[m]}
             </button>
           ))}
         </div>

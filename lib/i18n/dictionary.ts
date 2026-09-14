@@ -9,6 +9,10 @@ export interface ConfiguratorOptionText {
 }
 
 export interface Dictionary {
+  // BCP 47 tag used for every Intl.NumberFormat/DateTimeFormat call across
+  // the app, so number/date formatting conventions never need a second,
+  // per-component locale mapping.
+  intlLocale: string;
   nav: {
     links: NavLinkText[];
     startAProject: string;
@@ -69,7 +73,9 @@ export interface Dictionary {
         day: number,
         available: boolean,
       ) => string;
-      dateLocale: string;
+      // Single-letter weekday column headers, Sunday-first (index matches
+      // JS Date#getDay()).
+      weekdayLabels: [string, string, string, string, string, string, string];
     };
     integration: {
       trigger: string;

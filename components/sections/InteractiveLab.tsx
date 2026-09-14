@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { Container, Heading, Section, Tabs, Text } from "@/components/ui";
+import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 import { BookingDemo } from "./lab/BookingDemo";
 
 // Booking is the default-active tab, so it stays a static import — it's
@@ -14,16 +15,18 @@ const IntegrationFlowDemo = dynamic(() =>
   import("./lab/IntegrationFlowDemo").then((m) => m.IntegrationFlowDemo),
 );
 
-export function InteractiveLab() {
+export async function InteractiveLab() {
+  const dict = await getServerDictionary();
+
   return (
     <Section id="lab" ariaLabelledBy="lab-heading">
       <Container>
         <div className="max-w-xl">
           <Heading id="lab-heading" size="h2">
-            Try it yourself.
+            {dict.lab.heading}
           </Heading>
           <Text tone="secondary" className="mt-4">
-            Small, real interactions — not screenshots.
+            {dict.lab.subhead}
           </Text>
         </div>
 
@@ -36,15 +39,19 @@ export function InteractiveLab() {
             // height keeps the page height constant across tabs.
             className="min-h-[550px] lg:min-h-[690px]"
             items={[
-              { value: "booking", label: "Booking", content: <BookingDemo /> },
+              {
+                value: "booking",
+                label: dict.lab.tabs.booking,
+                content: <BookingDemo />,
+              },
               {
                 value: "dashboard",
-                label: "Dashboard",
+                label: dict.lab.tabs.dashboard,
                 content: <DashboardDemo />,
               },
               {
                 value: "integration",
-                label: "Integration",
+                label: dict.lab.tabs.integration,
                 content: <IntegrationFlowDemo />,
               },
             ]}

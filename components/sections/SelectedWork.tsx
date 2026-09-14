@@ -1,5 +1,5 @@
 import { Container, Heading, Section, Text } from "@/components/ui";
-import { workProjects } from "@/lib/content/work";
+import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 import { ProjectCard } from "./work/ProjectCard";
 import {
   ClinicPreview,
@@ -13,22 +13,23 @@ const previews = [
   <ConsultingPreview key="consulting" />,
 ];
 
-export function SelectedWork() {
+export async function SelectedWork() {
+  const dict = await getServerDictionary();
+
   return (
     <Section id="work" ariaLabelledBy="work-heading">
       <Container>
         <div className="max-w-xl">
           <Heading id="work-heading" size="h2">
-            Selected work.
+            {dict.work.heading}
           </Heading>
           <Text tone="secondary" className="mt-4">
-            Conceptual projects built to show range — real case studies coming
-            soon.
+            {dict.work.subhead}
           </Text>
         </div>
 
         <div className="mt-12 flex flex-col gap-8">
-          {workProjects.map((project, i) => (
+          {dict.work.projects.map((project, i) => (
             <ProjectCard
               key={project.id}
               project={project}

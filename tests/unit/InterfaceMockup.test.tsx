@@ -1,11 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { InterfaceMockup } from "@/components/sections/evolution/InterfaceMockup";
-import { evolutionStages } from "@/components/sections/evolution/stages";
+import { en } from "@/lib/i18n/en";
+import { renderWithLocale } from "./test-utils";
+
+const evolutionStages = en.evolution.stages;
 
 describe("InterfaceMockup", () => {
   it("shows only the hero block at stage 0 (landing)", () => {
-    render(<InterfaceMockup stage={0} />);
+    renderWithLocale(<InterfaceMockup stage={0} />);
     expect(screen.queryByText("PAYMENTS")).not.toBeInTheDocument();
     expect(
       screen.queryByText(evolutionStages[0].description),
@@ -13,7 +16,7 @@ describe("InterfaceMockup", () => {
   });
 
   it("shows connection labels from stage 3 (connected) onward", () => {
-    const { rerender } = render(<InterfaceMockup stage={2} />);
+    const { rerender } = renderWithLocale(<InterfaceMockup stage={2} />);
     expect(screen.queryByText("PAYMENTS")).not.toBeInTheDocument();
 
     rerender(<InterfaceMockup stage={3} />);
@@ -22,7 +25,7 @@ describe("InterfaceMockup", () => {
   });
 
   it("shows the final message only at stage 4 (custom)", () => {
-    const { rerender } = render(<InterfaceMockup stage={3} />);
+    const { rerender } = renderWithLocale(<InterfaceMockup stage={3} />);
     expect(
       screen.queryByText(evolutionStages[4].description),
     ).not.toBeInTheDocument();

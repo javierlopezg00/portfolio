@@ -3,24 +3,33 @@
 import { useMemo, useReducer } from "react";
 import { Badge, Button, Text } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 
-const SLOT_TIMES = [
-  "9:00 AM",
-  "10:00 AM",
-  "11:00 AM",
-  "1:00 PM",
-  "2:00 PM",
-  "3:00 PM",
-  "4:00 PM",
-];
-const WEEKDAY_LABELS = ["S", "M", "T", "W", "T", "F", "S"];
+// 24-hour hour values for the bookable slots — formatted per locale at
+// render time (12-hour AM/PM in English, 24-hour in Spanish) rather than
+// stored as pre-formatted strings.
+const SLOT_HOURS = [9, 10, 11, 13, 14, 15, 16];
+
+function formatSlotTime(hour: number, intlLocale: string) {
+  const d = new Date(2000, 0, 1, hour);
+  return new Intl.DateTimeFormat(intlLocale, {
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(d);
+}
 
 interface CalendarDay {
   day: number;
   available: boolean;
 }
 
-function buildMonth(year: number, month: number, minDay: number) {
+function buildMonth(
+  year: number,
+  month: number,
+  minDay: number,
+  intlLocale: string,
+) {
   const firstDay = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const startOffset = firstDay.getDay();
@@ -33,7 +42,7 @@ function buildMonth(year: number, month: number, minDay: number) {
     return { day, available: !isPast && !isWeekend };
   });
 
-  const monthLabel = firstDay.toLocaleDateString("en-US", {
+  const monthLabel = firstDay.toLocaleDateString(intlLocale, {
     month: "long",
     year: "numeric",
   });
@@ -41,26 +50,26 @@ function buildMonth(year: number, month: number, minDay: number) {
   return { days, startOffset, monthLabel };
 }
 
-function useCalendarMonth() {
+function useCalendarMonth(intlLocale: string) {
   return useMemo(() => {
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth();
 
-    const current = buildMonth(year, month, now.getDate());
+    const current = buildMonth(year, month, now.getDate(), intlLocale);
     // Near the end of the month, the rest of it may be all weekend — roll
     // forward rather than showing a calendar with nothing bookable.
     if (current.days.some((d) => d.available)) return current;
 
     const nextMonth = month === 11 ? 0 : month + 1;
     const nextYear = month === 11 ? year + 1 : year;
-    return buildMonth(nextYear, nextMonth, 1);
-  }, []);
+    return buildMonth(nextYear, nextMonth, 1, intlLocale);
+  }, [intlLocale]);
 }
 
-function getSlots(day: number) {
-  return SLOT_TIMES.map((time, i) => ({
-    time,
+function getSlots(day: number, intlLocale: string) {
+  return SLOT_HOURS.map((hour, i) => ({
+    time: formatSlotTime(hour, intlLocale),
     available: (day + i) % 5 !== 0,
   }));
 }
@@ -95,13 +104,14 @@ function reducer(state: BookingState, action: BookingAction): BookingState {
 }
 
 export function BookingDemo() {
-  const { days, startOffset, monthLabel } = useCalendarMonth();
+  const dict = getDictionary(useLocale());
+  const { days, startOffset, monthLabel } = useCalendarMonth(dict.intlLocale);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const slots = state.day !== null ? getSlots(state.day) : [];
+  const slots = state.day !== null ? getSlots(state.day, dict.intlLocale) : [];
 
   return (
     <div className="flex flex-col gap-6">
-      <Badge>Demo · Sample Data</Badge>
+      <Badge>{dict.lab.demoBadge}</Badge>
 
       <div className="border-border bg-surface rounded-md border p-6">
         {state.step === "confirmed" ? (
@@ -110,7 +120,7 @@ export function BookingDemo() {
               <CheckIcon />
             </div>
             <div>
-              <Text className="font-semibold">Booked</Text>
+              <Text className="font-semibold">{dict.lab.booking.booked}</Text>
               <Text tone="secondary" size="sm" className="mt-1">
                 {monthLabel.split(" ")[0]} {state.day}, {state.time}
               </Text>
@@ -120,7 +130,7 @@ export function BookingDemo() {
               size="sm"
               onClick={() => dispatch({ type: "RESET" })}
             >
-              Book another
+              {dict.lab.booking.bookAnother}
             </Button>
           </div>
         ) : (
@@ -130,7 +140,7 @@ export function BookingDemo() {
                 {monthLabel}
               </Text>
               <div className="grid grid-cols-7 gap-1 text-center">
-                {WEEKDAY_LABELS.map((label, i) => (
+                {dict.lab.booking.weekdayLabels.map((label, i) => (
                   <span key={i} className="text-caption text-text-secondary">
                     {label}
                   </span>
@@ -145,7 +155,11 @@ export function BookingDemo() {
                     disabled={!available}
                     onClick={() => dispatch({ type: "SELECT_DAY", day })}
                     aria-pressed={state.day === day}
-                    aria-label={`${monthLabel} ${day}${available ? "" : ", unavailable"}`}
+                    aria-label={dict.lab.booking.dayAriaLabel(
+                      monthLabel,
+                      day,
+                      available,
+                    )}
                     className={cn(
                       "text-body-sm duration-fast focus-visible:ring-focus-ring aspect-square rounded-md transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
                       !available && "text-text-secondary/30 cursor-not-allowed",
@@ -163,7 +177,9 @@ export function BookingDemo() {
 
             <div className="flex-1">
               <Text size="sm" className="mb-3 font-medium">
-                {state.day ? "Available times" : "Select a day"}
+                {state.day
+                  ? dict.lab.booking.availableTimes
+                  : dict.lab.booking.selectDay}
               </Text>
               {state.day && (
                 <div className="flex flex-col gap-4">
@@ -196,7 +212,7 @@ export function BookingDemo() {
                       disabled={!state.time}
                       onClick={() => dispatch({ type: "CONFIRM" })}
                     >
-                      Confirm booking
+                      {dict.lab.booking.confirmBooking}
                     </Button>
                   </div>
                 </div>

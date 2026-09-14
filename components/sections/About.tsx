@@ -1,17 +1,19 @@
 import { Container, Heading, Section, Text } from "@/components/ui";
-import { aboutContent } from "@/lib/content/about";
+import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 
-export function About() {
+export async function About() {
+  const dict = await getServerDictionary();
+
   return (
     <Section id="about" ariaLabelledBy="about-heading">
       <Container>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           <div>
             <Heading id="about-heading" size="h2">
-              {aboutContent.heading}
+              {dict.about.heading}
             </Heading>
             <div className="mt-6 flex flex-col gap-4">
-              {aboutContent.body.map((paragraph) => (
+              {dict.about.body.map((paragraph) => (
                 <Text key={paragraph} tone="secondary">
                   {paragraph}
                 </Text>
@@ -20,7 +22,7 @@ export function About() {
           </div>
 
           <div className="flex flex-col gap-6">
-            {aboutContent.principles.map((principle) => (
+            {dict.about.principles.map((principle) => (
               <div
                 key={principle.title}
                 className="border-accent/30 border-l-2 pl-4"

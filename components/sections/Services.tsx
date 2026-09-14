@@ -1,5 +1,5 @@
 import { Container, Grid, Heading, Section, Text } from "@/components/ui";
-import { serviceCategories } from "@/lib/content/services";
+import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 import { ServiceCategoryCard } from "./services/ServiceCategoryCard";
 import {
   CustomPreview,
@@ -15,21 +15,23 @@ const previews = [
   <CustomPreview key="custom" />,
 ];
 
-export function Services() {
+export async function Services() {
+  const dict = await getServerDictionary();
+
   return (
     <Section theme="light" id="services" ariaLabelledBy="services-heading">
       <Container>
         <div className="max-w-xl">
           <Heading id="services-heading" size="h2">
-            What we build.
+            {dict.services.heading}
           </Heading>
           <Text tone="secondary" className="mt-4">
-            Four categories. One team, end to end.
+            {dict.services.subhead}
           </Text>
         </div>
 
         <Grid className="mt-12 grid-cols-1 sm:grid-cols-2">
-          {serviceCategories.map((category, i) => (
+          {dict.services.categories.map((category, i) => (
             <ServiceCategoryCard
               key={category.id}
               category={category}

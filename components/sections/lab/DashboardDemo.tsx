@@ -10,33 +10,36 @@ import {
   formatPercent,
 } from "@/lib/format";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 import { AnimatedChart } from "./AnimatedChart";
 import { StatTile } from "./StatTile";
-import {
-  dashboardDatasets,
-  dashboardRanges,
-  type DashboardRange,
-} from "./dashboard-data";
+import { dashboardDatasets, type DashboardRange } from "./dashboard-data";
 
 export function DashboardDemo() {
+  const dict = getDictionary(useLocale());
   const [range, setRange] = useState<DashboardRange>("7d");
   const reducedMotion = useReducedMotion();
   const data = dashboardDatasets[range];
+  const chart = data.chart.map((point) => ({
+    ...point,
+    label: dict.lab.dashboard.chartLabels[point.label] ?? point.label,
+  }));
 
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <Badge>Demo · Sample Data</Badge>
+        <Badge>{dict.lab.demoBadge}</Badge>
         <div
           role="group"
-          aria-label="Date range"
+          aria-label={dict.lab.dashboard.dateRangeAriaLabel}
           className="border-border bg-background/40 flex gap-1 rounded-full border p-1"
         >
-          {dashboardRanges.map((r) => (
+          {dict.lab.dashboard.ranges.map((r) => (
             <button
               key={r.id}
               type="button"
-              onClick={() => setRange(r.id)}
+              onClick={() => setRange(r.id as DashboardRange)}
               aria-pressed={range === r.id}
               className={cn(
                 "text-body-sm duration-fast focus-visible:ring-focus-ring rounded-full px-3 py-1.5 transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
@@ -53,27 +56,27 @@ export function DashboardDemo() {
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatTile
-          label="Revenue"
+          label={dict.lab.dashboard.stats.revenue}
           value={data.revenue}
-          formatValue={formatCurrencyCompact}
+          formatValue={(v) => formatCurrencyCompact(v, dict.intlLocale)}
           delta={data.revenueDelta}
         />
         <StatTile
-          label="Visitors"
+          label={dict.lab.dashboard.stats.visitors}
           value={data.visitors}
-          formatValue={formatCompact}
+          formatValue={(v) => formatCompact(v, dict.intlLocale)}
           delta={data.visitorsDelta}
         />
         <StatTile
-          label="Conversion rate"
+          label={dict.lab.dashboard.stats.conversionRate}
           value={data.conversionRate}
           formatValue={formatPercent}
           delta={data.conversionDelta}
         />
         <StatTile
-          label="Bookings"
+          label={dict.lab.dashboard.stats.bookings}
           value={data.bookings}
-          formatValue={formatCompact}
+          formatValue={(v) => formatCompact(v, dict.intlLocale)}
           delta={data.bookingsDelta}
         />
       </div>
@@ -87,7 +90,7 @@ export function DashboardDemo() {
             exit={{ opacity: 0 }}
             transition={{ duration: reducedMotion ? 0 : 0.2 }}
           >
-            <AnimatedChart data={data.chart} />
+            <AnimatedChart data={chart} />
           </motion.div>
         </AnimatePresence>
       </div>

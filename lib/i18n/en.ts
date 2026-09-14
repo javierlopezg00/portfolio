@@ -1,6 +1,7 @@
 import type { Dictionary } from "./dictionary";
 
 export const en = {
+  intlLocale: "en-US",
   nav: {
     links: [
       { href: "#work", label: "Work" },
@@ -152,7 +153,7 @@ export const en = {
       confirmBooking: "Confirm booking",
       dayAriaLabel: (monthLabel, day, available) =>
         `${monthLabel} ${day}${available ? "" : ", unavailable"}`,
-      dateLocale: "en-US",
+      weekdayLabels: ["S", "M", "T", "W", "T", "F", "S"],
     },
     integration: {
       trigger: "Trigger request",

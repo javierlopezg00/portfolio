@@ -15,13 +15,10 @@ export interface DashboardDataset {
   chart: ChartPoint[];
 }
 
+// Range ids/labels for the UI live in the dictionary (dict.lab.dashboard.
+// ranges) — same ids as this Record's keys, so no separate structural
+// array is needed here.
 export type DashboardRange = "7d" | "30d" | "1y";
-
-export const dashboardRanges: { id: DashboardRange; label: string }[] = [
-  { id: "7d", label: "7 days" },
-  { id: "30d", label: "30 days" },
-  { id: "1y", label: "1 year" },
-];
 
 export const dashboardDatasets: Record<DashboardRange, DashboardDataset> = {
   "7d": {

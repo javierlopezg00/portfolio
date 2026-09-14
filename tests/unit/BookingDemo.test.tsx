@@ -1,17 +1,21 @@
 import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BookingDemo } from "@/components/sections/lab/BookingDemo";
+import { en } from "@/lib/i18n/en";
+import { renderWithLocale } from "./test-utils";
+
+const dict = en.lab.booking;
 
 describe("BookingDemo", () => {
   it("prompts to select a day before showing times", () => {
-    render(<BookingDemo />);
-    expect(screen.getByText("Select a day")).toBeInTheDocument();
+    renderWithLocale(<BookingDemo />);
+    expect(screen.getByText(dict.selectDay)).toBeInTheDocument();
   });
 
   it("disables the confirm button until a time is picked", async () => {
     const user = userEvent.setup();
-    render(<BookingDemo />);
+    renderWithLocale(<BookingDemo />);
 
     const dayButtons = screen
       .getAllByRole("button")
@@ -22,16 +26,16 @@ describe("BookingDemo", () => {
     expect(dayButtons.length).toBeGreaterThan(0);
     await user.click(dayButtons[0]);
 
-    expect(screen.getByText("Available times")).toBeInTheDocument();
+    expect(screen.getByText(dict.availableTimes)).toBeInTheDocument();
     const confirmButton = screen.getByRole("button", {
-      name: "Confirm booking",
+      name: dict.confirmBooking,
     });
     expect(confirmButton).toBeDisabled();
   });
 
   it("completes the booking flow and can start over", async () => {
     const user = userEvent.setup();
-    render(<BookingDemo />);
+    renderWithLocale(<BookingDemo />);
 
     const dayButtons = screen
       .getAllByRole("button")
@@ -52,14 +56,14 @@ describe("BookingDemo", () => {
     await user.click(availableSlot!);
 
     const confirmButton = screen.getByRole("button", {
-      name: "Confirm booking",
+      name: dict.confirmBooking,
     });
     expect(confirmButton).toBeEnabled();
     await user.click(confirmButton);
 
-    expect(screen.getByText("Booked")).toBeInTheDocument();
+    expect(screen.getByText(dict.booked)).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "Book another" }));
-    expect(screen.getByText("Select a day")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: dict.bookAnother }));
+    expect(screen.getByText(dict.selectDay)).toBeInTheDocument();
   });
 });

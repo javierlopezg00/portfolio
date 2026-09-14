@@ -5,6 +5,8 @@ import { Badge, Button } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { gsap } from "@/lib/animation/gsap";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 
 interface FlowNode {
   id: string;
@@ -38,6 +40,7 @@ function nodePos(id: string) {
 }
 
 export function IntegrationFlowDemo() {
+  const dict = getDictionary(useLocale());
   const dotARef = useRef<SVGCircleElement>(null);
   const dotBRef = useRef<SVGCircleElement>(null);
   const timelineRef = useRef<ReturnType<typeof gsap.timeline> | null>(null);
@@ -120,9 +123,11 @@ export function IntegrationFlowDemo() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <Badge>Demo · Sample Data</Badge>
+        <Badge>{dict.lab.demoBadge}</Badge>
         <Button size="sm" onClick={trigger} disabled={running}>
-          {running ? "Running…" : "Trigger request"}
+          {running
+            ? dict.lab.integration.running
+            : dict.lab.integration.trigger}
         </Button>
       </div>
 
@@ -131,7 +136,7 @@ export function IntegrationFlowDemo() {
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
           className="w-full max-w-xs"
           role="img"
-          aria-label="Diagram of a request traveling from the website through the API to CRM and Payments, then to the database, and back to the website."
+          aria-label={dict.lab.integration.diagramAriaLabel}
         >
           {EDGES.map(([from, to]) => {
             const a = nodePos(from);

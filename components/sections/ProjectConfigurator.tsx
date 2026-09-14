@@ -1,7 +1,10 @@
 import { Container, Heading, Section, Text } from "@/components/ui";
+import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 import { Configurator } from "./configurator/Configurator";
 
-export function ProjectConfigurator() {
+export async function ProjectConfigurator() {
+  const dict = await getServerDictionary();
+
   return (
     <Section
       theme="light"
@@ -11,10 +14,10 @@ export function ProjectConfigurator() {
       <Container className="max-w-2xl">
         <div className="text-center">
           <Heading id="configurator-heading" size="h2">
-            Let&apos;s scope your project.
+            {dict.configurator.heading}
           </Heading>
           <Text tone="secondary" className="mt-4">
-            Five quick questions — no commitment, just a clearer picture.
+            {dict.configurator.subhead}
           </Text>
         </div>
 

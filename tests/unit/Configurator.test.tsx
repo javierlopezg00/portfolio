@@ -1,7 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Configurator } from "@/components/sections/configurator/Configurator";
+import { en } from "@/lib/i18n/en";
+import { renderWithLocale } from "./test-utils";
+
+const dict = en.configurator;
 
 describe("Configurator", () => {
   beforeEach(() => {
@@ -20,55 +24,72 @@ describe("Configurator", () => {
 
   it("blocks advancing without a project type selection", async () => {
     const user = userEvent.setup();
-    render(<Configurator />);
+    renderWithLocale(<Configurator />);
 
-    await user.click(screen.getByRole("button", { name: "Next" }));
+    await user.click(screen.getByRole("button", { name: dict.next }));
 
     expect(
-      screen.getByText("Select an option to continue"),
+      screen.getByText(en.validation.projectTypeRequired),
     ).toBeInTheDocument();
     expect(screen.getByText(/Step 1 of 5/)).toBeInTheDocument();
   });
 
   it("walks through every step and submits successfully", async () => {
     const user = userEvent.setup();
-    render(<Configurator />);
+    renderWithLocale(<Configurator />);
 
     // Step 1: project type
-    await user.click(screen.getByRole("radio", { name: "Website" }));
-    await user.click(screen.getByRole("button", { name: "Next" }));
+    await user.click(
+      screen.getByRole("radio", { name: dict.options.projectType[0].label }),
+    );
+    await user.click(screen.getByRole("button", { name: dict.next }));
 
     // Step 2: needs (multi-select)
     expect(screen.getByText(/Step 2 of 5/)).toBeInTheDocument();
-    await user.click(screen.getByRole("checkbox", { name: "Online bookings" }));
-    await user.click(screen.getByRole("checkbox", { name: "Payments" }));
-    await user.click(screen.getByRole("button", { name: "Next" }));
+    await user.click(
+      screen.getByRole("checkbox", { name: dict.options.needs[0].label }),
+    );
+    await user.click(
+      screen.getByRole("checkbox", { name: dict.options.needs[1].label }),
+    );
+    await user.click(screen.getByRole("button", { name: dict.next }));
 
     // Step 3: budget
     expect(screen.getByText(/Step 3 of 5/)).toBeInTheDocument();
-    await user.click(screen.getByRole("radio", { name: "$5k – $10k" }));
-    await user.click(screen.getByRole("button", { name: "Next" }));
+    await user.click(
+      screen.getByRole("radio", { name: dict.options.budget[1].label }),
+    );
+    await user.click(screen.getByRole("button", { name: dict.next }));
 
     // Step 4: timeline
     expect(screen.getByText(/Step 4 of 5/)).toBeInTheDocument();
-    await user.click(screen.getByRole("radio", { name: "1–2 months" }));
-    await user.click(screen.getByRole("button", { name: "Next" }));
+    await user.click(
+      screen.getByRole("radio", { name: dict.options.timeline[1].label }),
+    );
+    await user.click(screen.getByRole("button", { name: dict.next }));
 
     // Step 5: contact — invalid email blocks submission
     expect(screen.getByText(/Step 5 of 5/)).toBeInTheDocument();
-    await user.type(screen.getByLabelText("Name"), "Ada Lovelace");
-    await user.type(screen.getByLabelText("Email"), "not-an-email");
-    await user.click(screen.getByRole("button", { name: "Request Proposal" }));
-    expect(screen.getByText("Enter a valid email address")).toBeInTheDocument();
+    await user.type(screen.getByLabelText(dict.contact.name), "Ada Lovelace");
+    await user.type(screen.getByLabelText(dict.contact.email), "not-an-email");
+    await user.click(
+      screen.getByRole("button", { name: dict.requestProposal }),
+    );
+    expect(screen.getByText(en.validation.emailInvalid)).toBeInTheDocument();
     expect(global.fetch).not.toHaveBeenCalled();
 
     // Fix the email and submit for real.
-    await user.clear(screen.getByLabelText("Email"));
-    await user.type(screen.getByLabelText("Email"), "ada@example.com");
-    await user.click(screen.getByRole("button", { name: "Request Proposal" }));
+    await user.clear(screen.getByLabelText(dict.contact.email));
+    await user.type(
+      screen.getByLabelText(dict.contact.email),
+      "ada@example.com",
+    );
+    await user.click(
+      screen.getByRole("button", { name: dict.requestProposal }),
+    );
 
     await waitFor(() => {
-      expect(screen.getByText("Thanks — that's in.")).toBeInTheDocument();
+      expect(screen.getByText(dict.successTitle)).toBeInTheDocument();
     });
 
     expect(global.fetch).toHaveBeenCalledWith(
@@ -90,14 +111,18 @@ describe("Configurator", () => {
 
   it("allows navigating back to change an earlier answer", async () => {
     const user = userEvent.setup();
-    render(<Configurator />);
+    renderWithLocale(<Configurator />);
 
-    await user.click(screen.getByRole("radio", { name: "Website" }));
-    await user.click(screen.getByRole("button", { name: "Next" }));
+    await user.click(
+      screen.getByRole("radio", { name: dict.options.projectType[0].label }),
+    );
+    await user.click(screen.getByRole("button", { name: dict.next }));
     expect(screen.getByText(/Step 2 of 5/)).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "Back" }));
+    await user.click(screen.getByRole("button", { name: dict.back }));
     expect(screen.getByText(/Step 1 of 5/)).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: "Website" })).toBeChecked();
+    expect(
+      screen.getByRole("radio", { name: dict.options.projectType[0].label }),
+    ).toBeChecked();
   });
 });

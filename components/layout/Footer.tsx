@@ -1,10 +1,13 @@
 import NextLink from "next/link";
 import { Container } from "@/components/ui";
-import { navLinks, primaryCtaHref } from "@/lib/content/nav";
+import { primaryCtaHref } from "@/lib/content/nav";
+import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 
 const currentYear = new Date().getFullYear();
 
-export function Footer() {
+export async function Footer() {
+  const dict = await getServerDictionary();
+
   return (
     <footer className="border-border bg-background border-t">
       <Container className="flex flex-col gap-10 py-16">
@@ -14,14 +17,13 @@ export function Footer() {
               JL
             </span>
             <p className="text-body-sm text-text-secondary mt-3">
-              Websites, web applications, and custom software — designed and
-              engineered end to end.
+              {dict.footer.tagline}
             </p>
           </div>
 
-          <nav aria-label="Footer" className="flex gap-12">
+          <nav aria-label={dict.footer.footerAriaLabel} className="flex gap-12">
             <ul className="flex flex-col gap-3">
-              {navLinks.map((link) => (
+              {dict.nav.links.map((link) => (
                 <li key={link.href}>
                   <NextLink
                     href={link.href}
@@ -38,7 +40,7 @@ export function Footer() {
                   href={primaryCtaHref}
                   className="text-body-sm text-text-secondary duration-fast hover:text-text transition-colors ease-out"
                 >
-                  Start a Project
+                  {dict.footer.startAProject}
                 </NextLink>
               </li>
             </ul>
@@ -46,8 +48,8 @@ export function Footer() {
         </div>
 
         <div className="border-border text-caption text-text-secondary flex flex-col gap-2 border-t pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {currentYear} JL. All rights reserved.</p>
-          <p>Built with Next.js, TypeScript, and Tailwind CSS.</p>
+          <p>{dict.footer.copyright(currentYear)}</p>
+          <p>{dict.footer.builtWith}</p>
         </div>
       </Container>
     </footer>

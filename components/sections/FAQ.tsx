@@ -1,18 +1,20 @@
 import { Container, Heading, Section, Text } from "@/components/ui";
-import { faqItems } from "@/lib/content/faq";
+import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 
-export function FAQ() {
+export async function FAQ() {
+  const dict = await getServerDictionary();
+
   return (
     <Section id="faq" ariaLabelledBy="faq-heading">
       <Container className="max-w-3xl">
         <div className="max-w-xl">
           <Heading id="faq-heading" size="h2">
-            Questions, answered.
+            {dict.faq.heading}
           </Heading>
         </div>
 
         <div className="divide-border border-border mt-12 flex flex-col divide-y border-t border-b">
-          {faqItems.map((item) => (
+          {dict.faq.items.map((item) => (
             // The padding lives on <summary>, not <details> — only
             // <summary>'s own box is the native click/tap target, so
             // padding on the parent would look like part of the row

@@ -7,10 +7,13 @@ import {
   buttonStyles,
 } from "@/components/ui";
 import { primaryCtaHref } from "@/lib/content/nav";
+import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 import { HeroVisualization } from "./hero/HeroVisualization";
 import { ScrollCue } from "./hero/ScrollCue";
 
-export function Hero() {
+export async function Hero() {
+  const dict = await getServerDictionary();
+
   return (
     <Section
       id="hero"
@@ -25,23 +28,23 @@ export function Hero() {
       <Container className="pointer-events-none relative z-10">
         <div className="pointer-events-auto max-w-2xl">
           <Heading id="hero-heading" size="display">
-            We build digital experiences that work.
+            {dict.hero.heading}
           </Heading>
           <Text size="lg" tone="secondary" className="mt-6 max-w-lg">
-            Websites · Web Apps · Software · Automation
+            {dict.hero.subhead}
           </Text>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <NextLink
               href={primaryCtaHref}
               className={buttonStyles({ size: "lg" })}
             >
-              Start a Project
+              {dict.hero.ctaPrimary}
             </NextLink>
             <NextLink
               href="#services"
               className={buttonStyles({ variant: "ghost", size: "lg" })}
             >
-              Explore
+              {dict.hero.ctaExplore}
             </NextLink>
           </div>
         </div>

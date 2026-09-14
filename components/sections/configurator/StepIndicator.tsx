@@ -1,14 +1,14 @@
 interface StepIndicatorProps {
   current: number;
   total: number;
-  label: string;
+  text: string;
 }
 
-export function StepIndicator({ current, total, label }: StepIndicatorProps) {
+export function StepIndicator({ current, total, text }: StepIndicatorProps) {
   return (
     <div className="mb-8">
       <p aria-live="polite" className="text-body-sm text-text-secondary">
-        Step {current + 1} of {total} — {label}
+        {text}
       </p>
       <div className="bg-border mt-3 h-1 w-full overflow-hidden rounded-full">
         <div

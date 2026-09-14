@@ -1,13 +1,16 @@
 "use client";
 
 import { motion } from "motion/react";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 import { InterfaceMockup } from "./InterfaceMockup";
-import { evolutionStages } from "./stages";
 
 export function SteppedSequence() {
+  const dict = getDictionary(useLocale());
+
   return (
     <div className="flex flex-col gap-32">
-      {evolutionStages.map((stage, index) => (
+      {dict.evolution.stages.map((stage, index) => (
         <motion.div
           key={stage.id}
           initial={{ opacity: 0, y: 24 }}

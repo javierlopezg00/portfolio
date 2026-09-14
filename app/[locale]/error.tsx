@@ -9,6 +9,7 @@ import {
   Heading,
   Text,
 } from "@/components/ui";
+import { getDictionary } from "@/lib/i18n/getDictionary";
 import { useLocale } from "@/lib/i18n/useLocale";
 
 export default function Error({
@@ -19,6 +20,7 @@ export default function Error({
   retry: () => void;
 }) {
   const locale = useLocale();
+  const dict = getDictionary(locale);
 
   useEffect(() => {
     console.error(error);
@@ -28,22 +30,21 @@ export default function Error({
     <main>
       <Container className="flex min-h-screen flex-col items-center justify-center text-center">
         <p className="text-accent mb-4 font-mono text-sm tracking-wide uppercase">
-          Error
+          {dict.errorPage.eyebrow}
         </p>
         <Heading size="display" className="max-w-xl">
-          Something went wrong.
+          {dict.errorPage.heading}
         </Heading>
         <Text tone="secondary" size="lg" className="mt-4 max-w-md">
-          An unexpected error occurred. You can try again, or head back to the
-          homepage.
+          {dict.errorPage.body}
         </Text>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Button onClick={() => retry()}>Try again</Button>
+          <Button onClick={() => retry()}>{dict.errorPage.tryAgain}</Button>
           <NextLink
             href={`/${locale}`}
             className={buttonStyles({ variant: "secondary" })}
           >
-            Back to home
+            {dict.errorPage.backHome}
           </NextLink>
         </div>
       </Container>

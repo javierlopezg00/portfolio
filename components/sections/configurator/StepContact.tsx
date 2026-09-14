@@ -1,4 +1,8 @@
+"use client";
+
 import { Heading, Input } from "@/components/ui";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 
 interface ContactValues {
   name: string;
@@ -15,26 +19,28 @@ interface StepContactProps {
 }
 
 export function StepContact({ values, errors, onChange }: StepContactProps) {
+  const dict = getDictionary(useLocale());
+
   return (
     <div>
-      <Heading size="h3">How can we reach you?</Heading>
+      <Heading size="h3">{dict.configurator.contact.heading}</Heading>
       <div className="mt-6 flex flex-col gap-5">
         <Input
-          label="Name"
+          label={dict.configurator.contact.name}
           autoComplete="name"
           value={values.name}
           onChange={(e) => onChange("name", e.target.value)}
           error={errors.name}
         />
         <Input
-          label="Company"
+          label={dict.configurator.contact.company}
           autoComplete="organization"
           value={values.company}
           onChange={(e) => onChange("company", e.target.value)}
-          hint="Optional"
+          hint={dict.configurator.contact.optional}
         />
         <Input
-          label="Email"
+          label={dict.configurator.contact.email}
           type="email"
           autoComplete="email"
           value={values.email}
@@ -42,19 +48,21 @@ export function StepContact({ values, errors, onChange }: StepContactProps) {
           error={errors.email}
         />
         <Input
-          label="WhatsApp"
+          label={dict.configurator.contact.whatsapp}
           type="tel"
           autoComplete="tel"
           value={values.whatsapp}
           onChange={(e) => onChange("whatsapp", e.target.value)}
-          hint="Optional"
+          hint={dict.configurator.contact.optional}
         />
 
         {/* Honeypot: hidden from real users via sr-only, tabIndex -1 so
             keyboard users skip it. A filled value marks a submission as
             spam server-side. */}
         <div className="sr-only" aria-hidden="true">
-          <label htmlFor="website-field">Leave this field empty</label>
+          <label htmlFor="website-field">
+            {dict.configurator.contact.honeypotLabel}
+          </label>
           <input
             id="website-field"
             type="text"

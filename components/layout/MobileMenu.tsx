@@ -3,10 +3,13 @@
 import NextLink from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { buttonStyles } from "@/components/ui";
-import { navLinks, primaryCtaHref } from "@/lib/content/nav";
+import { primaryCtaHref } from "@/lib/content/nav";
 import { useFocusTrap } from "@/lib/hooks/useFocusTrap";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import { CloseIcon } from "./icons";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 
 interface MobileMenuProps {
   id: string;
@@ -15,6 +18,7 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
+  const dict = getDictionary(useLocale());
   const reducedMotion = useReducedMotion();
   const containerRef = useFocusTrap<HTMLDivElement>(open, { onClose });
 
@@ -26,7 +30,7 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
           ref={containerRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Menu"
+          aria-label={dict.nav.menuLabel}
           className="bg-background fixed inset-0 z-50 flex flex-col md:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -40,14 +44,14 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
             <button
               type="button"
               onClick={onClose}
-              aria-label="Close menu"
+              aria-label={dict.nav.closeMenu}
               className="text-text focus-visible:ring-focus-ring flex h-11 w-11 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none"
             >
               <CloseIcon />
             </button>
           </div>
           <ul className="flex flex-1 flex-col justify-center gap-2 px-6">
-            {navLinks.map((link) => (
+            {dict.nav.links.map((link) => (
               <li key={link.href}>
                 <NextLink
                   href={link.href}
@@ -59,13 +63,14 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
               </li>
             ))}
           </ul>
-          <div className="px-6 pb-10">
+          <div className="flex flex-col gap-6 px-6 pb-10">
+            <LocaleSwitcher className="justify-center" />
             <NextLink
               href={primaryCtaHref}
               onClick={onClose}
               className={buttonStyles({ className: "w-full" })}
             >
-              Start a Project
+              {dict.nav.startAProject}
             </NextLink>
           </div>
         </motion.div>

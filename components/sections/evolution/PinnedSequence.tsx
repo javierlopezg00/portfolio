@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 import { gsap } from "@/lib/animation/gsap";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 import {
   CardsGridLayer,
   ConnectionLabels,
@@ -13,7 +15,6 @@ import {
   SidebarIconsLayer,
   TopNavLayer,
 } from "./layers";
-import { evolutionStages } from "./stages";
 import { VISIBILITY, type LayerKey } from "./visibility";
 
 // Multiple DOM refs (e.g. the connection lines *and* labels) can share the
@@ -31,6 +32,8 @@ const REF_VISIBILITY: Record<RefKey, LayerKey> = {
 };
 
 export function PinnedSequence() {
+  const dict = getDictionary(useLocale());
+  const evolutionStages = dict.evolution.stages;
   const pinRef = useRef<HTMLDivElement>(null);
   const layerRefs = useRef<Partial<Record<RefKey, HTMLDivElement | null>>>({});
   const [activeStage, setActiveStage] = useState(0);
@@ -88,7 +91,11 @@ export function PinnedSequence() {
     }, pinTarget);
 
     return () => ctx.revert();
-  }, []);
+    // evolutionStages is stable per locale (getDictionary returns the same
+    // en/es singleton object every call), and a real locale switch is a
+    // full route navigation that remounts this component anyway — so this
+    // never re-runs mid-lifecycle in practice, only listed for correctness.
+  }, [evolutionStages]);
 
   const stage = evolutionStages[activeStage];
 

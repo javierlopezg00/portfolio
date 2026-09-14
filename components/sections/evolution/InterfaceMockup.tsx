@@ -1,4 +1,8 @@
+"use client";
+
 import { cn } from "@/lib/cn";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 import {
   CardsGridLayer,
   ConnectionLabels,
@@ -9,7 +13,6 @@ import {
   SidebarIconsLayer,
   TopNavLayer,
 } from "./layers";
-import { evolutionStages } from "./stages";
 import { VISIBILITY, type LayerKey } from "./visibility";
 
 interface InterfaceMockupProps {
@@ -18,6 +21,7 @@ interface InterfaceMockupProps {
 }
 
 export function InterfaceMockup({ stage, className }: InterfaceMockupProps) {
+  const dict = getDictionary(useLocale());
   const show = (key: LayerKey) => VISIBILITY[key][stage];
   const connectionsInset =
     "pointer-events-none absolute -inset-x-6 -inset-y-8 sm:-inset-x-16 sm:-inset-y-10";
@@ -75,7 +79,9 @@ export function InterfaceMockup({ stage, className }: InterfaceMockupProps) {
 
           {show("message") && (
             <div className="absolute inset-0">
-              <MessageOverlayLayer text={evolutionStages[stage].description} />
+              <MessageOverlayLayer
+                text={dict.evolution.stages[stage].description}
+              />
             </div>
           )}
         </div>

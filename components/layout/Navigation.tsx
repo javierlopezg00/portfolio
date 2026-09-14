@@ -4,23 +4,26 @@ import { useState } from "react";
 import NextLink from "next/link";
 import { buttonStyles } from "@/components/ui";
 import { cn } from "@/lib/cn";
-import { navLinks, primaryCtaHref } from "@/lib/content/nav";
+import { primaryCtaHref } from "@/lib/content/nav";
 import { useScrolledPast } from "@/lib/hooks/useScrolledPast";
+import { getDictionary } from "@/lib/i18n/getDictionary";
 import { useLocale } from "@/lib/i18n/useLocale";
 import { MenuIcon } from "./icons";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 import { MobileMenu } from "./MobileMenu";
 
 const MOBILE_MENU_ID = "mobile-menu";
 
 export function Navigation() {
   const locale = useLocale();
+  const dict = getDictionary(locale);
   const scrolled = useScrolledPast(80);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
       <nav
-        aria-label="Primary"
+        aria-label={dict.nav.primaryAriaLabel}
         className={cn(
           "duration-base flex w-full items-center justify-between rounded-full border transition-[max-width,padding,background-color,border-color,box-shadow] ease-out",
           scrolled
@@ -36,7 +39,7 @@ export function Navigation() {
         </NextLink>
 
         <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => (
+          {dict.nav.links.map((link) => (
             <li key={link.href}>
               <NextLink
                 href={link.href}
@@ -48,19 +51,20 @@ export function Navigation() {
           ))}
         </ul>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <LocaleSwitcher />
           <NextLink
             href={primaryCtaHref}
             className={buttonStyles({ size: "sm" })}
           >
-            Start a Project
+            {dict.nav.startAProject}
           </NextLink>
         </div>
 
         <button
           type="button"
           className="text-text focus-visible:ring-focus-ring flex h-11 w-11 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none md:hidden"
-          aria-label="Open menu"
+          aria-label={dict.nav.openMenu}
           aria-expanded={mobileOpen}
           aria-controls={MOBILE_MENU_ID}
           onClick={() => setMobileOpen(true)}

@@ -1,5 +1,8 @@
+"use client";
+
 import { Heading, Text } from "@/components/ui";
-import { needsOptions } from "@/lib/content/configurator-options";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { useLocale } from "@/lib/i18n/useLocale";
 import { OptionCard } from "./OptionCard";
 
 interface StepNeedsProps {
@@ -9,6 +12,8 @@ interface StepNeedsProps {
 }
 
 export function StepNeeds({ value, onChange, error }: StepNeedsProps) {
+  const dict = getDictionary(useLocale());
+
   function toggle(id: string) {
     onChange(
       value.includes(id) ? value.filter((v) => v !== id) : [...value, id],
@@ -17,12 +22,12 @@ export function StepNeeds({ value, onChange, error }: StepNeedsProps) {
 
   return (
     <div>
-      <Heading size="h3">What does your business need?</Heading>
+      <Heading size="h3">{dict.configurator.needs.heading}</Heading>
       <Text tone="secondary" size="sm" className="mt-2">
-        Select all that apply.
+        {dict.configurator.needs.selectAllThatApply}
       </Text>
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {needsOptions.map((opt) => (
+        {dict.configurator.options.needs.map((opt) => (
           <OptionCard
             key={opt.id}
             type="checkbox"

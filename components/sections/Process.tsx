@@ -1,21 +1,23 @@
 import { Container, Heading, Section, Text } from "@/components/ui";
-import { processSteps } from "@/lib/content/process";
+import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 
-export function Process() {
+export async function Process() {
+  const dict = await getServerDictionary();
+
   return (
     <Section id="process" ariaLabelledBy="process-heading">
       <Container>
         <div className="max-w-xl">
           <Heading id="process-heading" size="h2">
-            How we work.
+            {dict.process.heading}
           </Heading>
           <Text tone="secondary" className="mt-4">
-            Four steps, start to finish — no surprises in between.
+            {dict.process.subhead}
           </Text>
         </div>
 
         <ol className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {processSteps.map((step) => (
+          {dict.process.steps.map((step) => (
             <li key={step.number}>
               <span className="text-caption text-accent font-mono tracking-wide">
                 {step.number}
