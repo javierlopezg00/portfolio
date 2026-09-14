@@ -23,8 +23,13 @@ interface InterfaceMockupProps {
 export function InterfaceMockup({ stage, className }: InterfaceMockupProps) {
   const dict = getDictionary(useLocale());
   const show = (key: LayerKey) => VISIBILITY[key][stage];
+  // The connection labels (PAYMENTS, API, DATABASE, ...) need real
+  // horizontal room to sit outside the card without clipping — below the
+  // sm breakpoint there isn't any (they were getting cut off at the
+  // viewport edge on real phones), so this layer is desktop/tablet only.
+  // It's purely decorative (aria-hidden), so hiding it costs nothing.
   const connectionsInset =
-    "pointer-events-none absolute -inset-x-6 -inset-y-8 sm:-inset-x-16 sm:-inset-y-10";
+    "pointer-events-none absolute hidden sm:block -inset-x-6 -inset-y-8 sm:-inset-x-16 sm:-inset-y-10";
   // Layers are absolutely positioned to build a believable mockup layout
   // (nav above hero above cards, etc.), so the container can't size itself
   // from their content the way normal flow would — it has to be told how
