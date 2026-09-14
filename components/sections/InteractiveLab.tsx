@@ -18,6 +18,12 @@ export function InteractiveLab() {
 
         <div className="mt-12">
           <Tabs
+            // The three demos have uneven heights (Dashboard is the
+            // tallest). Without a reserved minimum, switching to a
+            // shorter tab shrinks the page and the browser yanks scroll
+            // position up to compensate — reserving the tallest demo's
+            // height keeps the page height constant across tabs.
+            className="min-h-[550px] lg:min-h-[690px]"
             items={[
               { value: "booking", label: "Booking", content: <BookingDemo /> },
               {
