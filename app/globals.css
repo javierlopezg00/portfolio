@@ -132,6 +132,12 @@ body {
     color var(--duration-base) var(--ease-out);
 }
 
+/* Fixed Navigation covers ~80px at top — keep anchor-linked sections
+   (nav links, in-page CTAs) from landing partly hidden underneath it. */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
