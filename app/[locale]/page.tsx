@@ -11,16 +11,21 @@ import { ProjectConfigurator } from "@/components/sections/ProjectConfigurator";
 import { SelectedWork } from "@/components/sections/SelectedWork";
 import { Services } from "@/components/sections/Services";
 import { SoftwareEvolution } from "@/components/sections/SoftwareEvolution";
+import { getDictionary } from "@/lib/i18n/getDictionary";
+import { getServerLocale } from "@/lib/i18n/getServerDictionary";
 import { getHomepageStructuredData } from "@/lib/seo/structuredData";
 
-export default function Home() {
+export default async function Home() {
+  const locale = await getServerLocale();
+  const dict = getDictionary(locale);
+
   return (
     <>
       {/* Static, fully-known content — safe to inline directly. */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getHomepageStructuredData()),
+          __html: JSON.stringify(getHomepageStructuredData(locale, dict)),
         }}
       />
       <SkipLink />

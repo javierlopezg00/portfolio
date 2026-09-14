@@ -3,8 +3,8 @@
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
-import { locales } from "@/lib/i18n/getDictionary";
-import { getDictionary } from "@/lib/i18n/getDictionary";
+import { getDictionary, locales } from "@/lib/i18n/getDictionary";
+import { LOCALE_COOKIE } from "@/lib/i18n/negotiateLocale";
 import { useLocale } from "@/lib/i18n/useLocale";
 
 function swapLocale(pathname: string | null, target: string) {
@@ -18,7 +18,7 @@ function swapLocale(pathname: string | null, target: string) {
 // visitor back to their browser's preferred locale the next time they
 // land on an unprefixed URL (e.g. an external link straight to "/").
 function rememberLocale(target: string) {
-  document.cookie = `NEXT_LOCALE=${target}; path=/; max-age=31536000; samesite=lax`;
+  document.cookie = `${LOCALE_COOKIE}=${target}; path=/; max-age=31536000; samesite=lax`;
 }
 
 export function LocaleSwitcher({ className }: { className?: string }) {

@@ -1,6 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { en } from "@/lib/i18n/en";
+import { es } from "@/lib/i18n/es";
 
 test.describe("404 page", () => {
   test("shows the not-found message with a way back home", async ({ page }) => {
@@ -41,5 +42,33 @@ test.describe("404 page", () => {
     await expect(
       page.getByRole("heading", { level: 1, name: en.notFound.heading }),
     ).toBeVisible();
+  });
+
+  test("global not-found page respects a manually-chosen locale, even without a URL prefix to go on", async ({
+    browser,
+  }) => {
+    // global-not-found.tsx receives no params — it can't see that the
+    // request even had a locale prefix, let alone which one. It has to
+    // negotiate the same way the proxy does (cookie, then
+    // Accept-Language). This regression-tests that negotiation directly,
+    // since it's easy to silently fall back to English-only here.
+    const context = await browser.newContext();
+    await context.addCookies([
+      {
+        name: "NEXT_LOCALE",
+        value: "es",
+        domain: "localhost",
+        path: "/",
+      },
+    ]);
+    const page = await context.newPage();
+
+    const response = await page.goto("/icon/this-does-not-exist");
+    expect(response?.status()).toBe(404);
+    await expect(
+      page.getByRole("heading", { level: 1, name: es.notFound.heading }),
+    ).toBeVisible();
+
+    await context.close();
   });
 });

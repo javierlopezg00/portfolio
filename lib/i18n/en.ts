@@ -406,6 +406,7 @@ export const en = {
     ],
     ogHeadline: "We build digital experiences that work.",
     ogTagline: "Websites · Web Apps · Software · Automation",
+    structuredDataAreaServed: "Worldwide",
     structuredDataServiceTypes: [
       "Web Development",
       "Web Application Development",

@@ -3,14 +3,14 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
-import { locales, isLocale } from "@/lib/i18n/getDictionary";
-import { LocaleProvider } from "@/lib/i18n/LocaleProvider";
 import {
-  SITE_DESCRIPTION,
-  SITE_NAME,
-  SITE_TITLE,
-  SITE_URL,
-} from "@/lib/seo/site";
+  defaultLocale,
+  getDictionary,
+  isLocale,
+  locales,
+} from "@/lib/i18n/getDictionary";
+import { LocaleProvider } from "@/lib/i18n/LocaleProvider";
+import { SITE_NAME, SITE_URL } from "@/lib/seo/site";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -23,38 +23,48 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: SITE_TITLE,
-    template: `%s — ${SITE_NAME}`,
-  },
-  description: SITE_DESCRIPTION,
-  keywords: [
-    "web development",
-    "web application development",
-    "custom software development",
-    "Next.js developer",
-    "software engineer",
-  ],
-  authors: [{ name: SITE_NAME }],
-  openGraph: {
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    url: "/",
-    siteName: SITE_NAME,
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+const OG_LOCALE = { en: "en_US", es: "es_ES" } as const;
+
+export async function generateMetadata({
+  params,
+}: LayoutProps<"/[locale]">): Promise<Metadata> {
+  const { locale } = await params;
+  const currentLocale = isLocale(locale) ? locale : defaultLocale;
+  const dict = getDictionary(currentLocale);
+  const languages = Object.fromEntries(locales.map((l) => [l, `/${l}`]));
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: dict.seo.title,
+      template: `%s — ${SITE_NAME}`,
+    },
+    description: dict.seo.description,
+    keywords: dict.seo.keywords,
+    authors: [{ name: SITE_NAME }],
+    alternates: {
+      canonical: `/${currentLocale}`,
+      languages,
+    },
+    openGraph: {
+      title: dict.seo.title,
+      description: dict.seo.description,
+      url: `/${currentLocale}`,
+      siteName: SITE_NAME,
+      type: "website",
+      locale: OG_LOCALE[currentLocale],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.seo.title,
+      description: dict.seo.description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

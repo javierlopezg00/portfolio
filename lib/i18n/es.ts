@@ -414,6 +414,7 @@ export const es = {
     ],
     ogHeadline: "Creamos experiencias digitales que funcionan.",
     ogTagline: "Sitios web · Aplicaciones web · Software · Automatización",
+    structuredDataAreaServed: "Mundial",
     structuredDataServiceTypes: [
       "Desarrollo web",
       "Desarrollo de aplicaciones web",

@@ -4,9 +4,10 @@ import { buttonStyles, Container, Heading, Text } from "@/components/ui";
 import { getServerLocale } from "@/lib/i18n/getServerDictionary";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 
-export const metadata: Metadata = {
-  title: "Page Not Found",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  return { title: getDictionary(locale).notFound.heading };
+}
 
 export default async function NotFound() {
   // notFound() can fire before the [locale] segment resolves (e.g. an

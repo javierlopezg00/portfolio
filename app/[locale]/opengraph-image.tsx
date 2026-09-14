@@ -1,10 +1,24 @@
 import { ImageResponse } from "next/og";
+import {
+  defaultLocale,
+  getDictionary,
+  isLocale,
+} from "@/lib/i18n/getDictionary";
 
+// The `alt` export can't be a function — it's fixed at the module level,
+// so it can't vary per locale the way the rendered image itself can.
 export const alt = "Javier López — Software Development";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default async function Image() {
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const dict = getDictionary(isLocale(locale) ? locale : defaultLocale);
+
   return new ImageResponse(
     <div
       style={{
@@ -29,10 +43,10 @@ export default async function Image() {
           color: "#f4f4f5",
         }}
       >
-        We build digital experiences that work.
+        {dict.seo.ogHeadline}
       </div>
       <div style={{ fontSize: 28, color: "#9ea3ae", marginTop: 32 }}>
-        Websites · Web Apps · Software · Automation
+        {dict.seo.ogTagline}
       </div>
     </div>,
     { ...size },

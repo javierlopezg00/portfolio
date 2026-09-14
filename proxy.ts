@@ -1,30 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import {
-  defaultLocale,
-  isLocale,
-  locales,
-  type Locale,
-} from "@/lib/i18n/getDictionary";
-
-const LOCALE_COOKIE = "NEXT_LOCALE";
-
-function pickLocale(request: NextRequest): Locale {
-  const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
-  if (cookieLocale && isLocale(cookieLocale)) return cookieLocale;
-
-  const acceptLanguage = request.headers.get("accept-language");
-  if (!acceptLanguage) return defaultLocale;
-
-  // Hand-rolled negotiation for a binary en/es choice: parse
-  // "es-MX,es;q=0.9,en;q=0.8" style headers, strip region subtags, first
-  // supported match wins. No need for a full RFC 4647 matcher library.
-  const preferred = acceptLanguage
-    .split(",")
-    .map((part) => part.split(";")[0]!.trim().toLowerCase().split("-")[0]!);
-
-  return preferred.find(isLocale) ?? defaultLocale;
-}
+import { locales } from "@/lib/i18n/getDictionary";
+import { LOCALE_COOKIE, negotiateLocale } from "@/lib/i18n/negotiateLocale";
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -34,7 +11,10 @@ export function proxy(request: NextRequest) {
   );
   if (hasLocale) return NextResponse.next();
 
-  const locale = pickLocale(request);
+  const locale = negotiateLocale(
+    request.cookies.get(LOCALE_COOKIE)?.value,
+    request.headers.get("accept-language"),
+  );
   const url = request.nextUrl.clone();
   url.pathname = `/${locale}${pathname === "/" ? "" : pathname}`;
   return NextResponse.redirect(url);

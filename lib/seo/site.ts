@@ -3,7 +3,7 @@
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
+// A proper name — same in every locale, so it stays here rather than in
+// the dictionary. The title/description shown to visitors and search
+// engines live in dict.seo instead, since those genuinely translate.
 export const SITE_NAME = "Javier López";
-export const SITE_TITLE = "Javier López — Software Development";
-export const SITE_DESCRIPTION =
-  "Premium software development studio — websites, web applications, and custom software.";

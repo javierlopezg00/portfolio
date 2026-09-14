@@ -192,6 +192,7 @@ export interface Dictionary {
     keywords: string[];
     ogHeadline: string;
     ogTagline: string;
+    structuredDataAreaServed: string;
     structuredDataServiceTypes: string[];
   };
 }
