@@ -12,7 +12,11 @@ describe("MobileMenu", () => {
 
   it("renders every nav link when open", async () => {
     render(<MobileMenu id="mobile-menu" open={true} onClose={() => {}} />);
-    await waitFor(() => expect(screen.getByRole("dialog")).toBeInTheDocument());
+    // toBeVisible (not just toBeInTheDocument) — the dialog mounts with
+    // opacity 0 and animates in, so asserting right after it appears in the
+    // DOM races the animation and is flaky under load (passed reliably
+    // locally, failed intermittently in CI).
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
 
     for (const link of navLinks) {
       expect(screen.getByRole("link", { name: link.label })).toBeVisible();
@@ -23,7 +27,7 @@ describe("MobileMenu", () => {
     const onClose = vi.fn();
     const user = userEvent.setup();
     render(<MobileMenu id="mobile-menu" open={true} onClose={onClose} />);
-    await waitFor(() => expect(screen.getByRole("dialog")).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
 
     await user.keyboard("{Escape}");
 
@@ -34,7 +38,7 @@ describe("MobileMenu", () => {
     const onClose = vi.fn();
     const user = userEvent.setup();
     render(<MobileMenu id="mobile-menu" open={true} onClose={onClose} />);
-    await waitFor(() => expect(screen.getByRole("dialog")).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
 
     await user.click(screen.getByRole("link", { name: navLinks[0].label }));
 
