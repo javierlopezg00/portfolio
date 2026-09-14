@@ -8,7 +8,7 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors duration-fast ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-40";
 
 const variantClass: Record<ButtonVariant, string> = {
-  primary: "bg-accent text-white hover:bg-accent/90",
+  primary: "bg-accent-strong text-white hover:bg-accent-strong/90",
   secondary:
     "bg-surface text-text border border-border-strong hover:border-accent/60",
   ghost: "text-text hover:text-accent",

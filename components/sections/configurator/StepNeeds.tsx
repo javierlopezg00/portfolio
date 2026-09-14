@@ -35,7 +35,7 @@ export function StepNeeds({ value, onChange, error }: StepNeedsProps) {
         ))}
       </div>
       {error && (
-        <p role="alert" className="text-caption mt-3 text-red-400">
+        <p role="alert" className="text-caption text-error mt-3">
           {error}
         </p>
       )}

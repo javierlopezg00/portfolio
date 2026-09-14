@@ -61,7 +61,7 @@ export function Select({
         ))}
       </select>
       {error && (
-        <p id={errorId} role="alert" className="text-caption text-red-400">
+        <p id={errorId} role="alert" className="text-caption text-error">
           {error}
         </p>
       )}

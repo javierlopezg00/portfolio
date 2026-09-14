@@ -41,7 +41,7 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
               type="button"
               onClick={onClose}
               aria-label="Close menu"
-              className="text-text focus-visible:ring-focus-ring flex h-9 w-9 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none"
+              className="text-text focus-visible:ring-focus-ring flex h-11 w-11 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none"
             >
               <CloseIcon />
             </button>

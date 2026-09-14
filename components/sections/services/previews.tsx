@@ -65,9 +65,14 @@ export function IntegrationsPreview() {
     <div className="border-border bg-background/40 relative grid h-full grid-cols-2 grid-rows-2 place-items-center gap-1 rounded-md border p-3">
       <span className="bg-accent pointer-events-none absolute h-2 w-2 rounded-full" />
       {nodes.map((node, i) => (
+        // The "recede until hover" treatment lives on the border/background
+        // only — those are non-text UI elements (WCAG 1.4.11, 3:1). The
+        // text itself stays at full opacity/contrast always; fading it
+        // too dropped it to 2.28:1 on the light Services section, well
+        // under the 4.5:1 normal-text minimum.
         <span
           key={node}
-          className="border-border-strong bg-surface text-text-secondary duration-base group-hover:border-accent/40 rounded-full border px-2 py-0.5 font-mono text-[9px] tracking-wide opacity-50 transition-all ease-out group-hover:opacity-100"
+          className="bg-surface text-text-secondary duration-base group-hover:border-accent/40 group-hover:bg-accent/5 rounded-full border border-transparent px-2 py-0.5 font-mono text-[9px] tracking-wide transition-colors ease-out"
           style={{ transitionDelay: `${i * 60}ms` }}
         >
           {node}

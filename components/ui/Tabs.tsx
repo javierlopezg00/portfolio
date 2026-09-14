@@ -96,7 +96,7 @@ export function Tabs({
           aria-labelledby={`${baseId}-tab-${item.value}`}
           hidden={item.value !== activeValue}
           tabIndex={0}
-          className="pt-6 focus-visible:outline-none"
+          className="focus-visible:ring-focus-ring rounded-md pt-6 focus-visible:ring-2 focus-visible:outline-none"
         >
           {item.value === activeValue ? item.content : null}
         </div>

@@ -270,7 +270,7 @@ export function Configurator() {
       </div>
 
       {status === "error" && (
-        <p role="alert" className="text-body-sm mt-4 text-red-400">
+        <p role="alert" className="text-body-sm text-error mt-4">
           Something went wrong sending your request. Please try again.
         </p>
       )}

@@ -152,7 +152,7 @@ export function BookingDemo() {
                       available &&
                         state.day !== day &&
                         "text-text hover:border-border-strong border border-transparent",
-                      state.day === day && "bg-accent text-white",
+                      state.day === day && "bg-accent-strong text-white",
                     )}
                   >
                     {day}
@@ -183,7 +183,7 @@ export function BookingDemo() {
                             state.time !== time &&
                             "border-border-strong text-text hover:border-accent/50",
                           state.time === time &&
-                            "border-accent bg-accent text-white",
+                            "border-accent-strong bg-accent-strong text-white",
                         )}
                       >
                         {time}

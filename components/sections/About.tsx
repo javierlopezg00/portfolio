@@ -25,7 +25,9 @@ export function About() {
                 key={principle.title}
                 className="border-accent/30 border-l-2 pl-4"
               >
-                <Heading size="h4">{principle.title}</Heading>
+                <Heading size="h4" as="h3">
+                  {principle.title}
+                </Heading>
                 <Text tone="secondary" size="sm" className="mt-1">
                   {principle.description}
                 </Text>

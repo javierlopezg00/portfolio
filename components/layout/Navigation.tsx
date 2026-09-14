@@ -57,7 +57,7 @@ export function Navigation() {
 
         <button
           type="button"
-          className="text-text focus-visible:ring-focus-ring flex h-9 w-9 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none md:hidden"
+          className="text-text focus-visible:ring-focus-ring flex h-11 w-11 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none md:hidden"
           aria-label="Open menu"
           aria-expanded={mobileOpen}
           aria-controls={MOBILE_MENU_ID}

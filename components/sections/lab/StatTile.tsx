@@ -46,7 +46,7 @@ export function StatTile({ label, value, formatValue, delta }: StatTileProps) {
           <span
             className={cn(
               "text-caption font-medium",
-              delta >= 0 ? "text-emerald-500" : "text-red-400",
+              delta >= 0 ? "text-success" : "text-error",
             )}
           >
             {delta >= 0 ? "+" : ""}

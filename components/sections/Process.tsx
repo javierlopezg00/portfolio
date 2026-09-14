@@ -20,7 +20,7 @@ export function Process() {
               <span className="text-caption text-accent font-mono tracking-wide">
                 {step.number}
               </span>
-              <Heading size="h4" className="mt-3">
+              <Heading size="h4" as="h3" className="mt-3">
                 {step.title}
               </Heading>
               <Text tone="secondary" size="sm" className="mt-2">

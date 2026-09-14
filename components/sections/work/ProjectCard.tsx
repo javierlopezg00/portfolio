@@ -53,7 +53,7 @@ export function ProjectCard({ project, preview }: ProjectCardProps) {
               className={cn(
                 "text-body-sm duration-fast focus-visible:ring-focus-ring rounded-full px-3 py-1.5 capitalize transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
                 mode === m
-                  ? "bg-accent text-white"
+                  ? "bg-accent-strong text-white"
                   : "text-text-secondary hover:text-text",
               )}
             >

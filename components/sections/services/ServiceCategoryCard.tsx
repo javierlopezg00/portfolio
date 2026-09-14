@@ -14,7 +14,9 @@ export function ServiceCategoryCard({
   return (
     <Card interactive className="group flex flex-col gap-5">
       <div>
-        <Heading size="h4">{category.title}</Heading>
+        <Heading size="h4" as="h3">
+          {category.title}
+        </Heading>
         <Text size="sm" tone="secondary" className="mt-2">
           {category.description}
         </Text>

@@ -44,7 +44,7 @@ export function StepSingleSelect({
         ))}
       </div>
       {error && (
-        <p id={errorId} role="alert" className="text-caption mt-3 text-red-400">
+        <p id={errorId} role="alert" className="text-caption text-error mt-3">
           {error}
         </p>
       )}

@@ -12,7 +12,7 @@ export function FinalCTA() {
   return (
     <Section id="contact" ariaLabelledBy="final-cta-heading">
       <Container className="max-w-2xl text-center">
-        <Heading id="final-cta-heading" size="display">
+        <Heading id="final-cta-heading" size="display" as="h2">
           Ready to build something?
         </Heading>
         <Text tone="secondary" size="lg" className="mx-auto mt-6 max-w-lg">

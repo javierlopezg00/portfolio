@@ -1,5 +1,6 @@
 import { Footer } from "@/components/layout/Footer";
 import { Navigation } from "@/components/layout/Navigation";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { About } from "@/components/sections/About";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -14,8 +15,11 @@ import { SoftwareEvolution } from "@/components/sections/SoftwareEvolution";
 export default function Home() {
   return (
     <>
+      <SkipLink />
       <Navigation />
-      <main>
+      {/* tabIndex={-1}: <main> isn't natively focusable, so without it the
+          skip link scrolls here but focus falls back to <body>. */}
+      <main id="main-content" tabIndex={-1} className="focus:outline-none">
         <Hero />
         <SoftwareEvolution />
         <Services />
