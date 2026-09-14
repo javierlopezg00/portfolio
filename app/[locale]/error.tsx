@@ -9,6 +9,7 @@ import {
   Heading,
   Text,
 } from "@/components/ui";
+import { useLocale } from "@/lib/i18n/useLocale";
 
 export default function Error({
   error,
@@ -17,6 +18,8 @@ export default function Error({
   error: Error & { digest?: string };
   retry: () => void;
 }) {
+  const locale = useLocale();
+
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -36,7 +39,10 @@ export default function Error({
         </Text>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Button onClick={() => retry()}>Try again</Button>
-          <NextLink href="/" className={buttonStyles({ variant: "secondary" })}>
+          <NextLink
+            href={`/${locale}`}
+            className={buttonStyles({ variant: "secondary" })}
+          >
             Back to home
           </NextLink>
         </div>

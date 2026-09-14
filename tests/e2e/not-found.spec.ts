@@ -11,7 +11,7 @@ test.describe("404 page", () => {
     ).toBeVisible();
 
     await page.getByRole("link", { name: "Back to home" }).click();
-    await expect(page).toHaveURL("/");
+    await expect(page).toHaveURL("/en");
   });
 
   test("has no automatically detectable accessibility violations", async ({

@@ -6,12 +6,14 @@ import { buttonStyles } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { navLinks, primaryCtaHref } from "@/lib/content/nav";
 import { useScrolledPast } from "@/lib/hooks/useScrolledPast";
+import { useLocale } from "@/lib/i18n/useLocale";
 import { MenuIcon } from "./icons";
 import { MobileMenu } from "./MobileMenu";
 
 const MOBILE_MENU_ID = "mobile-menu";
 
 export function Navigation() {
+  const locale = useLocale();
   const scrolled = useScrolledPast(80);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -27,7 +29,7 @@ export function Navigation() {
         )}
       >
         <NextLink
-          href="/"
+          href={`/${locale}`}
           className="text-body-sm text-text focus-visible:ring-focus-ring rounded-sm px-2 font-semibold tracking-wide focus-visible:ring-2 focus-visible:outline-none"
         >
           JL

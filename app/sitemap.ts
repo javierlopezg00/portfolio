@@ -1,13 +1,17 @@
 import type { MetadataRoute } from "next";
+import { locales } from "@/lib/i18n/getDictionary";
 import { SITE_URL } from "@/lib/seo/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: SITE_URL,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-  ];
+  const languages = Object.fromEntries(
+    locales.map((locale) => [locale, `${SITE_URL}/${locale}`]),
+  );
+
+  return locales.map((locale) => ({
+    url: `${SITE_URL}/${locale}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 1,
+    alternates: { languages },
+  }));
 }
