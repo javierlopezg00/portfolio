@@ -268,6 +268,11 @@ export const es = {
       heading: "¿Qué necesita tu negocio?",
       selectAllThatApply: "Selecciona todas las que correspondan.",
     },
+    budgetStep: {
+      heading: "¿Qué presupuesto tienes en mente para el proyecto?",
+      helperText:
+        "No necesitas tener un presupuesto exacto. Esto me ayuda a recomendarte la solución adecuada para tu proyecto.",
+    },
     options: {
       projectType: [
         { id: "website", label: "Sitio web" },
@@ -289,10 +294,11 @@ export const es = {
         { id: "other", label: "Algo más" },
       ],
       budget: [
-        { id: "tier-1", label: "Q10.500 – Q23.000" },
-        { id: "tier-2", label: "Q23.000 – Q38.000" },
-        { id: "tier-3", label: "Q38.000 – Q76.000" },
-        { id: "tier-4", label: "Q76.000+" },
+        { id: "tier-1", label: "Q7.500 – Q15.000" },
+        { id: "tier-2", label: "Q15.000 – Q30.000" },
+        { id: "tier-3", label: "Q30.000 – Q60.000" },
+        { id: "tier-4", label: "Q60.000+" },
+        { id: "guidance", label: "Necesito orientación sobre el presupuesto" },
       ],
       timeline: [
         { id: "asap", label: "Lo antes posible" },

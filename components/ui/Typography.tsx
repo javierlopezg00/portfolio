@@ -59,6 +59,7 @@ interface TextProps {
   as?: "p" | "span" | "div";
   size?: TextSize;
   tone?: TextTone;
+  id?: string;
   className?: string;
   children: ReactNode;
 }
@@ -67,11 +68,13 @@ export function Text({
   as: Tag = "p",
   size = "base",
   tone = "primary",
+  id,
   className,
   children,
 }: TextProps) {
   return (
     <Tag
+      id={id}
       className={cn(
         textSizeClass[size],
         tone === "primary" ? "text-text" : "text-text-secondary",

@@ -1,9 +1,10 @@
-import { Heading } from "@/components/ui";
+import { Heading, Text } from "@/components/ui";
 import type { ConfiguratorOption } from "@/lib/content/configurator-options";
 import { OptionCard } from "./OptionCard";
 
 interface StepSingleSelectProps {
   heading: string;
+  helperText?: string;
   name: string;
   options: ConfiguratorOption[];
   value: string;
@@ -12,9 +13,11 @@ interface StepSingleSelectProps {
 }
 
 // Shared by the project-type, budget, and timeline steps — structurally
-// identical single-select questions, just different options.
+// identical single-select questions, just different options. helperText
+// is optional since only budget currently uses it.
 export function StepSingleSelect({
   heading,
+  helperText,
   name,
   options,
   value,
@@ -22,13 +25,22 @@ export function StepSingleSelect({
   error,
 }: StepSingleSelectProps) {
   const errorId = error ? `${name}-error` : undefined;
+  const helperId = helperText ? `${name}-helper` : undefined;
+  const describedBy =
+    [helperId, errorId].filter(Boolean).join(" ") || undefined;
+
   return (
     <div>
       <Heading size="h3">{heading}</Heading>
+      {helperText && (
+        <Text id={helperId} tone="secondary" size="sm" className="mt-2">
+          {helperText}
+        </Text>
+      )}
       <div
         role="radiogroup"
         aria-label={heading}
-        aria-describedby={errorId}
+        aria-describedby={describedBy}
         className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2"
       >
         {options.map((opt) => (

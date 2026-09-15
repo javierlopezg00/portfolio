@@ -248,7 +248,8 @@ export function Configurator() {
       )}
       {currentStep.key === "budget" && (
         <StepSingleSelect
-          heading={currentStep.label}
+          heading={dict.configurator.budgetStep.heading}
+          helperText={dict.configurator.budgetStep.helperText}
           name="budget"
           options={dict.configurator.options.budget}
           value={state.budget}

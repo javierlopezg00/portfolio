@@ -263,6 +263,11 @@ export const en = {
       heading: "What does your business need?",
       selectAllThatApply: "Select all that apply.",
     },
+    budgetStep: {
+      heading: "What budget do you have in mind for the project?",
+      helperText:
+        "You don't need to have an exact budget. This helps me recommend the right solution for your project.",
+    },
     options: {
       projectType: [
         { id: "website", label: "Website" },
@@ -284,10 +289,11 @@ export const en = {
         { id: "other", label: "Something else" },
       ],
       budget: [
-        { id: "tier-1", label: "$1,400 – $3,000" },
-        { id: "tier-2", label: "$3,000 – $5,000" },
-        { id: "tier-3", label: "$5,000 – $10,000" },
-        { id: "tier-4", label: "$10,000+" },
+        { id: "tier-1", label: "$1,000 – $2,000" },
+        { id: "tier-2", label: "$2,000 – $4,000" },
+        { id: "tier-3", label: "$4,000 – $8,000" },
+        { id: "tier-4", label: "$8,000+" },
+        { id: "guidance", label: "I need guidance on the budget" },
       ],
       timeline: [
         { id: "asap", label: "As soon as possible" },

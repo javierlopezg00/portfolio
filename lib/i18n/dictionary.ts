@@ -134,6 +134,10 @@ export interface Dictionary {
       heading: string;
       selectAllThatApply: string;
     };
+    budgetStep: {
+      heading: string;
+      helperText: string;
+    };
     options: {
       projectType: ConfiguratorOptionText[];
       needs: ConfiguratorOptionText[];
