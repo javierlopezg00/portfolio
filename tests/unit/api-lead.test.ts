@@ -12,7 +12,7 @@ function makeRequest(body: unknown) {
 const validPayload = {
   projectType: "website",
   needs: ["bookings"],
-  budget: "5-10k",
+  budget: "tier-2",
   timeline: "1-2-months",
   name: "Ada Lovelace",
   company: "",

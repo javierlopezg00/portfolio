@@ -102,7 +102,7 @@ describe("Configurator", () => {
     expect(payload).toMatchObject({
       projectType: "website",
       needs: ["bookings", "payments"],
-      budget: "5-10k",
+      budget: "tier-2",
       timeline: "1-2-months",
       name: "Ada Lovelace",
       email: "ada@example.com",

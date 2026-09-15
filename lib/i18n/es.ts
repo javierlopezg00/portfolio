@@ -17,7 +17,7 @@ export const es = {
   },
   skipLink: "Saltar al contenido",
   hero: {
-    heading: "Creamos experiencias digitales que funcionan.",
+    heading: "Creo experiencias digitales que funcionan.",
     subhead: "Sitios web · Aplicaciones web · Software · Automatización",
     ctaPrimary: "Iniciar un proyecto",
     ctaExplore: "Explorar",
@@ -56,8 +56,8 @@ export const es = {
     ],
   },
   services: {
-    heading: "Lo que construimos.",
-    subhead: "Cuatro categorías. Un solo equipo, de principio a fin.",
+    heading: "Lo que construyo.",
+    subhead: "Cuatro categorías. Una sola persona, de principio a fin.",
     categories: [
       {
         id: "websites",
@@ -86,7 +86,7 @@ export const es = {
         id: "integrations",
         title: "Integraciones",
         description:
-          "Conectamos las herramientas con las que ya opera tu negocio.",
+          "Conecto las herramientas con las que ya opera tu negocio.",
         items: ["Pagos", "APIs", "CRM", "Correo y WhatsApp"],
       },
       {
@@ -205,7 +205,7 @@ export const es = {
     ],
   },
   process: {
-    heading: "Cómo trabajamos.",
+    heading: "Cómo trabajo.",
     subhead: "Cuatro pasos, de principio a fin — sin sorpresas en el camino.",
     steps: [
       {
@@ -249,15 +249,14 @@ export const es = {
     next: "Siguiente",
     sending: "Enviando…",
     requestProposal: "Solicitar propuesta",
-    successTitle: "Gracias — ya lo recibimos.",
-    successBody: (email) =>
-      `Te contactaremos a ${email} dentro de un día hábil.`,
+    successTitle: "Gracias — ya lo recibí.",
+    successBody: (email) => `Te contactaré a ${email} dentro de un día hábil.`,
     genericError:
       "Ocurrió un error al enviar tu solicitud. Por favor, inténtalo de nuevo.",
     stepIndicator: (current, total, label) =>
       `Paso ${current} de ${total} — ${label}`,
     contact: {
-      heading: "¿Cómo podemos contactarte?",
+      heading: "¿Cómo puedo contactarte?",
       name: "Nombre",
       company: "Empresa",
       email: "Correo electrónico",
@@ -290,10 +289,10 @@ export const es = {
         { id: "other", label: "Algo más" },
       ],
       budget: [
-        { id: "3-5k", label: "$3k – $5k" },
-        { id: "5-10k", label: "$5k – $10k" },
-        { id: "10-25k", label: "$10k – $25k" },
-        { id: "25k-plus", label: "$25k+" },
+        { id: "tier-1", label: "Q10.500 – Q23.000" },
+        { id: "tier-2", label: "Q23.000 – Q38.000" },
+        { id: "tier-3", label: "Q38.000 – Q76.000" },
+        { id: "tier-4", label: "Q76.000+" },
       ],
       timeline: [
         { id: "asap", label: "Lo antes posible" },
@@ -412,7 +411,7 @@ export const es = {
       "desarrollador Next.js",
       "ingeniero de software",
     ],
-    ogHeadline: "Creamos experiencias digitales que funcionan.",
+    ogHeadline: "Creo experiencias digitales que funcionan.",
     ogTagline: "Sitios web · Aplicaciones web · Software · Automatización",
     structuredDataAreaServed: "Mundial",
     structuredDataServiceTypes: [

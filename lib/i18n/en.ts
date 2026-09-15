@@ -17,7 +17,7 @@ export const en = {
   },
   skipLink: "Skip to content",
   hero: {
-    heading: "We build digital experiences that work.",
+    heading: "I build digital experiences that work.",
     subhead: "Websites · Web Apps · Software · Automation",
     ctaPrimary: "Start a Project",
     ctaExplore: "Explore",
@@ -54,8 +54,8 @@ export const en = {
     ],
   },
   services: {
-    heading: "What we build.",
-    subhead: "Four categories. One team, end to end.",
+    heading: "What I build.",
+    subhead: "Four categories. One person, start to finish.",
     categories: [
       {
         id: "websites",
@@ -200,7 +200,7 @@ export const en = {
     ],
   },
   process: {
-    heading: "How we work.",
+    heading: "How I work.",
     subhead: "Four steps, start to finish — no surprises in between.",
     steps: [
       {
@@ -245,13 +245,13 @@ export const en = {
     requestProposal: "Request Proposal",
     successTitle: "Thanks — that's in.",
     successBody: (email) =>
-      `We'll follow up at ${email} within one business day.`,
+      `I'll follow up at ${email} within one business day.`,
     genericError:
       "Something went wrong sending your request. Please try again.",
     stepIndicator: (current, total, label) =>
       `Step ${current} of ${total} — ${label}`,
     contact: {
-      heading: "How can we reach you?",
+      heading: "How can I reach you?",
       name: "Name",
       company: "Company",
       email: "Email",
@@ -284,10 +284,10 @@ export const en = {
         { id: "other", label: "Something else" },
       ],
       budget: [
-        { id: "3-5k", label: "$3k – $5k" },
-        { id: "5-10k", label: "$5k – $10k" },
-        { id: "10-25k", label: "$10k – $25k" },
-        { id: "25k-plus", label: "$25k+" },
+        { id: "tier-1", label: "$1,400 – $3,000" },
+        { id: "tier-2", label: "$3,000 – $5,000" },
+        { id: "tier-3", label: "$5,000 – $10,000" },
+        { id: "tier-4", label: "$10,000+" },
       ],
       timeline: [
         { id: "asap", label: "As soon as possible" },
@@ -404,7 +404,7 @@ export const en = {
       "Next.js developer",
       "software engineer",
     ],
-    ogHeadline: "We build digital experiences that work.",
+    ogHeadline: "I build digital experiences that work.",
     ogTagline: "Websites · Web Apps · Software · Automation",
     structuredDataAreaServed: "Worldwide",
     structuredDataServiceTypes: [
