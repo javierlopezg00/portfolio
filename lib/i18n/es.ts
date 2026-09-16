@@ -75,6 +75,14 @@ export const es = {
         { label: "Ventas", value: "$12.4k" },
         { label: "Pedidos", value: "128" },
       ],
+      dashboardChartLabel: "Actividad semanal",
+      dashboardDayLabels: ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"],
+      dashboardActivityLabel: "Pedidos recientes",
+      dashboardActivity: [
+        { name: "Ava Martínez", status: "Completado" },
+        { name: "Noah Chen", status: "En proceso" },
+        { name: "Liam Patel", status: "Completado" },
+      ],
     },
   },
   services: {

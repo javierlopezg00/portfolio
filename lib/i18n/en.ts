@@ -73,6 +73,14 @@ export const en = {
         { label: "Sales", value: "$12.4k" },
         { label: "Orders", value: "128" },
       ],
+      dashboardChartLabel: "Weekly activity",
+      dashboardDayLabels: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+      dashboardActivityLabel: "Recent orders",
+      dashboardActivity: [
+        { name: "Ava Martinez", status: "Completed" },
+        { name: "Noah Chen", status: "Processing" },
+        { name: "Liam Patel", status: "Completed" },
+      ],
     },
   },
   services: {

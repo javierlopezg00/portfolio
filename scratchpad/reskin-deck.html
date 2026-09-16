@@ -1,0 +1,1482 @@
+<title>The Reskin Deck</title>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+  :root {
+    --chrome-bg: #eef0f2;
+    --chrome-surface: #ffffff;
+    --chrome-surface-2: #e5e8eb;
+    --chrome-text: #1a1d22;
+    --chrome-text-dim: #5b6169;
+    --chrome-border: rgba(26, 29, 34, 0.12);
+    --chrome-border-strong: rgba(26, 29, 34, 0.22);
+    --chrome-accent: #a06c1e;
+    --chrome-accent-ink: #ffffff;
+    --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    --sans:
+      "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --chrome-bg: #15171b;
+      --chrome-surface: #1d2027;
+      --chrome-surface-2: #262a32;
+      --chrome-text: #eef0f3;
+      --chrome-text-dim: #9aa0ac;
+      --chrome-border: rgba(238, 240, 243, 0.12);
+      --chrome-border-strong: rgba(238, 240, 243, 0.22);
+      --chrome-accent: #d6a343;
+      --chrome-accent-ink: #16130a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --chrome-bg: #15171b;
+    --chrome-surface: #1d2027;
+    --chrome-surface-2: #262a32;
+    --chrome-text: #eef0f3;
+    --chrome-text-dim: #9aa0ac;
+    --chrome-border: rgba(238, 240, 243, 0.12);
+    --chrome-border-strong: rgba(238, 240, 243, 0.22);
+    --chrome-accent: #d6a343;
+    --chrome-accent-ink: #16130a;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: var(--chrome-bg);
+    color: var(--chrome-text);
+    font-family: var(--sans);
+    padding-inline: max(16px, calc((100vw - 1180px) / 2));
+    padding-block: 40px 80px;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--serif);
+    text-wrap: balance;
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
+  a {
+    color: inherit;
+  }
+  ::selection {
+    background: var(--chrome-accent);
+    color: var(--chrome-accent-ink);
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--chrome-text-dim);
+  }
+  h1.title {
+    font-size: clamp(2.1rem, 1.6rem + 2vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .dek {
+    max-width: 62ch;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--chrome-text-dim);
+  }
+  .dek strong {
+    color: var(--chrome-text);
+    font-weight: 600;
+  }
+
+  /* ---------- Theme switcher ---------- */
+  .switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .switch-tab {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--chrome-border);
+    background: var(--chrome-surface);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--chrome-text-dim);
+    cursor: pointer;
+    transition:
+      border-color 0.15s ease,
+      color 0.15s ease,
+      background-color 0.15s ease;
+  }
+  .switch-tab .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  }
+  .switch-tab:hover {
+    border-color: var(--chrome-border-strong);
+    color: var(--chrome-text);
+  }
+  .switch-tab[aria-pressed="true"] {
+    color: var(--chrome-text);
+    border-color: var(--chrome-accent);
+    background: var(--chrome-surface-2);
+    box-shadow: 0 0 0 1px var(--chrome-accent) inset;
+  }
+  .switch-tab .sub {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--chrome-text-dim);
+  }
+
+  /* ---------- Reference table ---------- */
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--chrome-border);
+    border-radius: 12px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 720px;
+    font-size: 0.88rem;
+  }
+  thead th {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--chrome-text-dim);
+    background: var(--chrome-surface-2);
+    padding: 12px 16px;
+    position: sticky;
+    top: 0;
+  }
+  tbody td {
+    padding: 12px 16px;
+    border-top: 1px solid var(--chrome-border);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  tbody tr:hover {
+    background: var(--chrome-surface-2);
+  }
+  td.comp {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  td.path {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--chrome-text-dim);
+    white-space: nowrap;
+  }
+
+  /* ---------- Index strip ---------- */
+  nav.index {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--chrome-border);
+  }
+  nav.index a {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 10px 14px;
+    white-space: nowrap;
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: var(--chrome-text-dim);
+    border-bottom: 2px solid transparent;
+  }
+  nav.index a:hover {
+    color: var(--chrome-text);
+  }
+  nav.index a .n {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--chrome-accent);
+  }
+
+  /* ---------- Section shell ---------- */
+  section.spec {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    scroll-margin-top: 20px;
+  }
+  .spec-head {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+  .spec-head .n {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--chrome-accent);
+  }
+  .spec-head h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  .spec-note {
+    font-size: 0.9rem;
+    color: var(--chrome-text-dim);
+    max-width: 68ch;
+    line-height: 1.5;
+  }
+
+  /* ---------- Stage (the previewed product) ---------- */
+  #stage {
+    --stage-bg: #08090b;
+    --stage-surface: #111318;
+    --stage-text: #f4f4f5;
+    --stage-text-dim: #9ea3ae;
+    --stage-accent: #4f7cff;
+    --stage-accent-strong: #3b5bdb;
+    --stage-border: rgba(244, 244, 245, 0.08);
+    --stage-border-strong: rgba(244, 244, 245, 0.16);
+    --stage-error: #ff6467;
+    --stage-success: #10b981;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+  .panel {
+    background: var(--stage-bg);
+    color: var(--stage-text);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+
+  /* swatches (section 00) */
+  .swatch-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--stage-text-dim);
+    margin: 0 0 10px;
+  }
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  .swatch {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--stage-border);
+  }
+  .swatch .chip {
+    height: 52px;
+  }
+  .swatch .meta {
+    padding: 9px 11px;
+    background: var(--stage-surface);
+  }
+  .swatch .tok {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--stage-text);
+    display: block;
+  }
+  .swatch .hex {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--stage-text-dim);
+    display: block;
+    margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .swatch .use {
+    font-size: 0.72rem;
+    color: var(--stage-text-dim);
+    display: block;
+    margin-top: 5px;
+    line-height: 1.35;
+  }
+
+  /* typography (section 01) */
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    border-top: 1px solid var(--stage-border);
+    padding-top: 14px;
+  }
+  .type-row:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+  .type-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--stage-text-dim);
+    width: 88px;
+    flex-shrink: 0;
+    padding-top: 6px;
+  }
+  .type-sample {
+    color: var(--stage-text);
+    font-weight: 600;
+  }
+  .t-display {
+    font-size: clamp(2.2rem, 1.8rem + 2vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+  .t-h1 {
+    font-size: clamp(1.9rem, 1.6rem + 1.4vw, 2.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+  .t-h2 {
+    font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.9rem);
+    line-height: 1.12;
+  }
+  .t-h3 {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+  .t-h4 {
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+  .t-body-lg {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--stage-text-dim);
+  }
+  .t-body {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--stage-text-dim);
+  }
+  .t-body-sm {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--stage-text-dim);
+  }
+  .t-caption {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--stage-text-dim);
+  }
+
+  /* buttons (section 02) */
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn {
+    font-family: var(--sans);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    height: 44px;
+    padding: 0 24px;
+    font-size: 0.95rem;
+    transition: background-color 0.15s ease;
+  }
+  .btn-sm {
+    height: 36px;
+    padding: 0 16px;
+    font-size: 0.85rem;
+  }
+  .btn-lg {
+    height: 48px;
+    padding: 0 32px;
+    font-size: 1.05rem;
+  }
+  .btn-primary {
+    background: var(--stage-accent-strong);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    filter: brightness(1.08);
+  }
+  .btn-secondary {
+    background: var(--stage-surface);
+    color: var(--stage-text);
+    border: 1px solid var(--stage-border-strong);
+  }
+  .btn-secondary:hover {
+    border-color: var(--stage-accent);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--stage-text);
+  }
+  .btn-ghost:hover {
+    color: var(--stage-accent);
+  }
+  .btn-disabled {
+    background: var(--stage-accent-strong);
+    color: #fff;
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .stage-link {
+    color: var(--stage-accent);
+    font-size: 0.92rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* badges + cards (section 03) */
+  .badge {
+    font-family: var(--sans);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .badge-neutral {
+    background: var(--stage-surface);
+    color: var(--stage-text-dim);
+    border: 1px solid var(--stage-border);
+  }
+  .badge-accent {
+    background: color-mix(in srgb, var(--stage-accent) 12%, transparent);
+    color: var(--stage-accent);
+    border: 1px solid color-mix(in srgb, var(--stage-accent) 25%, transparent);
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: var(--stage-surface);
+    border: 1px solid var(--stage-border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 24%);
+  }
+  .card.interactive {
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+  .card.interactive:hover {
+    border-color: var(--stage-border-strong);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 32%);
+  }
+  .card h4 {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+    color: var(--stage-text);
+  }
+  .card p {
+    font-size: 0.82rem;
+    color: var(--stage-text-dim);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* form fields (section 04) */
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    max-width: 640px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .field label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--stage-text);
+  }
+  .field input,
+  .field textarea,
+  .field select {
+    font-family: var(--sans);
+    background: var(--stage-surface);
+    border: 1px solid var(--stage-border-strong);
+    border-radius: 8px;
+    color: var(--stage-text);
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    outline: 2px solid var(--stage-accent);
+    outline-offset: 1px;
+    border-color: transparent;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 72px;
+  }
+  .field .hint {
+    font-size: 0.76rem;
+    color: var(--stage-text-dim);
+  }
+  .field.has-error input {
+    border-color: var(--stage-error);
+  }
+  .field .err {
+    font-size: 0.76rem;
+    color: var(--stage-error);
+  }
+  .check-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .check-row input {
+    accent-color: var(--stage-accent);
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .check-row span {
+    font-size: 0.85rem;
+    color: var(--stage-text-dim);
+  }
+
+  /* tabs (section 05) */
+  .tabs-list {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--stage-border);
+  }
+  .tab-btn {
+    font-family: var(--sans);
+    background: none;
+    border: none;
+    padding: 10px 4px;
+    margin-right: 22px;
+    font-size: 0.9rem;
+    color: var(--stage-text-dim);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tab-btn[aria-selected="true"] {
+    color: var(--stage-text);
+    border-bottom-color: var(--stage-accent);
+  }
+  .tab-panel {
+    padding-top: 14px;
+    font-size: 0.88rem;
+    color: var(--stage-text-dim);
+    line-height: 1.5;
+  }
+
+  /* modal (section 06) */
+  .modal-open-btn {
+    align-self: flex-start;
+  }
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 55%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 40;
+  }
+  .modal-backdrop.open {
+    display: flex;
+  }
+  .modal-panel {
+    background: var(--stage-surface);
+    color: var(--stage-text);
+    border: 1px solid var(--stage-border);
+    border-radius: 14px;
+    padding: 26px;
+    max-width: 380px;
+    width: 100%;
+    box-shadow: 0 24px 64px rgb(0 0 0 / 40%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .modal-panel h4 {
+    font-family: var(--sans);
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .modal-panel p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--stage-text-dim);
+    line-height: 1.5;
+  }
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+
+  /* section-theme comparison (section 07) */
+  .compare {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .compare-box {
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .compare-box .cap {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .compare-box h3 {
+    font-size: 1.3rem;
+  }
+  .compare-box .btn {
+    align-self: flex-start;
+  }
+
+  /* closing note */
+  .closing {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-top: 1px solid var(--chrome-border);
+    padding-top: 40px;
+  }
+  .closing p {
+    max-width: 68ch;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    color: var(--chrome-text-dim);
+  }
+  .closing p strong {
+    color: var(--chrome-text);
+  }
+  code.file {
+    font-family: var(--mono);
+    background: var(--chrome-surface-2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }
+  .snippet {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    background: var(--chrome-surface);
+    border: 1px solid var(--chrome-border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    line-height: 1.7;
+    overflow-x: auto;
+    color: var(--chrome-text-dim);
+  }
+  .snippet .k {
+    color: var(--chrome-accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .type-row {
+      flex-direction: column;
+      gap: 4px;
+    }
+    .type-tag {
+      width: auto;
+    }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Javier López · Client Website Template</p>
+    <h1 class="title">The Reskin Deck</h1>
+    <p class="dek">
+      Every component available in the template, live in three color presets.
+      <strong>The layout, spacing and behavior never change</strong>
+      — only the palette does, which is the whole idea: one small edit in
+      <code class="file">app/globals.css</code> and a client's site looks built
+      for them.
+    </p>
+
+    <div
+      class="switcher"
+      id="switcher"
+      role="tablist"
+      aria-label="Color preset"
+    >
+      <button
+        class="switch-tab"
+        data-theme-btn="default"
+        aria-pressed="true"
+        role="tab"
+      >
+        <span class="dot" style="background: #4f7cff"></span>
+        Default <span class="sub">general / professional services</span>
+      </button>
+      <button class="switch-tab" data-theme-btn="medical" role="tab">
+        <span class="dot" style="background: #22c3b6"></span>
+        Medical <span class="sub">clinics, doctors, dentists</span>
+      </button>
+      <button class="switch-tab" data-theme-btn="restaurant" role="tab">
+        <span class="dot" style="background: #f0a35c"></span>
+        Restaurant <span class="sub">restaurants, cafés, bars</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>What it's for</th>
+          <th>What you customize</th>
+          <th>File</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="comp">Button</td>
+          <td>Primary / secondary / ghost actions, 3 sizes, disabled state.</td>
+          <td>
+            Colors only — variant and size are fixed so every site keeps the
+            same button logic.
+          </td>
+          <td class="path">components/ui/Button.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Link</td>
+          <td>Inline text links inside paragraphs.</td>
+          <td>Color (via accent token).</td>
+          <td class="path">components/ui/Link.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Badge</td>
+          <td>Small status/category pill — "New", "Popular", "Sample data".</td>
+          <td>Tone (neutral or accent) and color.</td>
+          <td class="path">components/ui/Badge.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Card</td>
+          <td>Bordered content block — services, menu items, staff bios.</td>
+          <td>Static or interactive (hover lift), colors.</td>
+          <td class="path">components/ui/Card.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Input / Textarea</td>
+          <td>Text fields with label, hint text, and error state.</td>
+          <td>Colors; copy for label/hint per field.</td>
+          <td class="path">components/ui/Input.tsx, Textarea.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Select</td>
+          <td>
+            Dropdown for a fixed set of choices — e.g. appointment type, party
+            size.
+          </td>
+          <td>Options list, colors.</td>
+          <td class="path">components/ui/Select.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Checkbox</td>
+          <td>Consent / opt-in toggles.</td>
+          <td>Label copy, accent color.</td>
+          <td class="path">components/ui/Checkbox.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Tabs</td>
+          <td>
+            Switch between related panels without a page reload — hours by
+            location, menu categories.
+          </td>
+          <td>Tab labels and panel content, colors.</td>
+          <td class="path">components/ui/Tabs.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Modal</td>
+          <td>
+            Centered dialog over a dimmed backdrop — booking confirmation, a
+            gallery image.
+          </td>
+          <td>
+            Contents, colors. Focus-trapped and closes on Escape by default.
+          </td>
+          <td class="path">components/ui/Modal.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Heading / Text</td>
+          <td>
+            The full type scale, decoupled from heading level so hierarchy stays
+            correct.
+          </td>
+          <td>
+            Visual size vs. semantic tag (e.g. a big-looking heading that's
+            still an h3).
+          </td>
+          <td class="path">components/ui/Typography.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Section</td>
+          <td>
+            Page-section wrapper. "light" theme flips every primitive inside it
+            automatically.
+          </td>
+          <td>
+            Dark (default) or light, per section — no prop drilling into
+            children.
+          </td>
+          <td class="path">components/ui/Section.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Navigation / MobileMenu</td>
+          <td>
+            Site header with nav links and a primary CTA; slide-out menu under
+            the mobile breakpoint.
+          </td>
+          <td>Nav links, logo mark, CTA label.</td>
+          <td class="path">components/layout/Navigation.tsx, MobileMenu.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Footer</td>
+          <td>Closing section — logo, nav links, copyright line.</td>
+          <td>Logo mark, links, business name.</td>
+          <td class="path">components/layout/Footer.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">ContactForm</td>
+          <td>
+            Working contact form — validation, spam honeypot, email notification
+            on submit.
+          </td>
+          <td>Field labels/copy; wiring is done for you.</td>
+          <td class="path">components/sections/ContactForm.tsx</td>
+        </tr>
+        <tr>
+          <td class="comp">Hero</td>
+          <td>Opening section — headline, subhead, primary CTA.</td>
+          <td>
+            All copy — this is the one section written fresh per client every
+            time.
+          </td>
+          <td class="path">components/sections/Hero.tsx</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <nav class="index" aria-label="Sections">
+    <a href="#s00"><span class="n">00</span> Tokens</a>
+    <a href="#s01"><span class="n">01</span> Typography</a>
+    <a href="#s02"><span class="n">02</span> Buttons</a>
+    <a href="#s03"><span class="n">03</span> Badges & cards</a>
+    <a href="#s04"><span class="n">04</span> Form fields</a>
+    <a href="#s05"><span class="n">05</span> Tabs</a>
+    <a href="#s06"><span class="n">06</span> Modal</a>
+    <a href="#s07"><span class="n">07</span> Section themes</a>
+  </nav>
+
+  <div id="stage">
+    <section class="spec" id="s00">
+      <div class="spec-head">
+        <span class="n">00</span>
+        <h2>Color tokens</h2>
+      </div>
+      <p class="spec-note">
+        Nine values drive every component on this page. Swap these in one file
+        and the entire site — buttons, cards, forms, everything — re-themes at
+        once. Nothing else in the codebase hardcodes a color.
+      </p>
+      <div class="panel">
+        <div>
+          <p class="swatch-label">
+            Root (the default look — nav, hero, footer)
+          </p>
+          <div class="swatch-grid" id="swatch-root"></div>
+        </div>
+        <div>
+          <p class="swatch-label">
+            Light-section override (used on request, per section)
+          </p>
+          <div class="swatch-grid" id="swatch-light"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec" id="s01">
+      <div class="spec-head">
+        <span class="n">01</span>
+        <h2>Typography</h2>
+      </div>
+      <p class="spec-note">
+        The type scale (sizes, line-height, spacing) is fixed across every
+        project — only the ink color moves with the theme.
+      </p>
+      <div class="panel">
+        <div class="type-row">
+          <span class="type-tag">display</span>
+          <span class="type-sample t-display">Built for your practice</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">h1</span>
+          <span class="type-sample t-h1">A heading that leads a page</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">h2</span>
+          <span class="type-sample t-h2">A heading that leads a section</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">h3</span>
+          <span class="type-sample t-h3">A heading for a card or group</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">h4</span>
+          <span class="type-sample t-h4">A small label heading</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">body / lg</span>
+          <span class="type-sample t-body-lg"
+            >Supporting copy under a headline, set a little larger.</span
+          >
+        </div>
+        <div class="type-row">
+          <span class="type-tag">body</span>
+          <span class="type-sample t-body"
+            >The default paragraph size, used for most running text.</span
+          >
+        </div>
+        <div class="type-row">
+          <span class="type-tag">body / sm</span>
+          <span class="type-sample t-body-sm"
+            >Secondary text — captions, metadata, fine print.</span
+          >
+        </div>
+        <div class="type-row">
+          <span class="type-tag">caption</span>
+          <span class="type-sample t-caption">LABELS · TIMESTAMPS</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec" id="s02">
+      <div class="spec-head">
+        <span class="n">02</span>
+        <h2>Buttons &amp; links</h2>
+      </div>
+      <p class="spec-note">
+        Three variants, three sizes, one disabled state — the same set used for
+        "Book an appointment," "Reserve a table," or "Get a quote."
+      </p>
+      <div class="panel">
+        <div class="cluster">
+          <button class="btn btn-primary">Book appointment</button>
+          <button class="btn btn-secondary">Learn more</button>
+          <button class="btn btn-ghost">View menu</button>
+          <button class="btn btn-disabled" disabled>Unavailable</button>
+        </div>
+        <div class="cluster">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary">Medium</button>
+          <button class="btn btn-primary btn-lg">Large</button>
+        </div>
+        <a href="#" class="stage-link" onclick="return false;"
+          >An inline text link, underlined for clarity</a
+        >
+      </div>
+    </section>
+
+    <section class="spec" id="s03">
+      <div class="spec-head">
+        <span class="n">03</span>
+        <h2>Badges &amp; cards</h2>
+      </div>
+      <p class="spec-note">
+        Cards hold a service, a menu item, a testimonial — anything that
+        repeats. The "interactive" style adds a hover lift when the whole card
+        is a link.
+      </p>
+      <div class="panel">
+        <div class="cluster">
+          <span class="badge badge-neutral">Walk-ins welcome</span>
+          <span class="badge badge-accent">New patients</span>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <h4>Static card</h4>
+            <p>No hover affordance — purely presentational.</p>
+          </div>
+          <div class="card interactive">
+            <h4>Interactive card</h4>
+            <p>Hover to see the border and shadow respond.</p>
+          </div>
+          <div class="card interactive">
+            <h4>Interactive card</h4>
+            <p>Same treatment, for grid rhythm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec" id="s04">
+      <div class="spec-head">
+        <span class="n">04</span>
+        <h2>Form fields</h2>
+      </div>
+      <p class="spec-note">
+        Every field wires its hint and error text to the input for screen
+        readers — this is what powers the working contact form out of the box.
+      </p>
+      <div class="panel">
+        <div class="field-grid">
+          <div class="field">
+            <label for="rd-name">Full name</label>
+            <input id="rd-name" type="text" value="Ada Lovelace" />
+          </div>
+          <div class="field has-error">
+            <label for="rd-email">Email</label>
+            <input id="rd-email" type="email" value="not-an-email" />
+            <span class="err">Enter a valid email address.</span>
+          </div>
+          <div class="field">
+            <label for="rd-phone">Phone</label>
+            <input id="rd-phone" type="tel" placeholder="(555) 010-0135" />
+            <span class="hint">Optional — for appointment reminders.</span>
+          </div>
+          <div class="field">
+            <label for="rd-service">Reason for visit</label>
+            <select id="rd-service">
+              <option>Select a reason</option>
+              <option>Annual check-up</option>
+              <option>Follow-up</option>
+            </select>
+          </div>
+          <div class="field" style="grid-column: 1 / -1">
+            <label for="rd-msg">Message</label>
+            <textarea
+              id="rd-msg"
+              placeholder="Anything the front desk should know ahead of your visit…"
+            ></textarea>
+          </div>
+        </div>
+        <label class="check-row">
+          <input type="checkbox" checked />
+          <span>Text me appointment reminders.</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="spec" id="s05">
+      <div class="spec-head">
+        <span class="n">05</span>
+        <h2>Tabs</h2>
+      </div>
+      <p class="spec-note">
+        Keyboard-navigable, no page reload — good for hours by location or a
+        menu split into categories.
+      </p>
+      <div class="panel">
+        <div>
+          <div class="tabs-list" role="tablist">
+            <button
+              class="tab-btn"
+              role="tab"
+              aria-selected="true"
+              data-tab="a"
+            >
+              Starters
+            </button>
+            <button
+              class="tab-btn"
+              role="tab"
+              aria-selected="false"
+              data-tab="b"
+            >
+              Mains
+            </button>
+            <button
+              class="tab-btn"
+              role="tab"
+              aria-selected="false"
+              data-tab="c"
+            >
+              Desserts
+            </button>
+          </div>
+          <div class="tab-panel" data-panel="a">
+            Soup of the day, house salad, garlic bread.
+          </div>
+          <div class="tab-panel" data-panel="b" hidden>
+            Grilled trout, braised short rib, seasonal risotto.
+          </div>
+          <div class="tab-panel" data-panel="c" hidden>
+            Crème brûlée, flourless chocolate torte.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec" id="s06">
+      <div class="spec-head">
+        <span class="n">06</span>
+        <h2>Modal</h2>
+      </div>
+      <p class="spec-note">
+        Centered over a dimmed backdrop, traps focus while open, closes on
+        Escape or backdrop click.
+      </p>
+      <div class="panel">
+        <button class="btn btn-secondary modal-open-btn" id="modal-open">
+          Preview modal
+        </button>
+      </div>
+    </section>
+
+    <section class="spec" id="s07">
+      <div class="spec-head">
+        <span class="n">07</span>
+        <h2>Section themes</h2>
+      </div>
+      <p class="spec-note">
+        Most pages stay on the dark root throughout. A section can flip to light
+        on its own — commonly used for the contact form, to break up a long dark
+        page — and every primitive inside re-themes for free.
+      </p>
+      <div class="compare">
+        <div class="compare-box" id="compare-dark">
+          <span class="cap">Root (dark)</span>
+          <h3>The confident default</h3>
+          <button class="btn btn-primary">Get in touch</button>
+        </div>
+        <div class="compare-box" id="compare-light">
+          <span class="cap">data-theme="light"</span>
+          <h3>A lighter break in the page</h3>
+          <button class="btn btn-primary">Get in touch</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div
+      class="modal-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <h4 id="modal-title">Appointment requested</h4>
+      <p>
+        We'll confirm by text within one business day. Call the front desk if
+        your visit is urgent.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary btn-sm" id="modal-close">Close</button>
+        <button class="btn btn-primary btn-sm" id="modal-close-2">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="closing">
+    <p>
+      <strong>How to reskin this for a new client:</strong> open
+      <code class="file">app/globals.css</code> and edit the nine values under
+      <code class="file">:root</code> plus the five under
+      <code class="file">[data-theme="light"]</code>. That's the whole rebrand —
+      radius, spacing, motion and the type scale stay untouched, so every site
+      you ship keeps the same quality bar regardless of which nine hex codes it
+      starts from.
+    </p>
+    <div class="snippet">
+      <span class="k">--color-background</span>: #0a1414;<br />
+      <span class="k">--color-surface</span>: #10201f;<br />
+      <span class="k">--color-text</span>: #eef4f3;<br />
+      <span class="k">--color-text-secondary</span>: #93a6a3;<br />
+      <span class="k">--color-accent</span>: #22c3b6;<br />
+      <span class="k">--color-accent-strong</span>: #0b6b6a;<br />
+      <span class="k">--color-border</span>: rgb(238 244 243 / 8%);<br />
+      <span class="k">--color-error</span>: #ff6b6b;<br />
+      <span class="k">--color-success</span>: #34d399;
+    </div>
+    <p>
+      Full working conventions live in
+      <code class="file">CLAUDE.md</code> at the template root; the new-project
+      checklist is in <code class="file">README.md</code>.
+    </p>
+  </div>
+</div>
+
+<script>
+  const THEMES = {
+    default: {
+      dark: {
+        bg: "#08090b",
+        surface: "#111318",
+        text: "#f4f4f5",
+        textDim: "#9ea3ae",
+        accent: "#4f7cff",
+        accentStrong: "#3b5bdb",
+        border: "rgb(244 244 245 / 8%)",
+        error: "#ff6467",
+        success: "#10b981",
+      },
+      light: {
+        bg: "#f6f6f7",
+        surface: "#ffffff",
+        text: "#0b0c0e",
+        textDim: "#55585f",
+        border: "rgb(11 12 14 / 8%)",
+        error: "#b91c1c",
+        success: "#047857",
+      },
+    },
+    medical: {
+      dark: {
+        bg: "#0a1414",
+        surface: "#10201f",
+        text: "#eef4f3",
+        textDim: "#93a6a3",
+        accent: "#22c3b6",
+        accentStrong: "#0b6b6a",
+        border: "rgb(238 244 243 / 8%)",
+        error: "#ff6b6b",
+        success: "#34d399",
+      },
+      light: {
+        bg: "#f3f7f7",
+        surface: "#ffffff",
+        text: "#0d201e",
+        textDim: "#4f6560",
+        border: "rgb(13 32 30 / 8%)",
+        error: "#b3261e",
+        success: "#0f7a5c",
+      },
+    },
+    restaurant: {
+      dark: {
+        bg: "#120d0a",
+        surface: "#1d1310",
+        text: "#f7ede4",
+        textDim: "#b8a494",
+        accent: "#f0a35c",
+        accentStrong: "#9c4419",
+        border: "rgb(247 237 228 / 8%)",
+        error: "#ff6f59",
+        success: "#58b368",
+      },
+      light: {
+        bg: "#faf3ec",
+        surface: "#ffffff",
+        text: "#1c120c",
+        textDim: "#6b5947",
+        border: "rgb(28 18 12 / 8%)",
+        error: "#b3261e",
+        success: "#2f7d4f",
+      },
+    },
+  };
+
+  const TOKEN_NOTES = [
+    ["bg", "--color-background", "Page background"],
+    ["surface", "--color-surface", "Cards, inputs, nav bar"],
+    ["text", "--color-text", "Primary text"],
+    ["textDim", "--color-text-secondary", "Secondary / muted text"],
+    ["accent", "--color-accent", "Links, focus rings, icons"],
+    ["accentStrong", "--color-accent-strong", "Solid button fills"],
+    ["border", "--color-border", "Hairlines, card borders"],
+    ["error", "--color-error", "Form error text"],
+    ["success", "--color-success", "Confirmation states"],
+  ];
+
+  const stage = document.getElementById("stage");
+  const swatchRoot = document.getElementById("swatch-root");
+  const swatchLight = document.getElementById("swatch-light");
+  const compareDark = document.getElementById("compare-dark");
+  const compareLight = document.getElementById("compare-light");
+
+  function renderSwatches(container, set, keys) {
+    container.innerHTML = "";
+    for (const [key, tokenName, use] of TOKEN_NOTES) {
+      if (!keys.includes(key)) continue;
+      const val = set[key];
+      const el = document.createElement("div");
+      el.className = "swatch";
+      el.innerHTML =
+        '<div class="chip" style="background:' +
+        val +
+        '"></div><div class="meta"><span class="tok">' +
+        tokenName +
+        '</span><span class="hex">' +
+        val +
+        '</span><span class="use">' +
+        use +
+        "</span></div>";
+      container.appendChild(el);
+    }
+  }
+
+  const rootKeys = [
+    "bg",
+    "surface",
+    "text",
+    "textDim",
+    "accent",
+    "accentStrong",
+    "border",
+    "error",
+    "success",
+  ];
+  const lightKeys = [
+    "bg",
+    "surface",
+    "text",
+    "textDim",
+    "border",
+    "error",
+    "success",
+  ];
+
+  function applyTheme(name) {
+    const t = THEMES[name];
+    stage.style.setProperty("--stage-bg", t.dark.bg);
+    stage.style.setProperty("--stage-surface", t.dark.surface);
+    stage.style.setProperty("--stage-text", t.dark.text);
+    stage.style.setProperty("--stage-text-dim", t.dark.textDim);
+    stage.style.setProperty("--stage-accent", t.dark.accent);
+    stage.style.setProperty("--stage-accent-strong", t.dark.accentStrong);
+    stage.style.setProperty("--stage-border", t.dark.border);
+    stage.style.setProperty(
+      "--stage-border-strong",
+      t.dark.border.replace("8%", "16%"),
+    );
+    stage.style.setProperty("--stage-error", t.dark.error);
+    stage.style.setProperty("--stage-success", t.dark.success);
+
+    renderSwatches(swatchRoot, t.dark, rootKeys);
+    renderSwatches(swatchLight, t.light, lightKeys);
+
+    compareDark.style.background = t.dark.bg;
+    compareDark.style.color = t.dark.text;
+    compareDark.querySelector(".cap").style.color = t.dark.textDim;
+    compareDark.querySelector(".btn").style.background = t.dark.accentStrong;
+
+    compareLight.style.background = t.light.bg;
+    compareLight.style.color = t.light.text;
+    compareLight.querySelector(".cap").style.color = t.light.textDim;
+    compareLight.querySelector(".btn").style.background = t.dark.accentStrong;
+
+    document.querySelectorAll(".switch-tab").forEach((btn) => {
+      const active = btn.dataset.themeBtn === name;
+      btn.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  document.getElementById("switcher").addEventListener("click", (e) => {
+    const btn = e.target.closest(".switch-tab");
+    if (!btn) return;
+    applyTheme(btn.dataset.themeBtn);
+  });
+
+  applyTheme("default");
+
+  // Tabs demo
+  document.querySelectorAll(".tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const list = btn.closest(".tabs-list");
+      list
+        .querySelectorAll(".tab-btn")
+        .forEach((b) => b.setAttribute("aria-selected", "false"));
+      btn.setAttribute("aria-selected", "true");
+      const panels = list.parentElement.querySelectorAll(".tab-panel");
+      panels.forEach((p) => (p.hidden = p.dataset.panel !== btn.dataset.tab));
+    });
+  });
+
+  // Modal demo
+  const backdrop = document.getElementById("modal-backdrop");
+  document.getElementById("modal-open").addEventListener("click", () => {
+    backdrop.classList.add("open");
+  });
+  function closeModal() {
+    backdrop.classList.remove("open");
+  }
+  document.getElementById("modal-close").addEventListener("click", closeModal);
+  document
+    .getElementById("modal-close-2")
+    .addEventListener("click", closeModal);
+  backdrop.addEventListener("click", (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+</script>

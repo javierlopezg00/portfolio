@@ -145,7 +145,7 @@ export function PinnedSequence() {
               ))}
             </div>
 
-            <div className="relative flex min-h-[400px]">
+            <div className="relative flex min-h-[520px]">
               <div
                 ref={(el) => {
                   layerRefs.current.sidebar = el;
@@ -198,7 +198,13 @@ export function PinnedSequence() {
                   }}
                   className="absolute inset-x-8 top-20"
                 >
-                  <DashboardLayer stats={mockup.dashboardStats} />
+                  <DashboardLayer
+                    stats={mockup.dashboardStats}
+                    chartLabel={mockup.dashboardChartLabel}
+                    dayLabels={mockup.dashboardDayLabels}
+                    activityLabel={mockup.dashboardActivityLabel}
+                    activity={mockup.dashboardActivity}
+                  />
                 </div>
               </div>
 

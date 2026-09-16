@@ -184,9 +184,19 @@ export function SidebarIconsLayer() {
 
 interface DashboardLayerProps {
   stats: { label: string; value: string }[];
+  chartLabel: string;
+  dayLabels: string[];
+  activityLabel: string;
+  activity: { name: string; status: string }[];
 }
 
-export function DashboardLayer({ stats }: DashboardLayerProps) {
+export function DashboardLayer({
+  stats,
+  chartLabel,
+  dayLabels,
+  activityLabel,
+  activity,
+}: DashboardLayerProps) {
   const bars = [40, 65, 50, 80, 60, 90, 70];
   return (
     <div className="flex flex-col gap-4">
@@ -205,14 +215,49 @@ export function DashboardLayer({ stats }: DashboardLayerProps) {
           </div>
         ))}
       </div>
-      <div className="border-border bg-background/40 flex h-20 items-end gap-1.5 rounded-md border p-3">
-        {bars.map((h, i) => (
-          <div
-            key={i}
-            className="bg-accent/60 flex-1 rounded-t-sm"
-            style={{ height: `${h}%` }}
-          />
-        ))}
+      <div>
+        <span className="text-text-secondary text-[10px] tracking-wide uppercase">
+          {chartLabel}
+        </span>
+        <div className="border-border bg-background/40 mt-1.5 flex h-20 items-end gap-1.5 rounded-md border p-3">
+          {bars.map((h, i) => (
+            <div
+              key={i}
+              className="bg-accent/60 flex-1 rounded-t-sm"
+              style={{ height: `${h}%` }}
+            />
+          ))}
+        </div>
+        <div className="mt-1 flex gap-1.5">
+          {dayLabels.map((day, i) => (
+            <span
+              key={`${day}-${i}`}
+              className="text-text-secondary flex-1 text-center text-[9px]"
+            >
+              {day}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <span className="text-text-secondary text-[10px] tracking-wide uppercase">
+          {activityLabel}
+        </span>
+        <div className="border-border bg-background/40 divide-border mt-1.5 flex flex-col divide-y rounded-md border">
+          {activity.map((row) => (
+            <div
+              key={row.name}
+              className="flex items-center justify-between px-3 py-2"
+            >
+              <span className="text-text text-[11px] leading-tight">
+                {row.name}
+              </span>
+              <span className="border-border text-text-secondary rounded-full border px-2 py-0.5 text-[9px] leading-tight">
+                {row.status}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

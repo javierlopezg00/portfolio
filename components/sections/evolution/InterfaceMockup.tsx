@@ -38,9 +38,9 @@ export function InterfaceMockup({ stage, className }: InterfaceMockupProps) {
   // little a given stage actually shows) left the opening stage with
   // ~150px of dead space below its content on mobile.
   const minHeight = show("cards")
-    ? "min-h-[300px]" // nav + hero + cards: cards sits at top-48
+    ? "min-h-[360px]" // nav + hero + cards: cards sits at top-64
     : show("dashboard")
-      ? "min-h-[230px]" // sidebar + dashboard (stages 2-4)
+      ? "min-h-[440px]" // sidebar + dashboard (stages 2-4)
       : "min-h-[360px]"; // nav + hero + highlights (stage 0)
 
   return (
@@ -90,13 +90,19 @@ export function InterfaceMockup({ stage, className }: InterfaceMockupProps) {
               </div>
             )}
             {show("cards") && (
-              <div className="absolute inset-x-6 top-48">
+              <div className="absolute inset-x-6 top-64">
                 <CardsGridLayer cards={mockup.cards} />
               </div>
             )}
             {show("dashboard") && (
               <div className="absolute inset-x-6 top-16">
-                <DashboardLayer stats={mockup.dashboardStats} />
+                <DashboardLayer
+                  stats={mockup.dashboardStats}
+                  chartLabel={mockup.dashboardChartLabel}
+                  dayLabels={mockup.dashboardDayLabels}
+                  activityLabel={mockup.dashboardActivityLabel}
+                  activity={mockup.dashboardActivity}
+                />
               </div>
             )}
           </div>

@@ -48,6 +48,14 @@ export interface Dictionary {
       heroHighlights: string[];
       cards: { title: string; subtitle: string }[];
       dashboardStats: { label: string; value: string }[];
+      // Same reasoning as heroHighlights — the dashboard stages (app,
+      // connected, custom) had a lot of empty box below the stat tiles and
+      // chart. Day labels under the chart and a short activity list fill
+      // it with real content instead of dead space.
+      dashboardChartLabel: string;
+      dashboardDayLabels: string[];
+      dashboardActivityLabel: string;
+      dashboardActivity: { name: string; status: string }[];
     };
   };
   services: {
