@@ -1,38 +1,58 @@
 import { cn } from "@/lib/cn";
 
-// Abstract wireframe layouts, same visual language as Evolution/Services —
-// not photorealistic fake screenshots. Each uses @container query classes
-// so the desktop/mobile toggle in DeviceFrame produces genuine reflow,
-// not two hand-built static states.
+// Same reasoning as the evolution section's mockup: real, readable copy and
+// small icons rather than abstract bars, since bars-only testing poorly
+// with older viewers. Still not photorealistic fake screenshots — each
+// scene is generic to its business type (a booking flow, a menu, a
+// practice-areas grid), not a literal copy of a real client's site. Each
+// uses @container query classes so the desktop/mobile toggle in
+// DeviceFrame produces genuine reflow, not two hand-built static states.
 
-export function ClinicPreview() {
+interface ClinicPreviewContent {
+  logo: string;
+  navLinks: string[];
+  headline: string;
+  subtext: string;
+  cta: string;
+  steps: string[];
+}
+
+export function ClinicPreview({ content }: { content: ClinicPreviewContent }) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <div className="bg-text/60 h-2 w-16 rounded-full" />
+        <span className="text-text text-xs font-semibold">{content.logo}</span>
         <div className="hidden gap-3 @sm:flex">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="bg-text-secondary/30 h-1.5 w-8 rounded-full"
-            />
+          {content.navLinks.map((link) => (
+            <span key={link} className="text-text-secondary text-[11px]">
+              {link}
+            </span>
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-2">
-        <div className="bg-text/70 h-3 w-3/4 rounded-full" />
-        <div className="bg-text-secondary/40 h-2 w-1/2 rounded-full" />
-        <div className="bg-accent mt-2 h-7 w-32 rounded-full" />
+      <div className="flex flex-col gap-1.5">
+        <p className="text-text text-sm leading-snug font-semibold">
+          {content.headline}
+        </p>
+        <p className="text-text-secondary text-xs leading-snug">
+          {content.subtext}
+        </p>
+        <span className="bg-accent-strong mt-2 inline-flex w-fit items-center rounded-full px-3.5 py-1.5 text-xs font-medium text-white">
+          {content.cta}
+        </span>
       </div>
       <div className="grid grid-cols-1 gap-3 @sm:grid-cols-3">
-        {[0, 1, 2].map((i) => (
+        {content.steps.map((step, i) => (
           <div
-            key={i}
+            key={step}
             className="border-border bg-background/40 flex flex-col gap-2 rounded-md border p-3"
           >
-            <div className="bg-accent/30 h-8 w-8 rounded-full" />
-            <div className="bg-text-secondary/40 h-2 w-full rounded-full" />
-            <div className="bg-text-secondary/30 h-2 w-2/3 rounded-full" />
+            <span className="bg-accent flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-semibold text-white">
+              {i + 1}
+            </span>
+            <span className="text-text-secondary text-[11px] leading-tight">
+              {step}
+            </span>
           </div>
         ))}
       </div>
@@ -40,29 +60,69 @@ export function ClinicPreview() {
   );
 }
 
-export function RestaurantPreview() {
+function GalleryIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="text-text-secondary/50 h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <circle cx="8.5" cy="10" r="1.25" fill="currentColor" stroke="none" />
+      <path d="M21 15l-5-5-4 4-3-3-6 6" />
+    </svg>
+  );
+}
+
+interface RestaurantPreviewContent {
+  logo: string;
+  cta: string;
+  menu: { item: string; price: string }[];
+}
+
+export function RestaurantPreview({
+  content,
+}: {
+  content: RestaurantPreviewContent;
+}) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <div className="bg-text/60 h-2 w-16 rounded-full" />
-        <div className="bg-accent h-7 w-24 rounded-full" />
+        <span className="text-text text-xs font-semibold">{content.logo}</span>
+        <span className="bg-accent-strong inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-medium text-white">
+          {content.cta}
+        </span>
       </div>
       <div className="grid grid-cols-2 gap-2 @sm:grid-cols-3">
         {[0, 1, 2, 3, 4, 5].map((i) => (
           <div
             key={i}
             className={cn(
-              "bg-text-secondary/15 aspect-square rounded-md",
-              i > 2 && "hidden @sm:block",
+              "bg-text-secondary/10 flex aspect-square items-center justify-center rounded-md",
+              i > 2 && "hidden @sm:flex",
             )}
-          />
+          >
+            <GalleryIcon />
+          </div>
         ))}
       </div>
       <div className="flex flex-col gap-2.5">
-        {[0, 1, 2].map((i) => (
-          <div key={i} className="flex items-center justify-between gap-4">
-            <div className="bg-text-secondary/40 h-2 flex-1 rounded-full" />
-            <div className="bg-text/50 h-2 w-8 rounded-full" />
+        {content.menu.map((dish) => (
+          <div
+            key={dish.item}
+            className="flex items-baseline justify-between gap-4"
+          >
+            <span className="text-text-secondary text-[11px] leading-tight">
+              {dish.item}
+            </span>
+            <span className="text-text text-[11px] font-medium">
+              {dish.price}
+            </span>
           </div>
         ))}
       </div>
@@ -70,34 +130,115 @@ export function RestaurantPreview() {
   );
 }
 
-export function ConsultingPreview() {
+function StrategyIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="text-accent h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      <circle cx="12" cy="12" r="8" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="12" cy="12" r="0.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function OperationsIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="text-accent h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+    >
+      <line x1="4" y1="7" x2="20" y2="7" />
+      <circle cx="9" cy="7" r="1.75" fill="currentColor" stroke="none" />
+      <line x1="4" y1="12" x2="20" y2="12" />
+      <circle cx="15" cy="12" r="1.75" fill="currentColor" stroke="none" />
+      <line x1="4" y1="17" x2="20" y2="17" />
+      <circle cx="11" cy="17" r="1.75" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function FinanceIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="text-accent h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+    >
+      <line x1="5" y1="19" x2="5" y2="13" />
+      <line x1="12" y1="19" x2="12" y2="9" />
+      <line x1="19" y1="19" x2="19" y2="5" />
+    </svg>
+  );
+}
+
+// Indexed to practiceAreas — a fixed 3-item structural design (Strategy,
+// Operations, Finance), not arbitrary reorderable content, so pairing by
+// position rather than matching against the localized label text is fine.
+const PRACTICE_ICONS = [StrategyIcon, OperationsIcon, FinanceIcon];
+
+interface ConsultingPreviewContent {
+  logo: string;
+  navLinks: string[];
+  headline: string;
+  subtext: string;
+  practiceAreas: string[];
+}
+
+export function ConsultingPreview({
+  content,
+}: {
+  content: ConsultingPreviewContent;
+}) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <div className="bg-text/60 h-2 w-16 rounded-full" />
+        <span className="text-text text-xs font-semibold">{content.logo}</span>
         <div className="hidden gap-3 @sm:flex">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="bg-text-secondary/30 h-1.5 w-8 rounded-full"
-            />
+          {content.navLinks.map((link) => (
+            <span key={link} className="text-text-secondary text-[11px]">
+              {link}
+            </span>
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-2">
-        <div className="bg-text/70 h-3 w-2/3 rounded-full" />
-        <div className="bg-text-secondary/40 h-2 w-1/2 rounded-full" />
+      <div className="flex flex-col gap-1.5">
+        <p className="text-text text-sm leading-snug font-semibold">
+          {content.headline}
+        </p>
+        <p className="text-text-secondary text-xs leading-snug">
+          {content.subtext}
+        </p>
       </div>
-      <div className="grid grid-cols-1 gap-4 @sm:grid-cols-3">
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            className="border-border bg-background/40 flex flex-col gap-1 rounded-md border p-3"
-          >
-            <div className="bg-accent/60 h-4 w-12 rounded-full" />
-            <div className="bg-text-secondary/30 h-2 w-full rounded-full" />
-          </div>
-        ))}
+      <div className="grid grid-cols-1 gap-3 @sm:grid-cols-3">
+        {content.practiceAreas.map((area, i) => {
+          const Icon = PRACTICE_ICONS[i];
+          return (
+            <div
+              key={area}
+              className="border-border bg-background/40 flex flex-col gap-2 rounded-md border p-3"
+            >
+              {Icon && <Icon />}
+              <span className="text-text-secondary text-[11px] leading-tight">
+                {area}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

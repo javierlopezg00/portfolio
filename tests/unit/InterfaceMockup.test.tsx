@@ -7,7 +7,7 @@ import { renderWithLocale } from "./test-utils";
 const evolutionStages = en.evolution.stages;
 
 describe("InterfaceMockup", () => {
-  it("shows only the hero block at stage 0 (landing)", () => {
+  it("doesn't show connections or the final message at stage 0 (landing)", () => {
     renderWithLocale(<InterfaceMockup stage={0} />);
     expect(screen.queryByText("PAYMENTS")).not.toBeInTheDocument();
     expect(

@@ -7,14 +7,14 @@ import {
   RestaurantPreview,
 } from "./work/previews";
 
-const previews = [
-  <ClinicPreview key="clinic" />,
-  <RestaurantPreview key="restaurant" />,
-  <ConsultingPreview key="consulting" />,
-];
-
 export async function SelectedWork() {
   const dict = await getServerDictionary();
+  const { previewContent } = dict.work;
+  const previews = [
+    <ClinicPreview key="clinic" content={previewContent.clinic} />,
+    <RestaurantPreview key="restaurant" content={previewContent.restaurant} />,
+    <ConsultingPreview key="consulting" content={previewContent.consulting} />,
+  ];
 
   return (
     <Section id="work" ariaLabelledBy="work-heading">

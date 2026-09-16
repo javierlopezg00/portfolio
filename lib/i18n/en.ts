@@ -52,6 +52,28 @@ export const en = {
         description: "Whatever your business needs.",
       },
     ],
+    mockup: {
+      logo: "Brand",
+      navLinks: ["Home", "Services", "Contact"],
+      heroHeadline: "Everything you need, in one place.",
+      heroSubtext: "A simple site that says who you are.",
+      heroButton: "Contact us",
+      heroHighlights: [
+        "Looks great on every device",
+        "Fast and easy to navigate",
+        "Designed around your brand",
+      ],
+      cards: [
+        { title: "Services", subtitle: "What we offer" },
+        { title: "About", subtitle: "Our story" },
+        { title: "Contact", subtitle: "Get in touch" },
+      ],
+      dashboardStats: [
+        { label: "Customers", value: "482" },
+        { label: "Sales", value: "$12.4k" },
+        { label: "Orders", value: "128" },
+      ],
+    },
   },
   services: {
     heading: "What I build.",
@@ -167,8 +189,7 @@ export const en = {
   },
   work: {
     heading: "Selected work.",
-    subhead:
-      "Conceptual projects built to show range — real case studies coming soon.",
+    subhead: "Conceptual projects built to show range.",
     conceptualProjectBadge: "Conceptual Project",
     previewDeviceAriaLabel: "Preview device",
     deviceModes: { desktop: "Desktop", mobile: "Mobile" },
@@ -198,6 +219,32 @@ export const en = {
         tags: ["Website", "Lead Capture", "CMS"],
       },
     ],
+    previewContent: {
+      clinic: {
+        logo: "Meridian Health",
+        navLinks: ["Services", "Doctors"],
+        headline: "Book your visit online",
+        subtext: "See real-time availability for any provider",
+        cta: "Book now",
+        steps: ["Choose a provider", "Pick a time", "Confirm your visit"],
+      },
+      restaurant: {
+        logo: "Ember & Oak",
+        cta: "Reserve a table",
+        menu: [
+          { item: "Braised Short Rib", price: "$28" },
+          { item: "Roasted Salmon", price: "$24" },
+          { item: "Wild Mushroom Risotto", price: "$19" },
+        ],
+      },
+      consulting: {
+        logo: "Kestrel Partners",
+        navLinks: ["Services", "Team", "Contact"],
+        headline: "Strategic advisory for growing enterprises",
+        subtext: "Clarity and execution for complex decisions",
+        practiceAreas: ["Strategy", "Operations", "Finance"],
+      },
+    },
   },
   process: {
     heading: "How I work.",

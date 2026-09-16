@@ -54,6 +54,28 @@ export const es = {
         description: "Todo lo que tu negocio necesita.",
       },
     ],
+    mockup: {
+      logo: "Marca",
+      navLinks: ["Inicio", "Servicios", "Contacto"],
+      heroHeadline: "Todo lo que necesitas, en un solo lugar.",
+      heroSubtext: "Un sitio simple que dice quién eres.",
+      heroButton: "Contáctanos",
+      heroHighlights: [
+        "Se ve bien en cualquier dispositivo",
+        "Rápido y fácil de navegar",
+        "Diseñado a la medida de tu marca",
+      ],
+      cards: [
+        { title: "Servicios", subtitle: "Lo que ofrecemos" },
+        { title: "Nosotros", subtitle: "Nuestra historia" },
+        { title: "Contacto", subtitle: "Escríbenos" },
+      ],
+      dashboardStats: [
+        { label: "Clientes", value: "482" },
+        { label: "Ventas", value: "$12.4k" },
+        { label: "Pedidos", value: "128" },
+      ],
+    },
   },
   services: {
     heading: "Lo que construyo.",
@@ -172,8 +194,7 @@ export const es = {
   },
   work: {
     heading: "Trabajos seleccionados.",
-    subhead:
-      "Proyectos conceptuales creados para mostrar variedad — casos reales próximamente.",
+    subhead: "Proyectos conceptuales creados para mostrar variedad.",
     conceptualProjectBadge: "Proyecto conceptual",
     previewDeviceAriaLabel: "Dispositivo de vista previa",
     deviceModes: { desktop: "Escritorio", mobile: "Móvil" },
@@ -203,6 +224,33 @@ export const es = {
         tags: ["Sitio web", "Captación de leads", "CMS"],
       },
     ],
+    previewContent: {
+      clinic: {
+        logo: "Meridian Health",
+        navLinks: ["Servicios", "Doctores"],
+        headline: "Reserva tu cita en línea",
+        subtext:
+          "Consulta la disponibilidad de cualquier médico en tiempo real",
+        cta: "Reservar ahora",
+        steps: ["Elige un médico", "Elige un horario", "Confirma tu cita"],
+      },
+      restaurant: {
+        logo: "Ember & Oak",
+        cta: "Reservar mesa",
+        menu: [
+          { item: "Costilla braseada", price: "$28" },
+          { item: "Salmón asado", price: "$24" },
+          { item: "Risotto de hongos silvestres", price: "$19" },
+        ],
+      },
+      consulting: {
+        logo: "Kestrel Partners",
+        navLinks: ["Servicios", "Equipo", "Contacto"],
+        headline: "Asesoría estratégica para empresas en crecimiento",
+        subtext: "Claridad y ejecución para decisiones complejas",
+        practiceAreas: ["Estrategia", "Operaciones", "Finanzas"],
+      },
+    },
   },
   process: {
     heading: "Cómo trabajo.",

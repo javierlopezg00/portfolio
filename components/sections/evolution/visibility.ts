@@ -3,8 +3,13 @@
 // desktop sequence and the static mobile/reduced-motion fallback so the
 // two renderings can never drift apart.
 export const VISIBILITY = {
-  nav: [false, true, false, false, false],
+  nav: [true, true, false, false, false],
   hero: [true, true, false, false, false],
+  // Real value props, shown only on the landing stage — otherwise the
+  // mockup is a short hero floating in a lot of empty box. Shares the
+  // cards slot (see PinnedSequence) since the two never need to be
+  // visible at once.
+  highlights: [true, false, false, false, false],
   cards: [false, true, false, false, false],
   sidebar: [false, false, true, true, true],
   dashboard: [false, false, true, true, true],

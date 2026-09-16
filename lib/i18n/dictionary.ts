@@ -32,6 +32,23 @@ export interface Dictionary {
     heading: string;
     subhead: string;
     stages: { id: string; title: string; description: string }[];
+    // Real, readable copy for the mockup's own interface — deliberately
+    // generic (no specific client), but words rather than abstract bars.
+    // User testing with older viewers found the bars-only version didn't
+    // read as "a website" without this.
+    mockup: {
+      logo: string;
+      navLinks: string[];
+      heroHeadline: string;
+      heroSubtext: string;
+      heroButton: string;
+      // Shown only on the landing stage (0), where the mockup box otherwise
+      // has a lot of empty space below a short hero — real value props, not
+      // filler, since this section is meant to help sell the product.
+      heroHighlights: string[];
+      cards: { title: string; subtitle: string }[];
+      dashboardStats: { label: string; value: string }[];
+    };
   };
   services: {
     heading: string;
@@ -103,6 +120,33 @@ export interface Dictionary {
       description: string;
       tags: string[];
     }[];
+    // Real, readable copy for each project's mockup — same reasoning as
+    // evolution.mockup: abstract bars didn't read as "a real website" to
+    // viewers, so this makes each preview a concrete little scene of the
+    // actual business (a booking flow, a menu, a practice-areas grid)
+    // rather than generic placeholder shapes.
+    previewContent: {
+      clinic: {
+        logo: string;
+        navLinks: string[];
+        headline: string;
+        subtext: string;
+        cta: string;
+        steps: string[];
+      };
+      restaurant: {
+        logo: string;
+        cta: string;
+        menu: { item: string; price: string }[];
+      };
+      consulting: {
+        logo: string;
+        navLinks: string[];
+        headline: string;
+        subtext: string;
+        practiceAreas: string[];
+      };
+    };
   };
   process: {
     heading: string;

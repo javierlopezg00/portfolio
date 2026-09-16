@@ -11,6 +11,7 @@ import {
   ConnectionLines,
   DashboardLayer,
   HeroBlockLayer,
+  HighlightsLayer,
   MessageOverlayLayer,
   SidebarIconsLayer,
   TopNavLayer,
@@ -23,6 +24,7 @@ type RefKey = LayerKey | "connectionsLabels";
 const REF_VISIBILITY: Record<RefKey, LayerKey> = {
   nav: "nav",
   hero: "hero",
+  highlights: "highlights",
   cards: "cards",
   sidebar: "sidebar",
   dashboard: "dashboard",
@@ -34,6 +36,7 @@ const REF_VISIBILITY: Record<RefKey, LayerKey> = {
 export function PinnedSequence() {
   const dict = getDictionary(useLocale());
   const evolutionStages = dict.evolution.stages;
+  const mockup = dict.evolution.mockup;
   const pinRef = useRef<HTMLDivElement>(null);
   const layerRefs = useRef<Partial<Record<RefKey, HTMLDivElement | null>>>({});
   const [activeStage, setActiveStage] = useState(0);
@@ -159,7 +162,7 @@ export function PinnedSequence() {
                   }}
                   className="absolute inset-x-8 top-8"
                 >
-                  <TopNavLayer />
+                  <TopNavLayer logo={mockup.logo} links={mockup.navLinks} />
                 </div>
                 <div
                   ref={(el) => {
@@ -167,7 +170,19 @@ export function PinnedSequence() {
                   }}
                   className="absolute inset-x-8 top-20"
                 >
-                  <HeroBlockLayer />
+                  <HeroBlockLayer
+                    headline={mockup.heroHeadline}
+                    subtext={mockup.heroSubtext}
+                    button={mockup.heroButton}
+                  />
+                </div>
+                <div
+                  ref={(el) => {
+                    layerRefs.current.highlights = el;
+                  }}
+                  className="absolute inset-x-8 top-56"
+                >
+                  <HighlightsLayer items={mockup.heroHighlights} />
                 </div>
                 <div
                   ref={(el) => {
@@ -175,7 +190,7 @@ export function PinnedSequence() {
                   }}
                   className="absolute inset-x-8 top-56"
                 >
-                  <CardsGridLayer />
+                  <CardsGridLayer cards={mockup.cards} />
                 </div>
                 <div
                   ref={(el) => {
@@ -183,7 +198,7 @@ export function PinnedSequence() {
                   }}
                   className="absolute inset-x-8 top-20"
                 >
-                  <DashboardLayer />
+                  <DashboardLayer stats={mockup.dashboardStats} />
                 </div>
               </div>
 
