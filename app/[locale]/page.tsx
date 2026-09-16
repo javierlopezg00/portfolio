@@ -37,12 +37,12 @@ export default async function Home() {
           skip link scrolls here but focus falls back to <body>. */}
       <main id="main-content" tabIndex={-1} className="focus:outline-none">
         <Hero />
-        <WhyCustom />
         <SoftwareEvolution />
         <Services />
         <InteractiveLab />
-        <WhoIWorkWith />
         <SelectedWork />
+        <WhyCustom />
+        <WhoIWorkWith />
         <Process />
         <ProjectConfigurator />
         <About />

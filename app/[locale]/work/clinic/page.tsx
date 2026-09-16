@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Navigation } from "@/components/layout/Navigation";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { CaseStudyCTA } from "@/components/sections/work/CaseStudyCTA";
 import { DeviceFrame } from "@/components/sections/work/DeviceFrame";
 import { ClinicPreview } from "@/components/sections/work/previews";
 import { ResultsMetrics } from "@/components/sections/work/ResultsMetrics";
@@ -191,6 +192,8 @@ export default async function ClinicCaseStudyPage({ params }: ClinicPageProps) {
             </div>
           </Container>
         </Section>
+
+        <CaseStudyCTA />
       </main>
       <Footer />
     </>

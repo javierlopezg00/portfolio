@@ -34,14 +34,14 @@ export const es = {
           "Construido según cómo opera realmente tu negocio, no según las suposiciones genéricas de una plantilla.",
       },
       {
-        title: "Sin funciones que no usas",
+        title: "Solo lo que necesitas",
         description:
-          "Las plantillas y plataformas SaaS agrupan funciones para todo tipo de cliente. Tú obtienes exactamente lo que tu negocio necesita.",
+          "Cada función tiene un propósito — nada extra que aprender, mantener o pagar a medida que el proyecto crece.",
       },
       {
-        title: "Crece contigo",
+        title: "Diseñado para evolucionar con tu negocio",
         description:
-          "A medida que el negocio cambia, el software cambia con él — sin depender de la hoja de ruta o los precios de otra empresa.",
+          "A medida que tu negocio cambia, el software cambia con él — nuevas funciones e integraciones se agregan cuando realmente las necesitas.",
       },
     ],
   },
@@ -155,7 +155,8 @@ export const es = {
         ],
       },
     ],
-    pricingSignal: "Los proyectos suelen comenzar alrededor de Q7,500.",
+    pricingSignal:
+      "Los proyectos de sitios web profesionales suelen comenzar alrededor de Q7,500. Las aplicaciones web y el software personalizado se cotizan según el alcance.",
   },
   lab: {
     heading: "Pruébalo tú mismo.",
@@ -229,7 +230,7 @@ export const es = {
   whoIWorkWith: {
     heading: "Con quién trabajo.",
     subhead:
-      "Negocios independientes que necesitan más que una plantilla — no empresas con un equipo de ingeniería interno.",
+      "Negocios independientes, empresas en crecimiento y fundadores que necesitan responsabilidad técnica directa.",
     items: [
       {
         title: "Negocios de servicios",
@@ -379,10 +380,10 @@ export const es = {
         contact: "Tus datos",
       },
       services: [
-        { id: "checkup", label: "Chequeo general" },
+        { id: "consultation", label: "Consulta general" },
         { id: "pediatrics", label: "Pediatría" },
         { id: "dermatology", label: "Dermatología" },
-        { id: "dental", label: "Limpieza dental" },
+        { id: "followup", label: "Visita de seguimiento" },
       ],
       doctors: [
         {
@@ -409,6 +410,65 @@ export const es = {
     // lugar de rellenar con números de ejemplo. Ver el comentario del
     // tipo en dictionary.ts.
     caseStudyResults: {},
+    caseStudyCta: {
+      heading: "¿Necesitas algo así para tu negocio?",
+      body: "Todo proyecto comienza con una conversación — cuéntame qué estás construyendo, o escríbeme directamente.",
+      primaryCta: "Iniciar un proyecto",
+      secondaryCta: "Envíame un mensaje",
+    },
+    reservationDemo: {
+      heading: "Reserva una mesa",
+      subhead:
+        "Un flujo de reservas funcional — elige el número de personas, la fecha y la hora, y confirma.",
+      steps: {
+        partySize: "Número de personas",
+        date: "Elige una fecha",
+        time: "Elige una hora",
+        summary: "Confirmar reserva",
+      },
+      partySizes: [
+        { id: "2", label: "2 personas" },
+        { id: "4", label: "4 personas" },
+        { id: "6", label: "6 personas" },
+        { id: "8", label: "8+ personas" },
+      ],
+      back: "Atrás",
+      next: "Siguiente",
+      confirm: "Confirmar reserva",
+      confirmedHeading: "Reserva confirmada",
+      confirmedBody: (partySize, day, time) =>
+        `Mesa para ${partySize} — ${day} a las ${time}.`,
+      bookAnother: "Hacer otra reserva",
+      summaryLabels: { partySize: "Personas", when: "Cuándo" },
+      disclosure:
+        "Solo demostrativo — no se realiza ni se guarda ninguna reserva.",
+    },
+    leadQualificationDemo: {
+      heading: "Solicita una consultoría",
+      subhead:
+        "Un flujo rápido de calificación — cuéntame qué necesitas y te doy seguimiento.",
+      steps: {
+        service: "¿En qué necesitas ayuda?",
+        companySize: "Tamaño de la empresa",
+        timeline: "Plazo",
+        summary: "Resumen",
+      },
+      companySizes: [
+        { id: "1-10", label: "1–10 empleados" },
+        { id: "11-50", label: "11–50 empleados" },
+        { id: "51-200", label: "51–200 empleados" },
+        { id: "200+", label: "200+ empleados" },
+      ],
+      back: "Atrás",
+      next: "Siguiente",
+      summaryHeading: "Según lo que compartiste",
+      summaryLabels: {
+        service: "Servicio",
+        companySize: "Tamaño de la empresa",
+        timeline: "Plazo",
+      },
+      disclosure: "Solo demostrativo — no se envía ninguna información.",
+    },
   },
   process: {
     heading: "Cómo trabajo.",
@@ -580,7 +640,7 @@ export const es = {
       {
         question: "¿Hay soporte después del lanzamiento?",
         answer:
-          "Sí — el soporte continuo y la iteración forman parte de cómo se define el alcance de los proyectos, no son un añadido de último momento. La sección de Mantenimiento más abajo detalla qué incluye.",
+          "Todo proyecto incluye una garantía breve de correcciones tras el lanzamiento. El mantenimiento continuo, el monitoreo y las mejoras están disponibles después como planes mensuales opcionales — la sección de Mantenimiento más abajo detalla qué incluye.",
       },
       {
         question: "¿Qué tecnologías utilizas?",
@@ -592,22 +652,22 @@ export const es = {
   maintenance: {
     heading: "El lanzamiento no es el final.",
     subhead:
-      "Todo proyecto incluye un camino para lo que sigue — correcciones, actualizaciones y espacio para crecer.",
+      "Todo proyecto incluye una garantía breve de correcciones tras el lanzamiento. El mantenimiento continuo, el monitoreo y las mejoras están disponibles como planes mensuales opcionales.",
     items: [
       {
-        title: "Correcciones y actualizaciones",
+        title: "Garantía de lanzamiento",
         description:
-          "Actualización de dependencias, parches de seguridad y compatibilidad con navegadores — al día en lugar de acumular deuda técnica.",
+          "Corrección de errores y problemas de estabilidad del desarrollo inicial, cubiertos durante un período breve tras el lanzamiento sin costo adicional.",
       },
       {
-        title: "Monitoreo",
+        title: "Monitoreo y analítica",
         description:
-          "Monitoreo de rendimiento y errores integrado desde el lanzamiento, para detectar problemas antes de que los noten los clientes.",
+          "Monitoreo de rendimiento y errores, disponible como plan continuo para detectar problemas antes de que los noten los clientes.",
       },
       {
         title: "Iteración",
         description:
-          "Mejoras pequeñas y nuevas funciones a medida que el negocio crece — no una entrega única y definitiva.",
+          "Nuevas funciones y mejoras a medida que el negocio crece, definidas y cotizadas por separado del proyecto inicial.",
       },
     ],
   },
@@ -615,6 +675,10 @@ export const es = {
     heading: "¿Listo para construir algo?",
     body: "Cuéntame en qué estás trabajando — el configurador de proyectos toma alrededor de dos minutos.",
     cta: "Iniciar un proyecto",
+  },
+  secondaryContact: {
+    prompt: "¿Prefieres hablar primero?",
+    cta: "Envíame un mensaje",
   },
   footer: {
     tagline:

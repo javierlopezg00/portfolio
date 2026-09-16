@@ -34,14 +34,14 @@ export const en = {
           "Built around how your business actually operates, not a generic template's assumptions about it.",
       },
       {
-        title: "No unused bloat",
+        title: "Only what you need",
         description:
-          "Templates and SaaS platforms bundle features for every possible customer. You get exactly what your business needs.",
+          "Every feature earns its place — nothing extra to learn, maintain, or pay for as the project grows.",
       },
       {
-        title: "Grows with you",
+        title: "Built to evolve with your business",
         description:
-          "As the business changes, the software changes with it — not locked into someone else's roadmap or pricing tiers.",
+          "As your business changes, the software changes with it — new features and integrations added when you actually need them.",
       },
     ],
   },
@@ -150,7 +150,8 @@ export const en = {
         ],
       },
     ],
-    pricingSignal: "Projects typically start around $1,000.",
+    pricingSignal:
+      "Professional website projects typically start around $1,000. Web applications and custom software are quoted based on scope.",
   },
   lab: {
     heading: "Try it yourself.",
@@ -224,7 +225,7 @@ export const en = {
   whoIWorkWith: {
     heading: "Who I work with.",
     subhead:
-      "Independent businesses that need more than a template — not enterprises with an internal engineering team.",
+      "Independent businesses, growing companies, and founders that need hands-on technical ownership.",
     items: [
       {
         title: "Service businesses",
@@ -373,10 +374,10 @@ export const en = {
         contact: "Your details",
       },
       services: [
-        { id: "checkup", label: "General checkup" },
+        { id: "consultation", label: "General Consultation" },
         { id: "pediatrics", label: "Pediatrics" },
         { id: "dermatology", label: "Dermatology" },
-        { id: "dental", label: "Dental cleaning" },
+        { id: "followup", label: "Follow-up Visit" },
       ],
       doctors: [
         { id: "ruiz", name: "Dr. Elena Ruiz", specialty: "General Medicine" },
@@ -397,6 +398,64 @@ export const en = {
     // No real client results exist yet — left empty rather than filled
     // with placeholder numbers. See the type comment in dictionary.ts.
     caseStudyResults: {},
+    caseStudyCta: {
+      heading: "Need something like this for your business?",
+      body: "Every project starts with a conversation — tell me what you're building, or reach out directly.",
+      primaryCta: "Start a Project",
+      secondaryCta: "Send me a message",
+    },
+    reservationDemo: {
+      heading: "Reserve a table",
+      subhead:
+        "A working reservation flow — pick a party size, choose a date and time, and confirm.",
+      steps: {
+        partySize: "Party size",
+        date: "Choose a date",
+        time: "Choose a time",
+        summary: "Confirm reservation",
+      },
+      partySizes: [
+        { id: "2", label: "2 guests" },
+        { id: "4", label: "4 guests" },
+        { id: "6", label: "6 guests" },
+        { id: "8", label: "8+ guests" },
+      ],
+      back: "Back",
+      next: "Next",
+      confirm: "Confirm reservation",
+      confirmedHeading: "Reservation confirmed",
+      confirmedBody: (partySize, day, time) =>
+        `Table for ${partySize} — ${day} at ${time}.`,
+      bookAnother: "Make another reservation",
+      summaryLabels: { partySize: "Party size", when: "When" },
+      disclosure: "Demo only — no reservation is actually made or stored.",
+    },
+    leadQualificationDemo: {
+      heading: "Request a consultation",
+      subhead:
+        "A quick qualification flow — tell me what you need, and I'll follow up.",
+      steps: {
+        service: "What do you need help with?",
+        companySize: "Company size",
+        timeline: "Timeline",
+        summary: "Summary",
+      },
+      companySizes: [
+        { id: "1-10", label: "1–10 employees" },
+        { id: "11-50", label: "11–50 employees" },
+        { id: "51-200", label: "51–200 employees" },
+        { id: "200+", label: "200+ employees" },
+      ],
+      back: "Back",
+      next: "Next",
+      summaryHeading: "Based on what you shared",
+      summaryLabels: {
+        service: "Service",
+        companySize: "Company size",
+        timeline: "Timeline",
+      },
+      disclosure: "Demo only — no information is submitted anywhere.",
+    },
   },
   process: {
     heading: "How I work.",
@@ -566,7 +625,7 @@ export const en = {
       {
         question: "Is there support after launch?",
         answer:
-          "Yes — ongoing support and iteration are part of how projects are scoped, not an afterthought bolted on later. See the Maintenance section below for what that covers.",
+          "Every project includes a short warranty for launch-related fixes. Ongoing maintenance, monitoring, and improvements are available afterward as optional monthly plans — see the Maintenance section below for what that covers.",
       },
       {
         question: "What technologies do you use?",
@@ -578,22 +637,22 @@ export const en = {
   maintenance: {
     heading: "Launch isn't the end.",
     subhead:
-      "Every project includes a path for what comes after — fixes, updates, and room to grow.",
+      "Every project includes a short launch warranty for fixes. Ongoing maintenance, monitoring, and improvements continue as optional monthly plans.",
     items: [
       {
-        title: "Fixes & updates",
+        title: "Launch warranty",
         description:
-          "Dependency updates, security patches, and browser compatibility — kept current instead of accumulating debt.",
+          "Bug fixes and stability issues from the initial build, covered for a short window after launch at no extra cost.",
       },
       {
-        title: "Monitoring",
+        title: "Monitoring & analytics",
         description:
-          "Performance and error monitoring wired in from launch, so issues get caught before customers notice.",
+          "Performance and error monitoring, available as an ongoing plan so issues get caught before customers notice.",
       },
       {
         title: "Iteration",
         description:
-          "Small improvements and new features as the business grows — not a one-and-done handoff.",
+          "New features and improvements as the business grows, scoped and billed separately from the initial project.",
       },
     ],
   },
@@ -601,6 +660,10 @@ export const en = {
     heading: "Ready to build something?",
     body: "Tell me what you're working on — the project configurator takes about two minutes.",
     cta: "Start a Project",
+  },
+  secondaryContact: {
+    prompt: "Prefer to talk first?",
+    cta: "Send me a message",
   },
   footer: {
     tagline:

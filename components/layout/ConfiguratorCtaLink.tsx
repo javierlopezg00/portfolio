@@ -4,6 +4,7 @@ import NextLink from "next/link";
 import type { MouseEvent, ReactNode } from "react";
 import { ScrollTrigger } from "@/lib/animation/gsap";
 import { primaryCtaHref } from "@/lib/content/nav";
+import { useLocale } from "@/lib/i18n/useLocale";
 
 interface ConfiguratorCtaLinkProps {
   className?: string;
@@ -29,10 +30,16 @@ export function ConfiguratorCtaLink({
   children,
   onClick,
 }: ConfiguratorCtaLinkProps) {
+  const locale = useLocale();
+
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
     onClick?.();
 
     const target = document.getElementById(primaryCtaHref.slice(1));
+    // Not on the homepage (e.g. a case-study page) — the configurator
+    // section doesn't exist here, so let the link's href do a real
+    // cross-page navigation to `/${locale}#configurator` instead of
+    // no-opping on a same-page fragment that resolves to nothing.
     if (!target) return;
 
     event.preventDefault();
@@ -58,7 +65,11 @@ export function ConfiguratorCtaLink({
   }
 
   return (
-    <NextLink href={primaryCtaHref} onClick={handleClick} className={className}>
+    <NextLink
+      href={`/${locale}${primaryCtaHref}`}
+      onClick={handleClick}
+      className={className}
+    >
       {children}
     </NextLink>
   );

@@ -1,11 +1,13 @@
 import {
   Container,
   Heading,
+  Link,
   Section,
   Text,
   buttonStyles,
 } from "@/components/ui";
 import { ConfiguratorCtaLink } from "@/components/layout/ConfiguratorCtaLink";
+import { secondaryContactHref } from "@/lib/content/nav";
 import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 
 export async function FinalCTA() {
@@ -25,6 +27,12 @@ export async function FinalCTA() {
             {dict.finalCta.cta}
           </ConfiguratorCtaLink>
         </div>
+        <Text tone="secondary" size="sm" className="mt-6">
+          {dict.secondaryContact.prompt}{" "}
+          <Link href={secondaryContactHref} className="underline">
+            {dict.secondaryContact.cta}
+          </Link>
+        </Text>
       </Container>
     </Section>
   );

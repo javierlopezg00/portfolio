@@ -11,6 +11,7 @@ import {
   Section,
   Text,
 } from "@/components/ui";
+import { CaseStudyCTA } from "@/components/sections/work/CaseStudyCTA";
 import { DeviceFrame } from "@/components/sections/work/DeviceFrame";
 import {
   ClinicPreview,
@@ -19,6 +20,8 @@ import {
 } from "@/components/sections/work/previews";
 import { ResultsMetrics } from "@/components/sections/work/ResultsMetrics";
 import { Testimonial } from "@/components/sections/work/Testimonial";
+import { LeadQualificationDemo } from "@/components/work/consulting/LeadQualificationDemo";
+import { ReservationDemo } from "@/components/work/restaurant/ReservationDemo";
 import { WORK_PROJECT_IDS, type WorkProjectId } from "@/lib/content/work";
 import {
   defaultLocale,
@@ -183,8 +186,36 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 <Testimonial {...caseStudyResults.testimonial} />
               </div>
             )}
+
+            {resolved.id === "restaurant" && (
+              <div id="reservation-demo" className="mt-16 max-w-2xl">
+                <Heading size="h2">{dict.work.reservationDemo.heading}</Heading>
+                <Text tone="secondary" className="mt-4">
+                  {dict.work.reservationDemo.subhead}
+                </Text>
+                <div className="mt-8">
+                  <ReservationDemo />
+                </div>
+              </div>
+            )}
+
+            {resolved.id === "consulting" && (
+              <div id="lead-qualification-demo" className="mt-16 max-w-2xl">
+                <Heading size="h2">
+                  {dict.work.leadQualificationDemo.heading}
+                </Heading>
+                <Text tone="secondary" className="mt-4">
+                  {dict.work.leadQualificationDemo.subhead}
+                </Text>
+                <div className="mt-8">
+                  <LeadQualificationDemo />
+                </div>
+              </div>
+            )}
           </Container>
         </Section>
+
+        <CaseStudyCTA />
       </main>
       <Footer />
     </>

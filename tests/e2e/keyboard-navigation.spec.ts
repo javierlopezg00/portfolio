@@ -65,7 +65,7 @@ test.describe("Keyboard navigation", () => {
     const flow = page.locator("#book");
     await flow.scrollIntoViewIfNeeded();
 
-    await flow.getByRole("radio", { name: "General checkup" }).focus();
+    await flow.getByRole("radio", { name: "General Consultation" }).focus();
     await page.keyboard.press("Space");
     await flow.getByRole("button", { name: "Next" }).focus();
     await page.keyboard.press("Enter");
@@ -99,5 +99,62 @@ test.describe("Keyboard navigation", () => {
     await flow.getByRole("button", { name: "Confirm visit" }).focus();
     await page.keyboard.press("Enter");
     await expect(flow.getByText("Visit booked")).toBeVisible();
+  });
+
+  test("restaurant reservation demo is keyboard operable end to end", async ({
+    page,
+  }) => {
+    await page.goto("/en/work/restaurant");
+    const demo = page.locator("#reservation-demo");
+    await demo.scrollIntoViewIfNeeded();
+
+    await demo.getByRole("radio", { name: "2 guests" }).focus();
+    await page.keyboard.press("Space");
+    await demo.getByRole("button", { name: "Next" }).focus();
+    await page.keyboard.press("Enter");
+
+    const dayButton = demo
+      .locator("button[aria-pressed]:not([disabled])")
+      .first();
+    await dayButton.focus();
+    await page.keyboard.press("Enter");
+    await demo.getByRole("button", { name: "Next" }).focus();
+    await page.keyboard.press("Enter");
+
+    const timeButton = demo
+      .locator("button[aria-pressed]")
+      .filter({ hasNotText: /^\d{1,2}$/ })
+      .first();
+    await timeButton.focus();
+    await page.keyboard.press("Enter");
+    await demo.getByRole("button", { name: "Confirm reservation" }).focus();
+    await page.keyboard.press("Enter");
+
+    await expect(demo.getByText("Reservation confirmed")).toBeVisible();
+  });
+
+  test("consulting lead qualification demo is keyboard operable end to end", async ({
+    page,
+  }) => {
+    await page.goto("/en/work/consulting");
+    const demo = page.locator("#lead-qualification-demo");
+    await demo.scrollIntoViewIfNeeded();
+
+    await demo.getByRole("radio", { name: "Strategy" }).focus();
+    await page.keyboard.press("Space");
+    await demo.getByRole("button", { name: "Next" }).focus();
+    await page.keyboard.press("Enter");
+
+    await demo.getByRole("radio", { name: "1–10 employees" }).focus();
+    await page.keyboard.press("Space");
+    await demo.getByRole("button", { name: "Next" }).focus();
+    await page.keyboard.press("Enter");
+
+    await demo.getByRole("radio", { name: "As soon as possible" }).focus();
+    await page.keyboard.press("Space");
+    await demo.getByRole("button", { name: "Next" }).focus();
+    await page.keyboard.press("Enter");
+
+    await expect(demo.getByText("Based on what you shared")).toBeVisible();
   });
 });

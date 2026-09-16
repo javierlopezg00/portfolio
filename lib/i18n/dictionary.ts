@@ -229,6 +229,53 @@ export interface Dictionary {
         results?: { label: string; value: string }[];
       }
     >;
+    // Shown at the end of every case study (Meridian, Ember & Oak, Kestrel)
+    // via the shared CaseStudyCTA component — never lets a case study page
+    // end passively at the footer.
+    caseStudyCta: {
+      heading: string;
+      body: string;
+      primaryCta: string;
+      secondaryCta: string;
+    };
+    // Ember & Oak's case-study-only reservation demo — party size, date,
+    // time, summary. No backend: useReducer state only, discarded on
+    // reset, same pattern as the clinic booking flow.
+    reservationDemo: {
+      heading: string;
+      subhead: string;
+      steps: { partySize: string; date: string; time: string; summary: string };
+      partySizes: { id: string; label: string }[];
+      back: string;
+      next: string;
+      confirm: string;
+      confirmedHeading: string;
+      confirmedBody: (partySize: string, day: string, time: string) => string;
+      bookAnother: string;
+      summaryLabels: { partySize: string; when: string };
+      disclosure: string;
+    };
+    // Kestrel's case-study-only lead-qualification demo — service needed
+    // (reuses previewContent.consulting.practiceAreas), company size,
+    // timeline (reuses configurator.options.timeline), then a summary that
+    // ends in the same primary/secondary CTA as CaseStudyCTA rather than a
+    // fake submission.
+    leadQualificationDemo: {
+      heading: string;
+      subhead: string;
+      steps: {
+        service: string;
+        companySize: string;
+        timeline: string;
+        summary: string;
+      };
+      companySizes: { id: string; label: string }[];
+      back: string;
+      next: string;
+      summaryHeading: string;
+      summaryLabels: { service: string; companySize: string; timeline: string };
+      disclosure: string;
+    };
   };
   process: {
     heading: string;
@@ -300,6 +347,13 @@ export interface Dictionary {
   finalCta: {
     heading: string;
     body: string;
+    cta: string;
+  };
+  // Low-friction alternative to the configurator — a plain mailto: link
+  // (see secondaryContactHref in lib/content/nav.ts), reused on the
+  // homepage's closing CTA and at the end of every case study.
+  secondaryContact: {
+    prompt: string;
     cta: string;
   };
   footer: {
