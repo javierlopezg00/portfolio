@@ -81,6 +81,7 @@ export const en = {
         { name: "Noah Chen", status: "Processing" },
         { name: "Liam Patel", status: "Completed" },
       ],
+      dashboardConnectedLabel: "Connected to",
     },
   },
   services: {
@@ -427,7 +428,7 @@ export const en = {
       "Websites, web applications, and custom software — designed and engineered end to end.",
     footerAriaLabel: "Footer",
     startAProject: "Start a Project",
-    copyright: (year) => `© ${year} JL. All rights reserved.`,
+    copyright: (year) => `© ${year} Javier López Digital. All rights reserved.`,
     builtWith: "Built with Next.js, TypeScript, and Tailwind CSS.",
   },
   notFound: {

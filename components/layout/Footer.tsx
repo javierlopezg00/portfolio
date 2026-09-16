@@ -14,7 +14,7 @@ export async function Footer() {
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-xs">
             <span className="text-body-sm text-text font-semibold tracking-wide">
-              JL
+              Javier López Digital
             </span>
             <p className="text-body-sm text-text-secondary mt-3">
               {dict.footer.tagline}

@@ -56,6 +56,12 @@ export interface Dictionary {
       dashboardDayLabels: string[];
       dashboardActivityLabel: string;
       dashboardActivity: { name: string; status: string }[];
+      // "Connected Platform" and "Web Application" rendered identically on
+      // phones — the connection-node diagram that's the only real
+      // difference between those two stages is sm+ only (it needs room
+      // outside the box that doesn't exist on a phone). This is the
+      // in-box, phone-sized substitute for that stage specifically.
+      dashboardConnectedLabel: string;
     };
   };
   services: {

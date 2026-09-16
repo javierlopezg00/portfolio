@@ -40,7 +40,9 @@ export function InterfaceMockup({ stage, className }: InterfaceMockupProps) {
   const minHeight = show("cards")
     ? "min-h-[360px]" // nav + hero + cards: cards sits at top-64
     : show("dashboard")
-      ? "min-h-[440px]" // sidebar + dashboard (stages 2-4)
+      ? show("connections")
+        ? "min-h-[530px]" // dashboard + the phone-only connected-to row (stages 3-4)
+        : "min-h-[440px]" // sidebar + dashboard only (stage 2)
       : "min-h-[360px]"; // nav + hero + highlights (stage 0)
 
   return (
@@ -102,6 +104,11 @@ export function InterfaceMockup({ stage, className }: InterfaceMockupProps) {
                   dayLabels={mockup.dashboardDayLabels}
                   activityLabel={mockup.dashboardActivityLabel}
                   activity={mockup.dashboardActivity}
+                  connectedLabel={
+                    show("connections")
+                      ? mockup.dashboardConnectedLabel
+                      : undefined
+                  }
                 />
               </div>
             )}

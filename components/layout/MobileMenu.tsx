@@ -39,7 +39,7 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
         >
           <div className="flex items-center justify-between px-6 pt-6">
             <span className="text-body-sm text-text font-semibold tracking-wide">
-              JL
+              Javier López Digital
             </span>
             <button
               type="button"

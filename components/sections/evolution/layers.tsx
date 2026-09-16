@@ -188,6 +188,12 @@ interface DashboardLayerProps {
   dayLabels: string[];
   activityLabel: string;
   activity: { name: string; status: string }[];
+  // Only passed for the "connected" and "custom" stages. Renders a
+  // compact, in-box row of the same services the sm+ connection diagram
+  // shows around the box — below sm that diagram is hidden (it needs
+  // room outside the box a phone doesn't have), so without this, those
+  // stages render identically to "Web Application" on a phone.
+  connectedLabel?: string;
 }
 
 export function DashboardLayer({
@@ -196,6 +202,7 @@ export function DashboardLayer({
   dayLabels,
   activityLabel,
   activity,
+  connectedLabel,
 }: DashboardLayerProps) {
   const bars = [40, 65, 50, 80, 60, 90, 70];
   return (
@@ -215,6 +222,23 @@ export function DashboardLayer({
           </div>
         ))}
       </div>
+      {connectedLabel && (
+        <div className="sm:hidden">
+          <span className="text-text-secondary text-[10px] tracking-wide uppercase">
+            {connectedLabel}
+          </span>
+          <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1.5">
+            {EXTERNAL_NODES.map((node) => (
+              <span key={node.label} className="flex items-center gap-1.5">
+                <span className="bg-accent h-1.5 w-1.5 shrink-0 rounded-full" />
+                <span className="text-text-secondary font-mono text-[10px] tracking-wide">
+                  {node.label}
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
       <div>
         <span className="text-text-secondary text-[10px] tracking-wide uppercase">
           {chartLabel}

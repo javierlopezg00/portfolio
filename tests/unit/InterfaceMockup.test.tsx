@@ -19,9 +19,13 @@ describe("InterfaceMockup", () => {
     const { rerender } = renderWithLocale(<InterfaceMockup stage={2} />);
     expect(screen.queryByText("PAYMENTS")).not.toBeInTheDocument();
 
+    // Two variants exist at this stage — the sm+ diagram around the box
+    // and a phone-only in-box row (see DashboardLayer's connectedLabel) —
+    // toggled by a CSS breakpoint jsdom doesn't evaluate, so both are
+    // present in the tree regardless of viewport.
     rerender(<InterfaceMockup stage={3} />);
-    expect(screen.getByText("PAYMENTS")).toBeInTheDocument();
-    expect(screen.getByText("AUTOMATION")).toBeInTheDocument();
+    expect(screen.getAllByText("PAYMENTS").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("AUTOMATION").length).toBeGreaterThan(0);
   });
 
   it("shows the final message only at stage 4 (custom)", () => {

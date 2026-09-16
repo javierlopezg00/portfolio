@@ -33,9 +33,14 @@ export function Navigation() {
       >
         <NextLink
           href={`/${locale}`}
-          className="text-body-sm text-text focus-visible:ring-focus-ring rounded-sm px-2 font-semibold tracking-wide focus-visible:ring-2 focus-visible:outline-none"
+          className="text-body-sm text-text focus-visible:ring-focus-ring shrink-0 rounded-sm px-2 font-semibold tracking-wide whitespace-nowrap focus-visible:ring-2 focus-visible:outline-none"
         >
-          JL
+          {/* The full wordmark only fits the pill's expanded, unscrolled
+              width — the compact scrolled state (which also has to fit the
+              nav links, locale switcher, and CTA) is already at its limit
+              with a 2-character mark; even "JLD" was enough to wrap the
+              row and break the layout, confirmed by testing it directly. */}
+          {scrolled ? "JL" : "Javier López Digital"}
         </NextLink>
 
         <ul className="hidden items-center gap-1 md:flex">
