@@ -43,6 +43,8 @@ export function createStepSchemas(m: LeadValidationMessages) {
     budget: leadSchema.pick({ budget: true }),
     timeline: leadSchema.pick({ timeline: true }),
     contact: leadSchema.pick({ name: true, email: true }),
+    // Read-only summary step — nothing new to collect, always passes.
+    review: z.object({}),
   } as const;
 }
 

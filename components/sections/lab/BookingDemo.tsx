@@ -1,78 +1,11 @@
 "use client";
 
-import { useMemo, useReducer } from "react";
+import { useReducer } from "react";
 import { Badge, Button, Text } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import { useLocale } from "@/lib/i18n/useLocale";
-
-// 24-hour hour values for the bookable slots — formatted per locale at
-// render time (12-hour AM/PM in English, 24-hour in Spanish) rather than
-// stored as pre-formatted strings.
-const SLOT_HOURS = [9, 10, 11, 13, 14, 15, 16];
-
-function formatSlotTime(hour: number, intlLocale: string) {
-  const d = new Date(2000, 0, 1, hour);
-  return new Intl.DateTimeFormat(intlLocale, {
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(d);
-}
-
-interface CalendarDay {
-  day: number;
-  available: boolean;
-}
-
-function buildMonth(
-  year: number,
-  month: number,
-  minDay: number,
-  intlLocale: string,
-) {
-  const firstDay = new Date(year, month, 1);
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const startOffset = firstDay.getDay();
-
-  const days: CalendarDay[] = Array.from({ length: daysInMonth }, (_, i) => {
-    const day = i + 1;
-    const weekday = new Date(year, month, day).getDay();
-    const isPast = day < minDay;
-    const isWeekend = weekday === 0 || weekday === 6;
-    return { day, available: !isPast && !isWeekend };
-  });
-
-  const monthLabel = firstDay.toLocaleDateString(intlLocale, {
-    month: "long",
-    year: "numeric",
-  });
-
-  return { days, startOffset, monthLabel };
-}
-
-function useCalendarMonth(intlLocale: string) {
-  return useMemo(() => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
-
-    const current = buildMonth(year, month, now.getDate(), intlLocale);
-    // Near the end of the month, the rest of it may be all weekend — roll
-    // forward rather than showing a calendar with nothing bookable.
-    if (current.days.some((d) => d.available)) return current;
-
-    const nextMonth = month === 11 ? 0 : month + 1;
-    const nextYear = month === 11 ? year + 1 : year;
-    return buildMonth(nextYear, nextMonth, 1, intlLocale);
-  }, [intlLocale]);
-}
-
-function getSlots(day: number, intlLocale: string) {
-  return SLOT_HOURS.map((hour, i) => ({
-    time: formatSlotTime(hour, intlLocale),
-    available: (day + i) % 5 !== 0,
-  }));
-}
+import { getSlots, useCalendarMonth } from "./booking-logic";
 
 interface BookingState {
   step: "day" | "time" | "confirmed";

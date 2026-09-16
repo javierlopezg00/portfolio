@@ -17,10 +17,33 @@ export const en = {
   },
   skipLink: "Skip to content",
   hero: {
-    heading: "I build digital experiences that work.",
-    subhead: "Websites · Web Apps · Software · Automation",
+    heading: "Websites are just the beginning.",
+    subhead:
+      "I design and build the software behind them — platforms, integrations, and automation for businesses that need more than a template.",
     ctaPrimary: "Start a Project",
     ctaExplore: "Explore",
+  },
+  whyCustom: {
+    heading: "Built around your business.",
+    subhead:
+      "Off-the-shelf tools ask you to adapt to them. Custom software works the other way around.",
+    items: [
+      {
+        title: "Fits your workflow",
+        description:
+          "Built around how your business actually operates, not a generic template's assumptions about it.",
+      },
+      {
+        title: "No unused bloat",
+        description:
+          "Templates and SaaS platforms bundle features for every possible customer. You get exactly what your business needs.",
+      },
+      {
+        title: "Grows with you",
+        description:
+          "As the business changes, the software changes with it — not locked into someone else's roadmap or pricing tiers.",
+      },
+    ],
   },
   evolution: {
     heading: "From website to software.",
@@ -86,7 +109,7 @@ export const en = {
   },
   services: {
     heading: "What I build.",
-    subhead: "Four categories. One person, start to finish.",
+    subhead: "Four categories, one point of contact.",
     categories: [
       {
         id: "websites",
@@ -127,6 +150,7 @@ export const en = {
         ],
       },
     ],
+    pricingSignal: "Projects typically start around $1,000.",
   },
   lab: {
     heading: "Try it yourself.",
@@ -192,9 +216,32 @@ export const en = {
     integration: {
       trigger: "Trigger request",
       running: "Running…",
+      success: "Request completed",
       diagramAriaLabel:
         "Diagram of a request traveling from the website through the API to CRM and Payments, then to the database, and back to the website.",
     },
+  },
+  whoIWorkWith: {
+    heading: "Who I work with.",
+    subhead:
+      "Independent businesses that need more than a template — not enterprises with an internal engineering team.",
+    items: [
+      {
+        title: "Service businesses",
+        description:
+          "Clinics, salons, consultancies, and agencies — anything booking-driven or client-facing.",
+      },
+      {
+        title: "Local & regional businesses",
+        description:
+          "Restaurants, retail, and professional practices ready to move past a generic website builder.",
+      },
+      {
+        title: "Founders & small teams",
+        description:
+          "Early-stage products that need a real engineer, not just a no-code prototype.",
+      },
+    ],
   },
   work: {
     heading: "Selected work.",
@@ -254,6 +301,102 @@ export const en = {
         practiceAreas: ["Strategy", "Operations", "Finance"],
       },
     },
+    viewCaseStudy: "View case study",
+    caseStudy: {
+      conceptualNote:
+        "Conceptual project — built to demonstrate the engineering and UX approach, not a client's live site.",
+      backToWork: "Back to work",
+      approachHeading: "Approach",
+      resultsHeading: "Results",
+    },
+    caseStudies: {
+      clinic: [
+        {
+          title: "Booking without friction",
+          description:
+            "A real day-and-time picker with locale-aware formatting and availability logic, not a static screenshot — the same interaction a scheduling widget actually needs to work.",
+        },
+        {
+          title: "Content structured like a real practice",
+          description:
+            "Services, doctors, and a booking flow organized the way an actual clinic site needs to be, not a generic template with the logo swapped in.",
+        },
+        {
+          title: "Accessible by default",
+          description:
+            "The calendar, the option cards, and the confirmation step are all keyboard-operable and screen-reader-labeled from the start, not retrofitted afterward.",
+        },
+      ],
+      restaurant: [
+        {
+          title: "A menu that's actually structured content",
+          description:
+            "Items, prices, and categories modeled as real data rather than paragraphs of copy — the kind of structure that makes updating a menu later a content change, not a redesign.",
+        },
+        {
+          title: "Built for the reflow, not just the layout",
+          description:
+            "The desktop and mobile previews are the same component responding to real container queries, not two hand-built versions that can drift out of sync.",
+        },
+        {
+          title: "Fast by construction",
+          description:
+            "Static-first rendering and no unnecessary client JavaScript for content that doesn't need to be interactive.",
+        },
+      ],
+      consulting: [
+        {
+          title: "Practice areas as the entry point",
+          description:
+            "The homepage leads with what the firm actually does, not a generic hero — practice areas are the first real content a visitor sees.",
+        },
+        {
+          title: "Professional without being generic",
+          description:
+            "A restrained, text-led layout built to read as credible for a services firm, distinct from the more visual, consumer-facing patterns used for the clinic and restaurant projects.",
+        },
+        {
+          title: "Same design system, different voice",
+          description:
+            "Built from the same component library as the rest of this site, proving the system flexes across verticals rather than needing a rebuild per project type.",
+        },
+      ],
+    },
+    clinicBooking: {
+      heading: "Book a visit",
+      subhead:
+        "A working booking flow — pick a service and provider, choose a time, and confirm.",
+      steps: {
+        service: "Choose a service",
+        doctor: "Choose a provider",
+        schedule: "Pick a day and time",
+        contact: "Your details",
+      },
+      services: [
+        { id: "checkup", label: "General checkup" },
+        { id: "pediatrics", label: "Pediatrics" },
+        { id: "dermatology", label: "Dermatology" },
+        { id: "dental", label: "Dental cleaning" },
+      ],
+      doctors: [
+        { id: "ruiz", name: "Dr. Elena Ruiz", specialty: "General Medicine" },
+        { id: "chen", name: "Dr. Marcus Chen", specialty: "Pediatrics" },
+        { id: "patel", name: "Dr. Aisha Patel", specialty: "Dermatology" },
+      ],
+      contactFields: { name: "Full name", email: "Email" },
+      disclosure: "Demo only — no information is stored or sent anywhere.",
+      back: "Back",
+      next: "Next",
+      confirm: "Confirm visit",
+      confirmedHeading: "Visit booked",
+      confirmedBody: (service, doctor, day, time) =>
+        `${service} with ${doctor} — ${day} at ${time}.`,
+      bookAnother: "Book another visit",
+      summary: { service: "Service", doctor: "Provider", when: "When" },
+    },
+    // No real client results exist yet — left empty rather than filled
+    // with placeholder numbers. See the type comment in dictionary.ts.
+    caseStudyResults: {},
   },
   process: {
     heading: "How I work.",
@@ -286,19 +429,20 @@ export const en = {
     ],
   },
   configurator: {
-    heading: "Let's scope your project.",
-    subhead: "Five quick questions — no commitment, just a clearer picture.",
+    heading: "Scope your project.",
+    subhead: "A few quick questions — no commitment, just a clearer picture.",
     steps: [
       { key: "projectType", label: "What do you want to build?" },
       { key: "needs", label: "What does your business need?" },
       { key: "budget", label: "Approximate budget" },
       { key: "timeline", label: "Timeline" },
       { key: "contact", label: "Your details" },
+      { key: "review", label: "Review & send" },
     ],
     back: "Back",
     next: "Next",
     sending: "Sending…",
-    requestProposal: "Request Proposal",
+    requestProposal: "Send Project Request",
     successTitle: "Thanks — that's in.",
     successBody: (email) =>
       `I'll follow up at ${email} within one business day.`,
@@ -323,6 +467,18 @@ export const en = {
       heading: "What budget do you have in mind for the project?",
       helperText:
         "You don't need to have an exact budget. This helps me recommend the right solution for your project.",
+    },
+    review: {
+      heading: "Review your project.",
+      editLabel: "Edit",
+      sectionLabels: {
+        projectType: "Project type",
+        needs: "Needs",
+        budget: "Budget",
+        timeline: "Timeline",
+        contact: "Contact details",
+      },
+      notProvided: "Not provided",
     },
     options: {
       projectType: [
@@ -360,9 +516,10 @@ export const en = {
     },
   },
   about: {
-    heading: "One person, full-stack.",
+    heading: "Direct collaboration. End-to-end ownership.",
     body: [
-      "This site is built and maintained by a single developer — not a large agency, and not a no-code template. Every project gets direct, hands-on engineering from start to finish.",
+      "Hi, I'm Javier — a software engineer building websites and software for businesses that need more than an off-the-shelf solution.",
+      "That means technical ownership from architecture through launch — across frontend, backend, integrations, and everything else the project actually needs, not just the parts that fit one specialty.",
       "The same tools and techniques shown throughout this site — modern React, careful performance work, real accessibility — are what get used on client projects too.",
     ],
     principles: [
@@ -374,7 +531,7 @@ export const en = {
       {
         title: "Modern engineering",
         description:
-          "The same stack demonstrated across this site: Next.js, TypeScript, and production-grade tooling.",
+          "Software that holds up — built with the same modern, production-grade tools demonstrated throughout this site.",
       },
       {
         title: "Built to last",
@@ -409,18 +566,40 @@ export const en = {
       {
         question: "Is there support after launch?",
         answer:
-          "Yes. Launch isn't the finish line — ongoing support and iteration are part of how projects are scoped, not an afterthought bolted on later.",
+          "Yes — ongoing support and iteration are part of how projects are scoped, not an afterthought bolted on later. See the Maintenance section below for what that covers.",
       },
       {
         question: "What technologies do you use?",
         answer:
-          "Modern, production-grade tools — Next.js, TypeScript, and Tailwind CSS form the default stack, with the specific integrations (payments, CRM, automation) chosen per project rather than forced into a one-size-fits-all template.",
+          "Whatever gets the job done reliably — in practice that's usually Next.js, TypeScript, and Tailwind CSS, with the specific integrations (payments, CRM, automation) chosen per project rather than forced into a one-size-fits-all template.",
+      },
+    ],
+  },
+  maintenance: {
+    heading: "Launch isn't the end.",
+    subhead:
+      "Every project includes a path for what comes after — fixes, updates, and room to grow.",
+    items: [
+      {
+        title: "Fixes & updates",
+        description:
+          "Dependency updates, security patches, and browser compatibility — kept current instead of accumulating debt.",
+      },
+      {
+        title: "Monitoring",
+        description:
+          "Performance and error monitoring wired in from launch, so issues get caught before customers notice.",
+      },
+      {
+        title: "Iteration",
+        description:
+          "Small improvements and new features as the business grows — not a one-and-done handoff.",
       },
     ],
   },
   finalCta: {
     heading: "Ready to build something?",
-    body: "Tell us what you're working on — the project configurator takes about two minutes.",
+    body: "Tell me what you're working on — the project configurator takes about two minutes.",
     cta: "Start a Project",
   },
   footer: {
@@ -456,7 +635,7 @@ export const en = {
     ariaLabel: "Language",
   },
   seo: {
-    title: "Javier López — Software Development",
+    title: "Javier López Digital — Software Development",
     description:
       "Premium software development studio — websites, web applications, and custom software.",
     keywords: [
@@ -466,8 +645,9 @@ export const en = {
       "Next.js developer",
       "software engineer",
     ],
-    ogHeadline: "I build digital experiences that work.",
-    ogTagline: "Websites · Web Apps · Software · Automation",
+    ogHeadline: "Websites are just the beginning.",
+    ogTagline:
+      "I design and build the software behind them — platforms, integrations, and automation for businesses that need more than a template.",
     structuredDataAreaServed: "Worldwide",
     structuredDataServiceTypes: [
       "Web Development",

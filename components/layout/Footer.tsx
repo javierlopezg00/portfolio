@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import { Container } from "@/components/ui";
-import { primaryCtaHref } from "@/lib/content/nav";
 import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
+import { ConfiguratorCtaLink } from "./ConfiguratorCtaLink";
 
 const currentYear = new Date().getFullYear();
 
@@ -36,12 +36,9 @@ export async function Footer() {
             </ul>
             <ul className="flex flex-col gap-3">
               <li>
-                <NextLink
-                  href={primaryCtaHref}
-                  className="text-body-sm text-text-secondary duration-fast hover:text-text transition-colors ease-out"
-                >
+                <ConfiguratorCtaLink className="text-body-sm text-text-secondary duration-fast hover:text-text transition-colors ease-out">
                   {dict.footer.startAProject}
-                </NextLink>
+                </ConfiguratorCtaLink>
               </li>
             </ul>
           </nav>

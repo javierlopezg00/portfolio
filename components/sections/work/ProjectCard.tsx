@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { Badge, Card, Heading, Text } from "@/components/ui";
+import { Badge, Card, Heading, Link, Text } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import type { WorkProject } from "@/lib/content/work";
 import { getDictionary } from "@/lib/i18n/getDictionary";
@@ -16,7 +16,8 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, preview }: ProjectCardProps) {
-  const dict = getDictionary(useLocale());
+  const locale = useLocale();
+  const dict = getDictionary(locale);
   const [mode, setMode] = useState<DeviceMode>("desktop");
 
   return (
@@ -64,6 +65,10 @@ export function ProjectCard({ project, preview }: ProjectCardProps) {
             </button>
           ))}
         </div>
+
+        <Link href={`/${locale}/work/${project.id}`} className="w-fit">
+          {dict.work.viewCaseStudy} →
+        </Link>
       </div>
 
       <div className="flex-1">

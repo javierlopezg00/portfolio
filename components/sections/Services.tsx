@@ -39,6 +39,10 @@ export async function Services() {
             />
           ))}
         </Grid>
+
+        <Text tone="secondary" size="sm" className="mt-8">
+          {dict.services.pricingSignal}
+        </Text>
       </Container>
     </Section>
   );

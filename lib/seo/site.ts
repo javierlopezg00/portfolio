@@ -6,4 +6,4 @@ export const SITE_URL =
 // A proper name — same in every locale, so it stays here rather than in
 // the dictionary. The title/description shown to visitors and search
 // engines live in dict.seo instead, since those genuinely translate.
-export const SITE_NAME = "Javier López";
+export const SITE_NAME = "Javier López Digital";

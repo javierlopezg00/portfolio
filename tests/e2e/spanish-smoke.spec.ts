@@ -21,14 +21,17 @@ test.describe("Spanish locale", () => {
     ).toBeVisible();
 
     for (const id of [
+      "#why-custom",
       "#evolution",
       "#services",
       "#lab",
+      "#who-i-work-with",
       "#work",
       "#process",
       "#configurator",
       "#about",
       "#faq",
+      "#maintenance",
       "#contact",
     ]) {
       await expect(page.locator(id)).toBeAttached();
@@ -60,21 +63,28 @@ test.describe("Spanish locale", () => {
     await cfg.getByText(dict.options.projectType[2].label).click();
     await cfg.getByRole("button", { name: dict.next }).click();
 
-    await expect(cfg.getByText(/Paso 2 de 5/)).toBeVisible();
+    await expect(cfg.getByText(/Paso 2 de 6/)).toBeVisible();
     await cfg.getByText(dict.options.needs[3].label).click();
     await cfg.getByRole("button", { name: dict.next }).click();
 
-    await expect(cfg.getByText(/Paso 3 de 5/)).toBeVisible();
+    await expect(cfg.getByText(/Paso 3 de 6/)).toBeVisible();
     await cfg.getByText(dict.options.budget[2].label).click();
     await cfg.getByRole("button", { name: dict.next }).click();
 
-    await expect(cfg.getByText(/Paso 4 de 5/)).toBeVisible();
+    await expect(cfg.getByText(/Paso 4 de 6/)).toBeVisible();
     await cfg.getByText(dict.options.timeline[2].label).click();
     await cfg.getByRole("button", { name: dict.next }).click();
 
-    await expect(cfg.getByText(/Paso 5 de 5/)).toBeVisible();
+    await expect(cfg.getByText(/Paso 5 de 6/)).toBeVisible();
     await cfg.getByLabel(dict.contact.name).fill("Ada Lovelace");
     await cfg.getByLabel(dict.contact.email).fill("ada@example.com");
+    await cfg.getByRole("button", { name: dict.next }).click();
+
+    // Review step, in Spanish — prior answers shown read-only before submit.
+    await expect(cfg.getByText(/Paso 6 de 6/)).toBeVisible();
+    await expect(
+      cfg.getByText(dict.options.projectType[2].label),
+    ).toBeVisible();
     await cfg.getByRole("button", { name: dict.requestProposal }).click();
 
     await expect(cfg.getByText(dict.successTitle)).toBeVisible();

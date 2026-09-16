@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
-import { heroEdges, heroNodes } from "./graph";
+import type { GraphEdge, GraphNode } from "./graph";
 
 // Canvas fillStyle/font strings can't resolve var(--x) themselves, so
 // design tokens are read once via getComputedStyle instead of duplicating
@@ -15,7 +15,17 @@ function readCSSVar(name: string, fallback: string): string {
   return value || fallback;
 }
 
-export function HeroVisualization() {
+interface HeroVisualizationProps {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  className: string;
+}
+
+export function HeroVisualization({
+  nodes,
+  edges,
+  className,
+}: HeroVisualizationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reducedMotion = useReducedMotion();
@@ -58,8 +68,9 @@ export function HeroVisualization() {
       canvas.style.height = `${height}px`;
       ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Hidden below the `lg` breakpoint (zero size) — don't burn cycles
-      // animating a canvas nobody can see.
+      // Zero size when the container is hidden by its className's
+      // responsive classes (e.g. the desktop instance below `lg`) — don't
+      // burn cycles animating a canvas nobody can see.
       const shouldRun = width > 0 && height > 0 && !reducedMotion;
       if (shouldRun && !running) {
         running = true;
@@ -83,7 +94,7 @@ export function HeroVisualization() {
         { x: number; y: number; near: number }
       >();
 
-      for (const node of heroNodes) {
+      for (const node of nodes) {
         const phase = node.x * 13 + node.y * 7;
         const driftX = reducedMotion ? 0 : Math.sin(elapsed * 0.5 + phase) * 6;
         const driftY = reducedMotion ? 0 : Math.cos(elapsed * 0.4 + phase) * 6;
@@ -100,7 +111,7 @@ export function HeroVisualization() {
       }
 
       ctx.lineWidth = 1;
-      for (const edge of heroEdges) {
+      for (const edge of edges) {
         const from = positions.get(edge.from);
         const to = positions.get(edge.to);
         if (!from || !to) continue;
@@ -116,7 +127,7 @@ export function HeroVisualization() {
 
       ctx.font = `500 11px ${monoFont}`;
       ctx.textBaseline = "middle";
-      for (const node of heroNodes) {
+      for (const node of nodes) {
         const pos = positions.get(node.id);
         if (!pos) continue;
         const radius = 4 + pos.near * 3;
@@ -209,14 +220,10 @@ export function HeroVisualization() {
         container.removeEventListener("pointerleave", handlePointerLeave);
       }
     };
-  }, [reducedMotion]);
+  }, [nodes, edges, reducedMotion]);
 
   return (
-    <div
-      ref={containerRef}
-      className="absolute inset-0 hidden lg:block"
-      aria-hidden="true"
-    >
+    <div ref={containerRef} className={className} aria-hidden="true">
       <canvas ref={canvasRef} />
     </div>
   );

@@ -17,10 +17,33 @@ export const es = {
   },
   skipLink: "Saltar al contenido",
   hero: {
-    heading: "Creo experiencias digitales que funcionan.",
-    subhead: "Sitios web · Aplicaciones web · Software · Automatización",
+    heading: "Un sitio web es solo el principio.",
+    subhead:
+      "Diseño y desarrollo el software que hay detrás — plataformas, integraciones y automatización para negocios que necesitan más que una plantilla.",
     ctaPrimary: "Iniciar un proyecto",
     ctaExplore: "Explorar",
+  },
+  whyCustom: {
+    heading: "Construido alrededor de tu negocio.",
+    subhead:
+      "Las herramientas genéricas te piden que te adaptes a ellas. El software a medida funciona al revés.",
+    items: [
+      {
+        title: "Se adapta a tu forma de trabajar",
+        description:
+          "Construido según cómo opera realmente tu negocio, no según las suposiciones genéricas de una plantilla.",
+      },
+      {
+        title: "Sin funciones que no usas",
+        description:
+          "Las plantillas y plataformas SaaS agrupan funciones para todo tipo de cliente. Tú obtienes exactamente lo que tu negocio necesita.",
+      },
+      {
+        title: "Crece contigo",
+        description:
+          "A medida que el negocio cambia, el software cambia con él — sin depender de la hoja de ruta o los precios de otra empresa.",
+      },
+    ],
   },
   evolution: {
     heading: "De sitio web a software.",
@@ -88,7 +111,7 @@ export const es = {
   },
   services: {
     heading: "Lo que construyo.",
-    subhead: "Cuatro categorías. Una sola persona, de principio a fin.",
+    subhead: "Cuatro categorías, un solo punto de contacto.",
     categories: [
       {
         id: "websites",
@@ -132,6 +155,7 @@ export const es = {
         ],
       },
     ],
+    pricingSignal: "Los proyectos suelen comenzar alrededor de Q7,500.",
   },
   lab: {
     heading: "Pruébalo tú mismo.",
@@ -197,9 +221,32 @@ export const es = {
     integration: {
       trigger: "Iniciar solicitud",
       running: "Procesando…",
+      success: "Solicitud completada",
       diagramAriaLabel:
         "Diagrama de una solicitud que viaja desde el sitio web a través de la API hacia el CRM y Pagos, luego a la base de datos, y de vuelta al sitio web.",
     },
+  },
+  whoIWorkWith: {
+    heading: "Con quién trabajo.",
+    subhead:
+      "Negocios independientes que necesitan más que una plantilla — no empresas con un equipo de ingeniería interno.",
+    items: [
+      {
+        title: "Negocios de servicios",
+        description:
+          "Clínicas, salones, consultorías y agencias — cualquier negocio basado en reservas o atención al cliente.",
+      },
+      {
+        title: "Negocios locales y regionales",
+        description:
+          "Restaurantes, comercios y despachos profesionales listos para dejar atrás un creador de sitios genérico.",
+      },
+      {
+        title: "Fundadores y equipos pequeños",
+        description:
+          "Productos en etapa temprana que necesitan un ingeniero real, no solo un prototipo no-code.",
+      },
+    ],
   },
   work: {
     heading: "Trabajos seleccionados.",
@@ -260,6 +307,108 @@ export const es = {
         practiceAreas: ["Estrategia", "Operaciones", "Finanzas"],
       },
     },
+    viewCaseStudy: "Ver caso de estudio",
+    caseStudy: {
+      conceptualNote:
+        "Proyecto conceptual — creado para demostrar el enfoque de ingeniería y UX, no el sitio real de un cliente.",
+      backToWork: "Volver a proyectos",
+      approachHeading: "Enfoque",
+      resultsHeading: "Resultados",
+    },
+    caseStudies: {
+      clinic: [
+        {
+          title: "Reservas sin fricción",
+          description:
+            "Un selector real de día y hora, con formato según el idioma y lógica de disponibilidad — no una captura de pantalla estática, sino la misma interacción que necesita un widget de reservas para funcionar de verdad.",
+        },
+        {
+          title: "Contenido estructurado como una clínica real",
+          description:
+            "Servicios, médicos y flujo de reserva organizados como los necesitaría un sitio real de una clínica, no una plantilla genérica con el logo cambiado.",
+        },
+        {
+          title: "Accesible por defecto",
+          description:
+            "El calendario, las tarjetas de opciones y el paso de confirmación son operables con teclado y están etiquetados para lectores de pantalla desde el inicio, no ajustados después.",
+        },
+      ],
+      restaurant: [
+        {
+          title: "Un menú que en verdad es contenido estructurado",
+          description:
+            "Platillos, precios y categorías modelados como datos reales, no como párrafos de texto — la estructura que hace que actualizar un menú después sea un cambio de contenido, no un rediseño.",
+        },
+        {
+          title: "Pensado para el reflujo, no solo para el diseño",
+          description:
+            "Las vistas previas de escritorio y móvil son el mismo componente respondiendo a container queries reales, no dos versiones hechas a mano que puedan desalinearse.",
+        },
+        {
+          title: "Rápido por construcción",
+          description:
+            "Renderizado estático por defecto y sin JavaScript de cliente innecesario para contenido que no necesita ser interactivo.",
+        },
+      ],
+      consulting: [
+        {
+          title: "Las áreas de práctica como punto de entrada",
+          description:
+            "La página principal comienza con lo que la firma realmente hace, no con un hero genérico — las áreas de práctica son el primer contenido real que ve un visitante.",
+        },
+        {
+          title: "Profesional sin ser genérico",
+          description:
+            "Un diseño sobrio, centrado en el texto, pensado para transmitir credibilidad en una firma de servicios, distinto de los patrones más visuales usados en los proyectos de la clínica y el restaurante.",
+        },
+        {
+          title: "Mismo sistema de diseño, otra voz",
+          description:
+            "Construido con la misma librería de componentes que el resto del sitio, lo que demuestra que el sistema se adapta a distintos rubros sin necesitar un rediseño por proyecto.",
+        },
+      ],
+    },
+    clinicBooking: {
+      heading: "Reserva una cita",
+      subhead:
+        "Un flujo de reservas funcional — elige un servicio y un médico, escoge un horario y confirma.",
+      steps: {
+        service: "Elige un servicio",
+        doctor: "Elige un médico",
+        schedule: "Elige día y hora",
+        contact: "Tus datos",
+      },
+      services: [
+        { id: "checkup", label: "Chequeo general" },
+        { id: "pediatrics", label: "Pediatría" },
+        { id: "dermatology", label: "Dermatología" },
+        { id: "dental", label: "Limpieza dental" },
+      ],
+      doctors: [
+        {
+          id: "ruiz",
+          name: "Dra. Elena Ruiz",
+          specialty: "Medicina General",
+        },
+        { id: "chen", name: "Dr. Marcus Chen", specialty: "Pediatría" },
+        { id: "patel", name: "Dra. Aisha Patel", specialty: "Dermatología" },
+      ],
+      contactFields: { name: "Nombre completo", email: "Correo electrónico" },
+      disclosure:
+        "Solo demostrativo — no se guarda ni se envía ninguna información.",
+      back: "Atrás",
+      next: "Siguiente",
+      confirm: "Confirmar cita",
+      confirmedHeading: "Cita reservada",
+      confirmedBody: (service, doctor, day, time) =>
+        `${service} con ${doctor} — ${day} a las ${time}.`,
+      bookAnother: "Reservar otra cita",
+      summary: { service: "Servicio", doctor: "Médico", when: "Cuándo" },
+    },
+    // Aún no existen resultados reales de clientes — se deja vacío en
+    // lugar de rellenar con números de ejemplo. Ver el comentario del
+    // tipo en dictionary.ts.
+    caseStudyResults: {},
   },
   process: {
     heading: "Cómo trabajo.",
@@ -292,20 +441,21 @@ export const es = {
     ],
   },
   configurator: {
-    heading: "Definamos el alcance de tu proyecto.",
+    heading: "Cuéntame sobre tu proyecto.",
     subhead:
-      "Cinco preguntas rápidas — sin compromiso, solo una idea más clara.",
+      "Algunas preguntas rápidas — sin compromiso, solo una idea más clara.",
     steps: [
       { key: "projectType", label: "¿Qué quieres construir?" },
       { key: "needs", label: "¿Qué necesita tu negocio?" },
       { key: "budget", label: "Presupuesto aproximado" },
       { key: "timeline", label: "Plazo" },
       { key: "contact", label: "Tus datos" },
+      { key: "review", label: "Revisar y enviar" },
     ],
     back: "Atrás",
     next: "Siguiente",
     sending: "Enviando…",
-    requestProposal: "Solicitar propuesta",
+    requestProposal: "Enviar solicitud de proyecto",
     successTitle: "Gracias — ya lo recibí.",
     successBody: (email) => `Te contactaré a ${email} dentro de un día hábil.`,
     genericError:
@@ -329,6 +479,18 @@ export const es = {
       heading: "¿Qué presupuesto tienes en mente para el proyecto?",
       helperText:
         "No necesitas tener un presupuesto exacto. Esto me ayuda a recomendarte la solución adecuada para tu proyecto.",
+    },
+    review: {
+      heading: "Revisa tu proyecto.",
+      editLabel: "Editar",
+      sectionLabels: {
+        projectType: "Tipo de proyecto",
+        needs: "Necesidades",
+        budget: "Presupuesto",
+        timeline: "Plazo",
+        contact: "Datos de contacto",
+      },
+      notProvided: "No proporcionado",
     },
     options: {
       projectType: [
@@ -366,10 +528,11 @@ export const es = {
     },
   },
   about: {
-    heading: "Una persona, full-stack.",
+    heading: "Colaboración directa. Responsabilidad de principio a fin.",
     body: [
-      "Este sitio está construido y mantenido por un solo desarrollador — no es una gran agencia, ni una plantilla sin código. Cada proyecto recibe ingeniería directa y práctica de principio a fin.",
-      "Las mismas herramientas y técnicas que se muestran en este sitio — React moderno, un trabajo cuidadoso de rendimiento, accesibilidad real — son las que se usan también en los proyectos de los clientes.",
+      "Hola, soy Javier — ingeniero de software, construyo sitios web y software para negocios que necesitan más que una solución genérica.",
+      "Eso significa responsabilidad técnica de principio a fin — frontend, backend, integraciones y todo lo que el proyecto realmente necesite, no solo la parte que encaja en una especialidad.",
+      "Las mismas herramientas y técnicas que se muestran en este sitio — React moderno, un trabajo cuidadoso de rendimiento, accesibilidad real — son las que uso también en los proyectos de mis clientes.",
     ],
     principles: [
       {
@@ -380,7 +543,7 @@ export const es = {
       {
         title: "Ingeniería moderna",
         description:
-          "El mismo stack que se demuestra en todo este sitio: Next.js, TypeScript y herramientas de nivel de producción.",
+          "Software que aguanta — construido con las mismas herramientas modernas y de nivel de producción que se muestran en este sitio.",
       },
       {
         title: "Construido para durar",
@@ -417,18 +580,40 @@ export const es = {
       {
         question: "¿Hay soporte después del lanzamiento?",
         answer:
-          "Sí. El lanzamiento no es la meta final — el soporte continuo y la iteración forman parte de cómo se define el alcance de los proyectos, no son un añadido de último momento.",
+          "Sí — el soporte continuo y la iteración forman parte de cómo se define el alcance de los proyectos, no son un añadido de último momento. La sección de Mantenimiento más abajo detalla qué incluye.",
       },
       {
         question: "¿Qué tecnologías utilizas?",
         answer:
-          "Herramientas modernas de nivel de producción — Next.js, TypeScript y Tailwind CSS forman el stack por defecto, con integraciones específicas (pagos, CRM, automatización) elegidas según cada proyecto, en lugar de forzarlas en una plantilla única para todos.",
+          "Lo que haga falta para que funcione de forma confiable — en la práctica, eso suele ser Next.js, TypeScript y Tailwind CSS, con integraciones específicas (pagos, CRM, automatización) elegidas según cada proyecto, en lugar de forzarlas en una plantilla única para todos.",
+      },
+    ],
+  },
+  maintenance: {
+    heading: "El lanzamiento no es el final.",
+    subhead:
+      "Todo proyecto incluye un camino para lo que sigue — correcciones, actualizaciones y espacio para crecer.",
+    items: [
+      {
+        title: "Correcciones y actualizaciones",
+        description:
+          "Actualización de dependencias, parches de seguridad y compatibilidad con navegadores — al día en lugar de acumular deuda técnica.",
+      },
+      {
+        title: "Monitoreo",
+        description:
+          "Monitoreo de rendimiento y errores integrado desde el lanzamiento, para detectar problemas antes de que los noten los clientes.",
+      },
+      {
+        title: "Iteración",
+        description:
+          "Mejoras pequeñas y nuevas funciones a medida que el negocio crece — no una entrega única y definitiva.",
       },
     ],
   },
   finalCta: {
     heading: "¿Listo para construir algo?",
-    body: "Cuéntanos en qué estás trabajando — el configurador de proyectos toma alrededor de dos minutos.",
+    body: "Cuéntame en qué estás trabajando — el configurador de proyectos toma alrededor de dos minutos.",
     cta: "Iniciar un proyecto",
   },
   footer: {
@@ -465,7 +650,7 @@ export const es = {
     ariaLabel: "Idioma",
   },
   seo: {
-    title: "Javier López — Desarrollo de Software",
+    title: "Javier López Digital — Desarrollo de Software",
     description:
       "Estudio de desarrollo de software premium — sitios web, aplicaciones web y software a medida.",
     keywords: [
@@ -475,8 +660,9 @@ export const es = {
       "desarrollador Next.js",
       "ingeniero de software",
     ],
-    ogHeadline: "Creo experiencias digitales que funcionan.",
-    ogTagline: "Sitios web · Aplicaciones web · Software · Automatización",
+    ogHeadline: "Un sitio web es solo el principio.",
+    ogTagline:
+      "Diseño y desarrollo el software que hay detrás — plataformas, integraciones y automatización para negocios que necesitan más que una plantilla.",
     structuredDataAreaServed: "Mundial",
     structuredDataServiceTypes: [
       "Desarrollo web",

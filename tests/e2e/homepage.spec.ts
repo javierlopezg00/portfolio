@@ -14,14 +14,17 @@ test.describe("Homepage", () => {
     ).toBeVisible();
 
     for (const id of [
+      "#why-custom",
       "#evolution",
       "#services",
       "#lab",
+      "#who-i-work-with",
       "#work",
       "#process",
       "#configurator",
       "#about",
       "#faq",
+      "#maintenance",
       "#contact",
     ]) {
       await expect(page.locator(id)).toBeAttached();

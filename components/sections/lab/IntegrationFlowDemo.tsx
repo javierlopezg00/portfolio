@@ -45,22 +45,25 @@ export function IntegrationFlowDemo() {
   const dotBRef = useRef<SVGCircleElement>(null);
   const timelineRef = useRef<ReturnType<typeof gsap.timeline> | null>(null);
   const [activeNodes, setActiveNodes] = useState<Set<string>>(new Set());
-  const [running, setRunning] = useState(false);
+  const [status, setStatus] = useState<"idle" | "running" | "success">("idle");
+  const successTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     return () => {
       timelineRef.current?.kill();
+      if (successTimeoutRef.current) clearTimeout(successTimeoutRef.current);
     };
   }, []);
 
   function trigger() {
-    if (running) return;
+    if (status === "running") return;
     const dotA = dotARef.current;
     const dotB = dotBRef.current;
     if (!dotA || !dotB) return;
 
-    setRunning(true);
+    if (successTimeoutRef.current) clearTimeout(successTimeoutRef.current);
+    setStatus("running");
 
     const duration = reducedMotion ? 0.01 : 0.5;
     const pause = reducedMotion ? 0 : 0.3;
@@ -74,8 +77,12 @@ export function IntegrationFlowDemo() {
 
     const tl = gsap.timeline({
       onComplete: () => {
-        setRunning(false);
         setActiveNodes(new Set());
+        setStatus("success");
+        successTimeoutRef.current = setTimeout(
+          () => setStatus("idle"),
+          reducedMotion ? 1200 : 1600,
+        );
       },
     });
     timelineRef.current = tl;
@@ -124,11 +131,19 @@ export function IntegrationFlowDemo() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Badge>{dict.lab.demoBadge}</Badge>
-        <Button size="sm" onClick={trigger} disabled={running}>
-          {running
-            ? dict.lab.integration.running
-            : dict.lab.integration.trigger}
-        </Button>
+        <div aria-live="polite" className="flex items-center gap-3">
+          {status === "success" && (
+            <span className="text-accent text-body-sm flex items-center gap-1.5">
+              <CheckIcon />
+              {dict.lab.integration.success}
+            </span>
+          )}
+          <Button size="sm" onClick={trigger} disabled={status === "running"}>
+            {status === "running"
+              ? dict.lab.integration.running
+              : dict.lab.integration.trigger}
+          </Button>
+        </div>
       </div>
 
       <div className="border-border bg-surface flex justify-center rounded-md border p-6">
@@ -201,5 +216,23 @@ export function IntegrationFlowDemo() {
         </svg>
       </div>
     </div>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      width={16}
+      height={16}
+      aria-hidden="true"
+    >
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
   );
 }

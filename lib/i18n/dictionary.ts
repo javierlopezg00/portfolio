@@ -28,6 +28,11 @@ export interface Dictionary {
     ctaPrimary: string;
     ctaExplore: string;
   };
+  whyCustom: {
+    heading: string;
+    subhead: string;
+    items: { title: string; description: string }[];
+  };
   evolution: {
     heading: string;
     subhead: string;
@@ -73,6 +78,10 @@ export interface Dictionary {
       description: string;
       items: string[];
     }[];
+    // One line signaling roughly where projects start — currency matches
+    // the locale's own budget tiers below (USD in English, GTQ in Spanish),
+    // not a second pricing system.
+    pricingSignal: string;
   };
   lab: {
     heading: string;
@@ -118,8 +127,14 @@ export interface Dictionary {
     integration: {
       trigger: string;
       running: string;
+      success: string;
       diagramAriaLabel: string;
     };
+  };
+  whoIWorkWith: {
+    heading: string;
+    subhead: string;
+    items: { title: string; description: string }[];
   };
   work: {
     heading: string;
@@ -161,6 +176,59 @@ export interface Dictionary {
         practiceAreas: string[];
       };
     };
+    viewCaseStudy: string;
+    caseStudy: {
+      conceptualNote: string;
+      backToWork: string;
+      approachHeading: string;
+      resultsHeading: string;
+    };
+    // Keyed by project id (see WORK_PROJECT_IDS in lib/content/work.ts) —
+    // UX/engineering/product-thinking points only, never invented business
+    // outcomes.
+    caseStudies: Record<string, { title: string; description: string }[]>;
+    // The Meridian clinic case study's own booking flow (app/[locale]/work/
+    // clinic) — fictional service/provider content only, no real patient
+    // data collected or stored anywhere in this flow.
+    clinicBooking: {
+      heading: string;
+      subhead: string;
+      steps: {
+        service: string;
+        doctor: string;
+        schedule: string;
+        contact: string;
+      };
+      services: { id: string; label: string }[];
+      doctors: { id: string; name: string; specialty: string }[];
+      contactFields: { name: string; email: string };
+      disclosure: string;
+      back: string;
+      next: string;
+      confirm: string;
+      confirmedHeading: string;
+      confirmedBody: (
+        service: string,
+        doctor: string,
+        day: string,
+        time: string,
+      ) => string;
+      bookAnother: string;
+      summary: { service: string; doctor: string; when: string };
+    };
+    // Real testimonial/results data for a case study, keyed by project id.
+    // Empty today (see CaseStudyContent in lib/content/work.ts) — the
+    // Testimonial/ResultsMetrics components only render when an entry's
+    // fields are actually populated, so nothing fabricated can ship by
+    // accident. Add an entry here only once real, verifiable content
+    // exists for a project.
+    caseStudyResults: Record<
+      string,
+      {
+        testimonial?: { quote: string; author: string; role: string };
+        results?: { label: string; value: string }[];
+      }
+    >;
   };
   process: {
     heading: string;
@@ -196,6 +264,18 @@ export interface Dictionary {
       heading: string;
       helperText: string;
     };
+    review: {
+      heading: string;
+      editLabel: string;
+      sectionLabels: {
+        projectType: string;
+        needs: string;
+        budget: string;
+        timeline: string;
+        contact: string;
+      };
+      notProvided: string;
+    };
     options: {
       projectType: ConfiguratorOptionText[];
       needs: ConfiguratorOptionText[];
@@ -211,6 +291,11 @@ export interface Dictionary {
   faq: {
     heading: string;
     items: { question: string; answer: string }[];
+  };
+  maintenance: {
+    heading: string;
+    subhead: string;
+    items: { title: string; description: string }[];
   };
   finalCta: {
     heading: string;

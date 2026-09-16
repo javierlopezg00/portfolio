@@ -1,4 +1,3 @@
-import NextLink from "next/link";
 import {
   Container,
   Heading,
@@ -6,7 +5,7 @@ import {
   Text,
   buttonStyles,
 } from "@/components/ui";
-import { primaryCtaHref } from "@/lib/content/nav";
+import { ConfiguratorCtaLink } from "@/components/layout/ConfiguratorCtaLink";
 import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 
 export async function FinalCTA() {
@@ -22,12 +21,9 @@ export async function FinalCTA() {
           {dict.finalCta.body}
         </Text>
         <div className="mt-10 flex justify-center">
-          <NextLink
-            href={primaryCtaHref}
-            className={buttonStyles({ size: "lg" })}
-          >
+          <ConfiguratorCtaLink className={buttonStyles({ size: "lg" })}>
             {dict.finalCta.cta}
-          </NextLink>
+          </ConfiguratorCtaLink>
         </div>
       </Container>
     </Section>

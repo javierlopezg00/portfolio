@@ -4,10 +4,10 @@ import { useState } from "react";
 import NextLink from "next/link";
 import { buttonStyles } from "@/components/ui";
 import { cn } from "@/lib/cn";
-import { primaryCtaHref } from "@/lib/content/nav";
 import { useScrolledPast } from "@/lib/hooks/useScrolledPast";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import { useLocale } from "@/lib/i18n/useLocale";
+import { ConfiguratorCtaLink } from "./ConfiguratorCtaLink";
 import { MenuIcon } from "./icons";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { MobileMenu } from "./MobileMenu";
@@ -58,12 +58,9 @@ export function Navigation() {
 
         <div className="hidden items-center gap-3 md:flex">
           <LocaleSwitcher />
-          <NextLink
-            href={primaryCtaHref}
-            className={buttonStyles({ size: "sm" })}
-          >
+          <ConfiguratorCtaLink className={buttonStyles({ size: "sm" })}>
             {dict.nav.startAProject}
-          </NextLink>
+          </ConfiguratorCtaLink>
         </div>
 
         <button

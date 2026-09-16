@@ -9,6 +9,17 @@ export async function About() {
       <Container>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           <div>
+            {/* A placeholder, not a real photo — none exists in the repo
+                yet. Reuses the same bg-accent/15 circle motif already used
+                for the Configurator's success state and BookingDemo's
+                confirmation icon, so swapping in a real photo later is a
+                one-element change, not a layout change. */}
+            <div
+              aria-hidden="true"
+              className="bg-accent/15 text-accent mb-6 flex h-16 w-16 items-center justify-center rounded-full text-lg font-semibold"
+            >
+              JL
+            </div>
             <Heading id="about-heading" size="h2">
               {dict.about.heading}
             </Heading>

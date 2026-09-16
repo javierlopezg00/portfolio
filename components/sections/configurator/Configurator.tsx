@@ -13,6 +13,7 @@ import {
 import { StepContact } from "./StepContact";
 import { StepIndicator } from "./StepIndicator";
 import { StepNeeds } from "./StepNeeds";
+import { StepReview } from "./StepReview";
 import { StepSingleSelect } from "./StepSingleSelect";
 
 const STORAGE_KEY = "configurator-draft";
@@ -76,6 +77,8 @@ function dataForStep(key: StepKey, state: FormState) {
       return { timeline: state.timeline };
     case "contact":
       return { name: state.name, email: state.email };
+    case "review":
+      return {};
   }
 }
 
@@ -269,6 +272,17 @@ export function Configurator() {
       )}
       {currentStep.key === "contact" && (
         <StepContact values={state} errors={errors} onChange={setField} />
+      )}
+      {currentStep.key === "review" && (
+        <StepReview
+          state={state}
+          onEdit={(key) =>
+            dispatch({
+              type: "SET_STEP",
+              step: steps.findIndex((s) => s.key === key),
+            })
+          }
+        />
       )}
 
       <div className="mt-8 flex items-center justify-between gap-4">

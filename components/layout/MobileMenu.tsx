@@ -3,12 +3,12 @@
 import NextLink from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { buttonStyles } from "@/components/ui";
-import { primaryCtaHref } from "@/lib/content/nav";
 import { useFocusTrap } from "@/lib/hooks/useFocusTrap";
 import { getDictionary } from "@/lib/i18n/getDictionary";
 import { useLocale } from "@/lib/i18n/useLocale";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import { CloseIcon } from "./icons";
+import { ConfiguratorCtaLink } from "./ConfiguratorCtaLink";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 
 interface MobileMenuProps {
@@ -65,13 +65,12 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
           </ul>
           <div className="flex flex-col gap-6 px-6 pb-10">
             <LocaleSwitcher className="justify-center" />
-            <NextLink
-              href={primaryCtaHref}
+            <ConfiguratorCtaLink
               onClick={onClose}
               className={buttonStyles({ className: "w-full" })}
             >
               {dict.nav.startAProject}
-            </NextLink>
+            </ConfiguratorCtaLink>
           </div>
         </motion.div>
       )}

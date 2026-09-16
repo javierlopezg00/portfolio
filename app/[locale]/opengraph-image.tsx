@@ -7,7 +7,7 @@ import {
 
 // The `alt` export can't be a function — it's fixed at the module level,
 // so it can't vary per locale the way the rendered image itself can.
-export const alt = "Javier López — Software Development";
+export const alt = "Javier López Digital — Software Development";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
