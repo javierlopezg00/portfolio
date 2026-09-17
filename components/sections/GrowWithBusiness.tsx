@@ -17,13 +17,13 @@ export async function GrowWithBusiness() {
             {dict.growth.subhead}
           </Text>
         </div>
-        <div className="mt-14">
+        <div className="mt-10 lg:mt-12">
           <GrowthStory />
         </div>
         {/* The closing line is the section's last word — set in the
             display face and given room, rather than another body
             paragraph. */}
-        <div className="mt-20 flex flex-col items-center gap-5 text-center">
+        <div className="mt-14 flex flex-col items-center gap-5 text-center lg:mt-16">
           <BrandMotif corner="tl" tone="accent" className="h-10 w-10" />
           <Heading size="h3" as="p" className="max-w-lg">
             {dict.growth.closing}

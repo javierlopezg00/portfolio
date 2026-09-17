@@ -79,7 +79,7 @@ export function ClinicBookingFlow() {
     const service = cb.services.find((s) => s.id === state.service);
     const doctor = cb.doctors.find((d) => d.id === state.doctor);
     return (
-      <div className="flex flex-col gap-6">
+      <div data-brand="meridian" className="flex flex-col gap-6">
         <Badge>{dict.lab.demoBadge}</Badge>
         <div className="border-border bg-surface rounded-md border p-6">
           <div className="flex flex-col items-center gap-4 py-8 text-center">
@@ -131,7 +131,7 @@ export function ClinicBookingFlow() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div data-brand="meridian" className="flex flex-col gap-6">
       <Badge>{dict.lab.demoBadge}</Badge>
       <StepIndicator
         tone="demo"

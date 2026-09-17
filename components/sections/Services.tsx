@@ -27,7 +27,10 @@ export async function Services() {
           </Text>
         </div>
 
-        <Grid className="mt-12 grid-cols-1 md:grid-cols-3">
+        {/* Business Websites is the entry product, so its column runs a
+            little wider than the other two — hierarchy through scale,
+            not through a louder card. */}
+        <Grid className="mt-12 grid-cols-1 md:grid-cols-[1.15fr_1fr_1fr]">
           {dict.services.categories.map((category, i) => (
             <Card
               key={category.id}

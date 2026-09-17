@@ -1,12 +1,7 @@
 import Image from "next/image";
 import { BrowserFrame } from "@/components/illustrations/BrowserFrame";
 import { PhoneFrame } from "@/components/illustrations/PhoneFrame";
-import {
-  CalendarIcon,
-  CheckIcon,
-  HeartIcon,
-  SparkIcon,
-} from "@/components/illustrations/icons";
+import { CheckIcon, SparkIcon } from "@/components/illustrations/icons";
 import { HERO_IMAGE_SIZES, images } from "@/lib/content/images";
 import type { Dictionary } from "@/lib/i18n/dictionary";
 
@@ -25,7 +20,11 @@ interface HeroShowcaseProps {
 // instant reveal under prefers-reduced-motion.
 export function HeroShowcase({ content }: HeroShowcaseProps) {
   return (
-    <div aria-hidden="true" className="relative mx-auto w-full max-w-2xl">
+    <div
+      aria-hidden="true"
+      data-brand="alma"
+      className="relative mx-auto w-full max-w-2xl"
+    >
       {/* Layer 1: the website itself. */}
       <BrowserFrame
         label={content.brand}
@@ -68,23 +67,12 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
           </div>
 
           <div className="grid grid-cols-3 gap-2.5">
-            {content.services.map((service, i) => (
+            {content.services.map((service) => (
               <div
                 key={service}
-                className="border-border bg-background flex flex-col gap-2 rounded-lg border p-3"
+                className="bg-demo-soft text-demo-dark rounded-lg px-3 py-2.5 text-[11px] leading-tight font-medium"
               >
-                <span className="bg-demo-soft text-demo flex h-6 w-6 items-center justify-center rounded-md">
-                  {i === 0 ? (
-                    <HeartIcon width={14} height={14} />
-                  ) : i === 1 ? (
-                    <SparkIcon width={14} height={14} />
-                  ) : (
-                    <CalendarIcon width={14} height={14} />
-                  )}
-                </span>
-                <span className="text-text text-[11px] leading-tight font-medium">
-                  {service}
-                </span>
+                {service}
               </div>
             ))}
           </div>
@@ -133,14 +121,14 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
               key={i}
               className={
                 i === 5
-                  ? "bg-demo w-1.5 rounded-t-sm"
-                  : "bg-demo/25 w-1.5 rounded-t-sm"
+                  ? "bg-demo-strong w-1.5 rounded-t-sm"
+                  : "bg-demo-soft w-1.5 rounded-t-sm"
               }
               style={{ height: `${h}%` }}
             />
           ))}
         </span>
-        <SparkIcon className="text-demo h-4 w-4" />
+        <SparkIcon className="text-demo-strong h-4 w-4" />
       </div>
 
       {/* Layer 2: the booking notification, top-right, breaking out past

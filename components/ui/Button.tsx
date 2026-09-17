@@ -13,6 +13,8 @@ const variantClass: Record<ButtonVariant, string> = {
   // the white label below 4.5:1.
   primary:
     "bg-accent-strong text-white shadow-sm hover:bg-[color:var(--color-accent-hover)]",
+  // On the light theme this is a soft surface with a hairline; on a dark
+  // section the same tokens resolve to a cream outline on charcoal.
   secondary:
     "bg-surface text-text border border-border-strong shadow-sm hover:border-accent hover:text-accent",
   ghost: "text-text hover:text-accent",
@@ -20,7 +22,7 @@ const variantClass: Record<ButtonVariant, string> = {
   // site's own secondary styling and the green survives only inside the
   // glyph, where it's still instantly recognizable.
   whatsapp:
-    "bg-surface text-text border border-border-strong shadow-sm hover:border-accent hover:text-accent [&_svg]:text-whatsapp",
+    "bg-transparent text-text border border-border-strong hover:border-accent hover:text-accent [&_svg]:text-whatsapp",
   // The primary action *inside a conceptual project's own interface* —
   // a clinic's "Confirm visit", a restaurant's "Reserve". It wears that
   // project's blue, not this site's terracotta, so a demo reads as one

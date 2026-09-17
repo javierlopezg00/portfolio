@@ -79,7 +79,7 @@ export function LeadQualificationDemo() {
   const timelineLabel = timelines.find((t) => t.id === state.timeline)?.label;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div data-brand="kestrel" className="flex flex-col gap-6">
       <Badge>{dict.lab.demoBadge}</Badge>
       <StepIndicator
         tone="demo"

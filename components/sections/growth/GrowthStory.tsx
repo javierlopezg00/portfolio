@@ -69,7 +69,14 @@ export function GrowthStory() {
               }}
               data-stage-index={index}
               data-active={isActive}
-              className="flex flex-col lg:min-h-[52vh] lg:justify-center lg:py-8"
+              // Each step reserves a little under half a viewport so the
+              // sticky illustration has room to swap, but the first one
+              // hugs the top: centering it left ~25vh of empty column
+              // between the intro and the story.
+              className={cn(
+                "flex flex-col lg:min-h-[44vh] lg:py-6",
+                index === 0 ? "lg:justify-start lg:pt-2" : "lg:justify-center",
+              )}
             >
               {/* Inactive steps (desktop only) step back to the secondary
                   text color rather than fading via opacity — dimmed text

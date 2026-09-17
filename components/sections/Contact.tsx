@@ -1,5 +1,9 @@
 import { BrandMotif } from "@/components/illustrations/BrandMotif";
-import { MailIcon, WhatsAppIcon } from "@/components/illustrations/icons";
+import {
+  ArrowRightIcon,
+  MailIcon,
+  WhatsAppIcon,
+} from "@/components/illustrations/icons";
 import {
   Container,
   Heading,
@@ -66,23 +70,27 @@ export async function Contact() {
                   {dict.contact.whatsapp}
                 </a>
               )}
-              <a
-                href={siteConfig.contact.mailto}
-                className={buttonStyles({ variant: "secondary", size: "lg" })}
-              >
-                <MailIcon width={20} height={20} />
-                {dict.contact.email}
-              </a>
             </div>
+            {/* Tertiary: a plain text link, deliberately below the two
+                buttons in weight so it never competes with the quote. */}
+            <a
+              href={siteConfig.contact.mailto}
+              className="text-text hover:text-accent duration-fast group mt-5 inline-flex w-fit items-center gap-2 rounded-sm font-medium transition-colors ease-out"
+            >
+              <MailIcon width={18} height={18} />
+              {dict.contact.email}
+              <ArrowRightIcon
+                width={16}
+                height={16}
+                className="duration-fast transition-transform ease-out group-hover:translate-x-0.5"
+              />
+            </a>
             {/* The address in plain sight: some people would simply
                 rather write it down than click anything. */}
-            <div className="mt-8 flex flex-col gap-1">
-              <a
-                href={siteConfig.contact.mailto}
-                className="text-text hover:text-accent duration-fast w-fit rounded-sm text-lg font-medium underline decoration-[color:var(--color-accent-tint)] decoration-2 underline-offset-[6px] transition-colors ease-out"
-              >
+            <div className="mt-6 flex flex-col gap-0.5">
+              <Text tone="secondary" size="sm" className="select-all">
                 {siteConfig.contact.email}
-              </a>
+              </Text>
               <Text tone="secondary" size="sm">
                 {dict.contact.replyNote}
               </Text>

@@ -37,13 +37,22 @@
   --color-border-strong: #d6ccbe;
   --color-focus-ring: #9f4c28;
 
-  /* Conceptual-project palette. Meridian's healthcare blue, and by
-     extension every mockup interface on the site — a client's software
-     is that client's brand, not this one's. Never used by Javier López
-     Digital's own chrome. */
-  --color-demo: #3b5bdb;
-  --color-demo-strong: #4263eb;
-  --color-demo-soft: #eef2ff;
+  /* Project palette. Every mockup and demo on the site reads these five
+     `demo` tokens; a `data-brand` attribute on the mockup's root swaps
+     them for that project's own identity (see the [data-brand] blocks
+     below). The defaults here are a neutral slate for anything that
+     isn't a named client — the Interactive Lab's sample-data demos.
+       demo         text and icons, ≥4.5:1 on the project's surface
+       demo-strong  solid fills carrying white text
+       demo-soft    tinted surfaces and selected states
+       demo-dark    headings and dark bands
+       demo-surface the project's own page ground
+     Never used by Javier López Digital's own chrome. */
+  --color-demo: #4a5b7a;
+  --color-demo-strong: #4a5b7a;
+  --color-demo-soft: #e9edf3;
+  --color-demo-dark: #2f3a4f;
+  --color-demo-surface: #f6f7f9;
 
   /* Semantic status colors, theme-aware: one fixed red/green can't pass
      4.5:1 against both a warm-white and a charcoal surface. */
@@ -110,7 +119,10 @@
   --color-surface: #333d37;
   --color-surface-muted: #3b453f;
   --color-text: #f6f2ea;
-  --color-text-secondary: #bcc0b6;
+  /* Brighter than a mid-grey would suggest (9:1): body copy on the
+     charcoal read as muted, while headings at #f6f2ea keep the step
+     above it. */
+  --color-text-secondary: #dad5c9;
   /* Terracotta inverts to its light end for text and icons (7.2:1 on
      the charcoal). Fills keep the same accent-strong as the light
      theme, since white label text sits on them either way. */
@@ -120,14 +132,73 @@
   --color-border: rgb(246 242 234 / 12%);
   --color-border-strong: rgb(246 242 234 / 22%);
   --color-focus-ring: #eaa47c;
-  --color-demo: #a3b4ff;
-  --color-demo-soft: rgb(163 180 255 / 12%);
+  --color-demo: #b9c4dc;
+  --color-demo-soft: rgb(185 196 220 / 14%);
   --color-error: #fda29b;
   --color-success: #6ce9a6;
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 24%);
   --shadow-md: 0 8px 24px rgb(0 0 0 / 32%);
   --shadow-lg: 0 24px 64px rgb(0 0 0 / 40%);
   --shadow-xl: 0 48px 96px -24px rgb(0 0 0 / 55%);
+}
+
+/* Project identities. Each conceptual project is its own brand, and this
+   is the one place those brands are defined: set data-brand on a
+   mockup's root and every demo-* utility inside re-themes through the
+   cascade. Values were chosen against each project's own surface —
+   `demo` clears 4.5:1 as text, `demo-strong` carries white text at 5:1+,
+   `demo-soft` is the selected/tinted state. */
+
+/* Alma Wellness — sage. Calm, natural, premium; not rustic. */
+[data-brand="alma"] {
+  --color-demo: #546752;
+  --color-demo-strong: #5b6e5a;
+  --color-demo-soft: #e4e9e0;
+  --color-demo-dark: #39473a;
+  --color-demo-surface: #f5f2eb;
+}
+
+/* Lumi Salon — muted mauve. Warm and polished, never hot pink. The
+   suggested #a56a72 only reaches 4.3:1 with white, so fills run one
+   step darker and the lighter mauve appears as icon and accent. */
+[data-brand="lumi"] {
+  --color-demo: #875560;
+  --color-demo-strong: #8e5a62;
+  --color-demo-soft: #f3e5e6;
+  --color-demo-dark: #623f45;
+  --color-demo-surface: #f8f4f1;
+}
+
+/* Meridian Health — healthcare blue, kept on purpose. Refined away from
+   the stock framework blue: deeper, a little grey, clinical. */
+[data-brand="meridian"] {
+  --color-demo: #2b62a8;
+  --color-demo-strong: #2b62a8;
+  --color-demo-soft: #e6eff8;
+  --color-demo-dark: #1e3f6e;
+  --color-demo-surface: #f6f9fc;
+}
+
+/* Ember & Oak — burgundy on warm cream. The food photography is the
+   color; the accent only supports it. */
+[data-brand="ember"] {
+  --color-demo: #8b3e32;
+  --color-demo-strong: #8b3e32;
+  --color-demo-soft: #f1e1d8;
+  --color-demo-dark: #4c2b26;
+  --color-demo-surface: #f8f2e9;
+}
+
+/* Kestrel Partners — charcoal, sand and bronze. Bronze (#b39a74) is
+   2.3:1 on cream, so it is never text: it lives as rules and glyphs, and
+   as the accent on the charcoal band, where it reaches 5.3:1. */
+[data-brand="kestrel"] {
+  --color-demo: #282b28;
+  --color-demo-strong: #282b28;
+  --color-demo-soft: #f3efe8;
+  --color-demo-dark: #282b28;
+  --color-demo-surface: #f3efe8;
+  --color-demo-accent: #b39a74;
 }
 
 @theme inline {
@@ -144,6 +215,9 @@
   --color-demo: var(--color-demo);
   --color-demo-strong: var(--color-demo-strong);
   --color-demo-soft: var(--color-demo-soft);
+  --color-demo-dark: var(--color-demo-dark);
+  --color-demo-surface: var(--color-demo-surface);
+  --color-demo-accent: var(--color-demo-accent, var(--color-demo));
   --color-border: var(--color-border);
   --color-border-strong: var(--color-border-strong);
   --color-focus-ring: var(--color-focus-ring);

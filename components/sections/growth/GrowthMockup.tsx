@@ -29,7 +29,11 @@ interface GrowthMockupProps {
 // decorative (aria-hidden): the stage text next to it carries the meaning.
 export function GrowthMockup({ stage, content, className }: GrowthMockupProps) {
   return (
-    <div aria-hidden="true" className={cn("relative", className)}>
+    <div
+      aria-hidden="true"
+      data-brand="lumi"
+      className={cn("relative", className)}
+    >
       <BrowserFrame label={content.brand}>
         <div className="flex min-h-[340px] flex-col gap-5 p-5 sm:min-h-[380px] sm:p-6">
           {stage < 3 ? (

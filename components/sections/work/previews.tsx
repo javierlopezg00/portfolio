@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { images, MOCKUP_IMAGE_SIZES } from "@/lib/content/images";
 
@@ -21,7 +22,7 @@ interface ClinicPreviewContent {
 
 export function ClinicPreview({ content }: { content: ClinicPreviewContent }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div data-brand="meridian" className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <span className="text-text text-xs font-semibold">{content.logo}</span>
         <div className="hidden gap-3 @sm:flex">
@@ -74,7 +75,7 @@ export function RestaurantPreview({
   content: RestaurantPreviewContent;
 }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div data-brand="ember" className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <span className="text-text text-xs font-semibold">{content.logo}</span>
         <span className="bg-demo-strong inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-medium text-white">
@@ -198,11 +199,16 @@ interface ConsultingPreviewContent {
 
 export function ConsultingPreview({
   content,
+  image,
 }: {
   content: ConsultingPreviewContent;
+  /** Optional photograph for the header band (a workspace, a meeting,
+   * the firm's building). Until one exists the band carries a restrained
+   * bronze geometric mark instead — a designed placeholder, not stock. */
+  image?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div data-brand="kestrel" className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <span className="text-text text-xs font-semibold">{content.logo}</span>
         <div className="hidden gap-3 @sm:flex">
@@ -213,24 +219,41 @@ export function ConsultingPreview({
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-1.5">
-        <p className="text-text text-sm leading-snug font-semibold">
-          {content.headline}
-        </p>
-        <p className="text-text-secondary text-xs leading-snug">
-          {content.subtext}
-        </p>
+
+      {/* The firm's opening statement on its own charcoal band: the one
+          strong visual the layout was missing. Serif because a
+          professional-services brand earns the editorial voice — it's
+          the site's existing display face, not a third family. */}
+      <div className="bg-demo-dark relative overflow-hidden rounded-md">
+        {image ? (
+          <div className="absolute inset-0 opacity-60">{image}</div>
+        ) : (
+          <KestrelMark />
+        )}
+        <div className="relative flex flex-col gap-1.5 p-4 @sm:max-w-[70%] @sm:p-5">
+          <p className="font-display text-[15px] leading-tight text-[color:#f6f2ea] @sm:text-lg">
+            {content.headline}
+          </p>
+          <p className="text-[11px] leading-snug text-[color:#f6f2ea]/75">
+            {content.subtext}
+          </p>
+          <span className="mt-2 inline-flex w-fit items-center gap-1.5 text-[10px] font-medium tracking-wide text-[color:var(--color-demo-accent)] uppercase">
+            <span className="bg-demo-accent h-px w-5" />
+            {content.navLinks[0]}
+          </span>
+        </div>
       </div>
+
       <div className="grid grid-cols-1 gap-3 @sm:grid-cols-3">
         {content.practiceAreas.map((area, i) => {
           const Icon = PRACTICE_ICONS[i];
           return (
             <div
               key={area}
-              className="border-border bg-background/40 flex flex-col gap-2 rounded-md border p-3"
+              className="bg-demo-soft flex flex-col gap-2 rounded-md p-3"
             >
               {Icon && <Icon />}
-              <span className="text-text-secondary text-[11px] leading-tight">
+              <span className="text-demo-dark text-[11px] leading-tight font-medium">
                 {area}
               </span>
             </div>
@@ -238,5 +261,28 @@ export function ConsultingPreview({
         })}
       </div>
     </div>
+  );
+}
+
+// Bronze geometry for the band: two concentric arcs and a short rule,
+// drawn thin. Quiet enough to sit behind text, distinctive enough that
+// the card reads as a brand rather than as a wireframe.
+function KestrelMark() {
+  return (
+    <svg
+      viewBox="0 0 200 120"
+      preserveAspectRatio="xMaxYMid slice"
+      aria-hidden="true"
+      className="text-demo-accent absolute inset-y-0 right-0 h-full w-[55%] opacity-70"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.25"
+    >
+      <circle cx="150" cy="60" r="46" />
+      <circle cx="150" cy="60" r="30" opacity="0.6" />
+      <circle cx="150" cy="60" r="14" opacity="0.4" />
+      <path d="M104 60h-30" />
+      <circle cx="70" cy="60" r="2.5" fill="currentColor" stroke="none" />
+    </svg>
   );
 }

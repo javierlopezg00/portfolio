@@ -12,6 +12,10 @@ import {
 // same "tiny real interface" language as the hero — a website, a booking
 // with a payment, a dashboard — so a visitor recognizes each service
 // before reading a word. All aria-hidden; the card copy carries meaning.
+//
+// Drawn in this site's own ink and sand rather than any project's brand:
+// they depict "a client site" in the abstract, so they belong to the
+// editorial frame, not to Meridian or Ember & Oak.
 
 function Frame({ children }: { children: ReactNode }) {
   return (
@@ -39,18 +43,18 @@ export function WebsiteIllustration() {
         <div className="flex flex-col gap-2 p-3">
           <div className="flex items-center justify-between">
             <span className="bg-text/80 h-1.5 w-10 rounded-full" />
-            <span className="bg-demo-strong h-3 w-10 rounded-full" />
+            <span className="bg-text h-3 w-10 rounded-full" />
           </div>
           <span className="bg-text/70 mt-1 h-2 w-3/4 rounded-full" />
           <span className="bg-text-secondary/40 h-1.5 w-1/2 rounded-full" />
           <div className="mt-1 grid grid-cols-3 gap-1.5">
             {[0, 1, 2].map((i) => (
-              <span key={i} className="bg-demo-soft h-7 rounded-md" />
+              <span key={i} className="bg-surface-muted h-7 rounded-md" />
             ))}
           </div>
         </div>
       </div>
-      <GlobeIcon className="text-demo -ml-3 hidden h-6 w-6 shrink-0 @sm:block" />
+      <GlobeIcon className="text-text-secondary -ml-3 hidden h-6 w-6 shrink-0 @sm:block" />
     </Frame>
   );
 }
@@ -70,8 +74,8 @@ export function OnlineIllustration({ label }: { label: string }) {
                 key={i}
                 className={
                   i === 4
-                    ? "bg-demo-strong h-4 rounded-md"
-                    : "bg-demo-soft h-4 rounded-md"
+                    ? "bg-text h-4 rounded-md"
+                    : "bg-surface-muted h-4 rounded-md"
                 }
               />
             ))}
@@ -107,7 +111,7 @@ export function SoftwareIllustration() {
               key={i}
               className={
                 i === 0
-                  ? "bg-demo-strong h-2.5 w-2.5 rounded-sm"
+                  ? "bg-text h-2.5 w-2.5 rounded-sm"
                   : "bg-border-strong h-2.5 w-2.5 rounded-sm"
               }
             />
@@ -129,13 +133,13 @@ export function SoftwareIllustration() {
             {[35, 55, 45, 75, 60, 90].map((h, i) => (
               <span
                 key={i}
-                className="bg-demo/60 flex-1 rounded-t-sm"
+                className="bg-text/55 flex-1 rounded-t-sm"
                 style={{ height: `${h}%` }}
               />
             ))}
           </div>
         </div>
-        <ChartIcon className="text-demo hidden h-5 w-5 shrink-0 self-start @sm:block" />
+        <ChartIcon className="text-text-secondary hidden h-5 w-5 shrink-0 self-start @sm:block" />
       </div>
     </Frame>
   );

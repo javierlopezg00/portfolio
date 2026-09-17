@@ -67,7 +67,7 @@ export function ReservationDemo() {
 
   if (state.step === "confirmed") {
     return (
-      <div className="flex flex-col gap-6">
+      <div data-brand="ember" className="flex flex-col gap-6">
         <Badge>{dict.lab.demoBadge}</Badge>
         <div className="border-border bg-surface rounded-md border p-6">
           <div className="flex flex-col items-center gap-4 py-8 text-center">
@@ -117,7 +117,7 @@ export function ReservationDemo() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div data-brand="ember" className="flex flex-col gap-6">
       <Badge>{dict.lab.demoBadge}</Badge>
       <StepIndicator
         tone="demo"
