@@ -29,5 +29,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
   });
 
-  return [...homepages, ...caseStudies];
+  const labLanguages = Object.fromEntries(
+    locales.map((locale) => [locale, `${SITE_URL}/${locale}/lab`]),
+  );
+  const lab: MetadataRoute.Sitemap = locales.map((locale) => ({
+    url: `${SITE_URL}/${locale}/lab`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.5,
+    alternates: { languages: labLanguages },
+  }));
+
+  return [...homepages, ...caseStudies, ...lab];
 }

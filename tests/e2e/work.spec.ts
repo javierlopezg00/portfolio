@@ -6,9 +6,11 @@ test.describe("Case studies", () => {
   test("project card links to its case study", async ({ page }) => {
     await page.goto("/en/#work");
     await page.locator("#work").scrollIntoViewIfNeeded();
+    // The whole card links to the case study, stretched from the project
+    // name — so the accessible link is the name itself.
     const link = page
-      .getByRole("link", { name: new RegExp(en.work.viewCaseStudy) })
-      .first();
+      .locator("#work")
+      .getByRole("link", { name: en.work.projects[0].name });
     await expect(link).toBeVisible();
     await link.click();
     await expect(page).toHaveURL(/\/en\/work\//);
@@ -27,16 +29,27 @@ test.describe("Case studies", () => {
     await expect(page.locator("footer")).toBeVisible();
   });
 
-  test("clinic route renders the booking flow instead of the generic case study", async ({
+  test("clinic route renders the full sales demo: services, doctors, location and booking", async ({
     page,
   }) => {
     await page.goto("/en/work/clinic");
     await expect(
       page.getByRole("heading", { level: 1, name: "Meridian Health" }),
     ).toBeVisible();
-    await expect(
-      page.getByRole("heading", { name: en.work.clinicBooking.heading }),
-    ).toBeVisible();
+    const show = en.work.clinicShowcase;
+    for (const name of [
+      show.servicesHeading,
+      show.doctorsHeading,
+      show.mobileHeading,
+      show.locationHeading,
+      show.trustHeading,
+      en.work.clinicBooking.heading,
+    ]) {
+      await expect(page.getByRole("heading", { name })).toBeVisible();
+    }
+    await expect(page.getByText(show.address)).toBeVisible();
+    // Nothing on the demo page collects data: no form posts anywhere.
+    await expect(page.locator("form[action]")).toHaveCount(0);
   });
 
   test("unknown case study id 404s", async ({ page }) => {
@@ -65,6 +78,7 @@ test.describe("Case studies", () => {
   }) => {
     for (const id of ["restaurant", "consulting", "clinic"]) {
       await page.goto(`/en/work/${id}`);
+      await page.waitForLoadState("networkidle");
       const results = await new AxeBuilder({ page }).analyze();
       expect(results.violations).toEqual([]);
     }
@@ -79,24 +93,26 @@ test.describe("Case studies", () => {
         page.getByRole("heading", { name: en.work.caseStudyCta.heading }),
       ).toBeVisible();
       await expect(
-        page.getByRole("link", { name: en.work.caseStudyCta.secondaryCta }),
+        page
+          .locator("#next-steps")
+          .getByRole("link", { name: en.contact.email }),
       ).toHaveAttribute("href", /^mailto:/);
     }
   });
 
-  test("case study CaseStudyCTA's primary button navigates back to the homepage configurator", async ({
+  test("case study CaseStudyCTA's primary button navigates back to the homepage contact section", async ({
     page,
   }) => {
-    // Regression test for a real dead-end bug: ConfiguratorCtaLink used to
-    // link to the bare "#configurator" fragment, which resolves to nothing
-    // on any page other than the homepage.
+    // Regression test for a real dead-end bug: the CTA used to link to a
+    // bare fragment, which resolves to nothing on any page other than the
+    // homepage.
     await page.goto("/en/work/restaurant");
     await page
       .locator("#next-steps")
       .getByRole("link", { name: en.work.caseStudyCta.primaryCta })
       .click();
-    await expect(page).toHaveURL(/\/en#configurator$/);
-    await expect(page.locator("#configurator")).toBeVisible();
+    await expect(page).toHaveURL(/\/en#contact$/);
+    await expect(page.locator("#contact")).toBeVisible();
   });
 
   test("nav's Start a Project button also navigates home from a case study page", async ({
@@ -107,8 +123,21 @@ test.describe("Case studies", () => {
       .getByRole("link", { name: en.nav.startAProject })
       .first()
       .click();
-    await expect(page).toHaveURL(/\/en#configurator$/);
-    await expect(page.locator("#configurator")).toBeVisible();
+    await expect(page).toHaveURL(/\/en#contact$/);
+    await expect(page.locator("#contact")).toBeVisible();
+  });
+
+  test("nav section links resolve from a case study page, not just the homepage", async ({
+    page,
+  }) => {
+    await page.goto("/en/work/consulting");
+    const workLink = page.getByRole("link", { name: en.nav.links[0].label });
+    if (!(await workLink.first().isVisible())) {
+      await page.getByRole("button", { name: en.nav.openMenu }).click();
+    }
+    await workLink.first().click();
+    await expect(page).toHaveURL(/\/en#work$/);
+    await expect(page.locator("#work")).toBeVisible();
   });
 
   test("restaurant case study's reservation demo completes a full flow", async ({

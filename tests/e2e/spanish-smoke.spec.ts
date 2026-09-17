@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import { en } from "@/lib/i18n/en";
 import { es } from "@/lib/i18n/es";
 
@@ -9,6 +9,15 @@ import { es } from "@/lib/i18n/es";
 // it, and complete the one real conversion flow (the configurator)
 // entirely in Spanish, with no accessibility regressions specific to
 // that locale.
+
+// The hero illustration fades in with a short CSS entrance animation;
+// axe samples colors mid-fade otherwise and reports contrast failures
+// that no visitor ever sees.
+async function settleAnimations(page: Page) {
+  await page.evaluate(() =>
+    Promise.all(document.getAnimations().map((a) => a.finished)),
+  );
+}
 
 test.describe("Spanish locale", () => {
   test("homepage loads with Spanish content and every major section present", async ({
@@ -21,18 +30,16 @@ test.describe("Spanish locale", () => {
     ).toBeVisible();
 
     for (const id of [
-      "#why-custom",
-      "#evolution",
       "#services",
-      "#lab",
-      "#who-i-work-with",
       "#work",
+      "#growth",
+      "#who-i-work-with",
       "#process",
-      "#configurator",
+      "#lab",
       "#about",
-      "#faq",
-      "#maintenance",
       "#contact",
+      "#configurator",
+      "#faq",
     ]) {
       await expect(page.locator(id)).toBeAttached();
     }
@@ -45,6 +52,7 @@ test.describe("Spanish locale", () => {
   }) => {
     await page.goto("/es");
     await page.waitForLoadState("networkidle");
+    await settleAnimations(page);
 
     const results = await new AxeBuilder({ page })
       .exclude("[data-nextjs-dev-tools-button]")

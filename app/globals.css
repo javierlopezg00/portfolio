@@ -1,105 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  /* Color — dark primary interface (default) */
-  --color-background: #08090b;
-  --color-surface: #111318;
-  --color-text: #f4f4f5;
-  --color-text-secondary: #9ea3ae;
-  --color-accent: #4f7cff;
-  /* Same hue, darkened for solid fills that carry white/light text (button
-     backgrounds, selected pills) — #4f7cff only reaches 3.71:1 against
-     white, short of WCAG AA's 4.5:1 for normal text. Kept as a second
-     token rather than darkening --color-accent globally because the
-     original value is what gives --color-accent good contrast as *text*
-     on the dark background (5.37:1) — darkening it there to fix the
-     button case would have broken that instead. Fixed value regardless of
-     section theme, since white text sits on it either way. */
-  --color-accent-strong: #3b5bdb;
-  --color-border: rgb(244 244 245 / 8%);
-  --color-border-strong: rgb(244 244 245 / 16%);
-  --color-focus-ring: #4f7cff;
-  /* Semantic status colors. Theme-aware for the same reason as
-     accent-strong: a single fixed red/green can't hit 4.5:1 text
-     contrast against both a near-black and a near-white surface — one
-     direction always fails. Tailwind's red-400/emerald-500 (used here for
-     dark) read ~2.3-2.7:1 against the light section background. */
-  --color-error: #ff6467;
-  --color-success: #10b981;
+:root,
+[data-theme="light"] {
+  /* Color — light, warm interface (default). The site is predominantly
+     light; a handful of sections opt into the dark override below for
+     contrast (see Section's `theme` prop). data-theme="light" exists so a
+     light card can sit inside a dark section (the quote form in the
+     contact section) and get the same tokens back. */
+  --color-background: #fafaf7;
+  --color-surface: #ffffff;
+  /* A tinted surface for "soft" sections and illustration backdrops. */
+  --color-surface-soft: #eef2ff;
+  --color-text: #1d2633;
+  --color-text-secondary: #5b6575;
+  /* Accent as text/icon. One step darker than the fill color so small
+     caption text still clears 4.5:1 on the tinted "soft" surface (the
+     brighter #4263eb lands at 4.45:1 there). */
+  --color-accent: #3b5bdb;
+  /* Solid fills that carry white text (buttons, selected pills) — 5:1
+     with white. Primary buttons hover to --color-accent. */
+  --color-accent-strong: #4263eb;
+  --color-accent-soft: #eef2ff;
+  --color-border: #e5e7eb;
+  --color-border-strong: #cfd4dc;
+  --color-focus-ring: #4263eb;
+  /* Semantic status colors, theme-aware for the same contrast reason as
+     the text colors: one fixed red/green can't pass against both a
+     near-white and a near-navy surface. */
+  --color-error: #b42318;
+  /* Dark enough to stay above 4.5:1 even on its own 15% tint (the
+     "Payment received" / "Reminder sent" chips in the illustrations). */
+  --color-success: #04693e;
+  /* WhatsApp's brand green, darkened enough for white text (5.3:1). */
+  --color-whatsapp: #0f7a52;
 
-  /* Elevation */
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 24%);
-  --shadow-md: 0 8px 24px rgb(0 0 0 / 32%);
-  --shadow-lg: 0 24px 64px rgb(0 0 0 / 40%);
+  /* Elevation — soft, low-contrast shadows for white cards on a warm
+     background. */
+  --shadow-sm: 0 1px 2px rgb(29 38 51 / 5%), 0 1px 3px rgb(29 38 51 / 4%);
+  --shadow-md: 0 6px 20px rgb(29 38 51 / 7%), 0 2px 6px rgb(29 38 51 / 4%);
+  --shadow-lg: 0 24px 60px rgb(29 38 51 / 12%), 0 8px 20px rgb(29 38 51 / 6%);
 
   /* Radius scale */
-  --radius-sm: 6px;
-  --radius-md: 10px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
   --radius-lg: 16px;
+  --radius-xl: 24px;
 
-  /* Motion — durations. Keep in sync with lib/animation/tokens.ts */
+  /* Motion — durations */
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --duration-slow: 600ms;
 
-  /* Motion — easing. Keep in sync with lib/animation/tokens.ts */
+  /* Motion — easing */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Type scale — fluid, large type is a deliberate design pillar */
-  --text-display: clamp(2.75rem, 2rem + 3vw, 6rem);
-  --text-display--line-height: 1.02;
-  --text-display--letter-spacing: -0.02em;
-  --text-h1: clamp(2.25rem, 1.8rem + 2vw, 3.5rem);
-  --text-h1--line-height: 1.08;
+  /* Type scale — fluid, large-but-approachable headlines with generous
+     line-height so long Spanish headings still scan easily. */
+  --text-display: clamp(2.5rem, 1.7rem + 2.8vw, 4.25rem);
+  --text-display--line-height: 1.06;
+  --text-display--letter-spacing: -0.025em;
+  --text-h1: clamp(2.125rem, 1.6rem + 1.8vw, 3.25rem);
+  --text-h1--line-height: 1.1;
   --text-h1--letter-spacing: -0.02em;
-  --text-h2: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
-  --text-h2--line-height: 1.12;
-  --text-h2--letter-spacing: -0.015em;
-  --text-h3: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
-  --text-h3--line-height: 1.2;
+  --text-h2: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: clamp(1.25rem, 1.15rem + 0.5vw, 1.625rem);
+  --text-h3--line-height: 1.25;
   --text-h3--letter-spacing: -0.01em;
-  --text-h4: clamp(1.125rem, 1rem + 0.3vw, 1.25rem);
-  --text-h4--line-height: 1.3;
+  --text-h4: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --text-h4--line-height: 1.35;
   --text-body-lg: 1.125rem;
-  --text-body-lg--line-height: 1.6;
+  --text-body-lg--line-height: 1.65;
   --text-body: 1rem;
-  --text-body--line-height: 1.6;
-  --text-body-sm: 0.875rem;
-  --text-body-sm--line-height: 1.5;
-  --text-caption: 0.75rem;
-  --text-caption--line-height: 1.4;
+  --text-body--line-height: 1.65;
+  --text-body-sm: 0.9375rem;
+  --text-body-sm--line-height: 1.55;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.45;
 }
 
-/* Light-section variant. A Section sets data-theme="light" and every
-   primitive underneath re-themes via the cascade — no prop drilling. */
-[data-theme="light"] {
-  --color-background: #f6f6f7;
-  --color-surface: #ffffff;
-  --color-text: #0b0c0e;
-  --color-text-secondary: #55585f;
-  --color-border: rgb(11 12 14 / 8%);
-  --color-border-strong: rgb(11 12 14 / 16%);
-  --color-error: #b91c1c;
-  --color-success: #047857;
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 6%);
-  --shadow-md: 0 8px 24px rgb(0 0 0 / 8%);
-  --shadow-lg: 0 24px 64px rgb(0 0 0 / 10%);
+/* Dark-section variant. A Section sets data-theme="dark" and every
+   primitive underneath re-themes via the cascade — no prop drilling.
+   Deep navy rather than black: it still reads as warm and calm next to
+   the light sections around it. */
+[data-theme="dark"] {
+  --color-background: #141b2d;
+  --color-surface: #1c2438;
+  --color-surface-soft: #232d45;
+  --color-text: #f5f7fa;
+  --color-text-secondary: #aab4c5;
+  /* Lighter accent for text/icons on navy (7.5:1); solid fills keep the
+     fixed accent-strong since white text sits on them either way. */
+  --color-accent: #a3b4ff;
+  --color-accent-soft: rgb(163 180 255 / 12%);
+  --color-border: rgb(245 247 250 / 10%);
+  --color-border-strong: rgb(245 247 250 / 20%);
+  --color-focus-ring: #a3b4ff;
+  --color-error: #fda29b;
+  --color-success: #6ce9a6;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 24%);
+  --shadow-md: 0 8px 24px rgb(0 0 0 / 32%);
+  --shadow-lg: 0 24px 64px rgb(0 0 0 / 40%);
 }
 
 @theme inline {
   --color-background: var(--color-background);
   --color-surface: var(--color-surface);
+  --color-surface-soft: var(--color-surface-soft);
   --color-text: var(--color-text);
   --color-text-secondary: var(--color-text-secondary);
   --color-accent: var(--color-accent);
   --color-accent-strong: var(--color-accent-strong);
+  --color-accent-soft: var(--color-accent-soft);
   --color-border: var(--color-border);
   --color-border-strong: var(--color-border-strong);
   --color-focus-ring: var(--color-focus-ring);
   --color-error: var(--color-error);
   --color-success: var(--color-success);
+  --color-whatsapp: var(--color-whatsapp);
 
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
@@ -108,6 +128,7 @@
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
 
   --duration-fast: var(--duration-fast);
   --duration-base: var(--duration-base);
@@ -115,7 +136,6 @@
 
   --ease-out: var(--ease-out);
   --ease-in-out: var(--ease-in-out);
-  --ease-spring: var(--ease-spring);
 
   --text-display: var(--text-display);
   --text-display--line-height: var(--text-display--line-height);
@@ -141,25 +161,58 @@
   --text-caption--line-height: var(--text-caption--line-height);
 
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Entrance animations for the hero and growth-story illustrations.
+     Plain CSS so they cost no JavaScript, and the reduced-motion rule at
+     the bottom collapses them to an instant reveal. */
+  --animate-fade-up: fade-up var(--duration-slow) var(--ease-out) both;
+  --animate-fade-in: fade-in var(--duration-base) var(--ease-out) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  transition:
-    background-color var(--duration-base) var(--ease-out),
-    color var(--duration-base) var(--ease-out);
 }
 
-/* Fixed Navigation covers ~80px at top — keep anchor-linked sections
+/* Sticky Navigation covers ~72px at top — keep anchor-linked sections
    (nav links, in-page CTAs) from landing partly hidden underneath it. */
-section[id] {
-  scroll-margin-top: 6rem;
+section[id],
+[data-scroll-target] {
+  scroll-margin-top: 5.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {

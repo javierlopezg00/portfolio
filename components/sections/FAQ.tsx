@@ -7,24 +7,25 @@ export async function FAQ() {
   return (
     <Section id="faq" ariaLabelledBy="faq-heading">
       <Container className="max-w-3xl">
-        <div className="max-w-xl">
-          <Heading id="faq-heading" size="h2">
-            {dict.faq.heading}
-          </Heading>
-        </div>
+        <Heading id="faq-heading" size="h2">
+          {dict.faq.heading}
+        </Heading>
 
-        <div className="divide-border border-border mt-12 flex flex-col divide-y border-t border-b">
+        <div className="mt-10 flex flex-col gap-3">
           {dict.faq.items.map((item) => (
             // The padding lives on <summary>, not <details> — only
             // <summary>'s own box is the native click/tap target, so
             // padding on the parent would look like part of the row
             // without actually being tappable.
-            <details key={item.question} className="group">
-              <summary className="text-body text-text flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-medium [&::-webkit-details-marker]:hidden">
+            <details
+              key={item.question}
+              className="group border-border bg-surface rounded-lg border shadow-sm"
+            >
+              <summary className="text-body text-text focus-visible:ring-focus-ring flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg px-5 py-4 font-medium focus-visible:ring-2 focus-visible:outline-none [&::-webkit-details-marker]:hidden">
                 {item.question}
                 <ChevronIcon className="text-text-secondary duration-fast shrink-0 transition-transform ease-out group-open:rotate-180" />
               </summary>
-              <Text tone="secondary" size="sm" className="pt-1 pb-5">
+              <Text tone="secondary" className="px-5 pb-5">
                 {item.answer}
               </Text>
             </details>

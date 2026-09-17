@@ -1,11 +1,13 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-type SectionTheme = "dark" | "light";
+// "light" is the root default, "soft" is the same theme on the tinted
+// surface, and "dark" flips every token underneath via data-theme — used
+// sparingly (the contact section, the footer) for contrast.
+type SectionTheme = "light" | "soft" | "dark";
 
 interface SectionProps {
   id?: string;
-  /** Dark is the root default, so only "light" ever needs a data-theme override. */
   theme?: SectionTheme;
   className?: string;
   ariaLabelledBy?: string;
@@ -14,7 +16,7 @@ interface SectionProps {
 
 export function Section({
   id,
-  theme = "dark",
+  theme = "light",
   className,
   ariaLabelledBy,
   children,
@@ -22,9 +24,13 @@ export function Section({
   return (
     <section
       id={id}
-      data-theme={theme === "light" ? "light" : undefined}
+      data-theme={theme === "dark" ? "dark" : undefined}
       aria-labelledby={ariaLabelledBy}
-      className={cn("bg-background text-text py-20 sm:py-28", className)}
+      className={cn(
+        "text-text py-16 sm:py-24",
+        theme === "soft" ? "bg-surface-soft" : "bg-background",
+        className,
+      )}
     >
       {children}
     </section>

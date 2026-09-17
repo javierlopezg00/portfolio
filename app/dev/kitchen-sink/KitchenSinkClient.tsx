@@ -57,6 +57,7 @@ export function KitchenSinkClient() {
             <Button variant="primary">Start a Project</Button>
             <Button variant="secondary">Secondary</Button>
             <Button variant="ghost">Ghost</Button>
+            <Button variant="whatsapp">WhatsApp Me</Button>
             <Button variant="primary" disabled>
               Disabled
             </Button>
@@ -89,7 +90,8 @@ export function KitchenSinkClient() {
           </Heading>
           <div className="flex flex-wrap gap-3">
             <Badge>Demo · Sample Data</Badge>
-            <Badge tone="accent">New</Badge>
+            <Badge tone="accent">Clinic Website</Badge>
+            <Badge tone="success">Payment received</Badge>
           </div>
           <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             <Card>
@@ -212,20 +214,43 @@ export function KitchenSinkClient() {
         </Container>
       </Section>
 
-      <Section theme="light" ariaLabelledBy="light-section-heading">
+      <Section theme="soft" ariaLabelledBy="soft-section-heading">
         <Container className="flex flex-col gap-6">
-          <Heading id="light-section-heading" size="h2">
-            Light section variant
+          <Heading id="soft-section-heading" size="h2">
+            Soft section variant
           </Heading>
           <Text tone="secondary">
-            Every primitive above re-themes automatically here — no props passed
-            down, just the data-theme cascade from Section.
+            Same light tokens on the tinted surface — used to break up long runs
+            of white cards on the page background.
           </Text>
           <div className="flex flex-wrap gap-4">
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
             <Card interactive className="max-w-sm">
-              <Heading size="h4">Card in a light section</Heading>
+              <Heading size="h4">Card in a soft section</Heading>
+              <Text size="sm" tone="secondary" className="mt-2">
+                Same component, themed by context.
+              </Text>
+            </Card>
+          </div>
+        </Container>
+      </Section>
+
+      <Section theme="dark" ariaLabelledBy="dark-section-heading">
+        <Container className="flex flex-col gap-6">
+          <Heading id="dark-section-heading" size="h2">
+            Dark section variant
+          </Heading>
+          <Text tone="secondary">
+            Every primitive above re-themes automatically here — no props passed
+            down, just the data-theme cascade from Section. Used sparingly
+            (contact section, footer).
+          </Text>
+          <div className="flex flex-wrap gap-4">
+            <Button variant="primary">Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Card interactive className="max-w-sm">
+              <Heading size="h4">Card in a dark section</Heading>
               <Text size="sm" tone="secondary" className="mt-2">
                 Same component, themed by context.
               </Text>

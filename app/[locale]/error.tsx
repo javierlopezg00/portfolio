@@ -29,7 +29,7 @@ export default function Error({
   return (
     <main>
       <Container className="flex min-h-screen flex-col items-center justify-center text-center">
-        <p className="text-accent mb-4 font-mono text-sm tracking-wide uppercase">
+        <p className="text-accent text-caption mb-4 font-semibold tracking-wide uppercase">
           {dict.errorPage.eyebrow}
         </p>
         <Heading size="display" className="max-w-xl">

@@ -1,6 +1,6 @@
 "use client";
 
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import { Button, Container, Heading, Text } from "@/components/ui";
 import "./globals.css";
 
@@ -16,11 +16,6 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export default function GlobalError({
   retry,
 }: {
@@ -28,14 +23,11 @@ export default function GlobalError({
   retry: () => void;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <main>
           <Container className="flex min-h-screen flex-col items-center justify-center text-center">
-            <p className="text-accent mb-4 font-mono text-sm tracking-wide uppercase">
+            <p className="text-accent text-caption mb-4 font-semibold tracking-wide uppercase">
               Error
             </p>
             <Heading size="display" className="max-w-xl">

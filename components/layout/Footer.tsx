@@ -1,53 +1,88 @@
 import NextLink from "next/link";
 import { Container } from "@/components/ui";
-import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
-import { ConfiguratorCtaLink } from "./ConfiguratorCtaLink";
+import { contactEmail, getWhatsAppHref } from "@/lib/content/nav";
+import {
+  getServerDictionary,
+  getServerLocale,
+} from "@/lib/i18n/getServerDictionary";
+import { StartProjectLink } from "./StartProjectLink";
+import { Wordmark } from "./Wordmark";
 
 const currentYear = new Date().getFullYear();
 
+const linkClass =
+  "text-body-sm text-text-secondary duration-fast hover:text-text focus-visible:ring-focus-ring inline-block rounded-sm py-1 transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none";
+
 export async function Footer() {
+  const locale = await getServerLocale();
   const dict = await getServerDictionary();
+  const whatsappHref = getWhatsAppHref(dict.contact.whatsappMessage);
 
   return (
-    <footer className="border-border bg-background border-t">
-      <Container className="flex flex-col gap-10 py-16">
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+    <footer data-theme="dark" className="bg-background text-text">
+      <Container className="flex flex-col gap-12 py-16">
+        <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-xs">
-            <span className="text-body-sm text-text font-semibold tracking-wide">
-              Javier López Digital
-            </span>
-            <p className="text-body-sm text-text-secondary mt-3">
+            <Wordmark href={`/${locale}`} />
+            <p className="text-body-sm text-text-secondary mt-4">
               {dict.footer.tagline}
             </p>
           </div>
 
-          <nav aria-label={dict.footer.footerAriaLabel} className="flex gap-12">
-            <ul className="flex flex-col gap-3">
+          <nav
+            aria-label={dict.footer.footerAriaLabel}
+            className="flex flex-col gap-8 sm:flex-row sm:gap-16"
+          >
+            <ul className="flex flex-col gap-2">
               {dict.nav.links.map((link) => (
                 <li key={link.href}>
                   <NextLink
-                    href={link.href}
-                    className="text-body-sm text-text-secondary duration-fast hover:text-text transition-colors ease-out"
+                    href={`/${locale}${link.href}`}
+                    className={linkClass}
                   >
                     {link.label}
                   </NextLink>
                 </li>
               ))}
-            </ul>
-            <ul className="flex flex-col gap-3">
               <li>
-                <ConfiguratorCtaLink className="text-body-sm text-text-secondary duration-fast hover:text-text transition-colors ease-out">
+                <NextLink href={`/${locale}/lab`} className={linkClass}>
+                  {dict.footer.lab}
+                </NextLink>
+              </li>
+            </ul>
+            <ul className="flex flex-col gap-2">
+              <li>
+                <StartProjectLink className={linkClass}>
                   {dict.footer.startAProject}
-                </ConfiguratorCtaLink>
+                </StartProjectLink>
+              </li>
+              {whatsappHref && (
+                <li>
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClass}
+                  >
+                    WhatsApp
+                  </a>
+                </li>
+              )}
+              <li>
+                <a
+                  href={`mailto:${contactEmail}`}
+                  className={`${linkClass} break-all`}
+                >
+                  {contactEmail}
+                </a>
               </li>
             </ul>
           </nav>
         </div>
 
-        <div className="border-border text-caption text-text-secondary flex flex-col gap-2 border-t pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p>{dict.footer.copyright(currentYear)}</p>
-          <p>{dict.footer.builtWith}</p>
-        </div>
+        <p className="border-border text-caption text-text-secondary border-t pt-8">
+          {dict.footer.copyright(currentYear)}
+        </p>
       </Container>
     </footer>
   );

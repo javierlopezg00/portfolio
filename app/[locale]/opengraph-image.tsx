@@ -7,7 +7,8 @@ import {
 
 // The `alt` export can't be a function — it's fixed at the module level,
 // so it can't vary per locale the way the rendered image itself can.
-export const alt = "Javier López Digital — Software Development";
+export const alt =
+  "Javier López Digital — Websites & Software for Your Business";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -27,12 +28,39 @@ export default async function Image({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        backgroundColor: "#08090b",
+        backgroundColor: "#fafaf7",
         padding: "80px",
         fontFamily: "sans-serif",
       }}
     >
-      <div style={{ fontSize: 28, color: "#4f7cff", letterSpacing: 2 }}>JL</div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
+          fontSize: 28,
+          fontWeight: 600,
+          color: "#1d2633",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 56,
+            height: 56,
+            borderRadius: 14,
+            backgroundColor: "#3451d1",
+            color: "#ffffff",
+            fontSize: 24,
+            fontWeight: 700,
+          }}
+        >
+          JL
+        </div>
+        Javier López Digital
+      </div>
       <div
         style={{
           fontSize: 64,
@@ -40,12 +68,20 @@ export default async function Image({
           lineHeight: 1.1,
           maxWidth: 900,
           marginTop: 24,
-          color: "#f4f4f5",
+          color: "#1d2633",
         }}
       >
         {dict.seo.ogHeadline}
       </div>
-      <div style={{ fontSize: 28, color: "#9ea3ae", marginTop: 32 }}>
+      <div
+        style={{
+          fontSize: 28,
+          color: "#5b6575",
+          marginTop: 32,
+          maxWidth: 900,
+          lineHeight: 1.4,
+        }}
+      >
         {dict.seo.ogTagline}
       </div>
     </div>,

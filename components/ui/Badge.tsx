@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-type BadgeTone = "neutral" | "accent";
+type BadgeTone = "neutral" | "accent" | "success";
 
 const toneClass: Record<BadgeTone, string> = {
-  neutral: "bg-surface text-text-secondary border border-border",
-  accent: "bg-accent/10 text-accent border border-accent/20",
+  neutral: "bg-background text-text-secondary border border-border",
+  accent: "bg-accent-soft text-accent border border-transparent",
+  success: "bg-success/10 text-success border border-transparent",
 };
 
 interface BadgeProps {
@@ -18,7 +19,7 @@ export function Badge({ tone = "neutral", className, children }: BadgeProps) {
   return (
     <span
       className={cn(
-        "text-caption inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-medium tracking-wide uppercase",
+        "text-caption inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 font-medium",
         toneClass[tone],
         className,
       )}

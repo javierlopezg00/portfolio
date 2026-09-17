@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+import { CheckIcon } from "@/components/illustrations/icons";
 import { Footer } from "@/components/layout/Footer";
 import { Navigation } from "@/components/layout/Navigation";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { CaseStudyApproach } from "@/components/sections/work/CaseStudyApproach";
 import { CaseStudyCTA } from "@/components/sections/work/CaseStudyCTA";
-import { DeviceFrame } from "@/components/sections/work/DeviceFrame";
+import { CaseStudyHeader } from "@/components/sections/work/CaseStudyHeader";
 import { ClinicPreview } from "@/components/sections/work/previews";
-import { ResultsMetrics } from "@/components/sections/work/ResultsMetrics";
-import { Testimonial } from "@/components/sections/work/Testimonial";
-import {
-  Badge,
-  Container,
-  Heading,
-  Link,
-  Section,
-  Text,
-} from "@/components/ui";
+import { ClinicShowcase } from "@/components/work/clinic/ClinicShowcase";
+import { Container, Heading, Section, Text } from "@/components/ui";
 import {
   defaultLocale,
   getDictionary,
@@ -29,8 +23,7 @@ import { getCaseStudyStructuredData } from "@/lib/seo/structuredData";
 
 // The booking flow is meaningfully heavier than the rest of this page
 // (its own calendar/slot logic, several steps of state) — code-split it
-// the same way the homepage's Lab demos already are, so it never adds to
-// the weight of a visitor who never scrolls to it.
+// so it never adds to the weight of a visitor who never scrolls to it.
 const ClinicBookingFlow = dynamic(() =>
   import("@/components/work/clinic/ClinicBookingFlow").then(
     (m) => m.ClinicBookingFlow,
@@ -77,6 +70,10 @@ export async function generateMetadata({
   };
 }
 
+// Meridian is the site's strongest sales demo — a URL to send straight to
+// a doctor or clinic owner. It's a full walk through the clinic site
+// (services, doctors, phone experience, location, live booking flow)
+// with fictional data only, and no medical information collected.
 export default async function ClinicCaseStudyPage({ params }: ClinicPageProps) {
   const { locale } = await params;
   const resolvedLocale = resolveLocale(locale);
@@ -84,8 +81,7 @@ export default async function ClinicCaseStudyPage({ params }: ClinicPageProps) {
   const project = dict.work.projects.find((p) => p.id === "clinic");
   if (!project) notFound();
 
-  const approach = dict.work.caseStudies.clinic ?? [];
-  const caseStudyResults = dict.work.caseStudyResults.clinic;
+  const show = dict.work.clinicShowcase;
   const cb = dict.work.clinicBooking;
 
   return (
@@ -101,97 +97,63 @@ export default async function ClinicCaseStudyPage({ params }: ClinicPageProps) {
       <SkipLink />
       <Navigation />
       <main id="main-content" tabIndex={-1} className="focus:outline-none">
-        <Section ariaLabelledBy="case-study-heading" id="overview">
-          <Container>
-            <Link href={`/${resolvedLocale}#work`} className="text-body-sm">
-              ← {dict.work.caseStudy.backToWork}
-            </Link>
+        <CaseStudyHeader
+          locale={resolvedLocale}
+          dict={dict}
+          project={project}
+          preview={<ClinicPreview content={dict.work.previewContent.clinic} />}
+        >
+          <Text size="lg" className="mt-4 font-medium">
+            {show.tagline}
+          </Text>
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {show.highlights.map((item) => (
+              <li
+                key={item}
+                className="border-border bg-surface text-body-sm text-text flex items-center gap-2 rounded-full border py-1.5 pr-4 pl-2.5"
+              >
+                <CheckIcon className="text-accent" width={16} height={16} />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </CaseStudyHeader>
 
-            <div className="mt-6 max-w-2xl">
-              <div className="flex flex-wrap items-center gap-2">
-                <Badge tone="accent">{dict.work.conceptualProjectBadge}</Badge>
-                <Badge>{project.vertical}</Badge>
-              </div>
-              <Heading id="case-study-heading" size="h1" className="mt-4">
-                {project.name}
-              </Heading>
-              <Text tone="secondary" className="mt-4">
-                {project.description}
-              </Text>
-              <Text tone="secondary" size="sm" className="mt-4 italic">
-                {dict.work.caseStudy.conceptualNote}
-              </Text>
-            </div>
+        <ClinicShowcase dict={dict} />
 
-            <div className="mt-12">
-              <DeviceFrame mode="desktop">
-                <ClinicPreview content={dict.work.previewContent.clinic} />
-              </DeviceFrame>
-            </div>
-          </Container>
-        </Section>
-
-        {approach.length > 0 && (
-          <Section
-            theme="light"
-            ariaLabelledBy="approach-heading"
-            id="approach"
-          >
-            <Container>
-              <div className="max-w-2xl">
-                <Heading id="approach-heading" size="h2">
-                  {dict.work.caseStudy.approachHeading}
-                </Heading>
-                <div className="mt-8 flex flex-col gap-8">
-                  {approach.map((point) => (
-                    <div key={point.title}>
-                      <Heading size="h4" as="h3">
-                        {point.title}
-                      </Heading>
-                      <Text tone="secondary" className="mt-2">
-                        {point.description}
-                      </Text>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {caseStudyResults?.results &&
-                caseStudyResults.results.length > 0 && (
-                  <div className="mt-16 max-w-2xl">
-                    <Heading size="h3">
-                      {dict.work.caseStudy.resultsHeading}
-                    </Heading>
-                    <div className="mt-8">
-                      <ResultsMetrics results={caseStudyResults.results} />
-                    </div>
-                  </div>
-                )}
-
-              {caseStudyResults?.testimonial && (
-                <div className="mt-16 max-w-2xl">
-                  <Testimonial {...caseStudyResults.testimonial} />
-                </div>
-              )}
-            </Container>
-          </Section>
-        )}
-
-        <Section ariaLabelledBy="book-heading" id="book">
+        <Section theme="soft" ariaLabelledBy="book-heading" id="book">
           <Container>
             <div className="max-w-xl">
               <Heading id="book-heading" size="h2">
                 {cb.heading}
               </Heading>
-              <Text tone="secondary" className="mt-4">
+              <Text tone="secondary" size="lg" className="mt-4">
                 {cb.subhead}
               </Text>
             </div>
             <div className="mt-10 max-w-2xl">
               <ClinicBookingFlow />
             </div>
+
+            <div className="mt-16 max-w-2xl">
+              <Heading size="h3" as="h2">
+                {show.trustHeading}
+              </Heading>
+              <ul className="mt-6 flex flex-col gap-3">
+                {show.trustPoints.map((point) => (
+                  <li key={point} className="text-text flex items-start gap-3">
+                    <span className="bg-success/15 text-success mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                      <CheckIcon width={13} height={13} />
+                    </span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Container>
         </Section>
+
+        <CaseStudyApproach dict={dict} projectId="clinic" />
 
         <CaseStudyCTA />
       </main>

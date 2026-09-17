@@ -1,12 +1,14 @@
+import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { images, MOCKUP_IMAGE_SIZES } from "@/lib/content/images";
 
-// Same reasoning as the evolution section's mockup: real, readable copy and
-// small icons rather than abstract bars, since bars-only testing poorly
-// with older viewers. Still not photorealistic fake screenshots — each
-// scene is generic to its business type (a booking flow, a menu, a
+// Real, readable copy and small icons rather than abstract bars — bars-only
+// mockups tested poorly with non-technical viewers, who couldn't tell they
+// were looking at "a website". Still not photorealistic fake screenshots:
+// each scene is generic to its business type (a booking flow, a menu, a
 // practice-areas grid), not a literal copy of a real client's site. Each
-// uses @container query classes so the desktop/mobile toggle in
-// DeviceFrame produces genuine reflow, not two hand-built static states.
+// uses @container query classes so the same component genuinely reflows
+// between DeviceFrame's desktop and phone frames.
 
 interface ClinicPreviewContent {
   logo: string;
@@ -60,25 +62,6 @@ export function ClinicPreview({ content }: { content: ClinicPreviewContent }) {
   );
 }
 
-function GalleryIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="text-text-secondary/50 h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <circle cx="8.5" cy="10" r="1.25" fill="currentColor" stroke="none" />
-      <path d="M21 15l-5-5-4 4-3-3-6 6" />
-    </svg>
-  );
-}
-
 interface RestaurantPreviewContent {
   logo: string;
   cta: string;
@@ -98,27 +81,41 @@ export function RestaurantPreview({
           {content.cta}
         </span>
       </div>
-      <div className="grid grid-cols-2 gap-2 @sm:grid-cols-3">
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <div
+      {/* Photo gallery — real dishes, since a restaurant site lives or
+          dies by its food photography. Wider containers show all six. */}
+      <div className="grid grid-cols-2 gap-2 @sm:grid-cols-3 @xl:grid-cols-6">
+        {images.dishes.map((dish, i) => (
+          <Image
             key={i}
+            src={dish}
+            alt=""
+            sizes={MOCKUP_IMAGE_SIZES}
+            placeholder="blur"
             className={cn(
-              "bg-text-secondary/10 flex aspect-square items-center justify-center rounded-md",
-              i > 2 && "hidden @sm:flex",
+              "aspect-[4/3] w-full rounded-md object-cover",
+              i > 2 && "hidden @sm:block",
             )}
-          >
-            <GalleryIcon />
-          </div>
+          />
         ))}
       </div>
       <div className="flex flex-col gap-2.5">
-        {content.menu.map((dish) => (
+        {content.menu.map((dish, i) => (
           <div
             key={dish.item}
-            className="flex items-baseline justify-between gap-4"
+            className="flex items-center justify-between gap-4"
           >
-            <span className="text-text-secondary text-[11px] leading-tight">
-              {dish.item}
+            <span className="flex items-center gap-2.5">
+              {images.dishes[i] && (
+                <Image
+                  src={images.dishes[i]}
+                  alt=""
+                  sizes="40px"
+                  className="h-8 w-10 shrink-0 rounded object-cover"
+                />
+              )}
+              <span className="text-text-secondary text-[11px] leading-tight">
+                {dish.item}
+              </span>
             </span>
             <span className="text-text text-[11px] font-medium">
               {dish.price}

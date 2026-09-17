@@ -6,7 +6,6 @@ export const en = {
     links: [
       { href: "#work", label: "Work" },
       { href: "#services", label: "Services" },
-      { href: "#lab", label: "Lab" },
       { href: "#about", label: "About" },
     ],
     startAProject: "Start a Project",
@@ -17,151 +16,480 @@ export const en = {
   },
   skipLink: "Skip to content",
   hero: {
-    heading: "Websites are just the beginning.",
+    heading: "Websites and software that help your business grow.",
     subhead:
-      "I design and build the software behind them — platforms, integrations, and automation for businesses that need more than a template.",
+      "Professional websites, online booking and custom tools — designed and built for businesses like yours.",
     ctaPrimary: "Start a Project",
-    ctaExplore: "Explore",
-  },
-  whyCustom: {
-    heading: "Built around your business.",
-    subhead:
-      "Off-the-shelf tools ask you to adapt to them. Custom software works the other way around.",
-    items: [
-      {
-        title: "Fits your workflow",
-        description:
-          "Built around how your business actually operates, not a generic template's assumptions about it.",
+    ctaSecondary: "See My Work",
+    audience:
+      "For clinics, restaurants, professional services and growing businesses.",
+    showcase: {
+      brand: "Alma Wellness",
+      navLinks: ["Services", "Team", "Contact"],
+      headline: "Feel better, move better.",
+      subtext: "Physiotherapy and wellness in the heart of the city.",
+      cta: "Book a session",
+      services: ["Physiotherapy", "Massage", "Pilates"],
+      phone: {
+        title: "Your appointment",
+        detail: "Tue 14 · 10:30 AM",
+        with: "with Ana Morales",
+        cta: "Confirm",
       },
-      {
-        title: "Only what you need",
-        description:
-          "Every feature earns its place — nothing extra to learn, maintain, or pay for as the project grows.",
-      },
-      {
-        title: "Built to evolve with your business",
-        description:
-          "As your business changes, the software changes with it — new features and integrations added when you actually need them.",
-      },
-    ],
-  },
-  evolution: {
-    heading: "From website to software.",
-    subhead: "The same interface, evolving as your business grows.",
-    stages: [
-      {
-        id: "landing",
-        title: "Simple Website",
-        description: "A clean landing page — one message, one action.",
-      },
-      {
-        id: "business",
-        title: "Business Website",
-        description: "Navigation, services, and real content take shape.",
-      },
-      {
-        id: "app",
-        title: "Web Application",
-        description: "The interface becomes a real, working application.",
-      },
-      {
-        id: "connected",
-        title: "Connected Platform",
-        description: "Payments, data, and automation connect to it.",
-      },
-      {
-        id: "custom",
-        title: "Custom Software",
-        description: "Whatever your business needs.",
-      },
-    ],
-    mockup: {
-      logo: "Brand",
-      navLinks: ["Home", "Services", "Contact"],
-      heroHeadline: "Everything you need, in one place.",
-      heroSubtext: "A simple site that says who you are.",
-      heroButton: "Contact us",
-      heroHighlights: [
-        "Looks great on every device",
-        "Fast and easy to navigate",
-        "Designed around your brand",
-      ],
-      cards: [
-        { title: "Services", subtitle: "What we offer" },
-        { title: "About", subtitle: "Our story" },
-        { title: "Contact", subtitle: "Get in touch" },
-      ],
-      dashboardStats: [
-        { label: "Customers", value: "482" },
-        { label: "Sales", value: "$12.4k" },
-        { label: "Orders", value: "128" },
-      ],
-      dashboardChartLabel: "Weekly activity",
-      dashboardDayLabels: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-      dashboardActivityLabel: "Recent orders",
-      dashboardActivity: [
-        { name: "Ava Martinez", status: "Completed" },
-        { name: "Noah Chen", status: "Processing" },
-        { name: "Liam Patel", status: "Completed" },
-      ],
-      dashboardConnectedLabel: "Connected to",
+      toast: { title: "New booking", body: "Laura G. · Tomorrow, 9:00 AM" },
     },
   },
   services: {
-    heading: "What I build.",
-    subhead: "Four categories, one point of contact.",
+    heading: "What I can build for you.",
+    subhead: "From your first website to software made for your business.",
     categories: [
       {
         id: "websites",
-        title: "Websites",
-        description: "Marketing sites and storefronts built to convert.",
-        items: [
-          "Landing pages",
-          "Business websites",
-          "Corporate websites",
-          "E-commerce",
+        title: "Business Websites",
+        description:
+          "Professional websites that make your business easy to understand, trust and contact.",
+        examples: [
+          "Looks great on phones",
+          "Contact and WhatsApp built in",
+          "Easy for customers to find you",
         ],
+        pricing: "Starting around Q7,500",
       },
       {
-        id: "web-apps",
-        title: "Web Applications",
-        description: "Real software your team and customers use daily.",
-        items: [
-          "Dashboards",
-          "Booking systems",
-          "Customer portals",
-          "Internal tools",
+        id: "online",
+        title: "Online Business",
+        description:
+          "Let customers book, buy, pay or interact with your business online.",
+        examples: [
+          "Online booking",
+          "Payments and online store",
+          "Customer accounts",
         ],
+        pricing: "Quoted based on scope",
       },
       {
-        id: "integrations",
-        title: "Integrations",
-        description: "Connecting the tools your business already runs on.",
-        items: ["Payments", "APIs", "CRM", "Email & WhatsApp"],
-      },
-      {
-        id: "custom",
+        id: "software",
         title: "Custom Software",
-        description: "For requirements that don't fit a standard category.",
-        items: [
-          "Architecture & scoping",
-          "Bespoke builds",
-          "Ongoing partnership",
-        ],
+        description:
+          "Software designed around the way your business actually works.",
+        examples: ["Dashboards", "Internal tools", "Business automation"],
+        pricing: "Quoted based on scope",
       },
     ],
-    pricingSignal:
-      "Professional website projects typically start around $1,000. Web applications and custom software are quoted based on scope.",
+  },
+  work: {
+    heading: "See it in action.",
+    subhead: "Example projects that show what your website could look like.",
+    viewProject: "View project",
+    conceptualProjectBadge: "Example project",
+    projects: [
+      {
+        id: "clinic",
+        name: "Meridian Health",
+        vertical: "Clinic Website",
+        summary:
+          "Services, online booking and a mobile-first patient experience.",
+        description:
+          "A modern clinic website where patients find a doctor, pick a time and book a visit in three steps — from any phone.",
+        tags: ["Website", "Online booking", "Mobile-first"],
+      },
+      {
+        id: "restaurant",
+        name: "Ember & Oak",
+        vertical: "Restaurant Website",
+        summary: "Menu, reservations and a polished mobile experience.",
+        description:
+          "A restaurant website built around the menu and the room — guests browse dishes, see the space and reserve a table in seconds.",
+        tags: ["Website", "Reservations", "Menu"],
+      },
+      {
+        id: "consulting",
+        name: "Kestrel Partners",
+        vertical: "Professional Services",
+        summary: "Clear positioning and a streamlined inquiry experience.",
+        description:
+          "A professional services website that explains what the firm does, builds trust, and turns visitors into qualified inquiries.",
+        tags: ["Website", "Inquiry form", "Positioning"],
+      },
+    ],
+    previewContent: {
+      clinic: {
+        logo: "Meridian Health",
+        navLinks: ["Services", "Doctors"],
+        headline: "Book your visit online",
+        subtext: "See real-time availability for any doctor",
+        cta: "Book now",
+        steps: ["Choose a doctor", "Pick a time", "Confirm your visit"],
+      },
+      restaurant: {
+        logo: "Ember & Oak",
+        cta: "Reserve a table",
+        menu: [
+          { item: "Braised Short Rib", price: "$28" },
+          { item: "Salmon Tacos", price: "$24" },
+          { item: "Wild Mushroom Risotto", price: "$19" },
+        ],
+      },
+      consulting: {
+        logo: "Kestrel Partners",
+        navLinks: ["Services", "Team", "Contact"],
+        headline: "Strategic advisory for growing companies",
+        subtext: "Clarity and execution for complex decisions",
+        practiceAreas: ["Strategy", "Operations", "Finance"],
+      },
+    },
+    caseStudy: {
+      conceptualNote:
+        "Example project — a realistic demonstration built to show the approach, not a client's live site.",
+      backToWork: "Back to all work",
+      approachHeading: "What makes it work",
+      resultsHeading: "Results",
+    },
+    caseStudies: {
+      clinic: [
+        {
+          title: "Booking in three steps",
+          description:
+            "Patients pick a service, a doctor and a time — no phone calls, no back-and-forth.",
+        },
+        {
+          title: "Everything a patient looks for",
+          description:
+            "Services, doctors, location and hours are easy to find on any phone.",
+        },
+        {
+          title: "Accessible to everyone",
+          description:
+            "Works with a keyboard and with screen readers, so no patient is left out.",
+        },
+      ],
+      restaurant: [
+        {
+          title: "A menu you can update yourself",
+          description:
+            "Dishes and prices are real content, not a PDF — change them any time without a redesign.",
+        },
+        {
+          title: "Designed for phones first",
+          description:
+            "Most guests arrive from Instagram or Maps. The site is built for exactly that moment.",
+        },
+        {
+          title: "Fast, even on slow connections",
+          description:
+            "Pages load instantly so nobody gives up before seeing the menu.",
+        },
+      ],
+      consulting: [
+        {
+          title: "Leads with what the firm does",
+          description:
+            "Practice areas are the first thing a visitor sees — no vague hero copy.",
+        },
+        {
+          title: "Professional without being generic",
+          description:
+            "A calm, credible layout that suits a services firm and its clients.",
+        },
+        {
+          title: "A smarter contact form",
+          description:
+            "Visitors say what they need before the first call, so every conversation starts prepared.",
+        },
+      ],
+    },
+    clinicShowcase: {
+      badge: "Clinic website example",
+      tagline: "A modern clinic website your patients will actually use.",
+      highlights: [
+        "Online booking in three steps",
+        "Doctors and services at a glance",
+        "WhatsApp and directions one tap away",
+        "Looks great on every phone",
+      ],
+      servicesHeading: "Services",
+      services: [
+        { name: "General consultation", note: "Same-week availability" },
+        { name: "Pediatrics", note: "Care for kids of all ages" },
+        { name: "Dermatology", note: "Skin, hair and nail health" },
+        { name: "Follow-up visit", note: "Quick check-ins after treatment" },
+      ],
+      doctorsHeading: "Our doctors",
+      doctorsIntro: "Every doctor has a profile patients can book directly.",
+      mobileHeading: "Built for phones",
+      mobileBody:
+        "Most patients book from their phone. Booking, WhatsApp and directions are always one tap away.",
+      locationHeading: "Find us",
+      address: "12 Calle 1-25, Zone 10 · Guatemala City",
+      hours: "Mon–Fri 8:00–18:00 · Sat 8:00–13:00",
+      phone: "+502 2222 0000",
+      whatsapp: "Message on WhatsApp",
+      directions: "Get directions",
+      trustHeading: "Why patients trust it",
+      trustPoints: [
+        "Real availability — no double bookings",
+        "Automatic reminders reduce no-shows",
+        "Private by design — no medical information is collected",
+      ],
+      demoNote:
+        "Fictional clinic, doctors and contact details — nothing on this page is real or stored.",
+    },
+    clinicBooking: {
+      heading: "Book a visit",
+      subhead:
+        "Try the booking flow — pick a service and doctor, choose a time, and confirm.",
+      steps: {
+        service: "Choose a service",
+        doctor: "Choose a doctor",
+        schedule: "Pick a day and time",
+        contact: "Your details",
+      },
+      services: [
+        { id: "consultation", label: "General Consultation" },
+        { id: "pediatrics", label: "Pediatrics" },
+        { id: "dermatology", label: "Dermatology" },
+        { id: "followup", label: "Follow-up Visit" },
+      ],
+      doctors: [
+        { id: "ruiz", name: "Dr. Elena Ruiz", specialty: "General Medicine" },
+        { id: "chen", name: "Dr. Marcus Chen", specialty: "Pediatrics" },
+        { id: "patel", name: "Dr. Aisha Patel", specialty: "Dermatology" },
+      ],
+      contactFields: { name: "Full name", email: "Email" },
+      disclosure: "Demo only — no information is stored or sent anywhere.",
+      back: "Back",
+      next: "Next",
+      confirm: "Confirm visit",
+      confirmedHeading: "Visit booked",
+      confirmedBody: (service, doctor, day, time) =>
+        `${service} with ${doctor} — ${day} at ${time}.`,
+      bookAnother: "Book another visit",
+      summary: { service: "Service", doctor: "Doctor", when: "When" },
+    },
+    // No real client results exist yet — left empty rather than filled
+    // with placeholder numbers. See the type comment in dictionary.ts.
+    caseStudyResults: {},
+    caseStudyCta: {
+      heading: "Want something like this for your business?",
+      body: "Tell me about your project and I'll reply within one business day.",
+      primaryCta: "Start a Project",
+    },
+    reservationDemo: {
+      heading: "Reserve a table",
+      subhead:
+        "Try the reservation flow — pick a party size, choose a date and time, and confirm.",
+      steps: {
+        partySize: "Party size",
+        date: "Choose a date",
+        time: "Choose a time",
+        summary: "Confirm reservation",
+      },
+      partySizes: [
+        { id: "2", label: "2 guests" },
+        { id: "4", label: "4 guests" },
+        { id: "6", label: "6 guests" },
+        { id: "8", label: "8+ guests" },
+      ],
+      back: "Back",
+      next: "Next",
+      confirm: "Confirm reservation",
+      confirmedHeading: "Reservation confirmed",
+      confirmedBody: (partySize, day, time) =>
+        `Table for ${partySize} — ${day} at ${time}.`,
+      bookAnother: "Make another reservation",
+      summaryLabels: { partySize: "Party size", when: "When" },
+      disclosure: "Demo only — no reservation is actually made or stored.",
+    },
+    leadQualificationDemo: {
+      heading: "Request a consultation",
+      subhead:
+        "Try the inquiry flow — say what you need, and the firm follows up prepared.",
+      steps: {
+        service: "What do you need help with?",
+        companySize: "Company size",
+        timeline: "Timeline",
+        summary: "Summary",
+      },
+      companySizes: [
+        { id: "1-10", label: "1–10 employees" },
+        { id: "11-50", label: "11–50 employees" },
+        { id: "51-200", label: "51–200 employees" },
+        { id: "200+", label: "200+ employees" },
+      ],
+      back: "Back",
+      next: "Next",
+      summaryHeading: "Based on what you shared",
+      summaryLabels: {
+        service: "Service",
+        companySize: "Company size",
+        timeline: "Timeline",
+      },
+      disclosure: "Demo only — no information is submitted anywhere.",
+    },
+  },
+  growth: {
+    heading: "Your website can grow with your business.",
+    subhead: "Start with what you need today. Add more when you're ready.",
+    closing: "Start simple. Add more when your business needs it.",
+    stages: [
+      {
+        id: "online",
+        eyebrow: "Stage 1",
+        title: "Get online",
+        label: "Professional website",
+        description: "Help customers find you and understand what you offer.",
+      },
+      {
+        id: "customers",
+        eyebrow: "Stage 2",
+        title: "Get customers",
+        label: "Bookings & inquiries",
+        description: "Make it easy for customers to contact or book with you.",
+      },
+      {
+        id: "sell",
+        eyebrow: "Stage 3",
+        title: "Sell online",
+        label: "Payments & commerce",
+        description: "Let customers buy or pay directly online.",
+      },
+      {
+        id: "smarter",
+        eyebrow: "Stage 4",
+        title: "Work smarter",
+        label: "Custom tools",
+        description:
+          "Automate repetitive work and manage your business more efficiently.",
+      },
+    ],
+    mockup: {
+      brand: "Lumi Salon",
+      navLinks: ["Services", "Team", "Contact"],
+      headline: "Look and feel your best.",
+      subtext: "Hair, nails and skincare in one place.",
+      cta: "Contact us",
+      ctaBook: "Book online",
+      services: ["Haircut", "Color", "Nails"],
+      whatsapp: "WhatsApp",
+      bookingTitle: "Book an appointment",
+      bookingTimes: ["9:00", "10:30", "12:00"],
+      bookingConfirm: "Confirm",
+      productTitle: "Gift card",
+      productPrice: "Q250",
+      pay: "Pay now",
+      paid: "Payment received",
+      dashboardTitle: "Today",
+      stats: [
+        { label: "Appointments", value: "14" },
+        { label: "Sales", value: "Q3,450" },
+        { label: "New clients", value: "5" },
+      ],
+      scheduleTitle: "Upcoming",
+      schedule: [
+        { name: "María P.", time: "10:30", status: "Reminder sent" },
+        { name: "Ana L.", time: "11:00", status: "Confirmed" },
+        { name: "Sofía R.", time: "12:30", status: "Reminder sent" },
+      ],
+    },
+  },
+  verticals: {
+    heading: "Built for businesses like yours.",
+    items: [
+      {
+        id: "healthcare",
+        title: "Healthcare",
+        description: "Clinics & private practices",
+      },
+      {
+        id: "hospitality",
+        title: "Hospitality",
+        description: "Restaurants & stays",
+      },
+      {
+        id: "professional",
+        title: "Professional Services",
+        description: "Consultants, firms & specialists",
+      },
+      {
+        id: "growing",
+        title: "Growing Businesses",
+        description: "Teams that need custom digital tools",
+      },
+    ],
+  },
+  process: {
+    heading: "How it works.",
+    subhead: "Three simple steps, no surprises.",
+    steps: [
+      {
+        number: "01",
+        title: "Tell me what you need",
+        description: "We define your goals, scope and budget.",
+      },
+      {
+        number: "02",
+        title: "I design and build it",
+        description: "You see progress throughout the project.",
+      },
+      {
+        number: "03",
+        title: "We launch",
+        description: "Your project goes live, with optional ongoing support.",
+      },
+    ],
+  },
+  about: {
+    heading: "Hi, I'm Javier.",
+    body: "I'm a software engineer who builds websites and software for businesses that need more than an off-the-shelf solution.",
+    points: [
+      {
+        title: "Direct communication",
+        description: "You talk to the person actually building your project.",
+      },
+      {
+        title: "Technical ownership",
+        description: "One person responsible from the first idea to launch.",
+      },
+      {
+        title: "End-to-end development",
+        description: "Design, build and launch — all in one place.",
+      },
+    ],
+    photoAlt: "Javier López",
+  },
+  labTeaser: {
+    heading: "Want to see what I can build?",
+    body: "Small working demos you can click around — no sign-up.",
+    cta: "Explore the Interactive Lab",
+    demos: [
+      {
+        id: "booking",
+        title: "Booking demo",
+        description: "Pick a day and time, like your customers would.",
+      },
+      {
+        id: "dashboard",
+        title: "Dashboard demo",
+        description: "Your business numbers at a glance.",
+      },
+      {
+        id: "integration",
+        title: "Automation demo",
+        description: "A request moving through your tools on its own.",
+      },
+    ],
   },
   lab: {
-    heading: "Try it yourself.",
-    subhead: "Small, real interactions — not screenshots.",
+    heading: "Interactive Lab",
+    subhead:
+      "Small, real interactions — not screenshots. Everything here runs in your browser with sample data.",
+    backHome: "Back to home",
     tabs: {
       booking: "Booking",
       dashboard: "Dashboard",
-      integration: "Integration",
+      integration: "Automation",
     },
-    demoBadge: "Demo · Sample Data",
+    demoBadge: "Demo · Sample data",
     dashboard: {
       dateRangeAriaLabel: "Date range",
       ranges: [
@@ -215,285 +543,28 @@ export const en = {
       weekdayLabels: ["S", "M", "T", "W", "T", "F", "S"],
     },
     integration: {
-      trigger: "Trigger request",
+      trigger: "Send a request",
       running: "Running…",
       success: "Request completed",
       diagramAriaLabel:
         "Diagram of a request traveling from the website through the API to CRM and Payments, then to the database, and back to the website.",
     },
   },
-  whoIWorkWith: {
-    heading: "Who I work with.",
-    subhead:
-      "Independent businesses, growing companies, and founders that need hands-on technical ownership.",
-    items: [
-      {
-        title: "Service businesses",
-        description:
-          "Clinics, salons, consultancies, and agencies — anything booking-driven or client-facing.",
-      },
-      {
-        title: "Local & regional businesses",
-        description:
-          "Restaurants, retail, and professional practices ready to move past a generic website builder.",
-      },
-      {
-        title: "Founders & small teams",
-        description:
-          "Early-stage products that need a real engineer, not just a no-code prototype.",
-      },
-    ],
-  },
-  work: {
-    heading: "Selected work.",
-    subhead: "Conceptual projects built to show range.",
-    conceptualProjectBadge: "Conceptual Project",
-    previewDeviceAriaLabel: "Preview device",
-    deviceModes: { desktop: "Desktop", mobile: "Mobile" },
-    projects: [
-      {
-        id: "clinic",
-        name: "Meridian Health",
-        vertical: "Medical Clinic",
-        description:
-          "A booking-first website that gets patients from search to a scheduled appointment in three steps.",
-        tags: ["Website", "Online Booking", "Responsive Design"],
-      },
-      {
-        id: "restaurant",
-        name: "Ember & Oak",
-        vertical: "Restaurant",
-        description:
-          "A reservation-driven site built around the menu and the room — fast, visual, and easy to update.",
-        tags: ["Website", "Reservations", "CMS"],
-      },
-      {
-        id: "consulting",
-        name: "Kestrel Partners",
-        vertical: "Professional Services",
-        description:
-          "A corporate site that positions the firm for enterprise clients, with a lead-qualifying contact flow.",
-        tags: ["Website", "Lead Capture", "CMS"],
-      },
-    ],
-    previewContent: {
-      clinic: {
-        logo: "Meridian Health",
-        navLinks: ["Services", "Doctors"],
-        headline: "Book your visit online",
-        subtext: "See real-time availability for any provider",
-        cta: "Book now",
-        steps: ["Choose a provider", "Pick a time", "Confirm your visit"],
-      },
-      restaurant: {
-        logo: "Ember & Oak",
-        cta: "Reserve a table",
-        menu: [
-          { item: "Braised Short Rib", price: "$28" },
-          { item: "Roasted Salmon", price: "$24" },
-          { item: "Wild Mushroom Risotto", price: "$19" },
-        ],
-      },
-      consulting: {
-        logo: "Kestrel Partners",
-        navLinks: ["Services", "Team", "Contact"],
-        headline: "Strategic advisory for growing enterprises",
-        subtext: "Clarity and execution for complex decisions",
-        practiceAreas: ["Strategy", "Operations", "Finance"],
-      },
-    },
-    viewCaseStudy: "View case study",
-    caseStudy: {
-      conceptualNote:
-        "Conceptual project — built to demonstrate the engineering and UX approach, not a client's live site.",
-      backToWork: "Back to work",
-      approachHeading: "Approach",
-      resultsHeading: "Results",
-    },
-    caseStudies: {
-      clinic: [
-        {
-          title: "Booking without friction",
-          description:
-            "A real day-and-time picker with locale-aware formatting and availability logic, not a static screenshot — the same interaction a scheduling widget actually needs to work.",
-        },
-        {
-          title: "Content structured like a real practice",
-          description:
-            "Services, doctors, and a booking flow organized the way an actual clinic site needs to be, not a generic template with the logo swapped in.",
-        },
-        {
-          title: "Accessible by default",
-          description:
-            "The calendar, the option cards, and the confirmation step are all keyboard-operable and screen-reader-labeled from the start, not retrofitted afterward.",
-        },
-      ],
-      restaurant: [
-        {
-          title: "A menu that's actually structured content",
-          description:
-            "Items, prices, and categories modeled as real data rather than paragraphs of copy — the kind of structure that makes updating a menu later a content change, not a redesign.",
-        },
-        {
-          title: "Built for the reflow, not just the layout",
-          description:
-            "The desktop and mobile previews are the same component responding to real container queries, not two hand-built versions that can drift out of sync.",
-        },
-        {
-          title: "Fast by construction",
-          description:
-            "Static-first rendering and no unnecessary client JavaScript for content that doesn't need to be interactive.",
-        },
-      ],
-      consulting: [
-        {
-          title: "Practice areas as the entry point",
-          description:
-            "The homepage leads with what the firm actually does, not a generic hero — practice areas are the first real content a visitor sees.",
-        },
-        {
-          title: "Professional without being generic",
-          description:
-            "A restrained, text-led layout built to read as credible for a services firm, distinct from the more visual, consumer-facing patterns used for the clinic and restaurant projects.",
-        },
-        {
-          title: "Same design system, different voice",
-          description:
-            "Built from the same component library as the rest of this site, proving the system flexes across verticals rather than needing a rebuild per project type.",
-        },
-      ],
-    },
-    clinicBooking: {
-      heading: "Book a visit",
-      subhead:
-        "A working booking flow — pick a service and provider, choose a time, and confirm.",
-      steps: {
-        service: "Choose a service",
-        doctor: "Choose a provider",
-        schedule: "Pick a day and time",
-        contact: "Your details",
-      },
-      services: [
-        { id: "consultation", label: "General Consultation" },
-        { id: "pediatrics", label: "Pediatrics" },
-        { id: "dermatology", label: "Dermatology" },
-        { id: "followup", label: "Follow-up Visit" },
-      ],
-      doctors: [
-        { id: "ruiz", name: "Dr. Elena Ruiz", specialty: "General Medicine" },
-        { id: "chen", name: "Dr. Marcus Chen", specialty: "Pediatrics" },
-        { id: "patel", name: "Dr. Aisha Patel", specialty: "Dermatology" },
-      ],
-      contactFields: { name: "Full name", email: "Email" },
-      disclosure: "Demo only — no information is stored or sent anywhere.",
-      back: "Back",
-      next: "Next",
-      confirm: "Confirm visit",
-      confirmedHeading: "Visit booked",
-      confirmedBody: (service, doctor, day, time) =>
-        `${service} with ${doctor} — ${day} at ${time}.`,
-      bookAnother: "Book another visit",
-      summary: { service: "Service", doctor: "Provider", when: "When" },
-    },
-    // No real client results exist yet — left empty rather than filled
-    // with placeholder numbers. See the type comment in dictionary.ts.
-    caseStudyResults: {},
-    caseStudyCta: {
-      heading: "Need something like this for your business?",
-      body: "Every project starts with a conversation — tell me what you're building, or reach out directly.",
-      primaryCta: "Start a Project",
-      secondaryCta: "Send me a message",
-    },
-    reservationDemo: {
-      heading: "Reserve a table",
-      subhead:
-        "A working reservation flow — pick a party size, choose a date and time, and confirm.",
-      steps: {
-        partySize: "Party size",
-        date: "Choose a date",
-        time: "Choose a time",
-        summary: "Confirm reservation",
-      },
-      partySizes: [
-        { id: "2", label: "2 guests" },
-        { id: "4", label: "4 guests" },
-        { id: "6", label: "6 guests" },
-        { id: "8", label: "8+ guests" },
-      ],
-      back: "Back",
-      next: "Next",
-      confirm: "Confirm reservation",
-      confirmedHeading: "Reservation confirmed",
-      confirmedBody: (partySize, day, time) =>
-        `Table for ${partySize} — ${day} at ${time}.`,
-      bookAnother: "Make another reservation",
-      summaryLabels: { partySize: "Party size", when: "When" },
-      disclosure: "Demo only — no reservation is actually made or stored.",
-    },
-    leadQualificationDemo: {
-      heading: "Request a consultation",
-      subhead:
-        "A quick qualification flow — tell me what you need, and I'll follow up.",
-      steps: {
-        service: "What do you need help with?",
-        companySize: "Company size",
-        timeline: "Timeline",
-        summary: "Summary",
-      },
-      companySizes: [
-        { id: "1-10", label: "1–10 employees" },
-        { id: "11-50", label: "11–50 employees" },
-        { id: "51-200", label: "51–200 employees" },
-        { id: "200+", label: "200+ employees" },
-      ],
-      back: "Back",
-      next: "Next",
-      summaryHeading: "Based on what you shared",
-      summaryLabels: {
-        service: "Service",
-        companySize: "Company size",
-        timeline: "Timeline",
-      },
-      disclosure: "Demo only — no information is submitted anywhere.",
-    },
-  },
-  process: {
-    heading: "How I work.",
-    subhead: "Four steps, start to finish — no surprises in between.",
-    steps: [
-      {
-        number: "01",
-        title: "Discover",
-        description:
-          "A short project brief — goals, requirements, and constraints — before any design work starts.",
-      },
-      {
-        number: "02",
-        title: "Design",
-        description:
-          "The experience and system get mapped out, so structure is decided before code is written.",
-      },
-      {
-        number: "03",
-        title: "Build",
-        description:
-          "Engineered in the open — you see progress as it happens, not just at the end.",
-      },
-      {
-        number: "04",
-        title: "Launch & Support",
-        description:
-          'Shipped, measured, and maintained — software is never really "done" at launch.',
-      },
-    ],
+  contact: {
+    heading: "Let's build something for your business.",
+    body: "Send a message, or request a quote in two minutes.",
+    whatsapp: "WhatsApp Me",
+    whatsappMessage: "Hi Javier, I'd like to talk about a project.",
+    email: "Email me",
+    replyNote: "I reply within one business day.",
   },
   configurator: {
-    heading: "Scope your project.",
-    subhead: "A few quick questions — no commitment, just a clearer picture.",
+    heading: "Get a quote",
+    subhead: "A few quick questions — about two minutes, no commitment.",
     steps: [
-      { key: "projectType", label: "What do you want to build?" },
-      { key: "needs", label: "What does your business need?" },
-      { key: "budget", label: "Approximate budget" },
+      { key: "projectType", label: "What do you need?" },
+      { key: "needs", label: "What should it help you do?" },
+      { key: "budget", label: "Budget" },
       { key: "timeline", label: "Timeline" },
       { key: "contact", label: "Your details" },
       { key: "review", label: "Review & send" },
@@ -501,10 +572,9 @@ export const en = {
     back: "Back",
     next: "Next",
     sending: "Sending…",
-    requestProposal: "Send Project Request",
-    successTitle: "Thanks — that's in.",
-    successBody: (email) =>
-      `I'll follow up at ${email} within one business day.`,
+    requestProposal: "Send request",
+    successTitle: "Thanks — I got it.",
+    successBody: (email) => `I'll reply at ${email} within one business day.`,
     genericError:
       "Something went wrong sending your request. Please try again.",
     stepIndicator: (current, total, label) =>
@@ -519,20 +589,20 @@ export const en = {
       honeypotLabel: "Leave this field empty",
     },
     needs: {
-      heading: "What does your business need?",
-      selectAllThatApply: "Select all that apply.",
+      heading: "What should your website help you do?",
+      selectAllThatApply: "Choose everything that applies.",
     },
     budgetStep: {
-      heading: "What budget do you have in mind for the project?",
+      heading: "What budget do you have in mind?",
       helperText:
-        "You don't need to have an exact budget. This helps me recommend the right solution for your project.",
+        "An estimate is enough — it helps me recommend the right solution.",
     },
     review: {
-      heading: "Review your project.",
+      heading: "Does this look right?",
       editLabel: "Edit",
       sectionLabels: {
-        projectType: "Project type",
-        needs: "Needs",
+        projectType: "Project",
+        needs: "Goals",
         budget: "Budget",
         timeline: "Timeline",
         contact: "Contact details",
@@ -541,29 +611,25 @@ export const en = {
     },
     options: {
       projectType: [
-        { id: "website", label: "Website" },
-        { id: "ecommerce", label: "E-commerce" },
-        { id: "web-app", label: "Web application" },
-        { id: "custom-software", label: "Custom software" },
+        { id: "website", label: "A new website" },
+        { id: "online", label: "Bookings, payments or online sales" },
+        { id: "software", label: "Custom software for my business" },
         { id: "not-sure", label: "Not sure yet" },
       ],
       needs: [
-        { id: "bookings", label: "Online bookings" },
-        { id: "payments", label: "Payments" },
-        { id: "accounts", label: "Customer accounts" },
-        { id: "dashboard", label: "Admin dashboard" },
-        { id: "whatsapp", label: "WhatsApp" },
-        { id: "crm", label: "CRM integration" },
-        { id: "api", label: "API integrations" },
-        { id: "analytics", label: "Analytics" },
-        { id: "automation", label: "Automation" },
+        { id: "inquiries", label: "Get more inquiries" },
+        { id: "bookings", label: "Accept bookings" },
+        { id: "sell", label: "Sell online" },
+        { id: "payments", label: "Accept payments" },
+        { id: "accounts", label: "Give customers an account" },
+        { id: "automation", label: "Save time through automation" },
         { id: "other", label: "Something else" },
       ],
       budget: [
-        { id: "tier-1", label: "$1,000 – $2,000" },
-        { id: "tier-2", label: "$2,000 – $4,000" },
-        { id: "tier-3", label: "$4,000 – $8,000" },
-        { id: "tier-4", label: "$8,000+" },
+        { id: "tier-1", label: "Q7,500 – Q15,000" },
+        { id: "tier-2", label: "Q15,000 – Q30,000" },
+        { id: "tier-3", label: "Q30,000 – Q60,000" },
+        { id: "tier-4", label: "Q60,000+" },
         { id: "guidance", label: "I need guidance on the budget" },
       ],
       timeline: [
@@ -574,104 +640,36 @@ export const en = {
       ],
     },
   },
-  about: {
-    heading: "Direct collaboration. End-to-end ownership.",
-    body: [
-      "Hi, I'm Javier — a software engineer building websites and software for businesses that need more than an off-the-shelf solution.",
-      "That means technical ownership from architecture through launch — across frontend, backend, integrations, and everything else the project actually needs, not just the parts that fit one specialty.",
-      "The same tools and techniques shown throughout this site — modern React, careful performance work, real accessibility — are what get used on client projects too.",
-    ],
-    principles: [
-      {
-        title: "Direct communication",
-        description:
-          "You talk to the person actually building it — no account managers, no hand-offs.",
-      },
-      {
-        title: "Modern engineering",
-        description:
-          "Software that holds up — built with the same modern, production-grade tools demonstrated throughout this site.",
-      },
-      {
-        title: "Built to last",
-        description:
-          "Maintainable code and clear structure, not just something that works on launch day.",
-      },
-    ],
-  },
   faq: {
-    heading: "Questions, answered.",
+    heading: "Common questions.",
     items: [
       {
-        question: "How long does a project take?",
+        question: "How much does a website cost?",
         answer:
-          "A focused marketing website typically takes 2–4 weeks. Web applications and custom software vary more — usually 6–12 weeks depending on scope. Timeline is one of the questions in the project configurator above, so estimates stay grounded in what you're actually building.",
+          "Professional website projects typically start around Q7,500. More complex software is quoted based on scope.",
       },
       {
-        question: "What does a project cost?",
+        question: "How long does it take?",
         answer:
-          "It depends entirely on scope — a landing page and a custom platform aren't priced the same way. The configurator's budget step gives a starting range, and every project gets a proposal with specifics before any work begins.",
+          "Most professional websites take about 2–4 weeks. Larger applications may take longer depending on scope.",
       },
       {
-        question: "I'm not sure exactly what I need — can we still talk?",
-        answer:
-          'Yes. "Not sure yet" is one of the options in the project configurator for exactly this reason. Most projects start as a rough idea and get scoped together.',
+        question: "What if I don't know exactly what I need?",
+        answer: "That's okay. We can define the right solution together.",
       },
       {
-        question: "Do you only build websites, or full applications too?",
+        question: "Do you offer support after launch?",
         answer:
-          "Both, plus the integrations and automation in between — payments, CRMs, booking systems, admin dashboards. The Interactive Lab and Services sections above show the range concretely rather than just listing it.",
-      },
-      {
-        question: "Is there support after launch?",
-        answer:
-          "Every project includes a short warranty for launch-related fixes. Ongoing maintenance, monitoring, and improvements are available afterward as optional monthly plans — see the Maintenance section below for what that covers.",
-      },
-      {
-        question: "What technologies do you use?",
-        answer:
-          "Whatever gets the job done reliably — in practice that's usually Next.js, TypeScript, and Tailwind CSS, with the specific integrations (payments, CRM, automation) chosen per project rather than forced into a one-size-fits-all template.",
+          "Yes. Optional ongoing support and maintenance plans are available.",
       },
     ],
-  },
-  maintenance: {
-    heading: "Launch isn't the end.",
-    subhead:
-      "Every project includes a short launch warranty for fixes. Ongoing maintenance, monitoring, and improvements continue as optional monthly plans.",
-    items: [
-      {
-        title: "Launch warranty",
-        description:
-          "Bug fixes and stability issues from the initial build, covered for a short window after launch at no extra cost.",
-      },
-      {
-        title: "Monitoring & analytics",
-        description:
-          "Performance and error monitoring, available as an ongoing plan so issues get caught before customers notice.",
-      },
-      {
-        title: "Iteration",
-        description:
-          "New features and improvements as the business grows, scoped and billed separately from the initial project.",
-      },
-    ],
-  },
-  finalCta: {
-    heading: "Ready to build something?",
-    body: "Tell me what you're working on — the project configurator takes about two minutes.",
-    cta: "Start a Project",
-  },
-  secondaryContact: {
-    prompt: "Prefer to talk first?",
-    cta: "Send me a message",
   },
   footer: {
-    tagline:
-      "Websites, web applications, and custom software — designed and engineered end to end.",
+    tagline: "Websites and software for businesses that want to grow.",
     footerAriaLabel: "Footer",
+    lab: "Interactive Lab",
     startAProject: "Start a Project",
     copyright: (year) => `© ${year} Javier López Digital. All rights reserved.`,
-    builtWith: "Built with Next.js, TypeScript, and Tailwind CSS.",
   },
   notFound: {
     eyebrow: "404",
@@ -698,25 +696,28 @@ export const en = {
     ariaLabel: "Language",
   },
   seo: {
-    title: "Javier López Digital — Software Development",
+    title: "Javier López Digital — Websites & Software for Your Business",
     description:
-      "Premium software development studio — websites, web applications, and custom software.",
+      "Professional websites, online booking, payments and custom software for clinics, restaurants, service companies and growing businesses.",
     keywords: [
-      "web development",
-      "web application development",
-      "custom software development",
-      "Next.js developer",
-      "software engineer",
+      "business website",
+      "website design",
+      "online booking system",
+      "custom software",
+      "web developer",
     ],
-    ogHeadline: "Websites are just the beginning.",
+    labTitle: "Interactive Lab",
+    labDescription:
+      "Small working demos — a booking screen, a business dashboard and an automated workflow — running live in your browser.",
+    ogHeadline: "Websites and software that help your business grow.",
     ogTagline:
-      "I design and build the software behind them — platforms, integrations, and automation for businesses that need more than a template.",
+      "Professional websites, online booking and custom tools — designed and built for businesses like yours.",
     structuredDataAreaServed: "Worldwide",
     structuredDataServiceTypes: [
-      "Web Development",
-      "Web Application Development",
-      "Custom Software Development",
-      "System Integration",
+      "Website Design",
+      "Online Booking Systems",
+      "E-commerce",
+      "Custom Software",
     ],
   },
 } satisfies Dictionary;

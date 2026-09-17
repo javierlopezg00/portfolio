@@ -12,9 +12,9 @@ export function Card({ className, children, interactive = false }: CardProps) {
   return (
     <div
       className={cn(
-        "border-border bg-surface rounded-lg border p-6 shadow-sm",
+        "border-border bg-surface rounded-xl border p-6 shadow-sm sm:p-8",
         interactive &&
-          "duration-base hover:border-border-strong transition-[border-color,box-shadow] ease-out hover:shadow-md",
+          "duration-base hover:border-border-strong transition-[border-color,box-shadow,transform] ease-out hover:shadow-md",
         className,
       )}
     >

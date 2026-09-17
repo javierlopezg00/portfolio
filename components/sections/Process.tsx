@@ -5,29 +5,34 @@ export async function Process() {
   const dict = await getServerDictionary();
 
   return (
-    <Section id="process" ariaLabelledBy="process-heading">
+    <Section theme="soft" id="process" ariaLabelledBy="process-heading">
       <Container>
-        <div className="max-w-xl">
+        <div className="max-w-2xl">
           <Heading id="process-heading" size="h2">
             {dict.process.heading}
           </Heading>
-          <Text tone="secondary" className="mt-4">
+          <Text tone="secondary" size="lg" className="mt-4">
             {dict.process.subhead}
           </Text>
         </div>
 
-        <ol className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
           {dict.process.steps.map((step) => (
-            <li key={step.number}>
-              <span className="text-caption text-accent font-mono tracking-wide">
+            <li
+              key={step.number}
+              className="border-border bg-surface flex gap-5 rounded-xl border p-6 shadow-sm md:flex-col md:gap-6 md:p-8"
+            >
+              <span className="bg-accent-strong flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white">
                 {step.number}
               </span>
-              <Heading size="h4" as="h3" className="mt-3">
-                {step.title}
-              </Heading>
-              <Text tone="secondary" size="sm" className="mt-2">
-                {step.description}
-              </Text>
+              <div>
+                <Heading size="h4" as="h3">
+                  {step.title}
+                </Heading>
+                <Text tone="secondary" className="mt-2">
+                  {step.description}
+                </Text>
+              </div>
             </li>
           ))}
         </ol>

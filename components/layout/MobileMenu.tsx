@@ -8,8 +8,9 @@ import { getDictionary } from "@/lib/i18n/getDictionary";
 import { useLocale } from "@/lib/i18n/useLocale";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import { CloseIcon } from "./icons";
-import { ConfiguratorCtaLink } from "./ConfiguratorCtaLink";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { StartProjectLink } from "./StartProjectLink";
+import { Wordmark } from "./Wordmark";
 
 interface MobileMenuProps {
   id: string;
@@ -18,7 +19,8 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
-  const dict = getDictionary(useLocale());
+  const locale = useLocale();
+  const dict = getDictionary(locale);
   const reducedMotion = useReducedMotion();
   const containerRef = useFocusTrap<HTMLDivElement>(open, { onClose });
 
@@ -37,15 +39,13 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: reducedMotion ? 0 : 0.2 }}
         >
-          <div className="flex items-center justify-between px-6 pt-6">
-            <span className="text-body-sm text-text font-semibold tracking-wide">
-              Javier López Digital
-            </span>
+          <div className="flex h-18 items-center justify-between px-4">
+            <Wordmark href={`/${locale}`} />
             <button
               type="button"
               onClick={onClose}
               aria-label={dict.nav.closeMenu}
-              className="text-text focus-visible:ring-focus-ring flex h-11 w-11 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none"
+              className="text-text focus-visible:ring-focus-ring -mr-2 flex h-11 w-11 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none"
             >
               <CloseIcon />
             </button>
@@ -54,9 +54,9 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
             {dict.nav.links.map((link) => (
               <li key={link.href}>
                 <NextLink
-                  href={link.href}
+                  href={`/${locale}${link.href}`}
                   onClick={onClose}
-                  className="text-h3 text-text focus-visible:ring-focus-ring block rounded-sm py-3 font-semibold focus-visible:ring-2 focus-visible:outline-none"
+                  className="text-h2 text-text focus-visible:ring-focus-ring block rounded-md py-3 font-semibold focus-visible:ring-2 focus-visible:outline-none"
                 >
                   {link.label}
                 </NextLink>
@@ -65,12 +65,12 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
           </ul>
           <div className="flex flex-col gap-6 px-6 pb-10">
             <LocaleSwitcher className="justify-center" />
-            <ConfiguratorCtaLink
+            <StartProjectLink
               onClick={onClose}
-              className={buttonStyles({ className: "w-full" })}
+              className={buttonStyles({ size: "lg", className: "w-full" })}
             >
               {dict.nav.startAProject}
-            </ConfiguratorCtaLink>
+            </StartProjectLink>
           </div>
         </motion.div>
       )}

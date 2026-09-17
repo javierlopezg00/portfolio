@@ -3,23 +3,14 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Navigation } from "@/components/layout/Navigation";
 import { SkipLink } from "@/components/layout/SkipLink";
-import {
-  Badge,
-  Container,
-  Heading,
-  Link,
-  Section,
-  Text,
-} from "@/components/ui";
+import { Container, Heading, Section, Text } from "@/components/ui";
+import { CaseStudyApproach } from "@/components/sections/work/CaseStudyApproach";
 import { CaseStudyCTA } from "@/components/sections/work/CaseStudyCTA";
-import { DeviceFrame } from "@/components/sections/work/DeviceFrame";
+import { CaseStudyHeader } from "@/components/sections/work/CaseStudyHeader";
 import {
-  ClinicPreview,
   ConsultingPreview,
   RestaurantPreview,
 } from "@/components/sections/work/previews";
-import { ResultsMetrics } from "@/components/sections/work/ResultsMetrics";
-import { Testimonial } from "@/components/sections/work/Testimonial";
 import { LeadQualificationDemo } from "@/components/work/consulting/LeadQualificationDemo";
 import { ReservationDemo } from "@/components/work/restaurant/ReservationDemo";
 import { WORK_PROJECT_IDS, type WorkProjectId } from "@/lib/content/work";
@@ -93,8 +84,12 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const project = dict.work.projects.find((p) => p.id === resolved.id);
   if (!project) notFound();
 
-  const approach = dict.work.caseStudies[resolved.id] ?? [];
-  const caseStudyResults = dict.work.caseStudyResults[resolved.id];
+  const preview =
+    resolved.id === "restaurant" ? (
+      <RestaurantPreview content={dict.work.previewContent.restaurant} />
+    ) : (
+      <ConsultingPreview content={dict.work.previewContent.consulting} />
+    );
 
   return (
     <>
@@ -109,111 +104,56 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <SkipLink />
       <Navigation />
       <main id="main-content" tabIndex={-1} className="focus:outline-none">
-        <Section ariaLabelledBy="case-study-heading">
-          <Container>
-            <Link href={`/${resolved.locale}#work`} className="text-body-sm">
-              ← {dict.work.caseStudy.backToWork}
-            </Link>
+        <CaseStudyHeader
+          locale={resolved.locale}
+          dict={dict}
+          project={project}
+          preview={preview}
+        />
 
-            <div className="mt-6 max-w-2xl">
-              <div className="flex flex-wrap items-center gap-2">
-                <Badge tone="accent">{dict.work.conceptualProjectBadge}</Badge>
-                <Badge>{project.vertical}</Badge>
-              </div>
-              <Heading id="case-study-heading" size="h1" className="mt-4">
-                {project.name}
-              </Heading>
-              <Text tone="secondary" className="mt-4">
-                {project.description}
-              </Text>
-              <Text tone="secondary" size="sm" className="mt-4 italic">
-                {dict.work.caseStudy.conceptualNote}
-              </Text>
-            </div>
+        <CaseStudyApproach dict={dict} projectId={resolved.id} />
 
-            <div className="mt-12">
-              <DeviceFrame mode="desktop">
-                {resolved.id === "clinic" && (
-                  <ClinicPreview content={dict.work.previewContent.clinic} />
-                )}
-                {resolved.id === "restaurant" && (
-                  <RestaurantPreview
-                    content={dict.work.previewContent.restaurant}
-                  />
-                )}
-                {resolved.id === "consulting" && (
-                  <ConsultingPreview
-                    content={dict.work.previewContent.consulting}
-                  />
-                )}
-              </DeviceFrame>
-            </div>
-
-            {approach.length > 0 && (
-              <div className="mt-16 max-w-2xl">
-                <Heading size="h2">
-                  {dict.work.caseStudy.approachHeading}
+        {resolved.id === "restaurant" && (
+          <Section
+            ariaLabelledBy="reservation-demo-heading"
+            id="reservation-demo"
+          >
+            <Container>
+              <div className="max-w-xl">
+                <Heading id="reservation-demo-heading" size="h2">
+                  {dict.work.reservationDemo.heading}
                 </Heading>
-                <div className="mt-8 flex flex-col gap-8">
-                  {approach.map((point) => (
-                    <div key={point.title}>
-                      <Heading size="h4" as="h3">
-                        {point.title}
-                      </Heading>
-                      <Text tone="secondary" className="mt-2">
-                        {point.description}
-                      </Text>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {caseStudyResults?.results &&
-              caseStudyResults.results.length > 0 && (
-                <div className="mt-16 max-w-2xl">
-                  <Heading size="h2">
-                    {dict.work.caseStudy.resultsHeading}
-                  </Heading>
-                  <div className="mt-8">
-                    <ResultsMetrics results={caseStudyResults.results} />
-                  </div>
-                </div>
-              )}
-
-            {caseStudyResults?.testimonial && (
-              <div className="mt-16 max-w-2xl">
-                <Testimonial {...caseStudyResults.testimonial} />
-              </div>
-            )}
-
-            {resolved.id === "restaurant" && (
-              <div id="reservation-demo" className="mt-16 max-w-2xl">
-                <Heading size="h2">{dict.work.reservationDemo.heading}</Heading>
-                <Text tone="secondary" className="mt-4">
+                <Text tone="secondary" size="lg" className="mt-4">
                   {dict.work.reservationDemo.subhead}
                 </Text>
-                <div className="mt-8">
-                  <ReservationDemo />
-                </div>
               </div>
-            )}
+              <div className="mt-10 max-w-2xl">
+                <ReservationDemo />
+              </div>
+            </Container>
+          </Section>
+        )}
 
-            {resolved.id === "consulting" && (
-              <div id="lead-qualification-demo" className="mt-16 max-w-2xl">
-                <Heading size="h2">
+        {resolved.id === "consulting" && (
+          <Section
+            ariaLabelledBy="lead-qualification-demo-heading"
+            id="lead-qualification-demo"
+          >
+            <Container>
+              <div className="max-w-xl">
+                <Heading id="lead-qualification-demo-heading" size="h2">
                   {dict.work.leadQualificationDemo.heading}
                 </Heading>
-                <Text tone="secondary" className="mt-4">
+                <Text tone="secondary" size="lg" className="mt-4">
                   {dict.work.leadQualificationDemo.subhead}
                 </Text>
-                <div className="mt-8">
-                  <LeadQualificationDemo />
-                </div>
               </div>
-            )}
-          </Container>
-        </Section>
+              <div className="mt-10 max-w-2xl">
+                <LeadQualificationDemo />
+              </div>
+            </Container>
+          </Section>
+        )}
 
         <CaseStudyCTA />
       </main>

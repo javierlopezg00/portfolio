@@ -201,7 +201,7 @@ export function IntegrationFlowDemo() {
                   y={labelBelow ? pos.y + 30 : pos.y - 24}
                   textAnchor="middle"
                   className={cn(
-                    "duration-fast font-mono text-[9px] tracking-wide transition-colors ease-out",
+                    "duration-fast text-[9px] font-medium tracking-wide transition-colors ease-out",
                     active ? "fill-text" : "fill-text-secondary",
                   )}
                 >

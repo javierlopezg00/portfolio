@@ -14,6 +14,8 @@ export interface Dictionary {
   // per-component locale mapping.
   intlLocale: string;
   nav: {
+    // In-page fragments ("#work") — components prefix the locale so they
+    // resolve from any route, not just the homepage.
     links: NavLinkText[];
     startAProject: string;
     openMenu: string;
@@ -26,47 +28,22 @@ export interface Dictionary {
     heading: string;
     subhead: string;
     ctaPrimary: string;
-    ctaExplore: string;
-  };
-  whyCustom: {
-    heading: string;
-    subhead: string;
-    items: { title: string; description: string }[];
-  };
-  evolution: {
-    heading: string;
-    subhead: string;
-    stages: { id: string; title: string; description: string }[];
-    // Real, readable copy for the mockup's own interface — deliberately
-    // generic (no specific client), but words rather than abstract bars.
-    // User testing with older viewers found the bars-only version didn't
-    // read as "a website" without this.
-    mockup: {
-      logo: string;
+    ctaSecondary: string;
+    // One short line under the CTAs naming the kinds of businesses the
+    // site is for — the fastest way to tell a visitor "this is for you".
+    audience: string;
+    // Copy for the hero illustration: a realistic (fictional) small
+    // business website plus a phone showing a booking. Real words rather
+    // than abstract bars — viewers need to recognize "a website" instantly.
+    showcase: {
+      brand: string;
       navLinks: string[];
-      heroHeadline: string;
-      heroSubtext: string;
-      heroButton: string;
-      // Shown only on the landing stage (0), where the mockup box otherwise
-      // has a lot of empty space below a short hero — real value props, not
-      // filler, since this section is meant to help sell the product.
-      heroHighlights: string[];
-      cards: { title: string; subtitle: string }[];
-      dashboardStats: { label: string; value: string }[];
-      // Same reasoning as heroHighlights — the dashboard stages (app,
-      // connected, custom) had a lot of empty box below the stat tiles and
-      // chart. Day labels under the chart and a short activity list fill
-      // it with real content instead of dead space.
-      dashboardChartLabel: string;
-      dashboardDayLabels: string[];
-      dashboardActivityLabel: string;
-      dashboardActivity: { name: string; status: string }[];
-      // "Connected Platform" and "Web Application" rendered identically on
-      // phones — the connection-node diagram that's the only real
-      // difference between those two stages is sm+ only (it needs room
-      // outside the box that doesn't exist on a phone). This is the
-      // in-box, phone-sized substitute for that stage specifically.
-      dashboardConnectedLabel: string;
+      headline: string;
+      subtext: string;
+      cta: string;
+      services: string[];
+      phone: { title: string; detail: string; with: string; cta: string };
+      toast: { title: string; body: string };
     };
   };
   services: {
@@ -76,16 +53,238 @@ export interface Dictionary {
       id: string;
       title: string;
       description: string;
-      items: string[];
+      examples: string[];
+      // "Starting around Q7,500" / "Quoted by scope" — a price signal per
+      // category so cost is answered on the homepage, not hidden in a FAQ.
+      pricing: string;
     }[];
-    // One line signaling roughly where projects start — currency matches
-    // the locale's own budget tiers below (USD in English, GTQ in Spanish),
-    // not a second pricing system.
-    pricingSignal: string;
+  };
+  work: {
+    heading: string;
+    subhead: string;
+    viewProject: string;
+    conceptualProjectBadge: string;
+    projects: {
+      id: string;
+      name: string;
+      // Short, customer-facing type label: "Clinic Website".
+      vertical: string;
+      // One line for the homepage card.
+      summary: string;
+      // Longer description for the case study page and its metadata.
+      description: string;
+      tags: string[];
+    }[];
+    // Real, readable copy for each project's mockup — each preview is a
+    // concrete little scene of the actual business (a booking flow, a
+    // menu, a practice-areas grid) rather than placeholder shapes.
+    previewContent: {
+      clinic: {
+        logo: string;
+        navLinks: string[];
+        headline: string;
+        subtext: string;
+        cta: string;
+        steps: string[];
+      };
+      restaurant: {
+        logo: string;
+        cta: string;
+        menu: { item: string; price: string }[];
+      };
+      consulting: {
+        logo: string;
+        navLinks: string[];
+        headline: string;
+        subtext: string;
+        practiceAreas: string[];
+      };
+    };
+    caseStudy: {
+      conceptualNote: string;
+      backToWork: string;
+      approachHeading: string;
+      resultsHeading: string;
+    };
+    // Keyed by project id (see WORK_PROJECT_IDS in lib/content/work.ts) —
+    // plain-language points about what makes each site work for its
+    // customers, never invented business outcomes.
+    caseStudies: Record<string, { title: string; description: string }[]>;
+    // The Meridian clinic page doubles as a sales demo to send directly to
+    // a clinic owner — everything here is fictional (no real doctors,
+    // address, or phone), and nothing collects medical information.
+    clinicShowcase: {
+      badge: string;
+      tagline: string;
+      highlights: string[];
+      servicesHeading: string;
+      services: { name: string; note: string }[];
+      doctorsHeading: string;
+      doctorsIntro: string;
+      mobileHeading: string;
+      mobileBody: string;
+      locationHeading: string;
+      address: string;
+      hours: string;
+      phone: string;
+      whatsapp: string;
+      directions: string;
+      trustHeading: string;
+      trustPoints: string[];
+      demoNote: string;
+    };
+    // The Meridian clinic page's own booking flow (app/[locale]/work/
+    // clinic) — fictional service/provider content only, no real patient
+    // data collected or stored anywhere in this flow.
+    clinicBooking: {
+      heading: string;
+      subhead: string;
+      steps: {
+        service: string;
+        doctor: string;
+        schedule: string;
+        contact: string;
+      };
+      services: { id: string; label: string }[];
+      doctors: { id: string; name: string; specialty: string }[];
+      contactFields: { name: string; email: string };
+      disclosure: string;
+      back: string;
+      next: string;
+      confirm: string;
+      confirmedHeading: string;
+      confirmedBody: (
+        service: string,
+        doctor: string,
+        day: string,
+        time: string,
+      ) => string;
+      bookAnother: string;
+      summary: { service: string; doctor: string; when: string };
+    };
+    // Real testimonial/results data for a case study, keyed by project id.
+    // Empty today (see CaseStudyContent in lib/content/work.ts) — the
+    // Testimonial/ResultsMetrics components only render when an entry's
+    // fields are actually populated, so nothing fabricated can ship by
+    // accident. Add an entry here only once real, verifiable content
+    // exists for a project.
+    caseStudyResults: Record<
+      string,
+      {
+        testimonial?: { quote: string; author: string; role: string };
+        results?: { label: string; value: string }[];
+      }
+    >;
+    // Shown at the end of every case study via the shared CaseStudyCTA
+    // component — never lets a case study page end passively at the footer.
+    caseStudyCta: {
+      heading: string;
+      body: string;
+      primaryCta: string;
+    };
+    // Ember & Oak's case-study-only reservation demo — party size, date,
+    // time, summary. No backend: useReducer state only, discarded on
+    // reset, same pattern as the clinic booking flow.
+    reservationDemo: {
+      heading: string;
+      subhead: string;
+      steps: { partySize: string; date: string; time: string; summary: string };
+      partySizes: { id: string; label: string }[];
+      back: string;
+      next: string;
+      confirm: string;
+      confirmedHeading: string;
+      confirmedBody: (partySize: string, day: string, time: string) => string;
+      bookAnother: string;
+      summaryLabels: { partySize: string; when: string };
+      disclosure: string;
+    };
+    // Kestrel's case-study-only lead-qualification demo — service needed
+    // (reuses previewContent.consulting.practiceAreas), company size,
+    // timeline (reuses configurator.options.timeline), then a summary.
+    leadQualificationDemo: {
+      heading: string;
+      subhead: string;
+      steps: {
+        service: string;
+        companySize: string;
+        timeline: string;
+        summary: string;
+      };
+      companySizes: { id: string; label: string }[];
+      back: string;
+      next: string;
+      summaryHeading: string;
+      summaryLabels: { service: string; companySize: string; timeline: string };
+      disclosure: string;
+    };
+  };
+  // "Your website can grow with your business" — four stages told in
+  // customer language (get online → get customers → sell online → work
+  // smarter). The stage text carries the meaning; the illustration is
+  // decorative and the sequence reads fine with animation disabled.
+  growth: {
+    heading: string;
+    subhead: string;
+    closing: string;
+    stages: {
+      id: string;
+      eyebrow: string;
+      title: string;
+      label: string;
+      description: string;
+    }[];
+    // Copy for the growth illustration — one fictional salon whose website
+    // gains a booking panel, a payment, then a dashboard as stages advance.
+    mockup: {
+      brand: string;
+      navLinks: string[];
+      headline: string;
+      subtext: string;
+      cta: string;
+      ctaBook: string;
+      services: string[];
+      whatsapp: string;
+      bookingTitle: string;
+      bookingTimes: string[];
+      bookingConfirm: string;
+      productTitle: string;
+      productPrice: string;
+      pay: string;
+      paid: string;
+      dashboardTitle: string;
+      stats: { label: string; value: string }[];
+      scheduleTitle: string;
+      schedule: { name: string; time: string; status: string }[];
+    };
+  };
+  verticals: {
+    heading: string;
+    items: { id: string; title: string; description: string }[];
+  };
+  process: {
+    heading: string;
+    subhead: string;
+    steps: { number: string; title: string; description: string }[];
+  };
+  about: {
+    heading: string;
+    body: string;
+    points: { title: string; description: string }[];
+    photoAlt: string;
+  };
+  // Homepage teaser for the Interactive Lab, which lives on its own route
+  // (/lab) so the more technical demos never crowd the sales page.
+  labTeaser: {
+    heading: string;
+    body: string;
+    cta: string;
+    demos: { id: string; title: string; description: string }[];
   };
   lab: {
     heading: string;
     subhead: string;
+    backHome: string;
     tabs: { booking: string; dashboard: string; integration: string };
     demoBadge: string;
     dashboard: {
@@ -131,156 +330,17 @@ export interface Dictionary {
       diagramAriaLabel: string;
     };
   };
-  whoIWorkWith: {
+  // The closing "Start a Project" section: quick contact options on one
+  // side (WhatsApp, email) and the quote configurator on the other, so
+  // nobody is forced through a multi-step form just to say hello.
+  contact: {
     heading: string;
-    subhead: string;
-    items: { title: string; description: string }[];
-  };
-  work: {
-    heading: string;
-    subhead: string;
-    conceptualProjectBadge: string;
-    previewDeviceAriaLabel: string;
-    deviceModes: { desktop: string; mobile: string };
-    projects: {
-      id: string;
-      name: string;
-      vertical: string;
-      description: string;
-      tags: string[];
-    }[];
-    // Real, readable copy for each project's mockup — same reasoning as
-    // evolution.mockup: abstract bars didn't read as "a real website" to
-    // viewers, so this makes each preview a concrete little scene of the
-    // actual business (a booking flow, a menu, a practice-areas grid)
-    // rather than generic placeholder shapes.
-    previewContent: {
-      clinic: {
-        logo: string;
-        navLinks: string[];
-        headline: string;
-        subtext: string;
-        cta: string;
-        steps: string[];
-      };
-      restaurant: {
-        logo: string;
-        cta: string;
-        menu: { item: string; price: string }[];
-      };
-      consulting: {
-        logo: string;
-        navLinks: string[];
-        headline: string;
-        subtext: string;
-        practiceAreas: string[];
-      };
-    };
-    viewCaseStudy: string;
-    caseStudy: {
-      conceptualNote: string;
-      backToWork: string;
-      approachHeading: string;
-      resultsHeading: string;
-    };
-    // Keyed by project id (see WORK_PROJECT_IDS in lib/content/work.ts) —
-    // UX/engineering/product-thinking points only, never invented business
-    // outcomes.
-    caseStudies: Record<string, { title: string; description: string }[]>;
-    // The Meridian clinic case study's own booking flow (app/[locale]/work/
-    // clinic) — fictional service/provider content only, no real patient
-    // data collected or stored anywhere in this flow.
-    clinicBooking: {
-      heading: string;
-      subhead: string;
-      steps: {
-        service: string;
-        doctor: string;
-        schedule: string;
-        contact: string;
-      };
-      services: { id: string; label: string }[];
-      doctors: { id: string; name: string; specialty: string }[];
-      contactFields: { name: string; email: string };
-      disclosure: string;
-      back: string;
-      next: string;
-      confirm: string;
-      confirmedHeading: string;
-      confirmedBody: (
-        service: string,
-        doctor: string,
-        day: string,
-        time: string,
-      ) => string;
-      bookAnother: string;
-      summary: { service: string; doctor: string; when: string };
-    };
-    // Real testimonial/results data for a case study, keyed by project id.
-    // Empty today (see CaseStudyContent in lib/content/work.ts) — the
-    // Testimonial/ResultsMetrics components only render when an entry's
-    // fields are actually populated, so nothing fabricated can ship by
-    // accident. Add an entry here only once real, verifiable content
-    // exists for a project.
-    caseStudyResults: Record<
-      string,
-      {
-        testimonial?: { quote: string; author: string; role: string };
-        results?: { label: string; value: string }[];
-      }
-    >;
-    // Shown at the end of every case study (Meridian, Ember & Oak, Kestrel)
-    // via the shared CaseStudyCTA component — never lets a case study page
-    // end passively at the footer.
-    caseStudyCta: {
-      heading: string;
-      body: string;
-      primaryCta: string;
-      secondaryCta: string;
-    };
-    // Ember & Oak's case-study-only reservation demo — party size, date,
-    // time, summary. No backend: useReducer state only, discarded on
-    // reset, same pattern as the clinic booking flow.
-    reservationDemo: {
-      heading: string;
-      subhead: string;
-      steps: { partySize: string; date: string; time: string; summary: string };
-      partySizes: { id: string; label: string }[];
-      back: string;
-      next: string;
-      confirm: string;
-      confirmedHeading: string;
-      confirmedBody: (partySize: string, day: string, time: string) => string;
-      bookAnother: string;
-      summaryLabels: { partySize: string; when: string };
-      disclosure: string;
-    };
-    // Kestrel's case-study-only lead-qualification demo — service needed
-    // (reuses previewContent.consulting.practiceAreas), company size,
-    // timeline (reuses configurator.options.timeline), then a summary that
-    // ends in the same primary/secondary CTA as CaseStudyCTA rather than a
-    // fake submission.
-    leadQualificationDemo: {
-      heading: string;
-      subhead: string;
-      steps: {
-        service: string;
-        companySize: string;
-        timeline: string;
-        summary: string;
-      };
-      companySizes: { id: string; label: string }[];
-      back: string;
-      next: string;
-      summaryHeading: string;
-      summaryLabels: { service: string; companySize: string; timeline: string };
-      disclosure: string;
-    };
-  };
-  process: {
-    heading: string;
-    subhead: string;
-    steps: { number: string; title: string; description: string }[];
+    body: string;
+    whatsapp: string;
+    // Pre-filled text for the wa.me link.
+    whatsappMessage: string;
+    email: string;
+    replyNote: string;
   };
   configurator: {
     heading: string;
@@ -330,38 +390,16 @@ export interface Dictionary {
       timeline: ConfiguratorOptionText[];
     };
   };
-  about: {
-    heading: string;
-    body: string[];
-    principles: { title: string; description: string }[];
-  };
   faq: {
     heading: string;
     items: { question: string; answer: string }[];
   };
-  maintenance: {
-    heading: string;
-    subhead: string;
-    items: { title: string; description: string }[];
-  };
-  finalCta: {
-    heading: string;
-    body: string;
-    cta: string;
-  };
-  // Low-friction alternative to the configurator — a plain mailto: link
-  // (see secondaryContactHref in lib/content/nav.ts), reused on the
-  // homepage's closing CTA and at the end of every case study.
-  secondaryContact: {
-    prompt: string;
-    cta: string;
-  };
   footer: {
     tagline: string;
     footerAriaLabel: string;
+    lab: string;
     startAProject: string;
     copyright: (year: number) => string;
-    builtWith: string;
   };
   notFound: {
     eyebrow: string;
@@ -391,6 +429,8 @@ export interface Dictionary {
     title: string;
     description: string;
     keywords: string[];
+    labTitle: string;
+    labDescription: string;
     ogHeadline: string;
     ogTagline: string;
     structuredDataAreaServed: string;

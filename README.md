@@ -1,13 +1,20 @@
 # Portfolio
 
-Premium commercial + technical showcase website. Next.js (App Router) + TypeScript + Tailwind CSS v4, built incrementally by phase.
+Commercial website for Javier López Digital — websites and software for
+business owners (clinics, restaurants, professional services, growing
+businesses). Next.js (App Router) + TypeScript + Tailwind CSS v4.
+
+The homepage is written for non-technical customers: short sections, plain
+language, a light/warm visual system. Technical depth lives one click away
+in the case studies (`/work/…`) and the Interactive Lab (`/lab`).
 
 ## Stack
 
 - Next.js 16 (App Router, Turbopack)
 - TypeScript (strict)
 - Tailwind CSS v4 (`app/globals.css` holds the design tokens)
-- GSAP (ScrollTrigger) + `motion` for animation
+- `motion` for small UI animation; GSAP (core only) for the Lab's
+  automation demo, code-split behind its tab
 - Zod for validation, Resend for transactional email
 - Vitest + React Testing Library (unit), Playwright + axe-core (e2e/a11y)
 - ESLint (flat config) + Prettier
@@ -27,8 +34,10 @@ for local development — the lead form logs server-side instead of emailing
 when Resend isn't configured, and SEO URLs fall back to localhost.
 
 - `NEXT_PUBLIC_SITE_URL` — the real domain once one is connected.
-- `RESEND_API_KEY`, `LEAD_NOTIFICATION_EMAIL`, `LEAD_FROM_EMAIL` — Project
-  Configurator lead emails.
+- `NEXT_PUBLIC_WHATSAPP_NUMBER` — digits only, with country code. Every
+  "WhatsApp Me" button renders only when this is set.
+- `RESEND_API_KEY`, `LEAD_NOTIFICATION_EMAIL`, `LEAD_FROM_EMAIL` — quote
+  request (configurator) lead emails.
 
 ## Scripts
 
@@ -47,15 +56,23 @@ pnpm lighthouse          # Lighthouse CI against a production build
 
 ## Structure
 
-- `app/` — routes, layout, global styles, SEO file conventions
-  (`sitemap.ts`, `robots.ts`, `opengraph-image.tsx`, `icon.tsx`)
-- `components/ui` — design-system primitives
+- `app/` — routes (`[locale]`, `[locale]/work/…`, `[locale]/lab`), layout,
+  global styles and design tokens, SEO file conventions (`sitemap.ts`,
+  `robots.ts`, `opengraph-image.tsx`, `icon.tsx`)
+- `components/ui` — design-system primitives (light by default; a Section
+  can opt into `soft` or `dark`)
+- `components/illustrations` — shared browser/phone frames and icons used
+  by every illustration on the site
 - `components/layout` — Navigation, Footer, SkipLink
-- `components/sections` — homepage sections (Interactive Lab demos live
-  under `components/sections/lab`, the evolution scroll sequence under
-  `components/sections/evolution`)
-- `lib/animation` — GSAP setup, shared motion tokens
-- `lib/content` — typed copy/config data
+- `components/sections` — homepage sections (the four-stage growth story
+  under `sections/growth`, the Lab demos under `sections/lab`, work
+  previews and case-study pieces under `sections/work`)
+- `components/work` — case-study-only demos (clinic booking, reservations,
+  lead qualification) and the Meridian clinic showcase
+- `lib/animation` — GSAP setup (Lab only)
+- `lib/content` — CTA targets, WhatsApp/email links, project ids
+- `lib/i18n` — locale routing helpers and the English/Spanish dictionaries
+  (all customer-facing copy lives here)
 - `lib/analytics` — thin Vercel Analytics tracking wrapper
 - `lib/seo` — site metadata config + structured data
 - `lib/hooks`, `lib/validation`, `lib/email`

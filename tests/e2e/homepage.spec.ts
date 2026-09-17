@@ -1,6 +1,15 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import { en } from "@/lib/i18n/en";
+
+// The hero illustration fades in with a short CSS entrance animation;
+// axe samples colors mid-fade otherwise and reports contrast failures
+// that no visitor ever sees.
+async function settleAnimations(page: Page) {
+  await page.evaluate(() =>
+    Promise.all(document.getAnimations().map((a) => a.finished)),
+  );
+}
 
 test.describe("Homepage", () => {
   test("loads with every major section present", async ({ page }) => {
@@ -14,18 +23,16 @@ test.describe("Homepage", () => {
     ).toBeVisible();
 
     for (const id of [
-      "#why-custom",
-      "#evolution",
       "#services",
-      "#lab",
-      "#who-i-work-with",
       "#work",
+      "#growth",
+      "#who-i-work-with",
       "#process",
-      "#configurator",
+      "#lab",
       "#about",
-      "#faq",
-      "#maintenance",
       "#contact",
+      "#configurator",
+      "#faq",
     ]) {
       await expect(page.locator(id)).toBeAttached();
     }
@@ -54,6 +61,7 @@ test.describe("Homepage", () => {
   }) => {
     await page.goto("/en");
     await page.waitForLoadState("networkidle");
+    await settleAnimations(page);
 
     const results = await new AxeBuilder({ page })
       // The dev-only Next.js indicator isn't part of the shipped site.

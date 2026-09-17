@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import NextLink from "next/link";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import { cookies, headers } from "next/headers";
 import { buttonStyles, Container, Heading, Text } from "@/components/ui";
 import { getDictionary } from "@/lib/i18n/getDictionary";
@@ -28,11 +28,6 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export async function generateMetadata(): Promise<Metadata> {
   const dict = getDictionary(await resolveLocale());
   return { title: dict.notFound.heading };
@@ -43,14 +38,11 @@ export default async function GlobalNotFound() {
   const dict = getDictionary(locale);
 
   return (
-    <html
-      lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang={locale} className={`${geistSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <main>
           <Container className="flex min-h-screen flex-col items-center justify-center text-center">
-            <p className="text-accent mb-4 font-mono text-sm tracking-wide uppercase">
+            <p className="text-accent text-caption mb-4 font-semibold tracking-wide uppercase">
               {dict.notFound.eyebrow}
             </p>
             <Heading size="display" className="max-w-xl">

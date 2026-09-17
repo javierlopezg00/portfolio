@@ -8,10 +8,28 @@ const booking = en.lab.booking;
 const integration = en.lab.integration;
 
 test.describe("Interactive Lab", () => {
+  test("homepage teaser deep-links to a specific tab", async ({ page }) => {
+    await page.goto("/en/lab#dashboard");
+    await expect(
+      page.getByRole("tab", { name: tabs.dashboard }),
+    ).toHaveAttribute("aria-selected", "true");
+  });
+
+  test("lab page has no automatically detectable accessibility violations", async ({
+    page,
+  }) => {
+    await page.goto("/en/lab");
+    await page.waitForLoadState("networkidle");
+    const results = await new AxeBuilder({ page })
+      .exclude("[data-nextjs-dev-tools-button]")
+      .analyze();
+    expect(results.violations).toEqual([]);
+  });
+
   test("switching tabs doesn't shift the page's scroll position", async ({
     page,
   }) => {
-    await page.goto("/en/#lab");
+    await page.goto("/en/lab");
     const lab = page.locator("#lab");
     await lab.scrollIntoViewIfNeeded();
 
@@ -31,7 +49,7 @@ test.describe("Interactive Lab", () => {
   test("dashboard demo has no automatically detectable accessibility violations", async ({
     page,
   }) => {
-    await page.goto("/en/#lab");
+    await page.goto("/en/lab");
     const lab = page.locator("#lab");
     await lab.scrollIntoViewIfNeeded();
     await lab.getByRole("tab", { name: tabs.dashboard }).click();
@@ -44,7 +62,7 @@ test.describe("Interactive Lab", () => {
   test("dashboard demo actually swaps stats when the range changes", async ({
     page,
   }) => {
-    await page.goto("/en/#lab");
+    await page.goto("/en/lab");
     const lab = page.locator("#lab");
     await lab.scrollIntoViewIfNeeded();
     await lab.getByRole("tab", { name: tabs.dashboard }).click();
@@ -66,7 +84,7 @@ test.describe("Interactive Lab", () => {
   });
 
   test("booking demo completes a full day/time booking", async ({ page }) => {
-    await page.goto("/en/#lab");
+    await page.goto("/en/lab");
     const lab = page.locator("#lab");
     await lab.scrollIntoViewIfNeeded();
     await lab.getByRole("tab", { name: tabs.booking }).click();
@@ -96,7 +114,7 @@ test.describe("Interactive Lab", () => {
   test("integration demo runs a request and shows a distinct success state", async ({
     page,
   }) => {
-    await page.goto("/en/#lab");
+    await page.goto("/en/lab");
     const lab = page.locator("#lab");
     await lab.scrollIntoViewIfNeeded();
     await lab.getByRole("tab", { name: tabs.integration }).click();
@@ -115,7 +133,7 @@ test.describe("Interactive Lab", () => {
   test("booking and integration demos have no automatically detectable accessibility violations", async ({
     page,
   }) => {
-    await page.goto("/en/#lab");
+    await page.goto("/en/lab");
     const lab = page.locator("#lab");
     await lab.scrollIntoViewIfNeeded();
 
