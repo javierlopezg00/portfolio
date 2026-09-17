@@ -55,7 +55,7 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
               </p>
             </div>
             <Image
-              src={images.massage}
+              src={images.reception}
               alt=""
               sizes={MOCKUP_IMAGE_SIZES}
               placeholder="blur"

@@ -5,16 +5,21 @@
 // show them larger than ~400px.
 import beautySalon from "@/public/images/beauty-salon.jpg";
 import burger from "@/public/images/burger.jpg";
-import massage from "@/public/images/massage.jpg";
+import giftBox from "@/public/images/gift-box.jpg";
+import reception from "@/public/images/reception.jpg";
 import pasta from "@/public/images/pasta.jpg";
+import profile from "@/public/images/profile.jpg";
 import risotto from "@/public/images/risotto.jpg";
 import salmon from "@/public/images/salmon.jpg";
 import shortRib from "@/public/images/short-rib.jpg";
 import tacos from "@/public/images/tacos.jpg";
 
 export const images = {
-  massage,
+  // The real headshot for the About section.
+  profile,
+  reception,
   beautySalon,
+  giftBox,
   // Order matches dict.work.previewContent.restaurant.menu — the first
   // three are the dishes listed there, the rest fill out the gallery.
   dishes: [shortRib, salmon, risotto, pasta, burger, tacos],

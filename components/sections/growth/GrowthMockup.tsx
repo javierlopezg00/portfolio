@@ -140,7 +140,7 @@ function WebsiteStages({
         )}
       </div>
 
-      <div className="grid grid-cols-3 gap-2.5">
+      <div className="grid grid-cols-3 items-start gap-2.5">
         {content.services.map((service, i) => (
           <div
             key={service}
@@ -157,6 +157,12 @@ function WebsiteStages({
         ))}
         {stage === 2 && (
           <div className="border-accent/40 bg-accent-soft/60 animate-fade-in flex flex-col gap-1.5 rounded-lg border p-3">
+            <Image
+              src={images.giftBox}
+              alt=""
+              sizes={MOCKUP_IMAGE_SIZES}
+              className="aspect-[4/3] w-full rounded-md object-cover"
+            />
             <span className="text-text flex items-center gap-1.5 text-[11px] font-medium">
               <CardIcon width={13} height={13} className="text-accent" />
               {content.productTitle}
@@ -201,7 +207,7 @@ function DashboardStage({
             {content.brand}
           </span>
         </div>
-        <div className="grid grid-cols-3 gap-2.5">
+        <div className="grid grid-cols-3 items-start gap-2.5">
           {content.stats.map((stat) => (
             <div
               key={stat.label}

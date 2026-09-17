@@ -22,55 +22,61 @@ export function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header
-      className={cn(
-        "bg-background/85 duration-base sticky top-0 z-50 border-b backdrop-blur transition-[border-color,box-shadow] ease-out",
-        scrolled ? "border-border shadow-sm" : "border-transparent",
-      )}
-    >
-      <nav
-        aria-label={dict.nav.primaryAriaLabel}
-        className="mx-auto flex h-18 w-full max-w-6xl items-center justify-between px-4 sm:px-8"
+    // The header's backdrop-blur makes it the containing block for any
+    // `position: fixed` descendant, so the full-screen menu has to live
+    // beside the header, not inside it — otherwise it's clipped to the
+    // bar's own 72px.
+    <>
+      <header
+        className={cn(
+          "bg-background/85 duration-base sticky top-0 z-50 border-b backdrop-blur transition-[border-color,box-shadow] ease-out",
+          scrolled ? "border-border shadow-sm" : "border-transparent",
+        )}
       >
-        <Wordmark href={`/${locale}`} />
-
-        <ul className="hidden items-center gap-1 md:flex">
-          {dict.nav.links.map((link) => (
-            <li key={link.href}>
-              <NextLink
-                href={`/${locale}${link.href}`}
-                className="text-body-sm text-text-secondary duration-fast hover:text-text focus-visible:ring-focus-ring rounded-full px-3 py-2 font-medium transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none"
-              >
-                {link.label}
-              </NextLink>
-            </li>
-          ))}
-        </ul>
-
-        <div className="hidden items-center gap-4 md:flex">
-          <LocaleSwitcher />
-          <StartProjectLink className={buttonStyles({ size: "sm" })}>
-            {dict.nav.startAProject}
-          </StartProjectLink>
-        </div>
-
-        <button
-          type="button"
-          className="text-text focus-visible:ring-focus-ring -mr-2 flex h-11 w-11 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none md:hidden"
-          aria-label={dict.nav.openMenu}
-          aria-expanded={mobileOpen}
-          aria-controls={MOBILE_MENU_ID}
-          onClick={() => setMobileOpen(true)}
+        <nav
+          aria-label={dict.nav.primaryAriaLabel}
+          className="mx-auto flex h-18 w-full max-w-6xl items-center justify-between px-4 sm:px-8"
         >
-          <MenuIcon />
-        </button>
-      </nav>
+          <Wordmark href={`/${locale}`} />
+
+          <ul className="hidden items-center gap-1 md:flex">
+            {dict.nav.links.map((link) => (
+              <li key={link.href}>
+                <NextLink
+                  href={`/${locale}${link.href}`}
+                  className="text-body-sm text-text-secondary duration-fast hover:text-text focus-visible:ring-focus-ring rounded-full px-3 py-2 font-medium transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none"
+                >
+                  {link.label}
+                </NextLink>
+              </li>
+            ))}
+          </ul>
+
+          <div className="hidden items-center gap-4 md:flex">
+            <LocaleSwitcher />
+            <StartProjectLink className={buttonStyles({ size: "sm" })}>
+              {dict.nav.startAProject}
+            </StartProjectLink>
+          </div>
+
+          <button
+            type="button"
+            className="text-text focus-visible:ring-focus-ring -mr-2 flex h-11 w-11 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none md:hidden"
+            aria-label={dict.nav.openMenu}
+            aria-expanded={mobileOpen}
+            aria-controls={MOBILE_MENU_ID}
+            onClick={() => setMobileOpen(true)}
+          >
+            <MenuIcon />
+          </button>
+        </nav>
+      </header>
 
       <MobileMenu
         id={MOBILE_MENU_ID}
         open={mobileOpen}
         onClose={() => setMobileOpen(false)}
       />
-    </header>
+    </>
   );
 }
