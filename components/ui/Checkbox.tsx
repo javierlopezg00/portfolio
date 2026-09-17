@@ -23,7 +23,7 @@ export function Checkbox({ label, id, className, ...props }: CheckboxProps) {
         id={checkboxId}
         type="checkbox"
         className={cn(
-          "border-border-strong bg-surface accent-accent focus-visible:ring-focus-ring mt-0.5 h-5 w-5 shrink-0 rounded focus-visible:ring-2 focus-visible:outline-none",
+          "border-border-strong bg-surface accent-accent mt-0.5 h-5 w-5 shrink-0 rounded",
           className,
         )}
         {...props}

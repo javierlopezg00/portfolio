@@ -87,7 +87,7 @@ export function ClinicShowcase({ dict }: ClinicShowcaseProps) {
         </Container>
       </Section>
 
-      <Section theme="soft" ariaLabelledBy="clinic-mobile-heading" id="mobile">
+      <Section theme="muted" ariaLabelledBy="clinic-mobile-heading" id="mobile">
         <Container>
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>

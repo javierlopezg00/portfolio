@@ -133,7 +133,7 @@ export function IntegrationFlowDemo() {
         <Badge>{dict.lab.demoBadge}</Badge>
         <div aria-live="polite" className="flex items-center gap-3">
           {status === "success" && (
-            <span className="text-accent text-body-sm flex items-center gap-1.5">
+            <span className="text-demo text-body-sm flex items-center gap-1.5">
               <CheckIcon />
               {dict.lab.integration.success}
             </span>
@@ -181,7 +181,7 @@ export function IntegrationFlowDemo() {
                   r={active ? 22 : 18}
                   className={cn(
                     "duration-fast transition-[r] ease-out",
-                    active ? "fill-accent/15" : "fill-transparent",
+                    active ? "fill-demo/15" : "fill-transparent",
                   )}
                 />
                 <circle
@@ -192,7 +192,7 @@ export function IntegrationFlowDemo() {
                   className={cn(
                     "duration-fast transition-colors ease-out",
                     active
-                      ? "fill-accent stroke-accent"
+                      ? "fill-demo stroke-demo"
                       : "fill-surface stroke-border-strong",
                   )}
                 />
@@ -211,8 +211,8 @@ export function IntegrationFlowDemo() {
             );
           })}
 
-          <circle ref={dotARef} r={5} className="fill-accent opacity-0" />
-          <circle ref={dotBRef} r={5} className="fill-accent opacity-0" />
+          <circle ref={dotARef} r={5} className="fill-demo opacity-0" />
+          <circle ref={dotBRef} r={5} className="fill-demo opacity-0" />
         </svg>
       </div>
     </div>

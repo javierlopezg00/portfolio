@@ -31,7 +31,7 @@ export function CaseStudyStory({
 
   return (
     <>
-      <Section theme="soft" ariaLabelledBy="goal-heading" id="goal">
+      <Section theme="muted" ariaLabelledBy="goal-heading" id="goal">
         <Container>
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
             <div>
@@ -80,7 +80,7 @@ export function CaseStudyStory({
             {demoHighlight && (
               <a
                 href={demoHighlight.href}
-                className="group border-accent/40 bg-accent-soft/50 duration-base hover:border-accent focus-visible:ring-focus-ring rounded-xl border p-6 shadow-sm transition-[border-color,box-shadow] ease-out hover:shadow-md focus-visible:ring-2 focus-visible:outline-none sm:col-span-2"
+                className="group border-accent/40 bg-accent-soft/50 duration-base hover:border-accent rounded-xl border p-6 shadow-sm transition-[border-color,box-shadow] ease-out hover:shadow-md sm:col-span-2"
               >
                 <span className="text-accent text-caption font-semibold tracking-wide uppercase">
                   {cs.tryItLabel}
@@ -97,7 +97,7 @@ export function CaseStudyStory({
         </Container>
       </Section>
 
-      <Section theme="soft" ariaLabelledBy="decisions-heading" id="decisions">
+      <Section theme="muted" ariaLabelledBy="decisions-heading" id="decisions">
         <Container>
           <Heading id="decisions-heading" size="h2">
             {cs.decisionsHeading}
@@ -140,7 +140,7 @@ export function CaseStudyStory({
               until someone asks for them. <details> gives that for free,
               keyboard-operable and announced, with no JavaScript. */}
           <details className="group border-border bg-surface mt-16 max-w-3xl rounded-xl border shadow-sm">
-            <summary className="text-body text-text focus-visible:ring-focus-ring flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl px-5 py-4 font-medium focus-visible:ring-2 focus-visible:outline-none [&::-webkit-details-marker]:hidden">
+            <summary className="text-body text-text flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl px-5 py-4 font-medium [&::-webkit-details-marker]:hidden">
               <span>
                 {cs.technicalHeading}
                 <Text

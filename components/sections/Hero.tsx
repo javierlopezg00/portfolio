@@ -28,7 +28,7 @@ export async function Hero() {
 
   return (
     <Section
-      theme="sand"
+      theme="muted"
       id="hero"
       ariaLabelledBy="hero-heading"
       // The composition deliberately overflows its column on the right,
@@ -39,7 +39,7 @@ export async function Hero() {
           the sand ground without drawing a box around them. */}
       <div
         aria-hidden="true"
-        className="from-warm-soft pointer-events-none absolute top-[-10%] right-[-15%] hidden h-[130%] w-[70%] rounded-full bg-radial to-transparent to-70% opacity-70 blur-2xl lg:block"
+        className="from-accent-soft pointer-events-none absolute top-[-10%] right-[-15%] hidden h-[130%] w-[70%] rounded-full bg-radial to-transparent to-70% opacity-70 blur-2xl lg:block"
       />
 
       <Container className="relative">
@@ -87,7 +87,7 @@ export async function Hero() {
             <p className="text-body-sm text-text-secondary mt-8 flex items-center gap-3">
               <span
                 aria-hidden="true"
-                className="bg-warm h-px w-8 shrink-0 sm:w-12"
+                className="bg-accent-tint h-px w-8 shrink-0 sm:w-12"
               />
               {dict.hero.audience}
             </p>

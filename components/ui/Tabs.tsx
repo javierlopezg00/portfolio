@@ -73,7 +73,7 @@ export function Tabs({
               tabIndex={selected ? 0 : -1}
               onClick={() => setActive(item.value)}
               className={cn(
-                "text-body-sm duration-fast focus-visible:ring-focus-ring relative px-4 py-3 font-medium transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
+                "text-body-sm duration-fast relative px-4 py-3 font-medium transition-colors ease-out",
                 selected ? "text-text" : "text-text-secondary hover:text-text",
               )}
             >
@@ -96,7 +96,7 @@ export function Tabs({
           aria-labelledby={`${baseId}-tab-${item.value}`}
           hidden={item.value !== activeValue}
           tabIndex={0}
-          className="focus-visible:ring-focus-ring rounded-md pt-6 focus-visible:ring-2 focus-visible:outline-none"
+          className="rounded-md pt-6"
         >
           {item.value === activeValue ? item.content : null}
         </div>

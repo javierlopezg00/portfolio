@@ -82,6 +82,7 @@ export function LeadQualificationDemo() {
     <div className="flex flex-col gap-6">
       <Badge>{dict.lab.demoBadge}</Badge>
       <StepIndicator
+        tone="demo"
         current={stepIndex}
         total={STEPS.length}
         text={dict.configurator.stepIndicator(
@@ -96,6 +97,7 @@ export function LeadQualificationDemo() {
           <div className="flex flex-col gap-3">
             {services.map((service) => (
               <OptionCard
+                tone="demo"
                 key={service}
                 type="radio"
                 name="service"
@@ -118,6 +120,7 @@ export function LeadQualificationDemo() {
           <div className="flex flex-col gap-3">
             {lq.companySizes.map((size) => (
               <OptionCard
+                tone="demo"
                 key={size.id}
                 type="radio"
                 name="company-size"
@@ -140,6 +143,7 @@ export function LeadQualificationDemo() {
           <div className="flex flex-col gap-3">
             {timelines.map((t) => (
               <OptionCard
+                tone="demo"
                 key={t.id}
                 type="radio"
                 name="timeline"
@@ -207,7 +211,7 @@ export function LeadQualificationDemo() {
           <span />
         )}
         {state.step !== "summary" && (
-          <Button onClick={goNext} disabled={!canAdvance}>
+          <Button variant="demo" onClick={goNext} disabled={!canAdvance}>
             {lq.next}
           </Button>
         )}

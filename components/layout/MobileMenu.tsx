@@ -45,7 +45,7 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
               type="button"
               onClick={onClose}
               aria-label={dict.nav.closeMenu}
-              className="text-text focus-visible:ring-focus-ring -mr-2 flex h-11 w-11 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none"
+              className="text-text -mr-2 flex h-11 w-11 items-center justify-center rounded-full"
             >
               <CloseIcon />
             </button>
@@ -56,7 +56,7 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
                 <NextLink
                   href={`/${locale}${link.href}`}
                   onClick={onClose}
-                  className="text-h2 text-text focus-visible:ring-focus-ring block rounded-md py-3 font-semibold focus-visible:ring-2 focus-visible:outline-none"
+                  className="text-h2 text-text block rounded-md py-3 font-semibold"
                 >
                   {link.label}
                 </NextLink>

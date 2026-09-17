@@ -32,7 +32,7 @@ export function Input({
         aria-invalid={Boolean(error)}
         aria-describedby={cn(hintId, errorId) || undefined}
         className={cn(
-          "bg-surface text-body text-text duration-fast placeholder:text-text-secondary focus-visible:ring-focus-ring h-11 rounded-md border px-4 transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
+          "bg-surface text-body text-text duration-fast placeholder:text-text-secondary h-11 rounded-md border px-4 transition-colors ease-out",
           error ? "border-red-500" : "border-border-strong",
           className,
         )}

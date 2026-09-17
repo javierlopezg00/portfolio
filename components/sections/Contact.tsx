@@ -79,7 +79,7 @@ export async function Contact() {
             <div className="mt-8 flex flex-col gap-1">
               <a
                 href={siteConfig.contact.mailto}
-                className="text-text hover:text-accent focus-visible:ring-focus-ring duration-fast w-fit rounded-sm text-lg font-medium underline decoration-[color:var(--color-warm)] decoration-2 underline-offset-[6px] transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none"
+                className="text-text hover:text-accent duration-fast w-fit rounded-sm text-lg font-medium underline decoration-[color:var(--color-accent-tint)] decoration-2 underline-offset-[6px] transition-colors ease-out"
               >
                 {siteConfig.contact.email}
               </a>

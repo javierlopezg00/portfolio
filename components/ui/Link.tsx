@@ -16,7 +16,7 @@ export function Link({ external, className, children, ...props }: LinkProps) {
   return (
     <NextLink
       className={cn(
-        "text-text duration-fast hover:text-accent focus-visible:ring-focus-ring rounded-sm underline-offset-4 transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
+        "text-text duration-fast hover:text-accent rounded-sm underline-offset-4 transition-colors ease-out",
         className,
       )}
       {...externalProps}

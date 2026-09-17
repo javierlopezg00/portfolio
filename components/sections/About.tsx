@@ -12,7 +12,7 @@ export async function About() {
   const dict = await getServerDictionary();
 
   return (
-    <Section theme="sand" id="about" ariaLabelledBy="about-heading">
+    <Section theme="muted" id="about" ariaLabelledBy="about-heading">
       <Container>
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[minmax(0,4fr)_minmax(0,6fr)] md:gap-16">
           <div className="relative mx-auto w-full max-w-xs md:mx-0 md:max-w-none">
@@ -42,7 +42,7 @@ export async function About() {
                 <li key={point.title}>
                   <span
                     aria-hidden="true"
-                    className="bg-warm mb-3 block h-px w-8"
+                    className="bg-accent-tint mb-3 block h-px w-8"
                   />
                   <Text className="font-semibold">{point.title}</Text>
                   <Text tone="secondary" size="sm" className="mt-1">

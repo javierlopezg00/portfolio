@@ -1,20 +1,18 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-// Four light grounds and one dark, so consecutive sections can alternate
+// Three light grounds and one dark, so consecutive sections alternate
 // instead of running together into a single flat plane:
-//   light  #fafaf7  the default page ground
-//   white  #ffffff  crisp, for structured card sections
-//   sand   #f4efe6  warm, for the human moments (hero, about)
-//   soft   #eef2ff  cool tint, used on case-study pages
-//   dark   navy     the two contrast moments (growth story, contact)
-type SectionTheme = "light" | "white" | "sand" | "soft" | "dark";
+//   light  #f7f4ee  the default warm page ground
+//   white  #fffdf9  crisp, for structured card sections
+//   muted  #f1eadf  a step deeper, for the human moments and case studies
+//   dark   #29322d  charcoal green — the two contrast moments
+type SectionTheme = "light" | "white" | "muted" | "dark";
 
 const themeClass: Record<SectionTheme, string> = {
   light: "bg-background",
   white: "bg-surface",
-  sand: "bg-surface-sand",
-  soft: "bg-accent-soft",
+  muted: "bg-surface-muted",
   dark: "bg-background",
 };
 

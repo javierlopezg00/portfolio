@@ -214,10 +214,10 @@ export function KitchenSinkClient() {
         </Container>
       </Section>
 
-      <Section theme="soft" ariaLabelledBy="soft-section-heading">
+      <Section theme="muted" ariaLabelledBy="muted-section-heading">
         <Container className="flex flex-col gap-6">
-          <Heading id="soft-section-heading" size="h2">
-            Soft section variant
+          <Heading id="muted-section-heading" size="h2">
+            Muted section variant
           </Heading>
           <Text tone="secondary">
             Same light tokens on the tinted surface — used to break up long runs
@@ -227,7 +227,7 @@ export function KitchenSinkClient() {
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
             <Card interactive className="max-w-sm">
-              <Heading size="h4">Card in a soft section</Heading>
+              <Heading size="h4">Card in a muted section</Heading>
               <Text size="sm" tone="secondary" className="mt-2">
                 Same component, themed by context.
               </Text>

@@ -80,7 +80,9 @@ export function GrowthStory() {
                   aria-hidden="true"
                   className={cn(
                     "font-display duration-base shrink-0 text-3xl leading-none transition-colors ease-out sm:text-4xl",
-                    isActive ? "text-warm" : "text-warm lg:text-text-secondary",
+                    isActive
+                      ? "text-accent-tint"
+                      : "text-accent-tint lg:text-text-secondary",
                   )}
                 >
                   {String(index + 1).padStart(2, "0")}
@@ -136,7 +138,9 @@ export function GrowthStory() {
                 key={stage.id}
                 className={cn(
                   "duration-base h-1.5 rounded-full transition-[width,background-color] ease-out",
-                  index === active ? "bg-warm w-8" : "bg-border-strong w-1.5",
+                  index === active
+                    ? "bg-accent-tint w-8"
+                    : "bg-border-strong w-1.5",
                 )}
               />
             ))}

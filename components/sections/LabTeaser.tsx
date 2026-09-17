@@ -60,7 +60,7 @@ export async function LabTeaser() {
               <NextLink
                 key={demo.id}
                 href={`/${locale}/lab#${demo.id}`}
-                className="group border-border bg-surface duration-base hover:border-accent/50 focus-visible:ring-focus-ring flex items-start gap-4 rounded-xl border p-5 shadow-sm transition-[border-color,box-shadow] ease-out hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+                className="group border-border bg-surface duration-base hover:border-accent/50 flex items-start gap-4 rounded-xl border p-5 shadow-sm transition-[border-color,box-shadow] ease-out hover:shadow-md"
               >
                 <span className="bg-accent-soft text-accent flex h-11 w-11 shrink-0 items-center justify-center rounded-lg">
                   <Icon width={22} height={22} />

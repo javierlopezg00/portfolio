@@ -42,7 +42,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
             onClick={() => rememberLocale(l)}
             aria-current={l === locale ? "true" : undefined}
             className={cn(
-              "duration-fast focus-visible:ring-focus-ring rounded-sm px-1.5 py-1 uppercase transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
+              "duration-fast rounded-sm px-1.5 py-1 uppercase transition-colors ease-out",
               l === locale ? "text-text font-semibold" : "hover:text-text",
             )}
           >

@@ -43,7 +43,7 @@ export function Select({
         aria-describedby={errorId}
         defaultValue={defaultValue ?? ""}
         className={cn(
-          "bg-surface text-body text-text duration-fast focus-visible:ring-focus-ring h-11 rounded-md border px-4 transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
+          "bg-surface text-body text-text duration-fast h-11 rounded-md border px-4 transition-colors ease-out",
           error ? "border-red-500" : "border-border-strong",
           className,
         )}

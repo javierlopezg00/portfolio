@@ -39,18 +39,18 @@ export function WebsiteIllustration() {
         <div className="flex flex-col gap-2 p-3">
           <div className="flex items-center justify-between">
             <span className="bg-text/80 h-1.5 w-10 rounded-full" />
-            <span className="bg-accent-strong h-3 w-10 rounded-full" />
+            <span className="bg-demo-strong h-3 w-10 rounded-full" />
           </div>
           <span className="bg-text/70 mt-1 h-2 w-3/4 rounded-full" />
           <span className="bg-text-secondary/40 h-1.5 w-1/2 rounded-full" />
           <div className="mt-1 grid grid-cols-3 gap-1.5">
             {[0, 1, 2].map((i) => (
-              <span key={i} className="bg-accent-soft h-7 rounded-md" />
+              <span key={i} className="bg-demo-soft h-7 rounded-md" />
             ))}
           </div>
         </div>
       </div>
-      <GlobeIcon className="text-accent -ml-3 hidden h-6 w-6 shrink-0 @sm:block" />
+      <GlobeIcon className="text-demo -ml-3 hidden h-6 w-6 shrink-0 @sm:block" />
     </Frame>
   );
 }
@@ -70,8 +70,8 @@ export function OnlineIllustration({ label }: { label: string }) {
                 key={i}
                 className={
                   i === 4
-                    ? "bg-accent-strong h-4 rounded-md"
-                    : "bg-accent-soft h-4 rounded-md"
+                    ? "bg-demo-strong h-4 rounded-md"
+                    : "bg-demo-soft h-4 rounded-md"
                 }
               />
             ))}
@@ -107,7 +107,7 @@ export function SoftwareIllustration() {
               key={i}
               className={
                 i === 0
-                  ? "bg-accent-strong h-2.5 w-2.5 rounded-sm"
+                  ? "bg-demo-strong h-2.5 w-2.5 rounded-sm"
                   : "bg-border-strong h-2.5 w-2.5 rounded-sm"
               }
             />
@@ -129,13 +129,13 @@ export function SoftwareIllustration() {
             {[35, 55, 45, 75, 60, 90].map((h, i) => (
               <span
                 key={i}
-                className="bg-accent/60 flex-1 rounded-t-sm"
+                className="bg-demo/60 flex-1 rounded-t-sm"
                 style={{ height: `${h}%` }}
               />
             ))}
           </div>
         </div>
-        <ChartIcon className="text-accent hidden h-5 w-5 shrink-0 self-start @sm:block" />
+        <ChartIcon className="text-demo hidden h-5 w-5 shrink-0 self-start @sm:block" />
       </div>
     </Frame>
   );

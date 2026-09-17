@@ -35,7 +35,7 @@ export function FeaturedProject({
             <Heading size="h2" as="h3">
               <NextLink
                 href={href}
-                className="focus-visible:ring-focus-ring rounded-sm after:absolute after:inset-0 after:content-[''] focus-visible:ring-2 focus-visible:outline-none"
+                className="rounded-sm after:absolute after:inset-0 after:content-['']"
               >
                 {project.name}
               </NextLink>
@@ -59,7 +59,7 @@ export function FeaturedProject({
             rather than a screenshot in a box. */}
         <div
           aria-hidden="true"
-          className="bg-surface-sand relative overflow-hidden px-6 pt-10 pb-10 sm:px-10 sm:pt-14 lg:pb-14"
+          className="bg-surface-muted relative overflow-hidden px-6 pt-10 pb-10 sm:px-10 sm:pt-14 lg:pb-14"
         >
           <BrandMotif
             corner="tl"

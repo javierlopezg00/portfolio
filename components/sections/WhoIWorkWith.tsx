@@ -23,19 +23,16 @@ const ICONS: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
 // identical tiles. These panels are built to take photography later:
 // drop a next/image behind the content with the same gradient as a
 // scrim and nothing else has to change.
-const WASH: Record<string, string> = {
-  healthcare: "from-accent-soft via-accent-soft to-surface",
-  hospitality: "from-warm-soft via-warm-soft to-surface",
-  professional: "from-warm-soft via-warm-soft to-surface",
-  growing: "from-accent-soft via-accent-soft to-surface",
-};
+// One wash, one tint: the panels differ by their glyph, not by four
+// competing colors. Alternating the glyph's strength is enough rhythm.
+const WASH = "from-accent-soft via-accent-soft to-surface";
 
 export async function WhoIWorkWith() {
   const dict = await getServerDictionary();
 
   return (
     <Section
-      theme="sand"
+      theme="muted"
       id="who-i-work-with"
       ariaLabelledBy="who-i-work-with-heading"
     >
@@ -52,7 +49,7 @@ export async function WhoIWorkWith() {
                 key={item.id}
                 className={cn(
                   "rounded-signature-lg border-border relative flex min-h-64 flex-col justify-end overflow-hidden border bg-gradient-to-b p-6 shadow-sm sm:min-h-80 lg:p-7",
-                  WASH[item.id],
+                  WASH,
                 )}
               >
                 {/* One oversized glyph, cropped by the panel edge — the
@@ -64,7 +61,7 @@ export async function WhoIWorkWith() {
                   strokeWidth={1.25}
                   className={cn(
                     "absolute -top-6 -right-8 h-44 w-44 lg:h-52 lg:w-52",
-                    i % 2 === 0 ? "text-accent/25" : "text-warm/40",
+                    i % 2 === 0 ? "text-accent/25" : "text-accent-tint/40",
                   )}
                 />
                 {i % 2 === 0 && (

@@ -67,12 +67,12 @@ export function AnimatedChart({ data }: AnimatedChartProps) {
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
             <stop
               offset="0%"
-              style={{ stopColor: "var(--color-accent)" }}
+              style={{ stopColor: "var(--color-demo)" }}
               stopOpacity={0.18}
             />
             <stop
               offset="100%"
-              style={{ stopColor: "var(--color-accent)" }}
+              style={{ stopColor: "var(--color-demo)" }}
               stopOpacity={0}
             />
           </linearGradient>
@@ -94,7 +94,7 @@ export function AnimatedChart({ data }: AnimatedChartProps) {
         <path
           d={linePath}
           fill="none"
-          className="stroke-accent"
+          className="stroke-demo"
           strokeWidth={2}
           strokeLinejoin="round"
           strokeLinecap="round"
@@ -117,7 +117,7 @@ export function AnimatedChart({ data }: AnimatedChartProps) {
             cx={p.x}
             cy={p.y}
             r={activeIndex === i ? 5 : 3}
-            className="fill-accent stroke-surface duration-fast transition-[r] ease-out"
+            className="fill-demo stroke-surface duration-fast transition-[r] ease-out"
             strokeWidth={2}
           />
         ))}
@@ -130,7 +130,7 @@ export function AnimatedChart({ data }: AnimatedChartProps) {
           <button
             key={i}
             type="button"
-            className="flex-1 focus-visible:outline-none"
+            className="flex-1"
             onPointerEnter={() => setActiveIndex(i)}
             onPointerLeave={() => setActiveIndex(null)}
             onFocus={() => setActiveIndex(i)}

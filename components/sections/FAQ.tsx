@@ -21,7 +21,7 @@ export async function FAQ() {
               key={item.question}
               className="group border-border bg-surface rounded-lg border shadow-sm"
             >
-              <summary className="text-body text-text focus-visible:ring-focus-ring flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg px-5 py-4 font-medium focus-visible:ring-2 focus-visible:outline-none [&::-webkit-details-marker]:hidden">
+              <summary className="text-body text-text flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg px-5 py-4 font-medium [&::-webkit-details-marker]:hidden">
                 {item.question}
                 <ChevronIcon className="text-text-secondary duration-fast shrink-0 transition-transform ease-out group-open:rotate-180" />
               </summary>

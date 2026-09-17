@@ -1,10 +1,10 @@
 import { cn } from "@/lib/cn";
 
-type MotifTone = "warm" | "accent" | "muted";
+type MotifTone = "accent" | "ink" | "muted";
 
 const toneClass: Record<MotifTone, string> = {
-  warm: "text-warm",
-  accent: "text-accent",
+  accent: "text-accent-tint",
+  ink: "text-text",
   muted: "text-border-strong",
 };
 
@@ -22,7 +22,7 @@ interface BrandMotifProps {
 // is what makes it read as a mark rather than as decoration.
 export function BrandMotif({
   corner = "tl",
-  tone = "warm",
+  tone = "accent",
   className,
 }: BrandMotifProps) {
   const rotation = {

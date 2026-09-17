@@ -44,7 +44,7 @@ export function Navigation() {
               <li key={link.href}>
                 <NextLink
                   href={`/${locale}${link.href}`}
-                  className="text-body-sm text-text-secondary duration-fast hover:text-text focus-visible:ring-focus-ring relative rounded-full px-3 py-2 font-medium transition-colors ease-out after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-[color:var(--color-warm)] after:transition-transform after:duration-200 after:ease-out hover:after:scale-x-100 focus-visible:ring-2 focus-visible:outline-none"
+                  className="text-body-sm text-text-secondary duration-fast hover:text-text relative rounded-full px-3 py-2 font-medium transition-colors ease-out after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-[color:var(--color-accent-tint)] after:transition-transform after:duration-200 after:ease-out hover:after:scale-x-100"
                 >
                   {link.label}
                 </NextLink>
@@ -61,7 +61,7 @@ export function Navigation() {
 
           <button
             type="button"
-            className="text-text focus-visible:ring-focus-ring -mr-2 flex h-11 w-11 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:outline-none md:hidden"
+            className="text-text -mr-2 flex h-11 w-11 items-center justify-center rounded-full md:hidden"
             aria-label={dict.nav.openMenu}
             aria-expanded={mobileOpen}
             aria-controls={MOBILE_MENU_ID}

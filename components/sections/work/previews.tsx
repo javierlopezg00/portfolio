@@ -39,7 +39,7 @@ export function ClinicPreview({ content }: { content: ClinicPreviewContent }) {
         <p className="text-text-secondary text-xs leading-snug">
           {content.subtext}
         </p>
-        <span className="bg-accent-strong mt-2 inline-flex w-fit items-center rounded-full px-3.5 py-1.5 text-xs font-medium text-white">
+        <span className="bg-demo-strong mt-2 inline-flex w-fit items-center rounded-full px-3.5 py-1.5 text-xs font-medium text-white">
           {content.cta}
         </span>
       </div>
@@ -49,7 +49,7 @@ export function ClinicPreview({ content }: { content: ClinicPreviewContent }) {
             key={step}
             className="border-border bg-background/40 flex flex-col gap-2 rounded-md border p-3"
           >
-            <span className="bg-accent flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-semibold text-white">
+            <span className="bg-demo flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-semibold text-white">
               {i + 1}
             </span>
             <span className="text-text-secondary text-[11px] leading-tight">
@@ -77,7 +77,7 @@ export function RestaurantPreview({
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <span className="text-text text-xs font-semibold">{content.logo}</span>
-        <span className="bg-accent-strong inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-medium text-white">
+        <span className="bg-demo-strong inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-medium text-white">
           {content.cta}
         </span>
       </div>
@@ -132,7 +132,7 @@ function StrategyIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="text-accent h-4 w-4"
+      className="text-demo h-4 w-4"
       fill="none"
       stroke="currentColor"
       strokeWidth={1.5}
@@ -149,7 +149,7 @@ function OperationsIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="text-accent h-4 w-4"
+      className="text-demo h-4 w-4"
       fill="none"
       stroke="currentColor"
       strokeWidth={1.5}
@@ -170,7 +170,7 @@ function FinanceIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="text-accent h-4 w-4"
+      className="text-demo h-4 w-4"
       fill="none"
       stroke="currentColor"
       strokeWidth={1.5}

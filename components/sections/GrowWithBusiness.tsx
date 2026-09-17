@@ -24,7 +24,7 @@ export async function GrowWithBusiness() {
             display face and given room, rather than another body
             paragraph. */}
         <div className="mt-20 flex flex-col items-center gap-5 text-center">
-          <BrandMotif corner="tl" tone="warm" className="h-10 w-10" />
+          <BrandMotif corner="tl" tone="accent" className="h-10 w-10" />
           <Heading size="h3" as="p" className="max-w-lg">
             {dict.growth.closing}
           </Heading>

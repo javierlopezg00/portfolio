@@ -42,9 +42,9 @@ export function DashboardDemo() {
               onClick={() => setRange(r.id as DashboardRange)}
               aria-pressed={range === r.id}
               className={cn(
-                "text-body-sm duration-fast focus-visible:ring-focus-ring rounded-full px-3 py-1.5 transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
+                "text-body-sm duration-fast rounded-full px-3 py-1.5 transition-colors ease-out",
                 range === r.id
-                  ? "bg-accent-strong text-white"
+                  ? "bg-demo-strong text-white"
                   : "text-text-secondary hover:text-text",
               )}
             >

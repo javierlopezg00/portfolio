@@ -1,20 +1,31 @@
 import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "whatsapp";
+export type ButtonVariant =
+  "primary" | "secondary" | "ghost" | "whatsapp" | "demo";
 export type ButtonSize = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[background-color,border-color,color,box-shadow] duration-fast ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-40";
+  "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[background-color,border-color,color,box-shadow] duration-fast ease-out disabled:pointer-events-none disabled:opacity-40";
 
 const variantClass: Record<ButtonVariant, string> = {
-  primary: "bg-accent-strong text-white shadow-sm hover:bg-accent",
+  // Hover darkens rather than lightens: a lighter terracotta would drop
+  // the white label below 4.5:1.
+  primary:
+    "bg-accent-strong text-white shadow-sm hover:bg-[color:var(--color-accent-hover)]",
   secondary:
     "bg-surface text-text border border-border-strong shadow-sm hover:border-accent hover:text-accent",
   ghost: "text-text hover:text-accent",
-  // WhatsApp keeps its recognizable green so visitors spot it instantly —
-  // the one place the palette borrows a brand color.
-  whatsapp: "bg-whatsapp text-white shadow-sm hover:brightness-110",
+  // WhatsApp is a channel, not a second brand: the button wears this
+  // site's own secondary styling and the green survives only inside the
+  // glyph, where it's still instantly recognizable.
+  whatsapp:
+    "bg-surface text-text border border-border-strong shadow-sm hover:border-accent hover:text-accent [&_svg]:text-whatsapp",
+  // The primary action *inside a conceptual project's own interface* —
+  // a clinic's "Confirm visit", a restaurant's "Reserve". It wears that
+  // project's blue, not this site's terracotta, so a demo reads as one
+  // coherent product rather than half-branded by its host.
+  demo: "bg-demo-strong text-white shadow-sm hover:bg-demo",
 };
 
 // Every size clears the 44px touch-target minimum on phones.

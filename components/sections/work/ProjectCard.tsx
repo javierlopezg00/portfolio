@@ -31,7 +31,7 @@ export function ProjectCard({
           balanced — the way a real screenshot would be. */}
       <div
         aria-hidden="true"
-        className="bg-surface-sand h-60 overflow-hidden px-6 pt-8 sm:h-72 sm:px-8 sm:pt-10"
+        className="bg-surface-muted h-60 overflow-hidden px-6 pt-8 sm:h-72 sm:px-8 sm:pt-10"
       >
         <DeviceFrame
           mode="desktop"
@@ -48,7 +48,7 @@ export function ProjectCard({
           <Heading size="h3" as="h3">
             <NextLink
               href={href}
-              className="focus-visible:ring-focus-ring rounded-sm after:absolute after:inset-0 after:content-[''] focus-visible:ring-2 focus-visible:outline-none"
+              className="rounded-sm after:absolute after:inset-0 after:content-['']"
             >
               {project.name}
             </NextLink>

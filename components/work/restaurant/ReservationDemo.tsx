@@ -71,7 +71,7 @@ export function ReservationDemo() {
         <Badge>{dict.lab.demoBadge}</Badge>
         <div className="border-border bg-surface rounded-md border p-6">
           <div className="flex flex-col items-center gap-4 py-8 text-center">
-            <div className="bg-accent/15 flex h-12 w-12 items-center justify-center rounded-full">
+            <div className="bg-demo/15 flex h-12 w-12 items-center justify-center rounded-full">
               <CheckIcon />
             </div>
             <div>
@@ -120,6 +120,7 @@ export function ReservationDemo() {
     <div className="flex flex-col gap-6">
       <Badge>{dict.lab.demoBadge}</Badge>
       <StepIndicator
+        tone="demo"
         current={stepIndex}
         total={STEPS.length}
         text={dict.configurator.stepIndicator(
@@ -134,6 +135,7 @@ export function ReservationDemo() {
           <div className="flex flex-col gap-3">
             {rd.partySizes.map((p) => (
               <OptionCard
+                tone="demo"
                 key={p.id}
                 type="radio"
                 name="party-size"
@@ -175,12 +177,12 @@ export function ReservationDemo() {
                     available,
                   )}
                   className={cn(
-                    "text-body-sm duration-fast focus-visible:ring-focus-ring aspect-square rounded-md transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
+                    "text-body-sm duration-fast aspect-square rounded-md transition-colors ease-out",
                     !available && "text-text-secondary/30 cursor-not-allowed",
                     available &&
                       state.day !== day &&
                       "text-text hover:border-border-strong border border-transparent",
-                    state.day === day && "bg-accent-strong text-white",
+                    state.day === day && "bg-demo-strong text-white",
                   )}
                 >
                   {day}
@@ -204,14 +206,14 @@ export function ReservationDemo() {
                   onClick={() => dispatch({ type: "SELECT_TIME", time })}
                   aria-pressed={state.time === time}
                   className={cn(
-                    "text-body-sm duration-fast focus-visible:ring-focus-ring rounded-full border px-3 py-1.5 transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none",
+                    "text-body-sm duration-fast rounded-full border px-3 py-1.5 transition-colors ease-out",
                     !available &&
                       "border-border text-text-secondary/30 cursor-not-allowed",
                     available &&
                       state.time !== time &&
-                      "border-border-strong text-text hover:border-accent/50",
+                      "border-border-strong text-text hover:border-demo/50",
                     state.time === time &&
-                      "border-accent-strong bg-accent-strong text-white",
+                      "border-demo-strong bg-demo-strong text-white",
                   )}
                 >
                   {time}
@@ -234,7 +236,7 @@ export function ReservationDemo() {
         ) : (
           <span />
         )}
-        <Button onClick={goNext} disabled={!canAdvance}>
+        <Button variant="demo" onClick={goNext} disabled={!canAdvance}>
           {state.step === "time" ? rd.confirm : rd.next}
         </Button>
       </div>
@@ -253,7 +255,7 @@ function CheckIcon() {
       strokeLinejoin="round"
       width={20}
       height={20}
-      className="text-accent"
+      className="text-demo"
       aria-hidden="true"
     >
       <path d="M20 6L9 17l-5-5" />

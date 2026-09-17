@@ -28,7 +28,7 @@ export default async function Image({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        backgroundColor: "#fafaf7",
+        backgroundColor: "#f7f4ee",
         padding: "80px",
         fontFamily: "sans-serif",
       }}
@@ -40,7 +40,7 @@ export default async function Image({
           gap: 16,
           fontSize: 28,
           fontWeight: 600,
-          color: "#1d2633",
+          color: "#24251f",
         }}
       >
         <div
@@ -51,7 +51,7 @@ export default async function Image({
             width: 56,
             height: 56,
             borderRadius: 14,
-            backgroundColor: "#3451d1",
+            backgroundColor: "#b0522f",
             color: "#ffffff",
             fontSize: 24,
             fontWeight: 700,
@@ -68,7 +68,7 @@ export default async function Image({
           lineHeight: 1.1,
           maxWidth: 900,
           marginTop: 24,
-          color: "#1d2633",
+          color: "#24251f",
         }}
       >
         {dict.seo.ogHeadline}
@@ -76,7 +76,7 @@ export default async function Image({
       <div
         style={{
           fontSize: 28,
-          color: "#5b6575",
+          color: "#6e7068",
           marginTop: 32,
           maxWidth: 900,
           lineHeight: 1.4,

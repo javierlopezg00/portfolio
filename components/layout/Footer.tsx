@@ -11,7 +11,7 @@ import { Wordmark } from "./Wordmark";
 const currentYear = new Date().getFullYear();
 
 const linkClass =
-  "text-body-sm text-text-secondary duration-fast hover:text-text focus-visible:ring-focus-ring inline-block rounded-sm py-1 transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none";
+  "text-body-sm text-text-secondary duration-fast hover:text-text inline-block rounded-sm py-1 transition-colors ease-out";
 
 export async function Footer() {
   const locale = await getServerLocale();

@@ -81,7 +81,7 @@ function WebsiteStages({
               <span key={link}>{link}</span>
             ))}
           </span>
-          <span className="bg-accent-strong rounded-full px-3 py-1 text-[11px] font-medium text-white">
+          <span className="bg-demo-strong rounded-full px-3 py-1 text-[11px] font-medium text-white">
             {stage >= 1 ? content.ctaBook : content.cta}
           </span>
         </div>
@@ -115,7 +115,7 @@ function WebsiteStages({
         {stage >= 1 && (
           <div className="border-border bg-background animate-fade-in flex flex-col gap-2 rounded-lg border p-3">
             <span className="text-text flex items-center gap-1.5 text-[11px] font-medium">
-              <CalendarIcon width={13} height={13} className="text-accent" />
+              <CalendarIcon width={13} height={13} className="text-demo" />
               {content.bookingTitle}
             </span>
             <div className="grid grid-cols-3 gap-1">
@@ -125,7 +125,7 @@ function WebsiteStages({
                   className={cn(
                     "rounded-md py-1 text-center text-[10px] font-medium",
                     i === 1
-                      ? "bg-accent-strong text-white"
+                      ? "bg-demo-strong text-white"
                       : "bg-surface border-border text-text-secondary border",
                   )}
                 >
@@ -133,7 +133,7 @@ function WebsiteStages({
                 </span>
               ))}
             </div>
-            <span className="bg-accent-soft text-accent rounded-full py-1 text-center text-[10px] font-semibold">
+            <span className="bg-demo-soft text-demo rounded-full py-1 text-center text-[10px] font-semibold">
               {content.bookingConfirm}
             </span>
           </div>
@@ -149,14 +149,14 @@ function WebsiteStages({
               stage === 2 && i === 2 && "hidden",
             )}
           >
-            <span className="bg-accent-soft h-6 w-6 rounded-md" />
+            <span className="bg-demo-soft h-6 w-6 rounded-md" />
             <span className="text-text text-[11px] leading-tight font-medium">
               {service}
             </span>
           </div>
         ))}
         {stage === 2 && (
-          <div className="border-accent/40 bg-accent-soft/60 animate-fade-in flex flex-col gap-1.5 rounded-lg border p-3">
+          <div className="border-demo/40 bg-demo-soft/60 animate-fade-in flex flex-col gap-1.5 rounded-lg border p-3">
             <Image
               src={images.giftBox}
               alt=""
@@ -164,13 +164,13 @@ function WebsiteStages({
               className="aspect-[4/3] w-full rounded-md object-cover"
             />
             <span className="text-text flex items-center gap-1.5 text-[11px] font-medium">
-              <CardIcon width={13} height={13} className="text-accent" />
+              <CardIcon width={13} height={13} className="text-demo" />
               {content.productTitle}
             </span>
             <span className="text-text text-sm font-semibold">
               {content.productPrice}
             </span>
-            <span className="bg-accent-strong rounded-full py-1 text-center text-[10px] font-medium text-white">
+            <span className="bg-demo-strong rounded-full py-1 text-center text-[10px] font-medium text-white">
               {content.pay}
             </span>
           </div>
@@ -193,7 +193,7 @@ function DashboardStage({
             key={i}
             className={cn(
               "h-6 w-6 rounded-md",
-              i === 0 ? "bg-accent-strong" : "bg-surface-soft",
+              i === 0 ? "bg-demo-strong" : "bg-surface-soft",
             )}
           />
         ))}
@@ -233,7 +233,7 @@ function DashboardStage({
                 className="flex items-center justify-between gap-3 py-2"
               >
                 <span className="flex items-center gap-2">
-                  <span className="bg-accent-soft text-accent flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-semibold">
+                  <span className="bg-demo-soft text-demo flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-semibold">
                     {row.name[0]}
                   </span>
                   <span className="text-text text-[11px] font-medium">
@@ -248,7 +248,7 @@ function DashboardStage({
                   className={cn(
                     "hidden items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium @xs:flex",
                     row.status === content.schedule[1].status
-                      ? "bg-accent-soft text-accent"
+                      ? "bg-demo-soft text-demo"
                       : "bg-success/15 text-success",
                   )}
                 >

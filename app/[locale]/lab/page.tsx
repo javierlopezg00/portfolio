@@ -67,7 +67,7 @@ export default async function LabPage({ params }: LabPageProps) {
           <Container>
             <NextLink
               href={`/${resolvedLocale}`}
-              className="text-body-sm text-text-secondary hover:text-text focus-visible:ring-focus-ring rounded-sm focus-visible:ring-2 focus-visible:outline-none"
+              className="text-body-sm text-text-secondary hover:text-text rounded-sm"
             >
               ← {dict.lab.backHome}
             </NextLink>

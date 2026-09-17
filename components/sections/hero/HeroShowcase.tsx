@@ -42,7 +42,7 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
                   <span key={link}>{link}</span>
                 ))}
               </span>
-              <span className="bg-accent-strong rounded-full px-3 py-1 text-[11px] font-medium text-white">
+              <span className="bg-demo-strong rounded-full px-3 py-1 text-[11px] font-medium text-white">
                 {content.cta}
               </span>
             </div>
@@ -73,7 +73,7 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
                 key={service}
                 className="border-border bg-background flex flex-col gap-2 rounded-lg border p-3"
               >
-                <span className="bg-accent-soft text-accent flex h-6 w-6 items-center justify-center rounded-md">
+                <span className="bg-demo-soft text-demo flex h-6 w-6 items-center justify-center rounded-md">
                   {i === 0 ? (
                     <HeartIcon width={14} height={14} />
                   ) : i === 1 ? (
@@ -109,7 +109,7 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
               {content.phone.with}
             </p>
           </div>
-          <span className="bg-accent-strong rounded-full py-1.5 text-center text-[11px] font-medium text-white">
+          <span className="bg-demo-strong rounded-full py-1.5 text-center text-[11px] font-medium text-white">
             {content.phone.cta}
           </span>
         </div>
@@ -133,14 +133,14 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
               key={i}
               className={
                 i === 5
-                  ? "bg-warm w-1.5 rounded-t-sm"
-                  : "bg-accent/25 w-1.5 rounded-t-sm"
+                  ? "bg-demo w-1.5 rounded-t-sm"
+                  : "bg-demo/25 w-1.5 rounded-t-sm"
               }
               style={{ height: `${h}%` }}
             />
           ))}
         </span>
-        <SparkIcon className="text-warm h-4 w-4" />
+        <SparkIcon className="text-demo h-4 w-4" />
       </div>
 
       {/* Layer 2: the booking notification, top-right, breaking out past

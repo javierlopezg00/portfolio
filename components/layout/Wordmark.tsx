@@ -12,7 +12,7 @@ export function Wordmark({ href, className }: WordmarkProps) {
   return (
     <NextLink
       href={href}
-      className={`text-text focus-visible:ring-focus-ring flex shrink-0 items-center gap-2.5 rounded-full py-1 pr-2 font-semibold tracking-tight whitespace-nowrap focus-visible:ring-2 focus-visible:outline-none ${className ?? ""}`}
+      className={`text-text flex shrink-0 items-center gap-2.5 rounded-full py-1 pr-2 font-semibold tracking-tight whitespace-nowrap ${className ?? ""}`}
     >
       <span
         aria-hidden="true"
