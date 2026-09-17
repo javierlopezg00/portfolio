@@ -7,26 +7,29 @@ import {
   HeartIcon,
   SparkIcon,
 } from "@/components/illustrations/icons";
-import { images, MOCKUP_IMAGE_SIZES } from "@/lib/content/images";
+import { HERO_IMAGE_SIZES, images } from "@/lib/content/images";
 import type { Dictionary } from "@/lib/i18n/dictionary";
 
 interface HeroShowcaseProps {
   content: Dictionary["hero"]["showcase"];
 }
 
-// The hero visual: a fictional wellness studio's website on desktop, the
-// same business on a phone mid-booking, and a "new booking" notification.
-// Real words and recognizable UI — a visitor should know what they're
-// looking at within a second, with no technical vocabulary anywhere.
-// Purely decorative (aria-hidden): the headline and CTAs beside it carry
-// the meaning. Entrance animation is CSS-only and collapses to an instant
-// reveal under prefers-reduced-motion.
+// The hero composition: a fictional wellness studio's website, the same
+// business on a phone mid-booking, a "new booking" notification, and a
+// fragment of the owner's dashboard peeking from behind. Four layers at
+// three depths — the point is that a visitor sees, in one glance, that
+// this is someone who builds real interfaces for real businesses.
+//
+// Decorative as a whole (aria-hidden): the headline and CTAs beside it
+// carry the meaning. Entrance animation is CSS-only and collapses to an
+// instant reveal under prefers-reduced-motion.
 export function HeroShowcase({ content }: HeroShowcaseProps) {
   return (
-    <div aria-hidden="true" className="relative mx-auto w-full max-w-xl">
+    <div aria-hidden="true" className="relative mx-auto w-full max-w-2xl">
+      {/* Layer 1: the website itself. */}
       <BrowserFrame
         label={content.brand}
-        className="animate-fade-up motion-safe:[animation-delay:120ms]"
+        className="rounded-signature-lg animate-fade-up relative z-10 w-full border-transparent shadow-xl motion-safe:[animation-delay:120ms] sm:ml-auto sm:w-[85%]"
       >
         <div className="flex flex-col gap-5 p-5 sm:p-6">
           <div className="flex items-center justify-between">
@@ -45,7 +48,7 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-[1.4fr_1fr] gap-4">
+          <div className="grid grid-cols-[1.25fr_1fr] gap-4">
             <div className="flex flex-col justify-center gap-2">
               <p className="text-text text-lg leading-tight font-semibold sm:text-xl">
                 {content.headline}
@@ -57,10 +60,10 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
             <Image
               src={images.reception}
               alt=""
-              sizes={MOCKUP_IMAGE_SIZES}
+              sizes={HERO_IMAGE_SIZES}
               placeholder="blur"
               priority
-              className="aspect-[4/3] w-full rounded-lg object-cover"
+              className="rounded-signature aspect-[4/3] w-full object-cover"
             />
           </div>
 
@@ -88,9 +91,9 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
         </div>
       </BrowserFrame>
 
-      {/* Phone overlapping the bottom-right corner — the same business on
-          a small screen, one tap from confirming an appointment. */}
-      <PhoneFrame className="animate-fade-up absolute -right-2 -bottom-12 w-36 motion-safe:[animation-delay:360ms] sm:-right-14 sm:-bottom-16 sm:w-44">
+      {/* Layer 2: the phone, overlapping the browser's lower-left corner
+          and hanging below it. */}
+      <PhoneFrame className="animate-fade-up absolute -right-2 bottom-[-3.5rem] z-20 w-28 border-transparent shadow-xl motion-safe:[animation-delay:360ms] sm:right-auto sm:-left-16 sm:w-40">
         <div className="flex flex-col gap-3 px-3 pt-2 pb-4">
           <span className="text-text text-[11px] font-semibold">
             {content.brand}
@@ -112,8 +115,37 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
         </div>
       </PhoneFrame>
 
-      {/* Notification chip floating off the top-left corner. */}
-      <div className="animate-fade-up border-border bg-surface absolute -top-4 -left-2 flex items-center gap-2.5 rounded-full border py-1.5 pr-4 pl-1.5 shadow-md motion-safe:[animation-delay:600ms] sm:-left-8">
+      {/* Layer 3 (deepest): a compact slice of the owner's dashboard,
+          tucked under the browser's lower-right corner — the hint that
+          there's software behind the website, without a fourth mockup. */}
+      <div className="border-border bg-surface rounded-signature animate-fade-up absolute right-2 bottom-[-3.25rem] z-0 hidden items-center gap-4 border py-3 pr-4 pl-5 shadow-lg motion-safe:[animation-delay:500ms] lg:flex">
+        <span className="flex flex-col">
+          <span className="text-text-secondary text-[10px] leading-tight">
+            {content.stat.label}
+          </span>
+          <span className="text-text text-lg leading-tight font-semibold">
+            {content.stat.value}
+          </span>
+        </span>
+        <span className="flex h-8 items-end gap-1">
+          {[38, 62, 48, 80, 66, 94].map((h, i) => (
+            <span
+              key={i}
+              className={
+                i === 5
+                  ? "bg-warm w-1.5 rounded-t-sm"
+                  : "bg-accent/25 w-1.5 rounded-t-sm"
+              }
+              style={{ height: `${h}%` }}
+            />
+          ))}
+        </span>
+        <SparkIcon className="text-warm h-4 w-4" />
+      </div>
+
+      {/* Layer 2: the booking notification, top-right, breaking out past
+          the browser's edge. */}
+      <div className="border-border bg-surface animate-fade-up absolute -top-5 -right-1 z-20 flex items-center gap-2.5 rounded-full border py-1.5 pr-4 pl-1.5 shadow-lg motion-safe:[animation-delay:640ms] sm:-right-6">
         <span className="bg-success/15 text-success flex h-7 w-7 items-center justify-center rounded-full">
           <CheckIcon width={14} height={14} />
         </span>

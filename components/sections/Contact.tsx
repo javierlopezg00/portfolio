@@ -1,3 +1,4 @@
+import { BrandMotif } from "@/components/illustrations/BrandMotif";
 import { MailIcon, WhatsAppIcon } from "@/components/illustrations/icons";
 import {
   Container,
@@ -20,14 +21,28 @@ export async function Contact() {
   const whatsappHref = getWhatsAppHref(dict.contact.whatsappMessage);
 
   return (
-    <Section theme="dark" id="contact" ariaLabelledBy="contact-heading">
-      <Container>
+    <Section
+      theme="dark"
+      id="contact"
+      ariaLabelledBy="contact-heading"
+      className="relative overflow-hidden"
+    >
+      <BrandMotif
+        corner="bl"
+        className="absolute bottom-6 left-4 h-24 w-24 opacity-40 sm:h-32 sm:w-32 lg:bottom-10 lg:left-10"
+      />
+      <Container className="relative">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <Heading id="contact-heading" size="h2">
+            <Heading
+              id="contact-heading"
+              size="h1"
+              as="h2"
+              className="max-w-md"
+            >
               {dict.contact.heading}
             </Heading>
-            <Text tone="secondary" size="lg" className="mt-4 max-w-md">
+            <Text tone="secondary" size="lg" className="mt-5 max-w-md">
               {dict.contact.body}
             </Text>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
@@ -59,9 +74,19 @@ export async function Contact() {
                 {dict.contact.email}
               </a>
             </div>
-            <Text tone="secondary" size="sm" className="mt-5">
-              {dict.contact.replyNote}
-            </Text>
+            {/* The address in plain sight: some people would simply
+                rather write it down than click anything. */}
+            <div className="mt-8 flex flex-col gap-1">
+              <a
+                href={siteConfig.contact.mailto}
+                className="text-text hover:text-accent focus-visible:ring-focus-ring duration-fast w-fit rounded-sm text-lg font-medium underline decoration-[color:var(--color-warm)] decoration-2 underline-offset-[6px] transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none"
+              >
+                {siteConfig.contact.email}
+              </a>
+              <Text tone="secondary" size="sm">
+                {dict.contact.replyNote}
+              </Text>
+            </div>
           </div>
 
           <div

@@ -25,7 +25,11 @@ export interface Dictionary {
   };
   skipLink: string;
   hero: {
-    heading: string;
+    // Split so the display headline can set one word apart (italic serif
+    // with the amber underline mark) and break lines deliberately rather
+    // than wherever the container happens to wrap. The full sentence for
+    // metadata lives in seo.ogHeadline.
+    heading: { lead: string; accent: string; tail: string };
     subhead: string;
     ctaPrimary: string;
     ctaSecondary: string;
@@ -44,6 +48,9 @@ export interface Dictionary {
       services: string[];
       phone: { title: string; detail: string; with: string; cta: string };
       toast: { title: string; body: string };
+      // The dashboard fragment peeking from behind the browser — the
+      // hint that there's software behind the website.
+      stat: { label: string; value: string };
     };
   };
   services: {

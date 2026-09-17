@@ -28,3 +28,9 @@ export const images = {
 // All photos are decorative parts of a mockup, so they share one
 // `sizes` hint: they render at ~120–400px wide at every breakpoint.
 export const MOCKUP_IMAGE_SIZES = "(min-width: 640px) 400px, 50vw";
+
+// The hero photo sits inside the mockup's own hero slot, which is never
+// wider than ~260px even on a large screen. Its own hint (rather than
+// the shared one) keeps the preloaded LCP image small.
+export const HERO_IMAGE_SIZES =
+  "(min-width: 1024px) 260px, (min-width: 640px) 220px, 40vw";

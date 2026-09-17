@@ -16,7 +16,7 @@ export async function Services() {
   ];
 
   return (
-    <Section id="services" ariaLabelledBy="services-heading">
+    <Section theme="white" id="services" ariaLabelledBy="services-heading">
       <Container>
         <div className="max-w-2xl">
           <Heading id="services-heading" size="h2">

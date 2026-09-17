@@ -1,7 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Instrument_Serif } from "next/font/google";
 import { notFound } from "next/navigation";
 import {
   defaultLocale,
@@ -16,6 +16,16 @@ import "../globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+// Display face — headlines only (see Heading in components/ui/Typography).
+// One weight, latin subset: ~35KB, and it never blocks body text.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 const OG_LOCALE = { en: "en_US", es: "es_ES" } as const;
@@ -73,7 +83,10 @@ export default async function RootLayout({
   if (!isLocale(locale)) notFound();
 
   return (
-    <html lang={locale} className={`${geistSans.variable} h-full antialiased`}>
+    <html
+      lang={locale}
+      className={`${geistSans.variable} ${instrumentSerif.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col">
         <LocaleProvider locale={locale}>{children}</LocaleProvider>
         <Analytics />

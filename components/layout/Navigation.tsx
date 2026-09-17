@@ -44,7 +44,7 @@ export function Navigation() {
               <li key={link.href}>
                 <NextLink
                   href={`/${locale}${link.href}`}
-                  className="text-body-sm text-text-secondary duration-fast hover:text-text focus-visible:ring-focus-ring rounded-full px-3 py-2 font-medium transition-colors ease-out focus-visible:ring-2 focus-visible:outline-none"
+                  className="text-body-sm text-text-secondary duration-fast hover:text-text focus-visible:ring-focus-ring relative rounded-full px-3 py-2 font-medium transition-colors ease-out after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-[color:var(--color-warm)] after:transition-transform after:duration-200 after:ease-out hover:after:scale-x-100 focus-visible:ring-2 focus-visible:outline-none"
                 >
                   {link.label}
                 </NextLink>

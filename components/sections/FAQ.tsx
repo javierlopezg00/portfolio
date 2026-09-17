@@ -5,7 +5,7 @@ export async function FAQ() {
   const dict = await getServerDictionary();
 
   return (
-    <Section id="faq" ariaLabelledBy="faq-heading">
+    <Section theme="white" id="faq" ariaLabelledBy="faq-heading">
       <Container className="max-w-3xl">
         <Heading id="faq-heading" size="h2">
           {dict.faq.heading}

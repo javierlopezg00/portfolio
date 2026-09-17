@@ -5,7 +5,7 @@ export async function Process() {
   const dict = await getServerDictionary();
 
   return (
-    <Section theme="soft" id="process" ariaLabelledBy="process-heading">
+    <Section theme="white" id="process" ariaLabelledBy="process-heading">
       <Container>
         <div className="max-w-2xl">
           <Heading id="process-heading" size="h2">

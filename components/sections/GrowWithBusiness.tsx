@@ -1,3 +1,4 @@
+import { BrandMotif } from "@/components/illustrations/BrandMotif";
 import { Container, Heading, Section, Text } from "@/components/ui";
 import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 import { GrowthStory } from "./growth/GrowthStory";
@@ -6,7 +7,7 @@ export async function GrowWithBusiness() {
   const dict = await getServerDictionary();
 
   return (
-    <Section theme="soft" id="growth" ariaLabelledBy="growth-heading">
+    <Section theme="dark" id="growth" ariaLabelledBy="growth-heading">
       <Container>
         <div className="max-w-2xl">
           <Heading id="growth-heading" size="h2">
@@ -19,9 +20,15 @@ export async function GrowWithBusiness() {
         <div className="mt-14">
           <GrowthStory />
         </div>
-        <Text size="lg" className="mt-16 text-center font-medium">
-          {dict.growth.closing}
-        </Text>
+        {/* The closing line is the section's last word — set in the
+            display face and given room, rather than another body
+            paragraph. */}
+        <div className="mt-20 flex flex-col items-center gap-5 text-center">
+          <BrandMotif corner="tl" tone="warm" className="h-10 w-10" />
+          <Heading size="h3" as="p" className="max-w-lg">
+            {dict.growth.closing}
+          </Heading>
+        </div>
       </Container>
     </Section>
   );

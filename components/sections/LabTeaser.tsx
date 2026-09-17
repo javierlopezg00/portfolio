@@ -65,9 +65,14 @@ export async function LabTeaser() {
                 <span className="bg-accent-soft text-accent flex h-11 w-11 shrink-0 items-center justify-center rounded-lg">
                   <Icon width={22} height={22} />
                 </span>
-                <span>
-                  <span className="text-text block font-semibold">
+                <span className="flex-1">
+                  <span className="text-text flex items-center gap-2 font-semibold">
                     {demo.title}
+                    <ArrowRightIcon
+                      width={14}
+                      height={14}
+                      className="text-accent duration-fast opacity-0 transition-[opacity,transform] ease-out group-hover:translate-x-0.5 group-hover:opacity-100"
+                    />
                   </span>
                   <span className="text-body-sm text-text-secondary mt-1 block">
                     {demo.description}

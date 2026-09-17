@@ -16,7 +16,11 @@ export const en = {
   },
   skipLink: "Skip to content",
   hero: {
-    heading: "Websites and software that help your business grow.",
+    heading: {
+      lead: "Websites and software that help your business ",
+      accent: "grow",
+      tail: ".",
+    },
     subhead:
       "Professional websites, online booking and custom tools — designed and built for businesses like yours.",
     ctaPrimary: "Start a Project",
@@ -37,6 +41,7 @@ export const en = {
         cta: "Confirm",
       },
       toast: { title: "New booking", body: "Laura G. · Tomorrow, 9:00 AM" },
+      stat: { label: "Bookings this week", value: "24" },
     },
   },
   services: {

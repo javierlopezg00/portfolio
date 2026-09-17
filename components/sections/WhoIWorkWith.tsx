@@ -1,15 +1,17 @@
 import type { ComponentType, SVGProps } from "react";
+import { BrandMotif } from "@/components/illustrations/BrandMotif";
 import {
   BriefcaseIcon,
   GrowthIcon,
   HeartIcon,
   PlateIcon,
 } from "@/components/illustrations/icons";
-import { Container, Grid, Heading, Section, Text } from "@/components/ui";
+import { Container, Heading, Section, Text } from "@/components/ui";
+import { cn } from "@/lib/cn";
 import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 
-// Keyed by the dictionary's vertical ids so the icon never depends on
-// translated text or array order.
+// Keyed by the dictionary's vertical ids so neither the icon nor the
+// panel treatment depends on translated text or array order.
 const ICONS: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   healthcare: HeartIcon,
   hospitality: PlateIcon,
@@ -17,43 +19,72 @@ const ICONS: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   growing: GrowthIcon,
 };
 
+// Two washes, alternating, so the row has rhythm instead of four
+// identical tiles. These panels are built to take photography later:
+// drop a next/image behind the content with the same gradient as a
+// scrim and nothing else has to change.
+const WASH: Record<string, string> = {
+  healthcare: "from-accent-soft via-accent-soft to-surface",
+  hospitality: "from-warm-soft via-warm-soft to-surface",
+  professional: "from-warm-soft via-warm-soft to-surface",
+  growing: "from-accent-soft via-accent-soft to-surface",
+};
+
 export async function WhoIWorkWith() {
   const dict = await getServerDictionary();
 
   return (
-    <Section id="who-i-work-with" ariaLabelledBy="who-i-work-with-heading">
+    <Section
+      theme="sand"
+      id="who-i-work-with"
+      ariaLabelledBy="who-i-work-with-heading"
+    >
       <Container>
-        <Heading
-          id="who-i-work-with-heading"
-          size="h2"
-          className="max-w-2xl text-center sm:mx-auto"
-        >
+        <Heading id="who-i-work-with-heading" size="h2" className="max-w-2xl">
           {dict.verticals.heading}
         </Heading>
 
-        <Grid className="mt-12 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {dict.verticals.items.map((item) => {
+        <ul className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {dict.verticals.items.map((item, i) => {
             const Icon = ICONS[item.id] ?? GrowthIcon;
             return (
-              <div
+              <li
                 key={item.id}
-                className="border-border bg-surface flex items-center gap-4 rounded-xl border p-5 shadow-sm lg:flex-col lg:items-start lg:p-6"
+                className={cn(
+                  "rounded-signature-lg border-border relative flex min-h-64 flex-col justify-end overflow-hidden border bg-gradient-to-b p-6 shadow-sm sm:min-h-80 lg:p-7",
+                  WASH[item.id],
+                )}
               >
-                <span className="bg-accent-soft text-accent flex h-12 w-12 shrink-0 items-center justify-center rounded-lg">
-                  <Icon width={24} height={24} />
-                </span>
-                <div>
-                  <Heading size="h4" as="h3">
+                {/* One oversized glyph, cropped by the panel edge — the
+                    panel's image stand-in until real photography exists.
+                    Deliberately the only icon here: a second, smaller
+                    copy of the same mark read as a mistake. */}
+                <Icon
+                  aria-hidden="true"
+                  strokeWidth={1.25}
+                  className={cn(
+                    "absolute -top-6 -right-8 h-44 w-44 lg:h-52 lg:w-52",
+                    i % 2 === 0 ? "text-accent/25" : "text-warm/40",
+                  )}
+                />
+                {i % 2 === 0 && (
+                  <BrandMotif
+                    corner="tl"
+                    className="absolute top-5 left-5 h-9 w-9 opacity-70"
+                  />
+                )}
+                <div className="relative">
+                  <Heading size="h3" as="h3" className="text-balance">
                     {item.title}
                   </Heading>
-                  <Text tone="secondary" size="sm" className="mt-1">
+                  <Text tone="secondary" size="sm" className="mt-1.5">
                     {item.description}
                   </Text>
                 </div>
-              </div>
+              </li>
             );
           })}
-        </Grid>
+        </ul>
       </Container>
     </Section>
   );

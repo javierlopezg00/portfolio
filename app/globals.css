@@ -21,6 +21,20 @@
      with white. Primary buttons hover to --color-accent. */
   --color-accent-strong: #4263eb;
   --color-accent-soft: #eef2ff;
+  /* Secondary accent — warm amber, the complement of the primary blue.
+     Rationed on purpose: the motif, one eyebrow or one underline per
+     section, never a button. Two values because amber is a graphics
+     color: #e8a33d carries shapes and large display type, and the
+     darker one is the only version allowed at body size (4.6:1 on
+     white, 4.4:1 on sand — so it's used for large text and non-text
+     marks, with body copy staying on the neutral ramp). */
+  --color-warm: #e8a33d;
+  --color-warm-ink: #a85f04;
+  --color-warm-soft: #fbf1e0;
+  /* Third background tone. The page has three light grounds now —
+     #fafaf7 (default), #ffffff (crisp/structured) and this warm sand —
+     so sections can alternate instead of running together. */
+  --color-surface-sand: #f4efe6;
   --color-border: #e5e7eb;
   --color-border-strong: #cfd4dc;
   --color-focus-ring: #4263eb;
@@ -39,6 +53,10 @@
   --shadow-sm: 0 1px 2px rgb(29 38 51 / 5%), 0 1px 3px rgb(29 38 51 / 4%);
   --shadow-md: 0 6px 20px rgb(29 38 51 / 7%), 0 2px 6px rgb(29 38 51 / 4%);
   --shadow-lg: 0 24px 60px rgb(29 38 51 / 12%), 0 8px 20px rgb(29 38 51 / 6%);
+  /* Featured surfaces (hero cluster, featured project) drop their border
+     and carry this instead — deeper and warmer than a neutral drop. */
+  --shadow-xl:
+    0 48px 96px -24px rgb(20 27 45 / 22%), 0 16px 40px -12px rgb(20 27 45 / 12%);
 
   /* Radius scale */
   --radius-sm: 8px;
@@ -57,15 +75,17 @@
 
   /* Type scale — fluid, large-but-approachable headlines with generous
      line-height so long Spanish headings still scan easily. */
-  --text-display: clamp(2.5rem, 1.7rem + 2.8vw, 4.25rem);
-  --text-display--line-height: 1.06;
-  --text-display--letter-spacing: -0.025em;
-  --text-h1: clamp(2.125rem, 1.6rem + 1.8vw, 3.25rem);
-  --text-h1--line-height: 1.1;
-  --text-h1--letter-spacing: -0.02em;
-  --text-h2: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
-  --text-h2--line-height: 1.15;
-  --text-h2--letter-spacing: -0.02em;
+  /* The display sizes run larger than before and are set in the serif,
+     which needs far less negative tracking than the sans did. */
+  --text-display: clamp(2.5rem, 1.7rem + 3.4vw, 4.75rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.015em;
+  --text-h1: clamp(2.375rem, 1.6rem + 2.6vw, 4rem);
+  --text-h1--line-height: 1.05;
+  --text-h1--letter-spacing: -0.012em;
+  --text-h2: clamp(1.875rem, 1.4rem + 1.8vw, 3rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.01em;
   --text-h3: clamp(1.25rem, 1.15rem + 0.5vw, 1.625rem);
   --text-h3--line-height: 1.25;
   --text-h3--letter-spacing: -0.01em;
@@ -95,6 +115,12 @@
      fixed accent-strong since white text sits on them either way. */
   --color-accent: #a3b4ff;
   --color-accent-soft: rgb(163 180 255 / 12%);
+  /* On navy the amber can run brighter and still sit comfortably — it's
+     used for the motif and stage numerals there, at 8.9:1. */
+  --color-warm: #f5c277;
+  --color-warm-ink: #f5c277;
+  --color-warm-soft: rgb(245 194 119 / 12%);
+  --color-surface-sand: #1c2438;
   --color-border: rgb(245 247 250 / 10%);
   --color-border-strong: rgb(245 247 250 / 20%);
   --color-focus-ring: #a3b4ff;
@@ -103,6 +129,7 @@
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 24%);
   --shadow-md: 0 8px 24px rgb(0 0 0 / 32%);
   --shadow-lg: 0 24px 64px rgb(0 0 0 / 40%);
+  --shadow-xl: 0 48px 96px -24px rgb(0 0 0 / 55%);
 }
 
 @theme inline {
@@ -114,6 +141,10 @@
   --color-accent: var(--color-accent);
   --color-accent-strong: var(--color-accent-strong);
   --color-accent-soft: var(--color-accent-soft);
+  --color-warm: var(--color-warm);
+  --color-warm-ink: var(--color-warm-ink);
+  --color-warm-soft: var(--color-warm-soft);
+  --color-surface-sand: var(--color-surface-sand);
   --color-border: var(--color-border);
   --color-border-strong: var(--color-border-strong);
   --color-focus-ring: var(--color-focus-ring);
@@ -124,6 +155,7 @@
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
@@ -161,6 +193,9 @@
   --text-caption--line-height: var(--text-caption--line-height);
 
   --font-sans: var(--font-geist-sans);
+  /* Display face — headlines only, never below 24px. See Heading in
+     components/ui/Typography.tsx for where the switch happens. */
+  --font-display: var(--font-instrument-serif);
 
   /* Entrance animations for the hero and growth-story illustrations.
      Plain CSS so they cost no JavaScript, and the reduced-motion rule at
@@ -189,6 +224,19 @@
       transform: translateY(0);
     }
   }
+}
+
+/* The signature corner: three rounded corners and one squared, echoing
+   the L of the monogram. It's the cheapest possible piece of brand —
+   one line of CSS, recognizable everywhere it appears. Applied to
+   featured surfaces and imagery, not to every card, or it stops
+   reading as a signature. */
+@utility rounded-signature {
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) 4px;
+}
+
+@utility rounded-signature-lg {
+  border-radius: var(--radius-xl) var(--radius-xl) var(--radius-xl) 6px;
 }
 
 html {

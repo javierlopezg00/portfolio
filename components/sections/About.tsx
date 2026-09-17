@@ -1,43 +1,53 @@
 import Image from "next/image";
-import { CheckIcon } from "@/components/illustrations/icons";
+import { BrandMotif } from "@/components/illustrations/BrandMotif";
 import { Container, Heading, Section, Text } from "@/components/ui";
 import { images } from "@/lib/content/images";
 import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 
+// Editorial rather than another card: the portrait is a real object on
+// the page — offset, signature-cornered, with the motif behind it — and
+// the three statements sit as a typographic row under the copy instead
+// of becoming three more boxes.
 export async function About() {
   const dict = await getServerDictionary();
 
   return (
-    <Section id="about" ariaLabelledBy="about-heading">
+    <Section theme="sand" id="about" ariaLabelledBy="about-heading">
       <Container>
-        <div className="border-border bg-surface grid grid-cols-1 gap-8 rounded-xl border p-6 shadow-sm sm:p-10 md:grid-cols-[auto_1fr] md:items-center md:gap-12">
-          <Image
-            src={images.profile}
-            alt={dict.about.photoAlt}
-            sizes="(min-width: 640px) 160px, 128px"
-            placeholder="blur"
-            className="h-32 w-32 rounded-2xl object-cover shadow-sm sm:h-40 sm:w-40"
-          />
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[minmax(0,4fr)_minmax(0,6fr)] md:gap-16">
+          <div className="relative mx-auto w-full max-w-xs md:mx-0 md:max-w-none">
+            <BrandMotif
+              corner="tl"
+              className="absolute -top-4 -left-4 h-20 w-20 opacity-70 sm:-top-6 sm:-left-6 sm:h-28 sm:w-28"
+            />
+            <Image
+              src={images.profile}
+              alt={dict.about.photoAlt}
+              sizes="(min-width: 768px) 420px, 280px"
+              placeholder="blur"
+              className="rounded-signature-lg relative aspect-[4/5] w-full object-cover shadow-lg"
+            />
+          </div>
 
           <div>
             <Heading id="about-heading" size="h2">
               {dict.about.heading}
             </Heading>
-            <Text tone="secondary" size="lg" className="mt-4 max-w-xl">
+            <Text tone="secondary" size="lg" className="mt-5 max-w-lg">
               {dict.about.body}
             </Text>
-            <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-6">
+
+            <ul className="border-border mt-10 grid grid-cols-1 gap-6 border-t pt-8 sm:grid-cols-3 sm:gap-8">
               {dict.about.points.map((point) => (
-                <li key={point.title} className="flex gap-3">
-                  <span className="bg-accent-soft text-accent mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                    <CheckIcon width={13} height={13} />
-                  </span>
-                  <div>
-                    <Text className="font-semibold">{point.title}</Text>
-                    <Text tone="secondary" size="sm" className="mt-0.5">
-                      {point.description}
-                    </Text>
-                  </div>
+                <li key={point.title}>
+                  <span
+                    aria-hidden="true"
+                    className="bg-warm mb-3 block h-px w-8"
+                  />
+                  <Text className="font-semibold">{point.title}</Text>
+                  <Text tone="secondary" size="sm" className="mt-1">
+                    {point.description}
+                  </Text>
                 </li>
               ))}
             </ul>

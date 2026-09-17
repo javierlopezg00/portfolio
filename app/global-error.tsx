@@ -1,6 +1,6 @@
 "use client";
 
-import { Geist } from "next/font/google";
+import { Geist, Instrument_Serif } from "next/font/google";
 import { Button, Container, Heading, Text } from "@/components/ui";
 import "./globals.css";
 
@@ -16,6 +16,16 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+// Display face — headlines only (see Heading in components/ui/Typography).
+// One weight, latin subset: ~35KB, and it never blocks body text.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export default function GlobalError({
   retry,
 }: {
@@ -23,7 +33,10 @@ export default function GlobalError({
   retry: () => void;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${instrumentSerif.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col">
         <main>
           <Container className="flex min-h-screen flex-col items-center justify-center text-center">

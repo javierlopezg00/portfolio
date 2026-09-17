@@ -2,6 +2,8 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import { en } from "@/lib/i18n/en";
 
+const heroHeading = Object.values(en.hero.heading).join("");
+
 // The hero illustration fades in with a short CSS entrance animation;
 // axe samples colors mid-fade otherwise and reports contrast failures
 // that no visitor ever sees.
@@ -18,7 +20,7 @@ test.describe("Homepage", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: en.hero.heading,
+        name: heroHeading,
       }),
     ).toBeVisible();
 

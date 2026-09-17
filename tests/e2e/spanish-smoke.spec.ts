@@ -1,7 +1,10 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import { en } from "@/lib/i18n/en";
+
 import { es } from "@/lib/i18n/es";
+
+const heroHeading = Object.values(es.hero.heading).join("");
 
 // Every other spec exercises the real flows in English. This file's job
 // is narrower: prove the Spanish locale isn't just "the dictionary has
@@ -26,7 +29,7 @@ test.describe("Spanish locale", () => {
     await page.goto("/es");
 
     await expect(
-      page.getByRole("heading", { level: 1, name: es.hero.heading }),
+      page.getByRole("heading", { level: 1, name: heroHeading }),
     ).toBeVisible();
 
     for (const id of [

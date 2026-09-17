@@ -75,37 +75,43 @@ export function GrowthStory() {
                   text color rather than fading via opacity — dimmed text
                   fell under the 4.5:1 contrast floor, and these are the
                   real content, not decoration. */}
-              <div
-                className={cn(
-                  "duration-base border-l-2 pl-5 transition-colors ease-out lg:pl-6",
-                  isActive
-                    ? "border-accent"
-                    : "border-border lg:border-transparent",
-                )}
-              >
+              <div className="flex gap-5 sm:gap-6">
                 <span
+                  aria-hidden="true"
                   className={cn(
-                    "text-caption font-semibold tracking-wide uppercase",
-                    isActive
-                      ? "text-accent"
-                      : "text-accent lg:text-text-secondary",
+                    "font-display duration-base shrink-0 text-3xl leading-none transition-colors ease-out sm:text-4xl",
+                    isActive ? "text-warm" : "text-warm lg:text-text-secondary",
                   )}
                 >
-                  {stage.eyebrow} · {stage.label}
+                  {String(index + 1).padStart(2, "0")}
                 </span>
-                <h3
-                  className={cn(
-                    "text-h3 mt-2 font-semibold",
-                    isActive ? "text-text" : "text-text lg:text-text-secondary",
-                  )}
-                >
-                  {stage.title}
-                </h3>
-                <p className="text-text-secondary mt-2 max-w-sm">
-                  {stage.description}
-                </p>
+                <div>
+                  <span
+                    className={cn(
+                      "text-caption font-semibold tracking-wide uppercase",
+                      isActive
+                        ? "text-accent"
+                        : "text-accent lg:text-text-secondary",
+                    )}
+                  >
+                    {stage.label}
+                  </span>
+                  <h3
+                    className={cn(
+                      "text-h3 mt-2 font-semibold",
+                      isActive
+                        ? "text-text"
+                        : "text-text lg:text-text-secondary",
+                    )}
+                  >
+                    {stage.title}
+                  </h3>
+                  <p className="text-text-secondary mt-2 max-w-sm">
+                    {stage.description}
+                  </p>
+                </div>
               </div>
-              <div className="mt-8 px-1 sm:px-4 lg:hidden">
+              <div data-theme="light" className="mt-8 px-1 sm:px-4 lg:hidden">
                 <GrowthMockup stage={index} content={mockup} />
               </div>
             </li>
@@ -115,17 +121,22 @@ export function GrowthStory() {
 
       <div className="hidden lg:block">
         <div className="sticky top-28 pt-4 pr-4 pl-2">
-          <GrowthMockup key={active} stage={active} content={mockup} />
+          {/* The mockups stay a light website on the dark stage — the
+              point of the section is watching one site grow, and a site
+              that inverted with the background would break that. */}
+          <div data-theme="light">
+            <GrowthMockup key={active} stage={active} content={mockup} />
+          </div>
           <ol
             aria-hidden="true"
-            className="mt-6 flex items-center justify-center gap-2"
+            className="mt-8 flex items-center justify-center gap-2"
           >
             {stages.map((stage, index) => (
               <li
                 key={stage.id}
                 className={cn(
                   "duration-base h-1.5 rounded-full transition-[width,background-color] ease-out",
-                  index === active ? "bg-accent w-6" : "bg-border-strong w-1.5",
+                  index === active ? "bg-warm w-8" : "bg-border-strong w-1.5",
                 )}
               />
             ))}

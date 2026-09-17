@@ -16,7 +16,11 @@ export const es = {
   },
   skipLink: "Saltar al contenido",
   hero: {
-    heading: "Sitios web y software que hacen crecer tu negocio.",
+    heading: {
+      lead: "Sitios web y software que hacen ",
+      accent: "crecer",
+      tail: " tu negocio.",
+    },
     subhead:
       "Sitios web profesionales, reservas en línea y herramientas a la medida — diseñados y desarrollados para negocios como el tuyo.",
     ctaPrimary: "Iniciar un proyecto",
@@ -37,6 +41,7 @@ export const es = {
         cta: "Confirmar",
       },
       toast: { title: "Nueva reserva", body: "Laura G. · Mañana, 9:00" },
+      stat: { label: "Reservas esta semana", value: "24" },
     },
   },
   services: {

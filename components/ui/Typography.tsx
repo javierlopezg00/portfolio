@@ -11,12 +11,17 @@ const headingTag: Record<HeadingSize, ElementType> = {
   h4: "h4",
 };
 
+// Display sizes are set in the serif; h3/h4 stay in the UI sans. The
+// switch happens at the size where the serif is unambiguously readable
+// (24px+) — below that it would be decoration at the cost of legibility.
+// The serif is a 400 weight by design: at these sizes its own contrast
+// carries the heading, and bolding it would only muddy the letterforms.
 const headingSizeClass: Record<HeadingSize, string> = {
-  display: "text-display",
-  h1: "text-h1",
-  h2: "text-h2",
-  h3: "text-h3",
-  h4: "text-h4",
+  display: "text-display font-display font-normal",
+  h1: "text-h1 font-display font-normal",
+  h2: "text-h2 font-display font-normal",
+  h3: "text-h3 font-semibold",
+  h4: "text-h4 font-semibold",
 };
 
 interface HeadingProps {
@@ -32,14 +37,7 @@ interface HeadingProps {
 export function Heading({ size, as, id, className, children }: HeadingProps) {
   const Tag = as ?? headingTag[size];
   return (
-    <Tag
-      id={id}
-      className={cn(
-        headingSizeClass[size],
-        "text-text font-semibold",
-        className,
-      )}
-    >
+    <Tag id={id} className={cn(headingSizeClass[size], "text-text", className)}>
       {children}
     </Tag>
   );
