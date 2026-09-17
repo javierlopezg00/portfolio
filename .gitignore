@@ -48,3 +48,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Lighthouse under WSL creates a Chrome profile dir with a Windows path in the cwd
+C:*

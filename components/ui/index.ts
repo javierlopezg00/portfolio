@@ -10,5 +10,7 @@ export { Grid } from "./Grid";
 export { Input } from "./Input";
 export { Select } from "./Select";
 export { Checkbox } from "./Checkbox";
-export { Modal } from "./Modal";
 export { Tabs } from "./Tabs";
+// Modal is deliberately not re-exported here: it depends on motion/react,
+// and a barrel export was enough to pull that library into every page's
+// client bundle. Import it from "@/components/ui/Modal" directly.

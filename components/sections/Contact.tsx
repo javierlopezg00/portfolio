@@ -13,7 +13,7 @@ import {
 } from "@/components/ui";
 import { getWhatsAppHref, siteConfig } from "@/lib/content/site";
 import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
-import { Configurator } from "./configurator/Configurator";
+import { LazyConfigurator } from "./configurator/LazyConfigurator";
 
 // The one conversion section: quick ways to reach out (WhatsApp, email)
 // beside the quote configurator, so a visitor who just wants to say hello
@@ -110,7 +110,7 @@ export async function Contact() {
               {dict.configurator.subhead}
             </Text>
             <div className="mt-8">
-              <Configurator />
+              <LazyConfigurator />
             </div>
           </div>
         </div>

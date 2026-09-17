@@ -16,8 +16,10 @@ interface HeroShowcaseProps {
 // this is someone who builds real interfaces for real businesses.
 //
 // Decorative as a whole (aria-hidden): the headline and CTAs beside it
-// carry the meaning. Entrance animation is CSS-only and collapses to an
-// instant reveal under prefers-reduced-motion.
+// carry the meaning. The phone, chip and dashboard slice fade in (CSS
+// only, instant under prefers-reduced-motion); the browser frame itself
+// does not — it holds the hero photo, and a fade would keep that photo
+// out of the Largest Contentful Paint until seconds after it loaded.
 export function HeroShowcase({ content }: HeroShowcaseProps) {
   return (
     <div
@@ -28,7 +30,7 @@ export function HeroShowcase({ content }: HeroShowcaseProps) {
       {/* Layer 1: the website itself. */}
       <BrowserFrame
         label={content.brand}
-        className="rounded-signature-lg animate-fade-up relative z-10 w-full border-transparent shadow-xl motion-safe:[animation-delay:120ms] sm:ml-auto sm:w-[85%]"
+        className="rounded-signature-lg relative z-10 w-full border-transparent shadow-xl sm:ml-auto sm:w-[85%]"
       >
         <div className="flex flex-col gap-5 p-5 sm:p-6">
           <div className="flex items-center justify-between">

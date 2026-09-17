@@ -11,12 +11,12 @@ import {
   Heading,
   Input,
   Link,
-  Modal,
   Section,
   Select,
   Tabs,
   Text,
 } from "@/components/ui";
+import { Modal } from "@/components/ui/Modal";
 
 export function KitchenSinkClient() {
   const [modalOpen, setModalOpen] = useState(false);

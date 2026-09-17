@@ -44,7 +44,12 @@ export async function Hero() {
 
       <Container className="relative">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,10fr)_minmax(0,11fr)] lg:gap-10">
-          <div className="animate-fade-up flex max-w-2xl flex-col items-start">
+          {/* No entrance fade on the copy: the headline is the page's Largest
+              Contentful Paint, and an element that first paints at opacity 0
+              isn't counted — Chrome then reports whatever chrome painted
+              instead, seconds later. The decorative overlays in the mockup
+              keep their fade; the words arrive with the page. */}
+          <div className="flex max-w-2xl flex-col items-start">
             <Heading id="hero-heading" size="display" className="text-balance">
               {lead}
               <span className="whitespace-nowrap">
