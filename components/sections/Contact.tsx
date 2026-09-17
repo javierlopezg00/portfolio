@@ -6,7 +6,7 @@ import {
   Text,
   buttonStyles,
 } from "@/components/ui";
-import { getWhatsAppHref, secondaryContactHref } from "@/lib/content/nav";
+import { getWhatsAppHref, siteConfig } from "@/lib/content/site";
 import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 import { Configurator } from "./configurator/Configurator";
 
@@ -31,6 +31,15 @@ export async function Contact() {
               {dict.contact.body}
             </Text>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+              {/* The quote form is the primary action, and from `lg` up it
+                  sits right beside this column — so the button that jumps
+                  to it only renders where the form is actually off-screen. */}
+              <a
+                href="#configurator"
+                className={buttonStyles({ size: "lg", className: "lg:hidden" })}
+              >
+                {dict.configurator.heading}
+              </a>
               {whatsappHref && (
                 <a
                   href={whatsappHref}
@@ -43,7 +52,7 @@ export async function Contact() {
                 </a>
               )}
               <a
-                href={secondaryContactHref}
+                href={siteConfig.contact.mailto}
                 className={buttonStyles({ variant: "secondary", size: "lg" })}
               >
                 <MailIcon width={20} height={20} />

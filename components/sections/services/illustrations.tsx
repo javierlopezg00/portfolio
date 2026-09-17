@@ -55,7 +55,7 @@ export function WebsiteIllustration() {
   );
 }
 
-export function OnlineIllustration() {
+export function OnlineIllustration({ label }: { label: string }) {
   return (
     <Frame>
       <div className="flex w-full max-w-60 items-center gap-3">
@@ -78,9 +78,12 @@ export function OnlineIllustration() {
           </div>
         </div>
         <div className="border-border bg-surface flex flex-1 flex-col gap-2 rounded-lg border p-3 shadow-sm">
+          {/* A customer paying a business — the amount is a sample
+              transaction inside the mockup, never this site's own
+              pricing (which lives in the card's own copy below). */}
           <span className="text-text-secondary flex items-center gap-1.5 text-[10px]">
             <CardIcon width={12} height={12} />
-            <span className="bg-text-secondary/40 h-1.5 w-10 rounded-full" />
+            {label}
           </span>
           <span className="text-text text-sm font-semibold">Q350</span>
           <span className="bg-success/15 text-success flex items-center gap-1 self-start rounded-full px-2 py-0.5">

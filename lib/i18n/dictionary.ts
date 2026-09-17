@@ -49,6 +49,10 @@ export interface Dictionary {
   services: {
     heading: string;
     subhead: string;
+    // Caption inside the "Bookings & Online Sales" illustration, on a
+    // sample customer payment — keeps the amount from reading as this
+    // site's own pricing.
+    paymentLabel: string;
     categories: {
       id: string;
       title: string;
@@ -103,13 +107,35 @@ export interface Dictionary {
     caseStudy: {
       conceptualNote: string;
       backToWork: string;
-      approachHeading: string;
+      // Section headings, shared by every case study so the three pages
+      // read as one format. Business questions first; the engineering
+      // notes sit last, behind a disclosure.
+      goalHeading: string;
+      experienceHeading: string;
+      featuresHeading: string;
+      decisionsHeading: string;
+      technicalHeading: string;
+      technicalNote: string;
       resultsHeading: string;
+      // Label on the highlight card that points at the page's own live
+      // demo (the booking flow, the reservation flow, the inquiry flow).
+      tryItLabel: string;
     };
-    // Keyed by project id (see WORK_PROJECT_IDS in lib/content/work.ts) —
-    // plain-language points about what makes each site work for its
-    // customers, never invented business outcomes.
-    caseStudies: Record<string, { title: string; description: string }[]>;
+    // Keyed by project id (see WORK_PROJECT_IDS in lib/content/work.ts).
+    // Business-first: what the (fictional) business needed, what its
+    // customers can do, the features that matter to them, and why the
+    // experience is shaped that way. `technical` is the only place
+    // implementation vocabulary is allowed, and it renders collapsed.
+    caseStudies: Record<
+      string,
+      {
+        goal: string;
+        experience: string;
+        features: { title: string; description: string }[];
+        decisions: { title: string; description: string }[];
+        technical: { title: string; description: string }[];
+      }
+    >;
     // The Meridian clinic page doubles as a sales demo to send directly to
     // a clinic owner — everything here is fictional (no real doctors,
     // address, or phone), and nothing collects medical information.
@@ -340,6 +366,9 @@ export interface Dictionary {
     // Pre-filled text for the wa.me link.
     whatsappMessage: string;
     email: string;
+    // Shorter, more inviting wording for the same mailto: used where the
+    // button sits beside other CTAs (the case-study closing section).
+    emailShort: string;
     replyNote: string;
   };
   configurator: {

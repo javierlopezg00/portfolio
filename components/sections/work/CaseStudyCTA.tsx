@@ -7,7 +7,7 @@ import {
   Text,
   buttonStyles,
 } from "@/components/ui";
-import { getWhatsAppHref, secondaryContactHref } from "@/lib/content/nav";
+import { getWhatsAppHref, siteConfig } from "@/lib/content/site";
 import { getServerDictionary } from "@/lib/i18n/getServerDictionary";
 
 // Rendered at the end of every case study and the lab so a visitor who
@@ -47,11 +47,11 @@ export async function CaseStudyCTA() {
             </a>
           )}
           <a
-            href={secondaryContactHref}
+            href={siteConfig.contact.mailto}
             className={buttonStyles({ variant: "secondary", size: "lg" })}
           >
             <MailIcon width={20} height={20} />
-            {dict.contact.email}
+            {dict.contact.emailShort}
           </a>
         </div>
       </Container>

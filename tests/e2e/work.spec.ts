@@ -23,9 +23,22 @@ test.describe("Case studies", () => {
     await expect(
       page.getByRole("heading", { level: 1, name: "Ember & Oak" }),
     ).toBeVisible();
+    for (const heading of [
+      en.work.caseStudy.goalHeading,
+      en.work.caseStudy.experienceHeading,
+      en.work.caseStudy.featuresHeading,
+      en.work.caseStudy.decisionsHeading,
+    ]) {
+      await expect(page.getByRole("heading", { name: heading })).toBeVisible();
+    }
+    // Engineering notes exist but stay collapsed — business content leads.
+    const technical = page.getByText(en.work.caseStudy.technicalNote);
+    await expect(technical).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: en.work.caseStudy.approachHeading }),
-    ).toBeVisible();
+      page.getByRole("heading", {
+        name: en.work.caseStudies.restaurant.technical[0].title,
+      }),
+    ).toBeHidden();
     await expect(page.locator("footer")).toBeVisible();
   });
 
@@ -37,19 +50,41 @@ test.describe("Case studies", () => {
       page.getByRole("heading", { level: 1, name: "Meridian Health" }),
     ).toBeVisible();
     const show = en.work.clinicShowcase;
-    for (const name of [
-      show.servicesHeading,
-      show.doctorsHeading,
-      show.mobileHeading,
-      show.locationHeading,
-      show.trustHeading,
-      en.work.clinicBooking.heading,
-    ]) {
-      await expect(page.getByRole("heading", { name })).toBeVisible();
+    // Scoped by section: a few of these headings are deliberately echoed
+    // by the "try it below" card up in Key Features.
+    for (const [section, name] of [
+      ["#services", show.servicesHeading],
+      ["#services", show.doctorsHeading],
+      ["#mobile", show.mobileHeading],
+      ["#mobile", show.locationHeading],
+      ["#book", show.trustHeading],
+      ["#book", en.work.clinicBooking.heading],
+    ] as const) {
+      await expect(
+        page.locator(section).getByRole("heading", { name, exact: true }),
+      ).toBeVisible();
     }
     await expect(page.getByText(show.address)).toBeVisible();
     // Nothing on the demo page collects data: no form posts anywhere.
     await expect(page.locator("form[action]")).toHaveCount(0);
+  });
+
+  test("each case study links to its own live demo from Key Features", async ({
+    page,
+  }) => {
+    for (const [id, anchor] of [
+      ["restaurant", "#reservation-demo"],
+      ["consulting", "#lead-qualification-demo"],
+      ["clinic", "#book"],
+    ] as const) {
+      await page.goto(`/en/work/${id}`);
+      const link = page
+        .locator("#features")
+        .getByRole("link", { name: new RegExp(en.work.caseStudy.tryItLabel) });
+      await expect(link).toHaveAttribute("href", anchor);
+      await link.click();
+      await expect(page.locator(anchor)).toBeVisible();
+    }
   });
 
   test("unknown case study id 404s", async ({ page }) => {
@@ -95,7 +130,7 @@ test.describe("Case studies", () => {
       await expect(
         page
           .locator("#next-steps")
-          .getByRole("link", { name: en.contact.email }),
+          .getByRole("link", { name: en.contact.emailShort }),
       ).toHaveAttribute("href", /^mailto:/);
     }
   });

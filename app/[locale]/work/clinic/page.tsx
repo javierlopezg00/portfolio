@@ -5,7 +5,7 @@ import { CheckIcon } from "@/components/illustrations/icons";
 import { Footer } from "@/components/layout/Footer";
 import { Navigation } from "@/components/layout/Navigation";
 import { SkipLink } from "@/components/layout/SkipLink";
-import { CaseStudyApproach } from "@/components/sections/work/CaseStudyApproach";
+import { CaseStudyStory } from "@/components/sections/work/CaseStudyStory";
 import { CaseStudyCTA } from "@/components/sections/work/CaseStudyCTA";
 import { CaseStudyHeader } from "@/components/sections/work/CaseStudyHeader";
 import { ClinicPreview } from "@/components/sections/work/previews";
@@ -119,9 +119,19 @@ export default async function ClinicCaseStudyPage({ params }: ClinicPageProps) {
           </ul>
         </CaseStudyHeader>
 
+        <CaseStudyStory
+          dict={dict}
+          projectId="clinic"
+          demoHighlight={{
+            title: cb.heading,
+            description: cb.subhead,
+            href: "#book",
+          }}
+        />
+
         <ClinicShowcase dict={dict} />
 
-        <Section theme="soft" ariaLabelledBy="book-heading" id="book">
+        <Section ariaLabelledBy="book-heading" id="book">
           <Container>
             <div className="max-w-xl">
               <Heading id="book-heading" size="h2">
@@ -152,8 +162,6 @@ export default async function ClinicCaseStudyPage({ params }: ClinicPageProps) {
             </div>
           </Container>
         </Section>
-
-        <CaseStudyApproach dict={dict} projectId="clinic" />
 
         <CaseStudyCTA />
       </main>

@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 import { Container } from "@/components/ui";
-import { contactEmail, getWhatsAppHref } from "@/lib/content/nav";
+import { getWhatsAppHref, siteConfig } from "@/lib/content/site";
 import {
   getServerDictionary,
   getServerLocale,
@@ -17,6 +17,7 @@ export async function Footer() {
   const locale = await getServerLocale();
   const dict = await getServerDictionary();
   const whatsappHref = getWhatsAppHref(dict.contact.whatsappMessage);
+  const { email } = siteConfig.contact;
 
   return (
     <footer data-theme="dark" className="bg-background text-text">
@@ -70,10 +71,10 @@ export async function Footer() {
               )}
               <li>
                 <a
-                  href={`mailto:${contactEmail}`}
+                  href={siteConfig.contact.mailto}
                   className={`${linkClass} break-all`}
                 >
-                  {contactEmail}
+                  {email}
                 </a>
               </li>
             </ul>

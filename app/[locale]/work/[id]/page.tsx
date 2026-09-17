@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Navigation } from "@/components/layout/Navigation";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { Container, Heading, Section, Text } from "@/components/ui";
-import { CaseStudyApproach } from "@/components/sections/work/CaseStudyApproach";
+import { CaseStudyStory } from "@/components/sections/work/CaseStudyStory";
 import { CaseStudyCTA } from "@/components/sections/work/CaseStudyCTA";
 import { CaseStudyHeader } from "@/components/sections/work/CaseStudyHeader";
 import {
@@ -111,7 +111,23 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           preview={preview}
         />
 
-        <CaseStudyApproach dict={dict} projectId={resolved.id} />
+        <CaseStudyStory
+          dict={dict}
+          projectId={resolved.id}
+          demoHighlight={
+            resolved.id === "restaurant"
+              ? {
+                  title: dict.work.reservationDemo.heading,
+                  description: dict.work.reservationDemo.subhead,
+                  href: "#reservation-demo",
+                }
+              : {
+                  title: dict.work.leadQualificationDemo.heading,
+                  description: dict.work.leadQualificationDemo.subhead,
+                  href: "#lead-qualification-demo",
+                }
+          }
+        />
 
         {resolved.id === "restaurant" && (
           <Section

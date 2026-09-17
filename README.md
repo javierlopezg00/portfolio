@@ -35,7 +35,11 @@ when Resend isn't configured, and SEO URLs fall back to localhost.
 
 - `NEXT_PUBLIC_SITE_URL` — the real domain once one is connected.
 - `NEXT_PUBLIC_WHATSAPP_NUMBER` — digits only, with country code. Every
-  "WhatsApp Me" button renders only when this is set.
+  WhatsApp button renders only when this is set.
+- `NEXT_PUBLIC_CONTACT_EMAIL` — the address shown in the footer and behind
+  every "Email me" link. Defaults to the personal inbox; switch it to the
+  branded domain address (`hello@javierdigital.com`) once that mailbox
+  exists. Both values are read in one place, `lib/content/site.ts`.
 - `RESEND_API_KEY`, `LEAD_NOTIFICATION_EMAIL`, `LEAD_FROM_EMAIL` — quote
   request (configurator) lead emails.
 
@@ -70,7 +74,8 @@ pnpm lighthouse          # Lighthouse CI against a production build
 - `components/work` — case-study-only demos (clinic booking, reservations,
   lead qualification) and the Meridian clinic showcase
 - `lib/animation` — GSAP setup (Lab only)
-- `lib/content` — CTA targets, WhatsApp/email links, project ids
+- `lib/content` — `site.ts` (contact email + WhatsApp, the only place
+  either is defined), CTA targets, image imports, project ids
 - `lib/i18n` — locale routing helpers and the English/Spanish dictionaries
   (all customer-facing copy lives here)
 - `lib/analytics` — thin Vercel Analytics tracking wrapper

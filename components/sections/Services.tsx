@@ -7,14 +7,13 @@ import {
   WebsiteIllustration,
 } from "./services/illustrations";
 
-const illustrations = [
-  <WebsiteIllustration key="websites" />,
-  <OnlineIllustration key="online" />,
-  <SoftwareIllustration key="software" />,
-];
-
 export async function Services() {
   const dict = await getServerDictionary();
+  const illustrations = [
+    <WebsiteIllustration key="websites" />,
+    <OnlineIllustration key="online" label={dict.services.paymentLabel} />,
+    <SoftwareIllustration key="software" />,
+  ];
 
   return (
     <Section id="services" ariaLabelledBy="services-heading">

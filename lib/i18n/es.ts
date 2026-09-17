@@ -42,6 +42,7 @@ export const es = {
   services: {
     heading: "Lo que puedo construir para ti.",
     subhead: "Desde tu primer sitio web hasta software hecho para tu negocio.",
+    paymentLabel: "Pago de un cliente",
     categories: [
       {
         id: "websites",
@@ -57,11 +58,11 @@ export const es = {
       },
       {
         id: "online",
-        title: "Negocio en línea",
+        title: "Reservas y ventas en línea",
         description:
-          "Permite que tus clientes reserven, compren, paguen o interactúen con tu negocio en línea.",
+          "Permite que tus clientes agenden una cita, reserven una mesa, o compren y paguen en línea.",
         examples: [
-          "Reservas en línea",
+          "Citas y reservas",
           "Pagos y tienda en línea",
           "Cuentas para clientes",
         ],
@@ -146,61 +147,200 @@ export const es = {
       conceptualNote:
         "Proyecto de ejemplo — una demostración realista creada para mostrar el enfoque, no el sitio real de un cliente.",
       backToWork: "Volver a proyectos",
-      approachHeading: "Por qué funciona",
+      goalHeading: "El objetivo",
+      experienceHeading: "La experiencia",
+      featuresHeading: "Funciones clave",
+      decisionsHeading: "Decisiones de diseño",
+      technicalHeading: "Detalles técnicos",
+      technicalNote:
+        "Para quien tenga curiosidad: cómo está construido por dentro.",
       resultsHeading: "Resultados",
+      tryItLabel: "Pruébalo abajo",
     },
     caseStudies: {
-      clinic: [
-        {
-          title: "Citas en tres pasos",
-          description:
-            "El paciente elige servicio, médico y horario — sin llamadas ni idas y vueltas.",
-        },
-        {
-          title: "Todo lo que busca un paciente",
-          description:
-            "Servicios, médicos, ubicación y horarios fáciles de encontrar desde cualquier celular.",
-        },
-        {
-          title: "Accesible para todos",
-          description:
-            "Funciona con teclado y con lectores de pantalla, para que ningún paciente se quede fuera.",
-        },
-      ],
-      restaurant: [
-        {
-          title: "Un menú que actualizas tú mismo",
-          description:
-            "Los platillos y precios son contenido real, no un PDF — cámbialos cuando quieras sin rediseñar nada.",
-        },
-        {
-          title: "Pensado primero para el celular",
-          description:
-            "La mayoría de los comensales llegan desde Instagram o Maps. El sitio está hecho justo para ese momento.",
-        },
-        {
-          title: "Rápido, incluso con mala señal",
-          description:
-            "Las páginas cargan al instante para que nadie se vaya antes de ver el menú.",
-        },
-      ],
-      consulting: [
-        {
-          title: "Empieza por lo que hace la firma",
-          description:
-            "Las áreas de práctica son lo primero que ve el visitante — sin frases vacías.",
-        },
-        {
-          title: "Profesional sin ser genérico",
-          description:
-            "Un diseño sobrio y creíble, a la altura de una firma de servicios y de sus clientes.",
-        },
-        {
-          title: "Un formulario de contacto más inteligente",
-          description:
-            "El visitante cuenta qué necesita antes de la primera llamada, así cada conversación empieza preparada.",
-        },
-      ],
+      clinic: {
+        goal: "Una clínica privada con cuatro médicos estaba perdiendo citas por teléfono: los pacientes llamaban durante la consulta, nadie contestaba y terminaban agendando en otro lado. Necesitaba un sitio donde agendar no dependiera de una llamada.",
+        experience:
+          "El paciente encuentra la clínica, ve qué atiende cada médico, elige un horario que de verdad está libre y confirma — en un minuto, casi siempre desde el celular.",
+        features: [
+          {
+            title: "Citas en tres pasos",
+            description:
+              "Elegir servicio, elegir médico, elegir horario. Sin crear cuenta ni llenar formularios.",
+          },
+          {
+            title: "Médicos y servicios a la vista",
+            description:
+              "Cada médico tiene su perfil con su especialidad, así el paciente elige bien desde la primera vez.",
+          },
+          {
+            title: "Un toque para contactar la clínica",
+            description:
+              "WhatsApp, teléfono y cómo llegar siempre a la mano, para quien prefiere preguntar.",
+          },
+          {
+            title: "Ubicación y horarios donde se buscan",
+            description:
+              "Dirección, horario y mapa — las tres cosas que revisa un paciente antes de salir de casa.",
+          },
+        ],
+        decisions: [
+          {
+            title: "Agendar es lo primero",
+            description:
+              "Todo lo demás está a un scroll. La acción que más vale para la clínica ocupa el mejor lugar.",
+          },
+          {
+            title: "Solo se muestra disponibilidad real",
+            description:
+              "El paciente no puede elegir un horario ya ocupado, así recepción nunca tiene que llamar para reacomodar.",
+          },
+          {
+            title: "No se pide información médica",
+            description:
+              "Agendar pide un nombre y un correo, nada más. Lo delicado se habla en consulta, no en un formulario web.",
+          },
+        ],
+        technical: [
+          {
+            title: "Lógica de agenda real, no una captura",
+            description:
+              "El calendario calcula la disponibilidad por día y por médico, adapta el formato de fecha al idioma del visitante y bloquea horarios pasados o no disponibles.",
+          },
+          {
+            title: "Accesible desde el inicio",
+            description:
+              "El calendario, las tarjetas de opción y la confirmación funcionan con teclado y están etiquetados para lectores de pantalla desde el principio, no ajustados después.",
+          },
+          {
+            title: "No se guarda nada",
+            description:
+              "La demostración vive solo en el navegador: ningún dato de paciente se envía ni se almacena.",
+          },
+        ],
+      },
+      restaurant: {
+        goal: "Un restaurante de barrio mandaba la foto de un menú impreso por WhatsApp y tomaba cada reserva por teléfono. Necesitaba un sitio que mostrara bien la comida y recibiera reservas mientras la cocina está llena.",
+        experience:
+          "El comensal ve el menú con fotos reales, se hace una idea del lugar, revisa el horario de hoy y reserva mesa — sin llamar ni esperar respuesta.",
+        features: [
+          {
+            title: "Un menú que vende la comida",
+            description:
+              "Platillos, fotos y precios pensados para leerse en el celular camino a cenar.",
+          },
+          {
+            title: "Reservas en línea",
+            description:
+              "Cuántas personas, qué día, a qué hora, confirmado. Las reservas siguen entrando mientras el equipo atiende.",
+          },
+          {
+            title: "Ubicación y horarios",
+            description:
+              "Dónde están y a qué hora abren, visible sin tener que buscarlo.",
+          },
+          {
+            title: "Un toque para llamar o escribir",
+            description:
+              "Para el grupo grande o la petición especial que necesita a una persona.",
+          },
+        ],
+        decisions: [
+          {
+            title: "Las fotos van primero",
+            description:
+              "Un restaurante se elige con los ojos. La comida es el protagonista visual, no un encabezado decorativo.",
+          },
+          {
+            title: "El menú es contenido, no un PDF",
+            description:
+              "Precios y platillos se cambian en minutos, sin diseñador y sin rediseño — así el menú en línea es el menú de esta noche.",
+          },
+          {
+            title: "Hecho para el celular en la mano",
+            description:
+              "La mayoría llega desde Instagram o Maps. Todo está dimensionado para un dedo en una pantalla pequeña.",
+          },
+        ],
+        technical: [
+          {
+            title: "Carga rápida en cualquier dispositivo",
+            description:
+              "Las páginas se generan por adelantado y las imágenes se redimensionan y comprimen solas, así el menú aparece incluso con mala señal.",
+          },
+          {
+            title: "Un solo diseño para todas las pantallas",
+            description:
+              "Las vistas de escritorio y celular son el mismo código respondiendo al espacio disponible, así nunca se desalinean.",
+          },
+          {
+            title: "Flujo de reservas sin servidor",
+            description:
+              "La demostración funciona solo en el navegador; una versión real se conectaría al sistema de reservas del restaurante.",
+          },
+        ],
+      },
+      consulting: {
+        goal: 'Una firma de asesoría recibía consultas que solo decían "quiero hablar con ustedes" — cada primera llamada empezaba de cero. Necesitaba un sitio que explicara qué hace la firma y reuniera contexto antes de la llamada.',
+        experience:
+          "El cliente potencial ve de inmediato las áreas de práctica, concluye que la firma es seria y envía una consulta que ya dice qué necesita y para cuándo.",
+        features: [
+          {
+            title: "Un mensaje claro",
+            description:
+              "Qué hace la firma y para quién, en la primera pantalla — sin frases corporativas vacías.",
+          },
+          {
+            title: "Servicios que el cliente reconoce",
+            description:
+              "Áreas de práctica descritas en las palabras del cliente, para que se identifique con una.",
+          },
+          {
+            title: "Una consulta guiada, no una caja vacía",
+            description:
+              "Tres preguntas cortas — qué necesitas, tamaño de la empresa, plazo — y la firma ya sabe con quién habla.",
+          },
+          {
+            title: "Consultas que llegan calificadas",
+            description:
+              "Cada primera llamada empieza preparada, y eso vale más que recibir muchos mensajes sin contexto.",
+          },
+        ],
+        decisions: [
+          {
+            title: "Credibilidad antes que decoración",
+            description:
+              "Un diseño sobrio, centrado en el texto. En servicios profesionales, la mesura se lee como competencia.",
+          },
+          {
+            title: "Preguntar funciona mejor que un formulario",
+            description:
+              "Tres respuestas a un toque cuestan menos esfuerzo que un campo de mensaje en blanco, y dan información mucho más útil.",
+          },
+          {
+            title: "Ninguna pregunta que el cliente no pueda responder",
+            description:
+              "El presupuesto y el alcance se hablan en la llamada. El formulario solo pregunta lo que se responde en diez segundos.",
+          },
+        ],
+        technical: [
+          {
+            title: "Construido con el mismo sistema de diseño",
+            description:
+              "Este sitio, el de la clínica y el del restaurante comparten una misma librería de componentes — eso es lo que permite que tres negocios muy distintos se vean como ellos mismos sin empezar de cero cada vez.",
+          },
+          {
+            title: "Listo para teclado y lectores de pantalla",
+            description:
+              "El flujo de consulta se opera por completo sin mouse, y cada paso se anuncia al cambiar.",
+          },
+          {
+            title: "A un paso de un proceso real",
+            description:
+              "La demostración resume las respuestas en el navegador; una versión real las enviaría al correo o al CRM de la firma.",
+          },
+        ],
+      },
     },
     clinicShowcase: {
       badge: "Ejemplo de sitio para clínica",
@@ -282,7 +422,7 @@ export const es = {
     caseStudyResults: {},
     caseStudyCta: {
       heading: "¿Quieres algo así para tu negocio?",
-      body: "Cuéntame sobre tu proyecto y te respondo en un día hábil.",
+      body: "Cuéntame qué quieres construir y te ayudo a definir el mejor camino.",
       primaryCta: "Iniciar un proyecto",
     },
     reservationDemo: {
@@ -455,7 +595,7 @@ export const es = {
   },
   about: {
     heading: "Hola, soy Javier.",
-    body: "Soy ingeniero de software y construyo sitios web y software para negocios que necesitan más que una solución genérica.",
+    body: "Soy ingeniero de software y construyo sitios web y software para negocios que necesitan más que una solución genérica. Trabajas directamente con la persona responsable de la ejecución técnica de tu proyecto.",
     points: [
       {
         title: "Comunicación directa",
@@ -464,7 +604,7 @@ export const es = {
       {
         title: "Responsabilidad técnica",
         description:
-          "Una sola persona responsable desde la idea hasta el lanzamiento.",
+          "Un solo contacto técnico desde la primera idea hasta el lanzamiento.",
       },
       {
         title: "Desarrollo de principio a fin",
@@ -569,10 +709,11 @@ export const es = {
   },
   contact: {
     heading: "Construyamos algo para tu negocio.",
-    body: "Envíame un mensaje o cotiza tu proyecto en dos minutos.",
+    body: "Cotiza tu proyecto en dos minutos, o simplemente escríbeme.",
     whatsapp: "Escríbeme por WhatsApp",
     whatsappMessage: "Hola Javier, me gustaría hablar sobre un proyecto.",
     email: "Enviar correo",
+    emailShort: "Enviarme un mensaje",
     replyNote: "Respondo en un día hábil.",
   },
   configurator: {

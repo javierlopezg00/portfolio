@@ -42,6 +42,7 @@ export const en = {
   services: {
     heading: "What I can build for you.",
     subhead: "From your first website to software made for your business.",
+    paymentLabel: "Customer payment",
     categories: [
       {
         id: "websites",
@@ -57,12 +58,12 @@ export const en = {
       },
       {
         id: "online",
-        title: "Online Business",
+        title: "Bookings & Online Sales",
         description:
-          "Let customers book, buy, pay or interact with your business online.",
+          "Let customers book an appointment, reserve a table, or buy and pay online.",
         examples: [
-          "Online booking",
-          "Payments and online store",
+          "Appointments and reservations",
+          "Online payments and store",
           "Customer accounts",
         ],
         pricing: "Quoted based on scope",
@@ -142,61 +143,199 @@ export const en = {
       conceptualNote:
         "Example project — a realistic demonstration built to show the approach, not a client's live site.",
       backToWork: "Back to all work",
-      approachHeading: "What makes it work",
+      goalHeading: "The goal",
+      experienceHeading: "The experience",
+      featuresHeading: "Key features",
+      decisionsHeading: "Design decisions",
+      technicalHeading: "Technical details",
+      technicalNote: "For the curious — how it's built under the hood.",
       resultsHeading: "Results",
+      tryItLabel: "Try it below",
     },
     caseStudies: {
-      clinic: [
-        {
-          title: "Booking in three steps",
-          description:
-            "Patients pick a service, a doctor and a time — no phone calls, no back-and-forth.",
-        },
-        {
-          title: "Everything a patient looks for",
-          description:
-            "Services, doctors, location and hours are easy to find on any phone.",
-        },
-        {
-          title: "Accessible to everyone",
-          description:
-            "Works with a keyboard and with screen readers, so no patient is left out.",
-        },
-      ],
-      restaurant: [
-        {
-          title: "A menu you can update yourself",
-          description:
-            "Dishes and prices are real content, not a PDF — change them any time without a redesign.",
-        },
-        {
-          title: "Designed for phones first",
-          description:
-            "Most guests arrive from Instagram or Maps. The site is built for exactly that moment.",
-        },
-        {
-          title: "Fast, even on slow connections",
-          description:
-            "Pages load instantly so nobody gives up before seeing the menu.",
-        },
-      ],
-      consulting: [
-        {
-          title: "Leads with what the firm does",
-          description:
-            "Practice areas are the first thing a visitor sees — no vague hero copy.",
-        },
-        {
-          title: "Professional without being generic",
-          description:
-            "A calm, credible layout that suits a services firm and its clients.",
-        },
-        {
-          title: "A smarter contact form",
-          description:
-            "Visitors say what they need before the first call, so every conversation starts prepared.",
-        },
-      ],
+      clinic: {
+        goal: "A private clinic with four doctors was losing appointments to the phone: patients called during consultation hours, nobody picked up, and they booked somewhere else. It needed a website where booking happens without a phone call.",
+        experience:
+          "A patient finds the clinic, sees which doctors treat what, picks a time that's actually free, and confirms — in about a minute, usually from their phone.",
+        features: [
+          {
+            title: "Booking in three steps",
+            description:
+              "Choose a service, choose a doctor, choose a time. No account, no forms to print.",
+          },
+          {
+            title: "Doctors and services up front",
+            description:
+              "Each doctor has a profile with their specialty, so patients pick the right one the first time.",
+          },
+          {
+            title: "One tap to reach the clinic",
+            description:
+              "WhatsApp, phone and directions are always within reach, for anyone who'd rather just ask.",
+          },
+          {
+            title: "Location and hours where people look",
+            description:
+              "Address, opening hours and a map link — the three things patients check before leaving home.",
+          },
+        ],
+        decisions: [
+          {
+            title: "Booking leads the page",
+            description:
+              "Everything else is one scroll away. The one action worth the most to the clinic gets the best spot.",
+          },
+          {
+            title: "Only real availability is shown",
+            description:
+              "Patients can't pick a slot that's already taken, so the front desk never has to call anyone back to rearrange.",
+          },
+          {
+            title: "No medical information is collected",
+            description:
+              "Booking asks for a name and an email — nothing more. Sensitive details belong in the consultation room, not a web form.",
+          },
+        ],
+        technical: [
+          {
+            title: "Real scheduling logic, not a screenshot",
+            description:
+              "The calendar computes availability per day and per doctor, formats dates for the visitor's language, and blocks past and unavailable slots.",
+          },
+          {
+            title: "Accessible by construction",
+            description:
+              "The calendar, option cards and confirmation step are keyboard-operable and screen-reader labeled from the start, not retrofitted.",
+          },
+          {
+            title: "Nothing is stored",
+            description:
+              "The demo keeps its state in the browser only, so no patient data is transmitted or retained anywhere.",
+          },
+        ],
+      },
+      restaurant: {
+        goal: "A neighborhood restaurant was sending guests a photo of a printed menu over WhatsApp and taking every reservation by phone. It needed a site that shows the food properly and takes bookings while the kitchen is busy.",
+        experience:
+          "A guest browses the menu with real photos, gets a feel for the room, checks tonight's hours, and reserves a table — without calling or waiting for a reply.",
+        features: [
+          {
+            title: "A menu that sells the food",
+            description:
+              "Dishes, photos and prices laid out to be read on a phone on the way to dinner.",
+          },
+          {
+            title: "Table reservations online",
+            description:
+              "Party size, date, time, confirmed. Bookings keep arriving while the team is serving.",
+          },
+          {
+            title: "Location and opening hours",
+            description:
+              "Where you are and when you're open, visible without scrolling for it.",
+          },
+          {
+            title: "One tap to call or message",
+            description:
+              "For the large party or the special request that needs a human.",
+          },
+        ],
+        decisions: [
+          {
+            title: "Photos come first",
+            description:
+              "People choose a restaurant with their eyes. The food is the page's main visual, not a decorative header.",
+          },
+          {
+            title: "The menu is content, not a PDF",
+            description:
+              "Prices and dishes can be changed in minutes, with no designer and no redesign — so the menu online is the menu tonight.",
+          },
+          {
+            title: "Built for the phone in a hand",
+            description:
+              "Most guests arrive from Instagram or Maps. Everything is sized for a thumb on a small screen.",
+          },
+        ],
+        technical: [
+          {
+            title: "Fast loading on every device",
+            description:
+              "Pages are rendered ahead of time and images are resized and compressed automatically, so the menu appears even on a weak mobile connection.",
+          },
+          {
+            title: "One layout, every screen size",
+            description:
+              "The desktop and phone views are the same code responding to the space available, so they can never drift out of sync.",
+          },
+          {
+            title: "Reservation flow without a backend",
+            description:
+              "The demo runs entirely in the browser; a live build would connect it to the restaurant's booking system.",
+          },
+        ],
+      },
+      consulting: {
+        goal: 'An advisory firm was getting inquiries that read only "I\'d like to talk" — every first call started from zero. It needed a site that explains what the firm does and collects enough context before the call.',
+        experience:
+          "A prospective client sees the firm's practice areas immediately, decides it's credible, and sends an inquiry that already says what they need and when.",
+        features: [
+          {
+            title: "Clear positioning",
+            description:
+              "What the firm does and who it does it for, in the first screen — no vague corporate opener.",
+          },
+          {
+            title: "Services a client recognizes",
+            description:
+              "Practice areas described in the client's words, so they can find themselves in one of them.",
+          },
+          {
+            title: "A guided inquiry, not a blank box",
+            description:
+              "Three short questions — what you need, company size, timeline — and the firm knows who it's talking to.",
+          },
+          {
+            title: "Consultation requests that arrive qualified",
+            description:
+              "Every first call starts prepared, which is worth more than a higher volume of vague messages.",
+          },
+        ],
+        decisions: [
+          {
+            title: "Credibility over decoration",
+            description:
+              "A calm, text-led layout. For professional services, restraint reads as competence.",
+          },
+          {
+            title: "Asking beats a contact form",
+            description:
+              "Three tapped answers take less effort than an empty message field, and they produce a far more useful lead.",
+          },
+          {
+            title: "No question the client can't answer",
+            description:
+              "Budget and scope get discussed on the call. The form only asks what someone can answer in ten seconds.",
+          },
+        ],
+        technical: [
+          {
+            title: "Built from the same design system",
+            description:
+              "This site, the clinic and the restaurant share one component library — which is what lets three very different businesses each look like themselves without a rebuild.",
+          },
+          {
+            title: "Keyboard and screen-reader ready",
+            description:
+              "The inquiry flow is fully operable without a mouse, and each step is announced as it changes.",
+          },
+          {
+            title: "A step away from a real pipeline",
+            description:
+              "The demo summarizes answers in the browser; a live build would deliver them to the firm's inbox or CRM.",
+          },
+        ],
+      },
     },
     clinicShowcase: {
       badge: "Clinic website example",
@@ -271,7 +410,7 @@ export const en = {
     caseStudyResults: {},
     caseStudyCta: {
       heading: "Want something like this for your business?",
-      body: "Tell me about your project and I'll reply within one business day.",
+      body: "Tell me what you're looking to build and I'll help you figure out the right approach.",
       primaryCta: "Start a Project",
     },
     reservationDemo: {
@@ -440,7 +579,7 @@ export const en = {
   },
   about: {
     heading: "Hi, I'm Javier.",
-    body: "I'm a software engineer who builds websites and software for businesses that need more than an off-the-shelf solution.",
+    body: "I'm a software engineer who builds websites and software for businesses that need more than an off-the-shelf solution. You work directly with the person responsible for your project's technical execution.",
     points: [
       {
         title: "Direct communication",
@@ -448,7 +587,8 @@ export const en = {
       },
       {
         title: "Technical ownership",
-        description: "One person responsible from the first idea to launch.",
+        description:
+          "One technical point of contact from the first idea to launch.",
       },
       {
         title: "End-to-end development",
@@ -552,10 +692,11 @@ export const en = {
   },
   contact: {
     heading: "Let's build something for your business.",
-    body: "Send a message, or request a quote in two minutes.",
-    whatsapp: "WhatsApp Me",
+    body: "Request a quote in two minutes, or just send me a message.",
+    whatsapp: "Chat on WhatsApp",
     whatsappMessage: "Hi Javier, I'd like to talk about a project.",
-    email: "Email me",
+    email: "Email Me",
+    emailShort: "Send Me a Message",
     replyNote: "I reply within one business day.",
   },
   configurator: {

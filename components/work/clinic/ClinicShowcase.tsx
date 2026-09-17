@@ -25,11 +25,7 @@ export function ClinicShowcase({ dict }: ClinicShowcaseProps) {
 
   return (
     <>
-      <Section
-        theme="soft"
-        ariaLabelledBy="clinic-services-heading"
-        id="services"
-      >
+      <Section ariaLabelledBy="clinic-services-heading" id="services">
         <Container>
           <Heading id="clinic-services-heading" size="h2">
             {show.servicesHeading}
@@ -91,7 +87,7 @@ export function ClinicShowcase({ dict }: ClinicShowcaseProps) {
         </Container>
       </Section>
 
-      <Section ariaLabelledBy="clinic-mobile-heading" id="mobile">
+      <Section theme="soft" ariaLabelledBy="clinic-mobile-heading" id="mobile">
         <Container>
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
